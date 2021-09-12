@@ -1,0 +1,16 @@
+--- button "dragModelfrominspector",card id 1002,previewImage
+on DropModel
+  if the mouseLoc is within the rect of field "Root" of stack "inspector" then
+    put T3DCommand("make" && quoted(the label of me)) into waste
+  else
+    if the screenMouseLoc is within getMkey(GLRECT) then
+      put T3DGetInfo("2Dto3D",item 1 of the screenMouseLoc, item 2 of the screenMouseLoc) into theLoc
+      put T3DCommand("make" && quoted(the label of me)) into waste
+      put T3DCommand("put" && theLoc) into waste
+      end if
+    end if
+end DropModel
+-- --
+on dropRootLine
+  put rootDropAction() into effect
+end dropRootLine

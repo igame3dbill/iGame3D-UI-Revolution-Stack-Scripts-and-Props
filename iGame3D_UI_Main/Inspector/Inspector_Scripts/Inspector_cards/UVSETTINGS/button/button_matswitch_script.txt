@@ -1,0 +1,16 @@
+--- button "matswitch",UVSETTINGS,Inspector
+on menuPick myPick1 myPick2
+  put myPick1 && myPick2 into myPicka
+  
+  replace "texture" with "texmat" in myPicka
+  replace "Color" with "ColorTransGroup" in MyPicka
+  replace "UV" with "UVGroup" in myPicka
+  show group (word 1 of myPicka)
+  hide group (word 2 of myPicka)
+  if word 1 of myPicka is "ColorTransGroup" then 
+--    show group "mouseColorGroup"
+  else
+--    hide group "mouseColorGroup"
+  end if
+  
+end menuPick

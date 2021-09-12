@@ -1,0 +1,6 @@
+commandHeader,meshSubRoot[["array
+bone
+bevel-extrude
+display
+groups
+terrain"]]

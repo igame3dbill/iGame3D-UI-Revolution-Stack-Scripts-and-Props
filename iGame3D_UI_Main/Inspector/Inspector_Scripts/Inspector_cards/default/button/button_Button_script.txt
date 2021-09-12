@@ -1,0 +1,5 @@
+--- button "Button",default,Inspector
+on mouseUp
+  filter field 1 with "*graphic*"
+  filter field 1 with "*_*"
+end mouseUp

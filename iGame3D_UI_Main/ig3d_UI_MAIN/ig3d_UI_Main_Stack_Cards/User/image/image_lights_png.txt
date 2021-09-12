@@ -1,0 +1,12 @@
+--- image "lights_png",User,ig3d_UI_MAIN
+lights_png:rect(423,69,447,93)
+lights_png:short name("lights_png")
+lights_png:id(4208)
+lights_png:tooltip( 4208)
+lights_png:visible(true)
+lights_png:dontDither(false)
+lights_png:alwaysBuffer(true)
+lights_png:angle(0)
+lights_png:showBorder(false)
+lights_png:threeD(true)
+lights_png:borderWidth(2)

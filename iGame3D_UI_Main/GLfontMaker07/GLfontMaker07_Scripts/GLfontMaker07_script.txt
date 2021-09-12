@@ -1,0 +1,144 @@
+-- script of stack "GLfontMaker07"
+/* ____________________________________________________________
+|
+|   iGame3D Font Table Image Generator  --  Generator
+|                                        (Button_Script)
+|________________________________________________________
+|
+|   @Author:        William  Griffin
+|   @Company:       iGame3D
+|   @Date:          1 Apr 2007
+|   @Version:       0.1
+|   @Changes since last version:  this header by Marielle Lange 
+|   @License:        Creative Commons Attribution 2.5 License  http://creativecommons.org/licenses/by/2.5/
+|________________________________________________________
+|
+|   @Dependency:    - fonts
+|________________________________________________________ */
+-- --
+on preopenStack
+  
+end preopenStack
+getprop stackDirectory
+  set itemDel to "/"
+  get item 1 to -2 of (token -1 of the long name of this stack) & "/"
+  if offset(".app/Contents/MacOS/",it) <> 0 then get item 1 to -4 of it &"/"
+  return it
+end stackDirectory
+
+-- --
+on exportEveryFontToPng
+  put the fontNames into myList
+  repeat for each line theFont  in myList
+    ig3d_FontmenuPick theFont
+    wait for 30 milliseconds
+    ig3d_GLFontMaker -- in script of stack GLFontMaker
+  end repeat
+end exportEveryFontToPng
+-- --
+on ig3d_FontmenuPick theFont
+  put the number of fields of this stack into n
+     put "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$^&*()-=+;:'" & quote & ",./?[]| <>`\{}_%"  into Alphabeta
+     repeat with m = 1 to n
+      set the textFont of field m to theFont
+     end repeat
+end ig3d_FontmenuPick 
+
+-- --
+on ig3d_GLFontMaker
+   clearTempImgs
+  put the number of fields of this stack into n
+  put "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$^&*()-=+;:'" & quote & ",./?[]| <>`\{}_%"   into Alphabeta
+  repeat with m = 1 to n
+    put char m of alphabeta into field m of this stack
+  end repeat
+
+  repeat  with G = 1 to 2
+    set itemDel to comma
+    if g = 1 then 
+      put item 1 the rect of field "char1" & comma & item 2 the rect of field  "char1" & comma & the item 3 the rect of field "char48" & comma & item 4 the rect of field "char48" into trect
+    else
+      put item 1 the rect of field "char49" & comma & item 2 the rect of field  "char49" & comma & the item 3 the rect of field "char96" & comma & item 4 the rect of field "char96" into trect
+    end if
+    add left of this stack to item 1 of tRect
+    add left of this stack to item 3 of tRect
+    add top of this stack to item 2 of tRect
+    add top of this stack to item 4 of tRect
+    add 4 to item 4 of tRect
+    subtract 1 from item 1 of tRect
+    subtract 1 from item 3 of trect
+    set the backgroundColor of this stack to "128,128,128"
+    import snapshot from rect tRect --
+    set the name of the last image to "test.bmp"
+    doTrans 
+    put the textfont of fld "char1" into Pnam
+    replace space with empty in pnam
+    put the stackDirectory of this stack & pnam &"32_"&G&".png" into item -1 of tUrl
+    set itemDel to "/"
+    put pnam &"32_"&G&".png" &cr after turls
+ 
+    put turl into imurl
+    put "binfile:" & tUrl into tUrl
+    put img "temp" into url turl
+    set the backgroundColor of this stack to "128,128,128"
+    clearTempImgs
+  end repeat
+
+  replace space with empty in TURLS
+   put the htmlheader1 of stack (the mainStack of this stack) & pnam & the htmlBody1 of stack (The mainStack of this stack) into w1
+ 
+  put "<img id=" & quote & "1" & quote && "img src=" & quote & line 1 of turls & quote && the htmlBody2 of stack (the mainStack of this stack) into w3
+    put "<img id=" & quote & "2" & quote && "img src=" & quote & line 2 of turls & quote && the htmlBody2 of stack (the mainStack of this stack) into w4
+put cr & the htmlFoot1 of stack (the mainStack of this stack) after w4
+replace "Font_name" with pnam in w4
+put w1 & cr & w2 & cr & w3 & cr & w4 & cr into WebOutput
+ put webOutput into URL ("file:" & the stackDirectory of this stack & Pnam &"_glfont.html")
+end ig3d_GLFontMaker
+-- --
+on doTrans
+  put altMakeTransAlpha("128,128,128",the imageData of img "test.bmp",the alphadata of img "test.bmp") into tMaskData
+  create image "temp"
+  set the rect of img "temp" to the rect of img "test.bmp"
+  set the imageData of img "temp" to the imageData of img "test.bmp"
+  set the alphaData of img "temp" to tMaskData
+  set the loc of img "temp" to \
+      item 1 of the loc of img "temp", \
+      item 2 of the loc of img "temp" + the height of img "temp" + 20
+end doTrans
+
+-- --
+Function altMakeTransAlpha pTransColor,pImgData,pAlphaData
+  --> pTransColor IS THE COLOR TO MAKE TRANSPARENT
+  -->  EX. "255,255,255" IS WHITE
+  --> pImgData IS THE IMAGEDATA FROM WHICH THE MASK IS CREATED
+  --> pAlphaData IS THE ALPHADATA OF THE ORIGINAL IMAGE
+  put binaryEncode("C",0) into t0RGB
+  put t0RGB into tAlphaTrans
+  put binaryEncode("C",item 1 of pTransColor) after t0RGB
+  put binaryEncode("C",item 2 of pTransColor) after t0RGB
+  put binaryEncode("C",item 3 of pTransColor) after t0RGB
+  put 0 into tPos
+  repeat forever
+    put offset(t0RGB,pImgData,tPos) into t
+    if t=0 then
+      exit repeat
+    else
+      add t+3 to tPos
+      put tAlphaTrans into char tPos/4 of pAlphaData
+    end if
+  end repeat
+  return pAlphaData
+end altMakeTransAlpha
+
+-- --
+on clearTempImgs
+  repeat with x = the number of imgs down to 1
+    if the short name of img x is "temp"  or  the short name of  img x is "test.bmp" then delete img x
+  end repeat
+end clearTempImgs
+-- --
+on GlFontMakerScriptOut
+  put the script of stack (the mainStack of this stack)  into tScript
+  put "file:" & the stackDirectory of this stack & "GlFontMaker.StackScript.txt" into turl
+  put tScript into url turl 
+end GlFontMakerScriptOut

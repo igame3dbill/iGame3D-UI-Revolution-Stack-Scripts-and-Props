@@ -1,0 +1,10 @@
+-- script of stack "replacemodelssubstack"
+
+-- --
+on repModelSetUp
+  send refreshREPLIST to  btn "replaceFilter"
+  show group "repModelgroup"
+  set the disabled of btn "applyReplace" to true
+  set the replaceList of btn "applyReplace" to empty
+  set the Replacers of btn "applyReplace" to empty
+end repModelSetUp

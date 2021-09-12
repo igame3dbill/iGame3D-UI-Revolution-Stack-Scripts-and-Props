@@ -1,0 +1,20 @@
+--- scrollbar "range1",UVSETTINGS,Inspector
+range1:rect(108,128,195,146)
+range1:short name("range1")
+range1:visible(true)
+range1:disabled(false)
+range1:traversalOn(true)
+range1:orientation("horizontal")
+range1:startValue(1)
+range1:endValue(16)
+range1:thumbPosition(4.2)
+range1:showValue(false)
+range1:numberFormat(0.00)
+range1:pageInc(0.999771)
+range1:textFont(" Arial")
+range1:textSize(9)
+range1:textAlign("left")
+
+range1:blocked(true)
+
+range1:oldThumb(000000.00)

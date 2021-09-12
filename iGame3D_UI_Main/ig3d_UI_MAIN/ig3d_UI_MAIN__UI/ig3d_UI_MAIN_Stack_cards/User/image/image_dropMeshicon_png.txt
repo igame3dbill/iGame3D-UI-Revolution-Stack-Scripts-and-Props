@@ -1,0 +1,12 @@
+--- image "dropMeshicon_png",User,ig3d_UI_MAIN
+dropMeshicon_png:rect(884,69,908,93)
+dropMeshicon_png:short name("dropMeshicon_png")
+dropMeshicon_png:id(4616)
+dropMeshicon_png:tooltip( 4616)
+dropMeshicon_png:visible(true)
+dropMeshicon_png:dontDither(false)
+dropMeshicon_png:alwaysBuffer(true)
+dropMeshicon_png:angle(0)
+dropMeshicon_png:showBorder(false)
+dropMeshicon_png:threeD(true)
+dropMeshicon_png:borderWidth(2)

@@ -1,0 +1,2 @@
+--- field "vsize" of group "texgroup2" of group "MaterialsGroupNonColor" of group "UVGroup" of group "materialsCardGroup" of card "UVSETTINGS" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+1.000000

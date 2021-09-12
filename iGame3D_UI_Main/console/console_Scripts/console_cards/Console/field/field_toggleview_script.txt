@@ -1,0 +1,21 @@
+--- field "toggleview",Console,console
+on mousedown
+  lock screen
+  ### because of custom prop problems in rev and some defensive coding ;-) the following changes
+  get the wdRightTag of stack the mainstack of this stack
+  if the left of btn "sep1" <> -6 then
+    set the normalview of me to the left of btn "sep1"
+    set the left of btn "sep1" to -6
+    --get the wdRightTag of this stack
+    --get the wdRightTag of stack the mainstack of this stack
+  else 
+    if the normalview of me < 0 then set the normalview of me to 70  ### safety first :-)
+    set the left of btn "sep1" to the normalview of me
+    --get the wdleftTag of this stack
+    --get the wdleftTag of stack the mainstack of this stack
+    replace "4" with "3" in it
+  end if
+  replace "sizetag" with "13" in it
+  set the htmltext of me to it
+  resizeStack the width of this cd,the height of this cd
+end mousedown

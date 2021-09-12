@@ -1,0 +1,12 @@
+--- image "32x32zombie3_png",User,ig3d_UI_MAIN
+32x32zombie3_png:rect(511,99,543,131)
+32x32zombie3_png:short name(32x32zombie3_png)
+32x32zombie3_png:id(4447)
+32x32zombie3_png:tooltip( 4447)
+32x32zombie3_png:visible(true)
+32x32zombie3_png:dontDither(false)
+32x32zombie3_png:alwaysBuffer(true)
+32x32zombie3_png:angle(0)
+32x32zombie3_png:showBorder(false)
+32x32zombie3_png:threeD(true)
+32x32zombie3_png:borderWidth(2)

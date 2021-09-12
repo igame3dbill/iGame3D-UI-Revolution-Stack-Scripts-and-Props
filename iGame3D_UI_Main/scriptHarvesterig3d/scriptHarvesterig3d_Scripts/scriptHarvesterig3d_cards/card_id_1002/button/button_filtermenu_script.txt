@@ -1,0 +1,38 @@
+--- button "filtermenu",card id 1002,scriptHarvesterig3d
+local lOldPick
+-- --
+on menupick x
+  switch x
+  case "edit"
+    put me into tList
+    put line 1 to lineOffset("-",tList) - 1 of tList into tList
+    set the label of me to lOldPick
+    put the short name of me into tN  ### new
+    get the menueditor of me
+    go invisible stack it
+    go invisible stack "menuEditor" ### style of menuEditor stack is palette
+    get topleft of this stack
+    add item 1 of the loc of me to item 1 of it
+    add item 2 of the loc of me to item 2 of it
+    set topleft of stack "menueditor" to it
+    set the title of stack "menuEditor" to "edit:" && tN 
+    put tList into fld "menuList" of stack "menuEditor"
+    show stack "menueditor"
+    select after line lineoffset(lOldpick,fld "menuList" of stack "menuEditor") of fld "menuList" of stack "menuEditor"
+    break
+  case x
+    filterkeysbycomment x
+    break
+  end switch
+end menupick
+-- --
+on mousedown
+  if the commandkey is down then
+    answer file "Locate the file..." as sheet
+    if it is not "" then
+      set the menueditor of btn "filtermenu" to url("binfile:" & it)
+      save this stack
+      answer "Ready" as sheet
+    end if
+  else put the label of me into lOldPick
+end mousedown

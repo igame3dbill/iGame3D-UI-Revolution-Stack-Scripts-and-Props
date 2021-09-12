@@ -1,0 +1,1 @@
+--- graphic "fogrect",background_color,Inspector

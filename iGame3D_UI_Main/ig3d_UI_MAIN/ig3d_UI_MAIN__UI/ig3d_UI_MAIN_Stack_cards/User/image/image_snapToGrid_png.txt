@@ -1,0 +1,12 @@
+--- image "snapToGrid_png",User,ig3d_UI_MAIN
+snapToGrid_png:rect(280,107,304,131)
+snapToGrid_png:short name("snapToGrid_png")
+snapToGrid_png:id(4227)
+snapToGrid_png:tooltip( 4227)
+snapToGrid_png:visible(true)
+snapToGrid_png:dontDither(false)
+snapToGrid_png:alwaysBuffer(true)
+snapToGrid_png:angle(0)
+snapToGrid_png:showBorder(false)
+snapToGrid_png:threeD(true)
+snapToGrid_png:borderWidth(2)

@@ -1,0 +1,182 @@
+-- script of stack "Dev"
+on resizeStack
+    put the rect of this stack into theRect
+  put the bottom of button "WriteFLD" +4 into item 2 of theRect
+  put (the height of this stack)-(+2)  into item 4 of  theRect
+put 1 into item 1 of theRect
+  put the width of this stack -1 into item 3 of theRect
+  set the rect of fld "theList" to theRect
+end resizeStack
+-- --
+on closeStack
+  put "" into field "theList"
+end closeStack
+-- --
+on returnInField
+  if the short name of the focusedObject is not "theMenu" then
+   send menuPick && quoted(getMkey(lastDevMenuPick)) to button"Dev" of group "igame3dmenu1" of stack (the mainStack of this stack) 
+  filter field "theList" with "*" & the label of btn "devfilter" & "*" 
+  put the formattedHeight of field "theList" + 40 into Shrink
+else
+  pass returnInField
+end if
+  --set the  height of stack "dev" to Shrink
+end returnInField
+ 
+-- --
+on Liststacks
+  put stackList() into listst
+    sort listst
+     put listst into field "theList" of stack "dev"
+set the title of  stack "dev" to "Dev OpenStacks"
+end Liststacks
+-- --
+on CleanLists
+     put "" into field "theList"
+end CleanLists
+-- --
+on listStackImages
+  lock screen
+  put word 2 selectedLine of fld "theList" into ns
+  put word 2 of line ns of fld "theList" into pn
+  set the title of this stack to "Dev Images"
+  put  "" into  fld "theList"
+  put controlsList("igame3d") into allCONTROLS
+  replace tab with empty in allCONTROLS
+  filter allCONTROLS with "*image *" 
+  repeat for each line ig  in allControls
+    put "the ID  of" && ig && "of  stack (the mainStack of this stack) into n"  into whoIMA
+    do "put" && whoIMA
+    put     n&& (word 2 of  ig) & cr  after thelist 
+  end repeat
+  delete last char of thelist
+  replace quote with empty in theList
+  sort theList
+  put theList into fld "theList"
+  put lineOffset(pn,fld "theList") into n
+end listStackImages
+-- --
+on ListRevFunc
+    set the textHeight of fld "theList" to 12
+  put the functionNames into field "theList"
+  set the title of this stack to "Dev revFunctions"
+end ListRevFunc
+-- --
+on listXternals
+  set the textHeight of fld "theList" to 12
+  put the externalFunctions of stack (the mainStack of this stack) into EF
+  sort EF
+  replace cr with "()" & cr in EF
+  put the externalCommands of stack (the mainStack of this stack) into EC
+  sort EC
+  put   "External Functions" & cr  & EF  & cr & "-" & cr & "External Commands"  & cr & "-" & cr  & EC into X
+  put  X into field "theList"
+set the title of this stack to "Dev Xternals"
+ put lineoffset("External Commands", field "theList") into nx
+ set the textStyle of line 1 of field "theList" to bold
+ set the textStyle of line nx of field "theList" to bold
+end listXternals
+-- --
+on customPropLengthCheck
+  palette stack "Dev"
+    set the textHeight of fld "theList" to 12
+    put word 2 selectedLine of fld "thelist" into N
+  put stackList() into stks
+  repeat with x = 1 to number of lines of stks
+    put "the customKeys of stack" && (quoted(line x of stks)) && "into ckl" into doStg 
+    do "put" && doStg
+    if num(lines of ckl) <> 0 then 
+    repeat for each line y in ckl
+    --put y && "of stack" && line x of stks
+        if ispropbad(y) = false then
+      put "the"&& y && "of stack" && (quoted(line x of stks)) && "into theCKSofstac" into getCusK
+      do "put" && getCusK
+      put   num(lines of theCKSofstac) && "the" && y && "of stack" && (quoted(line x of stks))  && return after theWordz
+    end if
+    end repeat
+end if
+  end repeat
+  sort thewordz 
+  if fld "theList" is not theWords then put thewordz into  fld "theList" 
+  set the title of this stack to "Dev CustomPropLengths"
+ 
+end customPropLengthCheck
+-- --
+on mouseUp
+show fld "theList"
+  DevAction
+  put "file:/"& folderPath("data/dev") & "devOutPut.txt" into mousetofiletext
+  put fld "theList" of stack "dev" into url mousetofiletext
+end mouseUp
+  on setDevMenu
+          put the text of field "theMenu" into button "Dev" of group "igame3dmenu1" of stack (the mainStack of this stack) 
+end setDevMenu
+-- --
+on listDevMenu
+open stack "Dev"
+  put the text of button "Dev" of group "igame3dmenu1" of stack (the mainStack of this stack) into field "theMenu" of stack "Dev"
+  set the title of this stack to "Dev DevMenu"
+  set the textHeight of fld "theList" to 12
+end listDevMenu
+-- --
+on DevAction  mySwitch
+  if mySwitch is empty then put word 2 the title of this stack into mySwitch
+put word 2 selectedLine of field "theList" into n
+put line n of field "theList" into thePick
+select line n of fld "theList"
+if thePick is empty then exit DevAction
+switch mySwitch
+case "images"
+listStackImages
+   --set the imageSource of char 1 of line n of fld "theList" to pn
+   break
+  case "Xternals"
+    set the textHeight of fld "theList" to 12
+    if thePick is "-" or thePick is "External Commands" or thePick is "External Functions" then exit DevAction
+    put lineoffset("External Commands", field "theList") into nx
+    if n < nx then put thePick & "()"  into PICK
+    else put thePick into PICK
+    break
+  
+  case "OpenStacks"
+    set the textHeight of fld "theList" to 12
+    if thePick is "iGame3D" then
+      edit script of stack "iGame3D"
+      exit DevAction
+      end if
+     put "stack" && quoted(thePick) into theStatement
+ if the commandKey is down then
+   do "set the style of" && theStatement && "to topLevel"
+ else
+   do "set the style of" && theStatement && "to topLevel"
+ end if
+   if the altKey is down then do "edit script of" && theStatement
+   else    do "open" && theStatement
+    break
+    
+    case "revFunctions"
+      set the textHeight of fld "theList" to 12
+      put folderPath("data") & "revFunctions" into thePath
+if allFolders() contains "revFunctions" is false then create folder thePath
+put "file:/" & thePath & "/" & thePick & ".lua" into theFile
+  put thePick & "() into theVal" into doFunc
+  try 
+    do "put" && doFunc
+  end try
+      if theVal is not empty then
+       put theVal into URL theFile
+       replace "file:/"  with empty in theFile
+replace space with "\ " in theFile
+if the commandKey is down then 
+put shell("open " & theFile) into shellOpen
+do "tell Application" && quoted("Revolution") & cr & "activate" &cr& "end tell" as AppleScript
+end if
+end if
+break
+end switch
+end DevAction
+-- --
+on idleInfoConsole
+CleanLists
+  ### GET THE OLD IDLEINFO
+end idleInfoConsole

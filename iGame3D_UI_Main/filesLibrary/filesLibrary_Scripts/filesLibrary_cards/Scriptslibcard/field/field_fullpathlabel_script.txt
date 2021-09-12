@@ -1,0 +1,12 @@
+--- field "fullpathlabel",Scriptslibcard,filesLibrary
+on mouseDown
+  ##put line 1 of me
+  gotoMyFile
+end mouseDown
+-- --
+on gotoMyFile
+   put revMacFromUnixPath(line 1 of me) into myPath
+  put "tell application"&&quoted("Finder") & cr & "activate" & cr& "reveal" && quoted(myPath) &cr & "end tell" into myTELLSCRIPT
+do myTELLSCRIPT as AppleScript
+  
+end gotoMyFile

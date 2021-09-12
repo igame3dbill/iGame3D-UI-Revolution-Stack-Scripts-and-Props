@@ -1,0 +1,8 @@
+--- graphic "TestGraphic",card id 1002,previewStack
+--on mouseUp
+--  put the points of me into dovert
+--  repeat with x = 1 to num(lines of dovert)
+--       put item 1 the loc of me -  round(item 1 of line x of dovert) & comma & 0&comma & item 2 the loc of me - round(item 2 of line x of dovert) into line x of dovert
+----SendT3DCommand("line" && line x of dovert)
+--  end repeat
+--end mouseUp

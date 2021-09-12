@@ -1,0 +1,1 @@
+--- graphic "fogmemory",background_color,Inspector

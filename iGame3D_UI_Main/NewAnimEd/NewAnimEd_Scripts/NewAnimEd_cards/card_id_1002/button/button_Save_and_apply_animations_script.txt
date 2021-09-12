@@ -1,0 +1,39 @@
+--- button "Save_and_apply_animations",card id 1002,NewAnimEd
+on mouseUp
+  send "mouseDown" to cd btn "animChooser"
+  put ig3d_GetObjectModelPath_s_s(objectName()) into theFile
+  open file theFile for read
+  read from file theFile until eof
+  put it into fcontents
+  put offset("#Animations",fcontents) into theOffset
+  close file theFile
+  
+  
+  put the allDaAnimationsData of cd btn "animChooser" into rawData
+  
+  put the number of lines of rawData into numAnims
+  put "#Animations" & return & numAnims into animExportData
+  
+  repeat with m=1 to numAnims
+    put return & line m of cd btn "animChooser" after animExportData
+    put line m of rawData into thisAnimationMarkers
+    replace "¶" with return in thisAnimationMarkers
+    put return & the number of lines of thisAnimationMarkers after animExportData
+    repeat with n=1 to the number of lines of thisAnimationMarkers
+      put return & item 3 to 4 of line n of thisAnimationMarkers after animExportData
+      put "set=" into theInstr
+      if item 2 of line n of thisAnimationMarkers is "true" then put "morph=" into theInstr
+      put return & theInstr & item 1 of line n of thisAnimationMarkers - 1 & comma & item 5 to 10 of line n of thisAnimationMarkers after animExportData
+    end repeat
+  end repeat
+  
+  
+  put "file:/" & theFile into FIL
+ 
+delete char theOffset to (number of chars of fcontents) of fcontents
+put animExportData after fcontents
+put fcontents into URL FIL
+close file theFile
+ig3d_ReadModelAnimationsFromFile_2si objectName(),theFile,theOffset
+  
+end mouseUp

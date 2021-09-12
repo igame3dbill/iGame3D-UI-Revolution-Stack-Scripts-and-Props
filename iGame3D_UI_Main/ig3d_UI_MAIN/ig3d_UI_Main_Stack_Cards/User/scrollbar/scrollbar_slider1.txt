@@ -1,0 +1,13 @@
+--- scrollbar "slider1",User,ig3d_UI_MAIN
+slider1:rect(968,6,1240,36)
+slider1:short name("slider1")
+slider1:visible(false)
+slider1:disabled(false)
+slider1:traversalOn(true)
+slider1:orientation("horizontal")
+slider1:startValue(1)
+slider1:endValue(3000)
+slider1:thumbPosition(1537)
+slider1:showValue(true)
+slider1:pageInc(0.823713)
+slider1:textAlign("left")

@@ -1,0 +1,12 @@
+--- image "terraintexture",terrain,Inspector
+terraintexture:rect(-76,-94,159,141)
+terraintexture:short name("terraintexture")
+terraintexture:fileName("/Volumes/DEV/07igame3d/07IGame3D RESET_001/Data/Images/fighter_top.png")
+terraintexture:id(1063)
+terraintexture:visible(true)
+terraintexture:dontDither(false)
+terraintexture:alwaysBuffer(false)
+terraintexture:angle(0)
+terraintexture:showBorder(false)
+terraintexture:threeD(true)
+terraintexture:borderWidth(2)

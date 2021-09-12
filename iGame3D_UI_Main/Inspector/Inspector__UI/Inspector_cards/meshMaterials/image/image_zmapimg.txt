@@ -1,0 +1,11 @@
+--- image "zmapimg",meshMaterials,Inspector
+zmapimg:rect(68,78,94,102)
+zmapimg:short name("zmapimg")
+zmapimg:id(1237)
+zmapimg:visible(true)
+zmapimg:dontDither(false)
+zmapimg:alwaysBuffer(true)
+zmapimg:angle(0)
+zmapimg:showBorder(false)
+zmapimg:threeD(true)
+zmapimg:borderWidth(2)

@@ -1,0 +1,24 @@
+--- button "ScriptRevertButton",Console,console
+ScriptRevertButton:rect(518,353,589,373)
+ScriptRevertButton:short name("ScriptRevertButton")
+ScriptRevertButton:label("Revert")
+ScriptRevertButton:toolTip("revertScript")
+ScriptRevertButton:style("standard")
+ScriptRevertButton:visible(true)
+ScriptRevertButton:showName(true)
+ScriptRevertButton:autoHilite(true)
+ScriptRevertButton:opaque(true)
+ScriptRevertButton:sharedHilite(true)
+ScriptRevertButton:traversalOn(true)
+ScriptRevertButton:showfocusBorder(true)
+ScriptRevertButton:icon(0)
+ScriptRevertButton:hiliteIcon(0)
+ScriptRevertButton:borderWidth(2)
+ScriptRevertButton:textAlign("center")
+
+ScriptRevertButton:revertScript([["tFName
+tFName
+tFName
+tFName
+tFName
+"]])

@@ -1,0 +1,9 @@
+--- button "popup1",User,ig3d_UI_MAIN
+
+-- --
+on menuPick myLine
+  put the ruggedPath of stack "sceneGraph" into lpath
+  put the text of me into check
+  put lineOffset(myLine,check) into LineN
+  put SceneGraphPopUp1Pick(lpath,myline,LineN) into Action
+end menuPick

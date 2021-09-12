@@ -1,0 +1,12 @@
+--- image "unlocked2_png",User,ig3d_UI_MAIN
+unlocked2_png:rect(446,185,456,196)
+unlocked2_png:short name("unlocked2_png")
+unlocked2_png:id(4278)
+unlocked2_png:tooltip( 4278)
+unlocked2_png:visible(true)
+unlocked2_png:dontDither(false)
+unlocked2_png:alwaysBuffer(true)
+unlocked2_png:angle(0)
+unlocked2_png:showBorder(false)
+unlocked2_png:threeD(true)
+unlocked2_png:borderWidth(2)

@@ -1,0 +1,12 @@
+--- image "3DviewsSwitch_png",User,ig3d_UI_MAIN
+3DviewsSwitch_png:rect(768,107,792,131)
+3DviewsSwitch_png:short name(3DviewsSwitch_png)
+3DviewsSwitch_png:id(4409)
+3DviewsSwitch_png:tooltip( 4409)
+3DviewsSwitch_png:visible(true)
+3DviewsSwitch_png:dontDither(false)
+3DviewsSwitch_png:alwaysBuffer(true)
+3DviewsSwitch_png:angle(0)
+3DviewsSwitch_png:showBorder(true)
+3DviewsSwitch_png:threeD(true)
+3DviewsSwitch_png:borderWidth(2)

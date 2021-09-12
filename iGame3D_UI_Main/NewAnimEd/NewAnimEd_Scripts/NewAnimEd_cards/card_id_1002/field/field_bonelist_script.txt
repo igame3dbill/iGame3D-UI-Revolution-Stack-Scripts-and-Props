@@ -1,0 +1,63 @@
+--- field "bonelist",card id 1002,NewAnimEd
+on scrollbarDrag
+  set lockScreen to true
+  set the vScroll of group "Knochen" to the vScroll of me
+  set lockScreen to false
+end scrollbarDrag
+-- --
+on ClearLastWords
+  repeat with m=1 to the number of lines of me
+    delete last word of line m of me
+  end repeat
+end ClearLastWords
+-- --
+on mouseUp
+  put word 2 of the selectedLine of me into n
+  if n is 0 or n is empty then exit mouseUp
+  put line n of me into bname
+  
+  put ig3d_GetObjectBoneInfo_2s_6f(objectName(), bname) into coords
+  put item 1 of coords into cd fld "xpos"
+  put item 2 of coords into cd fld "ypos"
+  put item 3 of coords into cd fld "zpos"
+   put item 4 of coords into cd fld "xang"
+  put item 5 of coords into cd fld "yang"
+  put item 6 of coords into cd fld "zang"
+set the thumbPosition of scrollbar "xangslid" to item 4 of coords
+set the thumbPosition of scrollbar "yangslid" to item 5 of coords
+set the thumbPosition of scrollbar "zangslid" to item 6 of coords
+UnselectMarkers//deselect any markers
+put "" into selMarker
+put 200 into selStart
+//now find the first marker in the bone's timeline and select it
+repeat with m=1 to the number of lines of cd fld "allMarkers"
+  if there is a graphic (line m of cd fld "allMarkers") then
+    put the mData of graphic (line m of cd fld "allMarkers") into mdat
+    if item 1 of mdat = n then
+      if item 3 of mdat < selStart then
+        put line m of cd fld "allMarkers" into selMarker
+        put item 3 of mdat into selStart
+        end if
+      end if
+    end if
+end repeat
+//if selMarker is not empty then send mouseDown to graphic (selMarker)
+end mouseUp
+-- --
+on selBone what
+  if the blockSelBone of this stack is false then
+    set the wantedBone of this stack to what
+  repeat with m=1 to the number of lines of me
+    if line m of me is what then
+      select line m of me
+      exit repeat
+    end if
+    
+  end repeat
+  mouseUp
+  end if
+end selBone
+-- --
+on doArrowsFIELD what
+  doArrows what
+end doArrowsFIELD

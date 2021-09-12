@@ -1,0 +1,14 @@
+--- field "DearDIary" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+4/23/04 5:45 PM - Bill
+4/23/04 5:42 PM - Bill
+
+Cleared old dev diary
+changed the commands for diary a bit
+diary : saves console text to data/diary/file
+cleandiary: saves it clears it, starts new
+readdiary: reads it into console
+xman dev diary 4/23/04 5:36 PM
+4/23/04 5:42 PM - Bill
+
+
+xman dev diary 4/23/04 5:36 PM

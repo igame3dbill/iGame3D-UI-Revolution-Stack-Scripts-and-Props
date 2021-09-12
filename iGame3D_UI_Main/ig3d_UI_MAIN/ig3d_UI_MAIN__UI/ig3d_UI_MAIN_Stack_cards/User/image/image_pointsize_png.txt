@@ -1,0 +1,12 @@
+--- image "pointsize_png",User,ig3d_UI_MAIN
+pointsize_png:rect(92,69,116,92)
+pointsize_png:short name("pointsize_png")
+pointsize_png:id(4220)
+pointsize_png:tooltip( 4220)
+pointsize_png:visible(true)
+pointsize_png:dontDither(false)
+pointsize_png:alwaysBuffer(true)
+pointsize_png:angle(0)
+pointsize_png:showBorder(false)
+pointsize_png:threeD(true)
+pointsize_png:borderWidth(2)

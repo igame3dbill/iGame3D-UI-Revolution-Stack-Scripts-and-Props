@@ -1,0 +1,21 @@
+--- field "shellout",cxxcard,murgaRevOut
+on mouseDown
+  set the opaque of me to true
+end mouseDown
+-- --
+on mouseUp
+    set the opaque of me to false
+  put me into myShell
+ 
+  replace cr with " " in myShell
+  put " ;echo $1" after myShell
+   put "'/bin/bash' ;" before myShell
+   put line 2 of myShell into myPath
+   --put shell(myShell) into fld "consoleOut"
+   --put ig3d_ExecuteLuaScript_s_i(myPath) into fld "consoleOut"
+ put "file:/" & myPath into myFile
+ put URL myFile into myScript
+put ig3d_ExecuteLua_s_i(myScript) into anull --fld "consoleOut"
+put ig3d_GetLuaOutput__s() into fld "consoleOut"
+end mouseUp
+

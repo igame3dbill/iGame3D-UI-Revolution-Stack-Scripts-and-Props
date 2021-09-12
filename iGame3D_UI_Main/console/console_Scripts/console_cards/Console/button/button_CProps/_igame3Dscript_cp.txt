@@ -1,0 +1,37 @@
+commandHeader,igame3Dscript[["// Begin of auto-script
+mesh "Levels/wireships/levelModel.mesh"
+player
+put 0.000000,0.500000,1.000000
+spin 0.000000,180.000000,0.000000
+rgb 0.600000,0.600000,0.600000
+fogcol 0.000000,0.000000,0.000000
+backcol 0.000000,0.000000,0.000000
+setf 1,87.000000
+fov
+setf 1,0.100000
+storef "gFogStart",1
+setf 1,20.000000
+storef "gFogEnd",1
+setb 1,false
+storeb "doFog",1
+light 1
+lighton true
+lightpos -5.757245,4.690497,-8.773323,1.000000
+ambient 0.200000,0.200000,0.200000,1.000000
+diffuse 1.000000,1.000000,1.000000,1.000000
+specular 0.000000,0.000000,0.000000,0.000000
+light 2
+lighton false
+light 3
+lighton false
+light 4
+lighton false
+light 5
+lighton false
+light 6
+lighton false
+light 7
+lighton false
+light 8
+lighton false
+// End of auto-script"]]

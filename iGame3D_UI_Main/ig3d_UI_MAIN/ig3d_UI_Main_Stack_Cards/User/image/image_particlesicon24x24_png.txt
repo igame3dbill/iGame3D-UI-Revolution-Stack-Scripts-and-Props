@@ -1,0 +1,11 @@
+--- image "particlesicon24x24_png",User,ig3d_UI_MAIN
+particlesicon24x24_png:rect(766,172,790,196)
+particlesicon24x24_png:short name("particlesicon24x24_png")
+particlesicon24x24_png:id(5434)
+particlesicon24x24_png:visible(true)
+particlesicon24x24_png:dontDither(false)
+particlesicon24x24_png:alwaysBuffer(true)
+particlesicon24x24_png:angle(0)
+particlesicon24x24_png:showBorder(false)
+particlesicon24x24_png:threeD(true)
+particlesicon24x24_png:borderWidth(2)

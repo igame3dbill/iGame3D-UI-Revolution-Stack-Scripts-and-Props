@@ -1,0 +1,5 @@
+--- button "comment",card id 1002,scriptHarvesterig3d
+on mouseUp
+  resizestack the width of this cd, the height of this cd
+  set the visible of fld "comment" to the hilite of me
+end mouseUp

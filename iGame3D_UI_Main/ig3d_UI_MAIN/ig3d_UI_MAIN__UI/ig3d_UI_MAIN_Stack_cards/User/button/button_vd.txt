@@ -1,0 +1,22 @@
+--- button "vd",User,ig3d_UI_MAIN
+vd:rect(4,238,41,273)
+vd:short name("vd")
+vd:label(8 : 2)
+vd:style("standard")
+vd:visible(true)
+vd:showName(true)
+vd:autoHilite(false)
+vd:opaque(true)
+vd:sharedHilite(false)
+vd:traversalOn(false)
+vd:showfocusBorder(false)
+vd:icon(0)
+vd:hiliteIcon(0)
+vd:borderWidth(1)
+vd:textFont("Arial")
+vd:textSize(9)
+vd:textAlign("center")
+
+vd:lastClick("-2943,-16319")
+
+vd:clickStart("-2943,-16319")

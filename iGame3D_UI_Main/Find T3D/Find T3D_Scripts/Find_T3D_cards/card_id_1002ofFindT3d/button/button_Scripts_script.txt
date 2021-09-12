@@ -1,0 +1,87 @@
+--- button "Scripts",card id 1002ofFindT3d,Find T3D
+local lScriptLines,lEmptyLines,lTrailingEmptyLines
+-- --
+on mouseUp
+  if the optionkey is down then put true into tClean
+  put empty into field "scrbs"
+  if tClean then set the htmltext of line 15 of field "scrbs" to "<p><h3>                  counting....</h3><br /><h3>                  and cleaning....</h3>"
+  else set the htmltext of line 15 of field "scrbs" to "<h3>                  counting....</h3>"
+  set the label of btn "scripts" to ""
+  put "" into tList
+  --put stackList() into tSL
+  put fld "stacks" into tSL
+  replace tab with "" in tSL
+  
+  put 0 into lScriptLines
+  put 0 into LEmptyLines
+  put 0 into lTrailingEmptyLines
+  repeat for each line i in tSL
+    if there is a stack i then put the name of stack i into tSName
+    else 
+      answer "please refresh the list of stacks..." with "tnx"
+      exit to top
+    end if
+    if the password of tSName <> "" then 
+      put "<p><b>"&tSName& "</b> is<font color="&quote&"#C61E04"&quote& "> password protected</font></p>" & cr after tList
+      next repeat
+    end if
+    put the script of tSName into tS
+    get countlines(tS)
+    if it is not "" then put "<p><b>stackscript of " && tSName & ": </b><br />" & cr & it & "</p>" after tList
+    if tClean and "trailing empty " is in it then set the script of tSName to word 1 to -1 of tS
+    repeat with j = 1 to the num of cds in tSName
+      put the script of cd j of stack i into tS
+      get countlines(tS)
+      if it is not "" then put "<p><b>  cardscript of cd"&& j&& "of" && tSName & ": </b><br />" & cr &"  " & it & "</p>" after tList
+      if tClean and "trailing empty " is in it then set the script of cd j of stack i to word 1 to -1 of tS
+    end repeat
+    put getControls(tSName) into tCL
+    if tCl = "no controls" then   --put "<p>  no controls in"&&tSName& "</p>" & cr after tList
+    else
+      repeat for each line j in tCL
+        --if the short name of j = "scripts" then breakpoint
+        do "put the script of" && j && "into tS"
+        get countlines(tS)
+        if it is not "" then 
+          put the long name of j into tN
+          replace extractString2Replace(tN) with tSName in tN
+          put "<p><b>    script of" && j & ": </b><br />" & "    " & tN & "<br />"& cr &"    " & it & "</p>" after tList
+          if tClean and "trailing empty " is in it then set the script  of j to word 1 to -1 of tS
+        end if
+      end repeat
+    end if
+  end repeat
+  if tList = "" then put "<p>nothing to count</p>" into tList
+  if lEmptylines > 0 then set the label of btn "scripts" to "::::::::::   total scriptlines:" && lScriptLines &&" :::::  inside empty lines:" && lEmptyLines && " :::::  trailing empty lines:" && lTrailingEmptyLines &&"  ::::::::::"
+  else set the label of btn "scripts" to "::::::::::   total scriptlines:" && lScriptLines &&"  ::::::::::"
+  if tClean then set the htmltext of fld "scrbs" to "<p><b>Precleaned condition:</b></p>" & tList
+  else set the htmltext of fld "scrbs" to tList
+end mouseUp
+  
+-- --
+Function countlines x
+  if x = "" then put " 0 lines" into tAnswer
+  else
+    put num(lines in x) into tNRaw
+    put word 1 to -1 of x into x ### to prepair for count of inline empty lines
+    put num(lines in x) into tNoTrail
+    ### because filtering with "*" does not filter out lines with only spaces
+    put 0 into tNreal
+    put 0 into tInbetween
+    repeat for each line i in x
+      if num(words in i) > 0 then add 1 to tNreal
+      else add 1 to tInbetween
+    end repeat
+    put tNraw - tNoTrail into tTrail
+    add tNreal to lScriptLines
+    add tInbetween to lEmptyLines
+    add tTrail to lTrailingEmptyLines
+    put "<font color="&quote&"#006F04"&quote& "> " & tNReal && "lines of script</font>" after tAnswer
+    if tTrail > 0 then 
+      if tTrail = 1 then put ", " & tTrail && "trailing empty line" after tAnswer
+      else if tTrail < 11 then put ", " & tTrail && "trailing empty lines" after tAnswer
+      else put ",<font color="&quote&"#C61E04"&quote& "> " & tTrail & " trailing empty lines</font>" after tAnswer
+    end if
+  end if
+  return tAnswer
+end countlines

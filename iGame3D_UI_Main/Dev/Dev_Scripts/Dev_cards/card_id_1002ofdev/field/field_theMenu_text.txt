@@ -1,0 +1,34 @@
+--- field "theMenu" of card "card id 1002ofdev" of stack "Dev" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+SAVE
+-
+Edit F1Script
+Edit SGScript
+Edit RLScript
+StackScript
+-
+Xternals
+-
+stopIdle
+-
+pointer tool/m
+!c frontScript
+-
+FindT&3D/3
+-
+bigMainStack
+littleMainStack 
+-
+scriptHarvester
+OpenStacks
+CustomPropLengths
+RevFunctions
+Harvest
+-
+Edit Dev Menu Script
+Modify Dev Menu
+-
+resetiGame3D
+BackUp
+-
+DisableDev
+(-

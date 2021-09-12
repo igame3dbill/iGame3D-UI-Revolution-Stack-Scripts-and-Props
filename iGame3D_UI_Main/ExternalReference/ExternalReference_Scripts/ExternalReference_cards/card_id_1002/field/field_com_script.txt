@@ -1,0 +1,15 @@
+--- field "com",card id 1002,ExternalReference
+on mouseUp
+  put word 2 the selectedLine of me into n
+  put line n of me into myLine
+ replace "()" with empty in myline
+  put setRevArray(myline) into ArraCom
+  replace "$$" with empty in arracom
+put line 1 of arracom into field "theads"
+  put line 2 of arracom into field "funcom"
+  put myLine into fld "l2"
+  put line 4 of arracom after field "l2"
+  put line 5 of arracom into fld "typs"
+  if char 1 of line 1 of fld "typs" is space then delete char 1 of line 1 of fld "typs"
+  if the target is not empty then copy the selectedText
+end mouseUp

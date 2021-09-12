@@ -1,0 +1,6 @@
+--- field "stacks",card id 1002,scriptHarvesterig3d
+
+-- --
+on scrollbardrag x
+  set the scroll of fld "stacksbg" to x
+end scrollbardrag

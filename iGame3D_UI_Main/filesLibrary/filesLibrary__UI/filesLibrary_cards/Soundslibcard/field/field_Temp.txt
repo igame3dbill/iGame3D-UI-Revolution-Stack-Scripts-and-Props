@@ -1,0 +1,42 @@
+--- field "Temp",Soundslibcard,filesLibrary
+Temp:rect(46,39,606,413)
+Temp:short name("Temp")
+Temp:disabled(false)
+Temp:visible(false)
+Temp:sharedText(true)
+Temp:dontWrap(true)
+Temp:lockText(true)
+Temp:opaque(true)
+Temp:traversalOn(true)
+Temp:showFocusBorder(true)
+Temp:autoTab(false)
+Temp:threeD(true)
+Temp:showBorder(true)
+Temp:borderWidth(2)
+Temp:hScrollbar(false)
+Temp:vScrollbar(true)
+Temp:autoHilite(true)
+Temp:listBehavior(true)
+Temp:toggleHilites(false)
+Temp:fixedLineHeight(true)
+Temp:firstIndent(0)
+Temp:textAlign("left")
+
+Temp:pathList([["./Fluid/telnetclient/load script.lua
+./Levels/Car_n_Driver/load script.lua
+./Levels/default/load script.lua
+./Levels/FPS/load script.lua
+./Levels/iFly/load script.lua
+./Levels/iPhoneCar/load script.lua
+./Levels/iPhoneHelloWorld/load script.lua
+./Levels/Pong/load script.lua
+./Levels/RPG/load script.lua
+./Levels/testing123/load script.lua
+./Levels/Third Person/load script.lua
+./Levels/udeadgames/load script.lua
+./Levels/UDG/load script.lua
+./Levels/UFO/load script.lua
+./Levels/ZFPS/load script.lua
+./Levels/ZGS/load script.lua
+./Levels/ZGS_default/load script.lua
+"]])

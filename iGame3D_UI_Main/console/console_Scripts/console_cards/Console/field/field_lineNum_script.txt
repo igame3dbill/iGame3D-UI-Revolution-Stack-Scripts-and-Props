@@ -1,0 +1,18 @@
+--- field "lineNum",Console,console
+on scrollbardrag
+   if the visible of grp "consolegroup" then put "consoleOut" into tF
+  else put "editfield" into tF
+  set the scroll of fld tF to the scroll of me
+end scrollbardrag
+-- --
+on mousedown
+ if the visible of grp "consolegroup"  then put "consoleOut" into tF
+  else put "editfield" into tF
+  select line the hilitedline of me of fld tF
+end mousedown
+--on arrowKey
+  ----###focus cd btn 1 of stack (the mainStack of this stacK)
+end arrowKey
+--on rawkeyDown
+  exit rawKeyDown
+end rawkeyDown

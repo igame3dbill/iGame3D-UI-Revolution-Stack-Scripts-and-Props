@@ -1,0 +1,1 @@
+--- graphic "backgroundRect",background_color,Inspector

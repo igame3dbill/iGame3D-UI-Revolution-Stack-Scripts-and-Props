@@ -1,0 +1,8 @@
+--- button "GridToggle",grid,color
+on mouseUp
+  GridToggle
+end mouseUp
+-- --
+on mouseDown
+      send menuPick && "grid" to fld "root"
+end mouseDown

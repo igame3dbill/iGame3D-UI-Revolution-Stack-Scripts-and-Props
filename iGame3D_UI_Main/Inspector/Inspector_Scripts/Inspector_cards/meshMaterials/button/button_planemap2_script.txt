@@ -1,0 +1,6 @@
+--- button "planemap2",meshMaterials,Inspector
+on mouseUp
+  hide img "xmapimg"
+  show img "ymapimg"
+   hide img "zmapimg"
+end mouseUp

@@ -1,0 +1,10 @@
+--- group "MaterialsGroupNonColor",meshMaterials,Inspector
+on mouseUp
+  autoUVApply
+end mouseUp
+-- --
+on returnInfield
+  autoUVApply
+   
+ 
+end returnInfield

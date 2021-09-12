@@ -1,0 +1,11 @@
+--- image "image_id_1148",card id 1002,NewAnimEd
+image_id_1148:rect(154,25,254,55)
+image_id_1148:short name("image_id_1148")
+image_id_1148:id(1148)
+image_id_1148:visible(true)
+image_id_1148:dontDither(false)
+image_id_1148:alwaysBuffer(false)
+image_id_1148:angle(0)
+image_id_1148:showBorder(false)
+image_id_1148:threeD(true)
+image_id_1148:borderWidth(2)

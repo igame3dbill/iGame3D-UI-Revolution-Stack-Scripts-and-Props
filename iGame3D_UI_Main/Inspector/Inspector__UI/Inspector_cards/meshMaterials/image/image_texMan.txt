@@ -1,0 +1,11 @@
+--- image "texMan",meshMaterials,Inspector
+texMan:rect(54,50,75,102)
+texMan:short name("texMan")
+texMan:id(1234)
+texMan:visible(true)
+texMan:dontDither(false)
+texMan:alwaysBuffer(true)
+texMan:angle(0)
+texMan:showBorder(false)
+texMan:threeD(true)
+texMan:borderWidth(2)

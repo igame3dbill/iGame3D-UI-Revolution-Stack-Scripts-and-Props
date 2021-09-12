@@ -1,0 +1,45 @@
+-- script of stack "murgaRevOut"
+
+-- --
+on SwitchTabs theCard
+  if theCard is empty then put the short name of the current card of stack (the mainStack of this stack) into theCard
+
+go card theCard
+
+  switch theCard
+case "revcard"
+    --put the windows into tWin
+    --put tWin into fld "list1"
+     put murgaTheControls() into arevlua
+     put filesin("GUI") into fld "list1" of stack "murgaRevOut"
+  break
+case "cxxcard"
+  murgaConvertCxxtoLua 
+  break
+case "guicard"
+  put filesin("GUI") into fld "list1"
+  break
+end switch
+sort  fld "list1" of stack "murgaRevOut"
+end SwitchTabs
+
+-- --
+on switchList1 theText
+  put the short name of the current card of stack "murgaRevOut" into theCard
+  switch theCard
+case "revcard"
+  replace space with "_" in theText
+ put ViewFLTKList(theText) into fld "list2"
+  put getMkey(domurgaLuaCommand) into TLuac
+  replace space & "/" with cr & "/" in tLuac
+ put  tLuac into fld "shellout"   of stack "murgaRevOut"
+  break
+case "cxxcard"
+  murgaConvertCxxtoLua 
+  break
+case "guicard"
+  put filesin("GUI") into fld "list1" of stack "murgaRevOut"
+  break
+end switch
+
+end switchList1

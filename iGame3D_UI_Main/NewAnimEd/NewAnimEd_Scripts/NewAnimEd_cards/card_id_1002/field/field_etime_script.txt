@@ -1,0 +1,9 @@
+--- field "etime",card id 1002,NewAnimEd
+on arrowKey theKey
+  set the navigationkeys of me to false
+   set the altArrowVal of this stack to .001
+  set the arrowVal of this stack to .01
+  set the shiftArrowVal of this stack to .05
+  doArrows ((the short name of me) & comma & keysDown())
+  
+end arrowKey

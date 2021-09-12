@@ -1,0 +1,12 @@
+--- image "pathToolIcon_png",User,ig3d_UI_MAIN
+pathToolIcon_png:rect(258,174,280,196)
+pathToolIcon_png:short name("pathToolIcon_png")
+pathToolIcon_png:id(4531)
+pathToolIcon_png:tooltip( 4531)
+pathToolIcon_png:visible(true)
+pathToolIcon_png:dontDither(false)
+pathToolIcon_png:alwaysBuffer(true)
+pathToolIcon_png:angle(0)
+pathToolIcon_png:showBorder(false)
+pathToolIcon_png:threeD(true)
+pathToolIcon_png:borderWidth(2)

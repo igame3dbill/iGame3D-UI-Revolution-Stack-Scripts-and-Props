@@ -1,0 +1,80 @@
+--- field "boneXYZ",Bones,Inspector
+boneXYZ:rect(111,125,308,174)
+boneXYZ:short name("boneXYZ")
+boneXYZ:disabled(false)
+boneXYZ:visible(true)
+boneXYZ:sharedText(false)
+boneXYZ:dontWrap(true)
+boneXYZ:lockText(true)
+boneXYZ:opaque(true)
+boneXYZ:traversalOn(true)
+boneXYZ:showFocusBorder(false)
+boneXYZ:autoTab(false)
+boneXYZ:threeD(true)
+boneXYZ:showBorder(true)
+boneXYZ:borderWidth(2)
+boneXYZ:hScrollbar(true)
+boneXYZ:vScrollbar(true)
+boneXYZ:autoHilite(true)
+boneXYZ:listBehavior(false)
+boneXYZ:toggleHilites(false)
+boneXYZ:fixedLineHeight(true)
+boneXYZ:textHeight(12)
+boneXYZ:firstIndent(0)
+boneXYZ:textFont("Arial")
+boneXYZ:textSize(9)
+boneXYZ:textAlign("left")
+
+boneXYZ:oldValue(12)
+
+boneXYZ:changeVal(0.000000)
+
+boneXYZ:grambient1("248,104,248")
+
+boneXYZ:grambient2("96,96,248")
+
+boneXYZ:grambient3("220,220,220")
+
+boneXYZ:grambient4("72,248,80")
+
+boneXYZ:ambient4("0.001133,0.003906,0.001262")
+
+boneXYZ:pathView("Levels/xman_44")
+
+boneXYZ:selLin(7)
+
+boneXYZ:grambient7("8,8,0")
+
+boneXYZ:ambient1("0.003906,0.001637,0.003906")
+
+boneXYZ:ambient7("0.000125,0.000125,0")
+
+boneXYZ:firstClick("197,117")
+
+boneXYZ:ambient3("0.003465,0.003465,0.003465")
+
+boneXYZ:ambient2("0.001512,0.001512,0.003906")
+
+boneXYZ:ambientAlphaSetter("0.003465,0.003465,0.003465")
+
+boneXYZ:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+boneXYZ:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+boneXYZ:grambientAlphaSetter("220,220,220")
+
+boneXYZ:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+boneXYZ:treeDepth(0)
+
+boneXYZ:changeItem(1)

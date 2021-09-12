@@ -1,0 +1,12 @@
+--- image "orbit0YZ_png",User,ig3d_UI_MAIN
+orbit0YZ_png:rect(566,69,590,94)
+orbit0YZ_png:short name("orbit0YZ_png")
+orbit0YZ_png:id(4214)
+orbit0YZ_png:tooltip( 4214)
+orbit0YZ_png:visible(true)
+orbit0YZ_png:dontDither(false)
+orbit0YZ_png:alwaysBuffer(true)
+orbit0YZ_png:angle(0)
+orbit0YZ_png:showBorder(false)
+orbit0YZ_png:threeD(true)
+orbit0YZ_png:borderWidth(2)

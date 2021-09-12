@@ -1,0 +1,77 @@
+--- button "cylinder",User,ig3d_UI_MAIN
+cylinder:rect(936,18,965,48)
+cylinder:short name("cylinder")
+cylinder:label("Cylinder")
+cylinder:toolTip("Cylinder")
+cylinder:style("transparent")
+cylinder:visible(false)
+cylinder:showName(false)
+cylinder:autoHilite(true)
+cylinder:opaque(false)
+cylinder:sharedHilite(true)
+cylinder:traversalOn(true)
+cylinder:showfocusBorder(false)
+cylinder:icon(4201)
+cylinder:hiliteIcon(0)
+cylinder:borderWidth(1)
+cylinder:textFont("Arial")
+cylinder:textSize(9)
+cylinder:textAlign("right")
+
+cylinder:oldValue(12)
+
+cylinder:lastClick("1036,184")
+
+cylinder:changeVal(0.000000)
+
+cylinder:grambient1("248,104,248")
+
+cylinder:grambient2("96,96,248")
+
+cylinder:grambient3("220,220,220")
+
+cylinder:grambient4("72,248,80")
+
+cylinder:firstClick("197,117")
+
+cylinder:pathView("Levels/xman_44")
+
+cylinder:selLin(7)
+
+cylinder:ambient1("0.003906,0.001637,0.003906")
+
+cylinder:grambient7("8,8,0")
+
+cylinder:ambient7("0.000125,0.000125,0")
+
+cylinder:ambient4("0.001133,0.003906,0.001262")
+
+cylinder:clickStart("1036,184")
+
+cylinder:ambient3("0.003465,0.003465,0.003465")
+
+cylinder:ambient2("0.001512,0.001512,0.003906")
+
+cylinder:ambientAlphaSetter("0.003465,0.003465,0.003465")
+
+cylinder:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+cylinder:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+cylinder:grambientAlphaSetter("220,220,220")
+
+cylinder:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+cylinder:treeDepth(0)
+
+cylinder:changeItem(1)

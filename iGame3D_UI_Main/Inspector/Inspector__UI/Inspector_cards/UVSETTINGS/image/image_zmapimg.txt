@@ -1,0 +1,11 @@
+--- image "zmapimg",UVSETTINGS,Inspector
+zmapimg:rect(64,62,90,86)
+zmapimg:short name("zmapimg")
+zmapimg:id(1323)
+zmapimg:visible(true)
+zmapimg:dontDither(false)
+zmapimg:alwaysBuffer(true)
+zmapimg:angle(0)
+zmapimg:showBorder(false)
+zmapimg:threeD(true)
+zmapimg:borderWidth(2)

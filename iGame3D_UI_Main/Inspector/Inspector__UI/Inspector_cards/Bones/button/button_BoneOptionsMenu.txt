@@ -1,0 +1,29 @@
+--- button "BoneOptionsMenu",Bones,Inspector
+BoneOptionsMenu:rect(237,199,316,211)
+BoneOptionsMenu:short name("BoneOptionsMenu")
+BoneOptionsMenu:label("Options")
+BoneOptionsMenu:style("menu")
+BoneOptionsMenu:visible(true)
+BoneOptionsMenu:showName(true)
+BoneOptionsMenu:autoHilite(false)
+BoneOptionsMenu:opaque(true)
+BoneOptionsMenu:sharedHilite(true)
+BoneOptionsMenu:traversalOn(false)
+BoneOptionsMenu:showfocusBorder(true)
+BoneOptionsMenu:icon(0)
+BoneOptionsMenu:hiliteIcon(0)
+BoneOptionsMenu:borderWidth(2)
+BoneOptionsMenu:textFont("Monaco")
+BoneOptionsMenu:textSize(9)
+BoneOptionsMenu:textAlign("center")
+
+BoneOptionsMenu:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+BoneOptionsMenu:treeDepth(0)

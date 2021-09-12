@@ -1,0 +1,40 @@
+--- button "status",User,ig3d_UI_MAIN
+
+-- --
+on arrowkey
+  beep
+end arrowkey
+-- --
+on mouseDown
+  choose browse tool
+ 
+select empty
+  set the idleRate to 1  
+put true into gIdling
+
+  put setMkey(buttonHasFocus,true) into setBFoc
+  put setMkey(fieldHasFocus,false) into setFFoc
+     
+ 
+  set cursor to none
+lock cursor
+  set the hilite of me to true
+  set the clickStart of me to the screenMouseLoc
+  set the lastClick of me to the screenMouseLoc
+end mouseDown
+-- --
+on mouseLeave
+  unlock cursor
+end mouseLeave
+-- --
+on focusIn
+  isnapped
+end focusIn
+-- --
+on isnapped
+  get the windowSnapTo of stack (the mainStack of this stack)
+  if it is true then 
+    set the hilite of me to not the hilite of me
+  --windowsnap 
+  end if
+end isnapped

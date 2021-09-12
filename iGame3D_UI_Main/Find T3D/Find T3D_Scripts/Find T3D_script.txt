@@ -1,0 +1,65 @@
+-- script of stack "Find T3D"
+on openField
+ set the fieldIsFocused of stack (the mainStack of this stack)  to true
+end openField
+-- --
+on closeField
+  set the fieldIsFocused of stack (the mainStack of this stack)  to false
+end closeField
+--on rawKeyDown
+--  if getMkey(fieldisFocused) is true then pass rawKeyDown
+--end rawKeyDown
+-- --
+on hollowman
+  put "" into fld "scrbs"
+  put "" into fld "t3Ds"
+  put "" into fld "F1"
+  put "" into fld "replace"
+  put "" into btn "undo"
+  disable btn "undo"
+  set the label of btn "result" to "::::::::::   search result   ::::::::::"
+  set the label of btn "scripts" to "::::::::::   script   ::::::::::"
+  send "openCard" to cd 1 of this stack
+  --save this stack
+end hollowman
+-- --
+on resizestack
+  if top of btn "result" = top of btn "scripts" then resetControls2
+  else resetControls
+end resizestack
+-- --
+on resetControls
+  set topleft of grp "find" to -1,-1  --12,0
+  set rect of btn "stacks" to 1,43,143,58  #### hard coded in case :-)
+  set rect of fld "stacks" to 1,bottom of btn "stacks" - 2,right of btn "stacks",bottom of this card - 2
+  get the rect of btn "stacks"
+  set rect of btn "result" to item 3 of it,item 2 of it,right of this card - 1,item 4 of it
+  set topleft of btn "check" to left of btn "result" - 1,top of btn "result" - 1
+  set rect of btn "div1" to item 3 of it,top of btn "div1",right of this cd - 1,top of btn "div1" + 5
+  get rect of fld "stacks"
+  set rect of fld "t3Ds" to item 3 of it - 1,item 2 of it,right of this cd - 2,top of btn "div1"
+  set rect of btn "scripts" to item 3 of it - 1,bottom of fld "T3Ds",right of this cd - 1,bottom of fld "T3Ds" + 15
+  get rect of btn "scripts"
+  set rect of fld "scrbs" to item 1 of it,item 4 of it - 2,item 3 of it - 1,bottom of this card - 2
+end resetControls
+-- --
+on openStack
+  if (the mainStack of this stack) is among the lines of the windows then 
+  set the mainStack of this stack to (the mainStack of this stack)
+  set the cantmodify of this stack to true
+  end if
+end openStack
+-- --
+on resetControls2
+  set topleft of grp "find" to -1,-1   --12,0
+  set rect of btn "stacks" to 1,43,143,58  #### hard coded in case :-)
+  set rect of btn "scripts" to right of btn "stacks" - 1,top of btn "stacks",item 1 of the loc of btn "slideit",bottom of btn "stacks"
+  set rect of btn "result" to right of btn "scripts"- 1,top of btn "scripts",right of this card - 1,bottom of btn "stacks"
+  set topleft of btn "check" to left of btn "result" - 1,top of btn "result" - 1
+  set rect of fld "stacks" to 1,bottom of btn "stacks" - 2,right of btn "stacks",bottom of this card - 2
+  get rect of fld "stacks"
+  set rect of fld "scrbs" to item 3 of it - 1,item 2 of it ,right of btn "scripts" - 1,item 4 of it 
+  get rect of fld "scrbs"
+  set rect of fld "t3Ds" to item 3 of it - 1,item 2 of it,right of btn "result" - 1,item 4 of it
+  set rect of btn "slideit" to left of btn "slideit",bottom of btn "scripts",left of btn "slideit" + 5,bottom of this card -2
+end resetControls2

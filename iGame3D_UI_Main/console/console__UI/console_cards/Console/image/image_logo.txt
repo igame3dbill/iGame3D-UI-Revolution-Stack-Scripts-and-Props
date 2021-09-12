@@ -1,0 +1,11 @@
+--- image "logo",Console,console
+logo:rect(288,80,352,144)
+logo:short name("logo")
+logo:id(1417)
+logo:visible(false)
+logo:dontDither(false)
+logo:alwaysBuffer(false)
+logo:angle(0)
+logo:showBorder(false)
+logo:threeD(true)
+logo:borderWidth(2)

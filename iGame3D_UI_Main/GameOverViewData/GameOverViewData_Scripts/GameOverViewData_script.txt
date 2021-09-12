@@ -1,0 +1,4 @@
+-- script of stack "GameOverViewData"
+function quoted what
+  return (quote & what & quote)
+end quoted

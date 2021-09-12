@@ -1,0 +1,30 @@
+--- button "line",User,ig3d_UI_MAIN
+line:rect(454,22,484,48)
+line:short name("line")
+line:label("line")
+line:toolTip("Connect Vertices Tool")
+line:style("transparent")
+line:visible(true)
+line:showName(false)
+line:autoHilite(false)
+line:opaque(false)
+line:sharedHilite(false)
+line:traversalOn(true)
+line:showfocusBorder(false)
+line:icon(4236)
+line:hiliteIcon(0)
+line:borderWidth(1)
+line:textFont("Arial")
+line:textSize(9)
+line:textAlign("right")
+
+line:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+line:oldValue(12)
+
+line:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+line:pathView("Levels/xman_44")

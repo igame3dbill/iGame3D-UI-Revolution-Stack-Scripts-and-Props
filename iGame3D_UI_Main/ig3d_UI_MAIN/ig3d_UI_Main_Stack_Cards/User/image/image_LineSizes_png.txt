@@ -1,0 +1,12 @@
+--- image "LineSizes_png",User,ig3d_UI_MAIN
+LineSizes_png:rect(828,115,844,131)
+LineSizes_png:short name("LineSizes_png")
+LineSizes_png:id(4413)
+LineSizes_png:tooltip( 4413)
+LineSizes_png:visible(true)
+LineSizes_png:dontDither(false)
+LineSizes_png:alwaysBuffer(true)
+LineSizes_png:angle(0)
+LineSizes_png:showBorder(false)
+LineSizes_png:threeD(true)
+LineSizes_png:borderWidth(0)

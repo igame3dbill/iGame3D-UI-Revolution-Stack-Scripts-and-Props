@@ -1,0 +1,5 @@
+--- button "Stacks",card id 1002ofFindT3d,Find T3D
+on mouseUp
+  put stackList("all","true") into fld "stacks"
+  resetControls
+end mouseUp

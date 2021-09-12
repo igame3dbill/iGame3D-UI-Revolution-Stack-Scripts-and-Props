@@ -1,0 +1,23 @@
+--- button "Find_What",card id 1002ofFindT3d,Find T3D
+on menuPick what
+  set the label of me to what
+end menuPick
+-- --
+on returnInField
+  send mouseup to btn "find"
+  closeField
+end returnInField
+-- --
+on enterInField
+  returnInField
+end enterInField
+-- --
+on openField
+  set the title of this stack to "Find"
+  put setMkey("buttonhasfocus",true) into setTr
+  put setMkey("fieldisfocused",true) into setTr
+end openField
+-- --
+on closeField
+  put setMkey("fieldisfocused",false) into setTr
+end closeField

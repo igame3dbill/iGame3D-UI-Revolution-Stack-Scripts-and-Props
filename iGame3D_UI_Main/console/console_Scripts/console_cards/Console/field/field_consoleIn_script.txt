@@ -1,0 +1,611 @@
+--- field "consoleIn",Console,console
+global gStackDirectory,gConsoleOpenFiles
+local ConsoleBoxHistory, ConsoleBoxIndex
+### Questions:
+### - what is done with the contents of fld "RecentItemsofConsole" an the RecentItemsofConsole of stack "console"?
+### RecentItemsofConsole should be a list of previous commands entered, to save on retyping
+-- --
+on reselectME
+   select after line 1 of me
+  end reselectMe
+-- --
+on enterInField
+  if icon of btn "consoleInToggle" = 1341 then
+    get me
+    if it = "" then exit to top
+    if char 1 of it = "." then
+      --answer error "multiline revcode execution is not implemented (yet)" with "sorry"
+      revolutionaryInput
+      exit to top
+    end if
+    put "" into me
+    ig3d_ExecuteLua_s_i(it)
+    put it & cr after fld "consoleOut"
+    setStackTitle
+    updateLineNums
+    colorizeAll
+     if the screenmouseloc is  within glrect() is false then 
+     send reselectMe to me in 20 milliseconds
+     end if
+  else
+    if the commandKey is down then 
+      put me into theScript
+      do theScript
+    else
+      returnInField  --pass enterInField
+    end if
+  end if
+end enterInField
+-- --
+on returnInField
+  if me is "" then exit returnInfield
+  if icon of btn "consoleInToggle" = 1341 then pass returnInField
+  else
+ put line 1 of me into me
+ set itemDel to ";"
+     put me into termln
+    
+    
+  
+    put base64decode(the ref_Script_Commands of of stack "referencer") into gTheSet
+    if gTheSet <> "" then
+      put decompress(gTheSet) into gTheSet
+      split gTheSet using numtochar(13) and numtochar(14)
+end if
+ get the keys of gTheSet
+  sort it
+  put it into TheT3DCommands
+ repeat for each item someCommand in line 1 of termln
+ if itsarevTermln(someCommand) then 
+ revolutionaryInput 
+ next repeat
+ end if
+     SendLuaCommand(someCommand) 
+    
+          end repeat
+           if the screenmouseloc is  within glrect() is false then send reselectMe to me in 20 milliseconds
+      
+    end if
+ 
+  put "" into me
+end returnInField
+-- --
+on closeField
+   
+ 
+end closeField
+-- --
+on openField
+  
+end openField
+-- --
+on escapeKey
+  focus btn 1 of stack (the mainStack of this stack)
+   
+ 
+  closeField
+end escapeKey
+-- --
+Function countMeTerms who
+  put name of who into who
+  put the script of who into myScript
+  repeat for each line i in myScript
+    if i contains "terms"   or i contains "termln" then 
+      if i contains "contains" or i contains "=" or i contains "is" then 
+        repeat with y = 1 to number of words of i
+          if word y of i contains quote then  
+            --put unquoted(word y of myLook) & return after theTermz
+            put char 2 to -2 of word y of i & return after theTermz
+            exit repeat
+          end if
+        end repeat
+      end if
+    end if
+  end repeat
+  sort theTermz
+  return theTermz
+end countMeTerms
+### "." used as escape for revcode !!!
+-- --
+Function itsarevTermln termln
+  if the icon of btn "consoleInToggle" = 1341 then set the label of btn "inputToggle" to "input: mixed"
+  if the label of btn "inputToggle" = "input: rev"  or char 1 of termln = "." then return true
+  else return false
+end itsarevTermln
+### doAction = the second enterInField handler but in switch-style more or less
+-- --
+on doAction
+  --if me is empty then send colorizeNewInput to cd fld "consoleOut" of stack "Console"
+  --colorizeAll "consoleOut"
+  if me = "" then exit doaction
+  else put me into termln
+  if itsarevTermln(termln) then  --is true  then 
+    revolutionaryInput 
+    exit doaction
+  end if
+  
+  put word 1 of termln into terms
+  put word 2 of termln into thesecondWord
+  put word 3 of termln into thestk
+  put the number of lines in fld "consoleOut" of stack "Console" into selc
+  switch word 1 of termln
+  case "?"
+    put countMeTerms(name of me) into cd fld "consoleOut" of stack "Console"
+    exit doAction
+    break
+  case "replace"
+    put  termln && "in cd fld" &&quote& "consoleOut"&quote into action
+    do (action)
+    exit doAction
+    break
+  case "find"
+    send "findInMe" to fld "consoleOut" of stack "Console"
+    exit doaction
+    break
+  case  "!!!" 
+    open stack "dev"
+    put "" into me
+    exit doaction
+    break
+  case "aim"
+    replace "aim" with empty in termln
+    put aim(termln) & return after fld "consoleOut" of stack "Console"
+    exit doaction
+    break
+  case "cls"
+  case "clear" 
+  case "new"  
+    put fld "consoleOut" into fld "UndoConsoleOut"
+    put "" into fld "consoleOut"
+    put 1 into som
+    set title of stack "Console" to "Console"
+    break
+  case "look" 
+    replace "look" with "player" in termln
+    put aim(termln) & return after fld "consoleOut" of stack "Console"
+    exit doaction
+    break
+  case "ls"
+    set the directory to (gStackDirectory & thesecondWord)
+    put the detailed files into allFiles
+    put the detailed folders into allFolders
+    put allFolders & return & allFiles   into allthings
+    replace gStackDirectory with empty in allthings
+    replace "+" with space in allthings
+    repeat with ax = 1 to number of lines of allthings
+      put item 1 of line ax allthings  & return after fld "consoleOut"
+    end repeat
+    select line (the number of lines of me) of fld "consoleOut"
+    put 2 into som
+    break
+  case "run" 
+    put fld "consoleOut" of stack "Console" into scrRun
+    put scrRun into fld "UndoConsoleOut" of stack "Console"
+    put empty into fld "consoleOut" of stack "Console"
+    repeat for each line i in scrRun
+      SendT3DCommand(i)
+    end repeat
+     
+    put 1 into som
+    exit doaction
+    break
+ 
+  case "put"
+    
+      set itemDelimiter to comma
+      if the number of items of termln > 2 then 
+        put  return & termln after fld "RecentItemsofConsole" of stack "Console"
+        SendT3DCommand(termln)
+        put "" into me
+        put "" into termln
+        updateLineNums
+        colorizeAll "consoleOut"
+      end if
+    
+    break
+  case "get"
+    put line 1 of ig3d_GetObjectInfo_s_s() into whoGet
+    if thesecondWord is empty then
+      if whoGet not empty then put quoted(whoGet) into thesecondWord
+    end if
+     
+    if thesecondWord contains "player" then
+      then put "player" into me
+      put me into dodat
+    end if
+     
+    if thesecondWord = "me" then put "get me" into dodat
+    if thesecondWord contains quote = false then 
+      put "get" &&  thesecondWord  into dodat
+    else
+      put "get" && thesecondWord into dodat
+    end if
+     
+    --SendT3DCommand(dodat)
+    put 2 into som
+    break
+  default
+    break
+  end switch
+  --put num(lines of cd fld "consoleOut" of stack "Console") into selc
+   
+ 
+   
+  if  termln  contains "loadtexall" then  
+    set the directory to (gStackDirectory & thesecondWord)
+    put the detailed files into allthings
+    replace gStackDirectory with empty in allthings
+    replace "+" with space in allthings
+    replace "/" with empty in thesecondWord
+    repeat with tx = 1 to number of lines of allthings
+      put item 1 of line tx of allthings into isitimage
+      if  isitimage contains".png" or isitimage contains ".jpg" or isitimage contains ".tif" or isitimage contains ".tga" then
+        SendT3DCommand("loadtex" && quote & thesecondWord & "/" & isitimage & quote)
+      end if
+    end repeat
+    put return after cd fld "consoleOut"
+    select line (the number of lines of me) of cd fld "consoleOut"
+    put 2 into som
+  end if
+   
+  if termln contains "+" then
+    replace "+" with space in termln
+    put word 1 of termln into sms
+    repeat with nn=2 to the number of words of termln
+      put word nn of termln + sms into sms
+    end repeat
+     
+    replace space with "+" in termln
+    if sms contains "." then put "addf 1," & sms & "  //  " & termln into dodat
+    else 
+      put "addi 1," & sms & "  //  " & termln into dodat
+    end if
+     
+    put 2 into som
+    SendT3DCommand(dodat)
+  end if
+   
+   
+  if termln contains "*" then
+    replace "*" with space in termln
+    put word 1 of termln into sms
+    repeat with nn=2 to the number of words of termln
+      put word nn of termln * sms into sms
+    end repeat
+     
+    replace space with "*" in termln
+    if sms contains "." then put "multf 1," & sms & "  //  " & termln  into dodat
+    else 
+      put "multi 1," & sms & "  //  " & termln  into dodat
+    end if
+     
+    put 2 into som
+    SendT3DCommand(dodat)
+     
+  end if
+   
+  if termln contains "make" then
+    if thesecondWord  is not empty then 
+      if thesecondWord contains quote = false then
+        put "make" & space & quote & thesecondWord & quote into dodat
+        put 2 into som
+        put dodat into termln
+        put 2 into boo
+      else
+        put termln into dodat
+        put 2 into som
+        put 2 into boo
+      end if
+       
+    else
+      if fld "ModelsFolderList" of stack "iGame3D" is empty then refreshgetModels 
+      put fld "ModelsFolderList" of stack "iGame3D" into modlist
+      put fld "objects" of stack "iGame3D" into objs 
+      put the number of lines of objs into ol
+      if ol < 1 then then put 1 into ol
+      if ol > number of lines of modlist then put 1 into ol
+      put line ol of modlist into dat
+      if dat is empty then put line ol of fld "objects" of stack "iGame3D" into dat
+      put "make" && quote & dat & quote into dodat
+      --send "colorizeNewInput" to cd fld "consoleOut" of stack "Console"
+      colorizeAll 
+    end if
+     
+    SendT3DCommand (dodat)
+     
+    put 2 into som
+    put dodat into termln
+    put "" into me
+    --repeat with c =1 to the number of lines of cd fld "dotmodelstexlist" of stack "iGame3D"
+    --put line c of cd fld "dotmodelstexlist" of stack "iGame3D" into texm
+    --if texm contains dat then put T3DCommand("loadtex" && quote & "Models/" & texm & quote) into qtex
+    --end repeat
+     
+    exit doaction
+  end if
+  
+  if terms contains "mark" then
+    put 2 into som 
+    put 0 into yeah
+  end if
+  put 0 into yeah
+  if terms contains "setf" or terms contains "addf" or terms contains "addi" or terms contains "multf" or terms contains "multi" or terms contains "seti" or terms contains "sin" or terms contains "cos" or terms contains "acos" or terms contains "tan" or terms contains "dist" or terms contains "atan" then
+    if thesecondWord is not empty then 
+      replace space with tab in termln
+      replace comma with tab in termln
+      set the itemDelimiter to tab
+      put where into wong
+      put item 2 of termln into thesecondWord
+      if thesecondWord is not a number then
+        if thesecondWord contains quote = false then
+          if thesecondWord  contains "true" = false then
+            if thesecondWord   contains "false" = false then
+              put empty into termln
+              put 0 into som
+            end if
+          end if
+        end if
+      else
+        if item 2 of termln > 0 or item 2 of termln < 16  then
+          put item 3 of termln into moo
+          put char 1 of moo into fi
+          put char 2 of moo into numd
+          if moo  > 0 then
+            if  fi  ="f" or fi ="i" then
+              if numd > 0 or numd < 16  then
+                if numd is a number then put 2 into som
+              end if
+            else
+              if numd is a number or numd is empty then put 2 into som
+            end if
+          end if
+        end if
+      end if
+    end if
+  end if
+   
+  if som <> 1 then 
+    if me is not empty then
+      put me into termln
+      --put cd fld "datalist" of stack "Language" into theGreat
+      put the number of lines of theGreat into thelin
+      repeat with c = 1 to thelin
+        --put line c of cd fld "datalist" of stack "Language" into thelook
+        --if  word 1 of thelook contains terms then
+        put termln into dodat 
+        put 2 into yeah
+        put 0 into som
+        --end if
+      end repeat
+    end if
+    
+    if yeah > 1 then 
+      if dodat is not empty then put dodat into termln
+      SendT3DCommand (termln)
+       
+      put the number of lines of fld "consoleOut" of stack "Console" into lnmb
+      set the textcolor of line lnmb of fld "consoleOut" of stack "Console" to black
+      set the textstyle of line lnmb of fld "consoleOut" of stack "Console" to "expanded"
+      put the number of lines of fld "RecentItemsofConsole" of stack "Console" into rcl
+      --send colorizeNewInput to fld "consoleOut" of stack "Console"
+       
+      repeat with rc= 1 to rcl
+        if line rc of fld "RecentItemsofConsole"  of stack "Console" = termln then put 2 into boo
+      end repeat
+       
+      if boo  < 1 then  put termln & return & fld "RecentItemsofConsole" into fld "RecentItemsofConsole" of stack "Console"
+    end if
+    if yeah < 1 then 
+      set the textcolor of line lnmb of fld "consoleOut" of stack "Console" to red
+      --set scroll of fld "consoleOut" of stack "Console" to the formattedHeight of fld "consoleOut" of stack "Console" -height of fld "consoleOut" of stack "Console"
+    end if
+    put "" into me
+    set scroll of  fld "consoleOut" of stack "Console" to the formattedHeight of  fld "consoleOut" of stack "Console" -height of fld "consoleOut" of stack "Console"
+  end if
+   
+  put the number of lines of fld "RecentItemsofConsole" of stack "Console" into rcl
+  --send colorizeNewInput to  fld "consoleOut" of stack "Console"
+  updateLineNums
+  colorizeAll
+  
+  --put the number of lines of field "consoleOut" of stack "Console"+1 into selc
+  --select line selc of fld "consoleOut" of stack "Console"
+  ---select line 1 of me
+  
+  
+  ----show cd btn "WhatIDoconsolein" of stack "Console"
+  --show cd btn "WhatIDoconsoleOut"  of stack "Console"
+  --------***focus cd btn 1  of stack "iGame3D"
+end doAction
+###########
+###########
+ 
+###########
+###########
+-- --
+Function revComLastFile pParam
+  switch pParam
+  case ""
+    put keys of gConsoleOpenFiles into tKeys
+    filter tKeys with "*revCom-*"  ### not saved: ~revCom-n.txt ; when saved: /Data/Console/revCom-n.txt
+    if tKeys = "" then return revComLastFile("new")
+    else 
+      replace ".lua" with "" in tKeys
+      set the itemdelimiter to "-"
+      sort lines of tKeys numeric ascending by last item of each
+      return line -1 of tKeys & ".lua"
+    end if
+    break
+  case "new"
+    put keys of gConsoleOpenFiles into tKeys
+    filter tKeys with "*revCom-*"  ### not saved: ~revCom-n.txt ; when saved: /Data/Console/revCom-n.txt
+    if tKeys = "" then 
+      put folderPath("data/console") into tFPath
+      put the directory into tOldDir
+      set the directory to tFPath
+      put the files into tFiles
+      set the directory to tOldDir
+      filter tFiles with "revCom-*"
+      if tFiles = "" then 
+        put 1 into n
+      else
+        replace "revCom-" with "" in tFiles
+        replace ".lua" with "" in tFiles
+        sort lines of tFiles numeric ascending
+        put line -1 of tFiles + 1 into n
+      end if
+    else
+      replace ".lua" with "" in tKeys
+      set the itemdelimiter to "-"
+      sort lines of tKeys numeric ascending by last item of each
+      put item 2 of line -1 of tKeys + 1 into n
+    end if
+    put "~revCom-" & n & ".lua" into tName
+    addToConsoleOpenFiles tName,"new"
+    put the internet date & cr into fld "editfield"
+    return tName
+    break
+  end switch
+end revComLastFile
+-- --
+on revolutionaryInput
+  put me into termln
+  if last word of termln is in "n.txt /n" then 
+    put revComLastFile("new") into tDummy
+    replace "n.txt" with "" in termln
+    replace " /n" with "" in termln
+  else
+    put revComlastfile() into tRIF
+    put offset(tRif,fld "leftList") into tL
+    put num(lines in char 1 to tL of fld "leftlist") into tL
+    send "actonselection" && tL to fld "leftList"
+  end if
+  if char 1 of termln = "." then replace "." with empty in char 1 of termln
+  checkTail
+  --put merge("[[cr]]>> [[termln]][[cr]]") after fld "editfield"
+  put merge(">> [[termln]][[cr]]") after fld "editfield"
+  lock error dialogs
+  put DummyFunction() into tJunk
+  if ConsoleBoxIndex = "" then init
+  --set defaultStack to the topStack
+  put return & termln after ConsoleBoxHistory
+  if the number of lines in ConsoleBoxHistory > 20
+  then delete line 1 of ConsoleBoxHistory
+  if word 1 of termln is not in the commandnames then 
+    if word 1 of termln is "the" \
+        or word 1 of termln is a number \
+        or token 2 of termln is "("
+    --then put value(termln, this card) & cr after fld "editfield" of stack "console"
+    then put value(termln) & cr after fld "editfield" of stack "console"
+    else send termln to this card
+  else 
+    if word 1 of termln = "put" then
+      if " into " is not in termln and " after " is not in termln then
+        put merge(" after fld [[quote]]editField[[quote]] of stack [[quote]]Console[[quote]]") after termln  ### :-)
+      end if
+    end if
+    try
+     do "global" && the globals & return & termln
+    catch revError
+      if item 1 of revError is a number and item 1 of revError >= 0 then
+        put merge("//Message execution error:[[cr]]    Error description:") && line (item 1 of line 1 of revError) of the cErrorsList of fld "consoleIn" & cr after fld "editfield"
+      else
+        replace cr with cr & "   - " in revError
+        put  merge("//Error: [[termln]][[cr]]   - [[revError]]") after fld "editfield" of stack "Console" 
+      end if
+    finally
+      if the result <> "" then 
+        if "~revCom" is in word 1 of the result then 
+          --do nothing
+        else
+          if line 1 to - 1 of the result = line (num(lines of the result) * -1) to -1 of fld "editfield" then
+            --do nothing
+          else
+            put merge("//result of: [[termln]][[cr]]    - [[the result]]") & cr after fld "editfield"
+          end if
+        end if
+      end if
+    end try 
+  end if
+  if char -2 to -1 of fld "editfield" = cr&cr then
+    --do nothing
+  else put return after fld "editfield"  of stack "Console"
+  set scroll of cd fld "editfield" of stack "Console" to the formattedHeight of cd fld "editfield" of stack "Console"
+  updatelinenums
+  colorizeAll
+  put "" into fld "consoleIn" of stack "Console"
+  select after fld "consoleIn" of stack "Console"
+end revolutionaryInput
+-- --
+on init
+  put 1 into ConsoleBoxIndex
+  put empty & return into ConsoleBoxHistory
+end init
+-- --
+on errorDialog exeerror, pscripterror
+  if pscripterror is not empty then
+    put merge("//Script compile error: [[cr]]   Error description:") && line (item 1 of pscripterror) of the cScriptErrors of fld "consoleIn" & cr after fld "editfield"
+  else
+    put  merge("//Message execution error: [[cr]]   Error description:") && line (item 1 of line 1 of exeerror) of the cErrorsList of fld "consoleIn" & cr after fld "editfield"
+  end if
+  updatelinenums
+  colorizeAll
+end errorDialog
+-- --
+on prevline
+  subtract 1 from ConsoleBoxIndex
+  if ConsoleBoxIndex = 0
+  then put the number of lines in ConsoleBoxHistory into ConsoleBoxIndex
+  put "." & line ConsoleBoxIndex of ConsoleBoxHistory into me
+   select line 1 of me  --after me
+  exit to MetaCard
+end prevline
+-- --
+on nextline
+  add 1 to ConsoleBoxIndex
+  if ConsoleBoxIndex > the number of lines in ConsoleBoxHistory
+  then put 1 into ConsoleBoxIndex
+  put "." & line ConsoleBoxIndex of ConsoleBoxHistory into me
+  select line 1 of me  --after me
+  exit to MetaCard
+end nextline
+-- --
+on commandKeyDown which
+  handleKey which
+  pass commandKeyDown
+end commandKeyDown
+-- --
+on controlKeyDown which
+  handleKey which
+  pass controlKeyDown
+end controlKeyDown
+-- --
+on handleKey which
+  if which is "P"
+  then prevline
+  if which is "N"
+  then nextline
+  if which is "U" then
+    put empty into me
+    exit to MetaCard
+  end if
+end handleKey
+-- --
+on arrowKey which
+  if which is "up"
+  then prevline
+  if which is "down"
+  then nextline
+  pass arrowKey
+end arrowKey
+-- --
+Function DummyFunction
+  return empty
+end DummyFunction
+-- --
+on checkTail
+  if char -2 to -1 of fld "editfield" = cr&cr or fld "editfield" = "" then 
+    --do nothing
+  else if char -1 of fld "editfield" <> cr then put cr&cr after fld "editfield"
+  else if char -2 of fld "editfield" <> cr then put cr after fld "editfield"
+end checkTail

@@ -1,0 +1,5 @@
+--- scrollbar "zangslid",card id 1002,NewAnimEd
+on scrollbarDrag
+  put the thumbPosition of me into cd fld "zang"
+  curMarkersUpdate
+end scrollbarDrag

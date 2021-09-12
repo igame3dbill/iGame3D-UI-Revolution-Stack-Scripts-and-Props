@@ -1,0 +1,36 @@
+--- field "Rootbg",card id 1002,sceneGraph
+Rootbg:rect(0,-2,83,155)
+Rootbg:short name("Rootbg")
+Rootbg:disabled(false)
+Rootbg:visible(true)
+Rootbg:sharedText(true)
+Rootbg:dontWrap(true)
+Rootbg:lockText(true)
+Rootbg:opaque(true)
+Rootbg:traversalOn(false)
+Rootbg:showFocusBorder(false)
+Rootbg:autoTab(false)
+Rootbg:threeD(true)
+Rootbg:showBorder(true)
+Rootbg:borderWidth(2)
+Rootbg:hScrollbar(false)
+Rootbg:vScrollbar(false)
+Rootbg:autoHilite(true)
+Rootbg:listBehavior(true)
+Rootbg:toggleHilites(false)
+Rootbg:fixedLineHeight(true)
+Rootbg:firstIndent(0)
+Rootbg:textAlign("left")
+
+Rootbg:initialRoot([["Level
+groups
+lights
+materials
+mesh
+objects
+particles
+paths
+player
+sound
+tags
+text"]])

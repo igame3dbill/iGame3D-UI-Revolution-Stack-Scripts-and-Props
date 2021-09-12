@@ -1,0 +1,50 @@
+--- button "ZoomOut",User,ig3d_UI_MAIN
+ZoomOut:rect(5,325,23,341)
+ZoomOut:short name("ZoomOut")
+ZoomOut:label("—")
+ZoomOut:toolTip("Zoom Out ")
+ZoomOut:style("transparent")
+ZoomOut:visible(true)
+ZoomOut:showName(false)
+ZoomOut:autoHilite(true)
+ZoomOut:opaque(false)
+ZoomOut:sharedHilite(true)
+ZoomOut:traversalOn(true)
+ZoomOut:showfocusBorder(true)
+ZoomOut:icon(2291)
+ZoomOut:hiliteIcon(0)
+ZoomOut:borderWidth(2)
+ZoomOut:textFont("Arial")
+ZoomOut:textSize(12)
+ZoomOut:textAlign("center")
+
+ZoomOut:startMapLoc("126,211")
+
+ZoomOut:getOrigin("0.000000,0.000000,0.000000")
+
+ZoomOut:clickStart("683,367")
+
+ZoomOut:currentStacksList([["iGame3D
+Inspector
+3DDATA
+3D Scene
+"]])
+
+ZoomOut:lastClick("683,367")
+
+ZoomOut:GoingTo(true)
+
+ZoomOut:pathView("Levels/xman_44")
+
+ZoomOut:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+ZoomOut:GridProp("20,20,10,111,110,313,312")
+
+ZoomOut:oldValue(12)
+
+ZoomOut:GotoXZ("-40.5,-34")
+
+ZoomOut:schmand([["on mouseup
+beep
+end mouseup
+"]])

@@ -1,0 +1,31 @@
+--- button "IDLESTop",User,ig3d_UI_MAIN
+
+--on mouseWithin
+--   
+-- 
+--  if the commandKey is down then
+--    if the shiftKey is down then
+--      if environment() is "development" then choose pointer tool
+--      set the idleToggle of this stack to false
+--set the hilite of me to not the idleToggle   of  this stack
+--end if
+--end if
+
+--end mouseWithin
+--on mouseDown
+--  if the altKey is down then 
+--    set style of stack "idleInfo" to palette
+--   open stack "idleInfo"
+-- end if
+-- if the commandKey is down then
+--  set  style of stack "idleInfo" to document
+--   open stack "idleInfo"
+--   set the idleToggle of this stack to false
+--end if
+--  
+--  set the idleCount of this stack to 0
+--   set the focusTime of this stack to 0 
+-- set the hilite of me to not the idleToggle   of  this stack
+--set the idleToggle of this stack to the hilite of me
+
+--end mouseDown

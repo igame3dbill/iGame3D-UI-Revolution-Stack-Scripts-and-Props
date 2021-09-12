@@ -1,0 +1,13 @@
+--- field "leftList" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+console
+scripts
+open files:	option-click this line to choose a file...
+	console	Data/Scripts/GUI/console.lua
+	igame3dUI001	Data/Scripts/GUI/igame3dUI001.lua
+	load script	Data/Levels/UIConsole/load script.lua
+	load script	Data/Levels/iFly3D_TitleMenu/load script.lua
+	load script	Data/Levels/Seuche/load script.lua
+	load script	Data/Levels/UIEditor/load script.lua
+	load script	Data/Levels/UISceneGraph/load script.lua
+	load script	Data/Levels/Server/load script.lua
+	scenegraph	Data/Scripts/GUI/scenegraph.lua

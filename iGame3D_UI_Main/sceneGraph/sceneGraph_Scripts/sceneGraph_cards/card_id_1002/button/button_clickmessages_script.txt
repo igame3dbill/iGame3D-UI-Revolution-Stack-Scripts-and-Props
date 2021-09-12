@@ -1,0 +1,4 @@
+--- button "clickmessages",card id 1002,sceneGraph
+on mouseUp
+  edit script of field "f1"
+end mouseUp

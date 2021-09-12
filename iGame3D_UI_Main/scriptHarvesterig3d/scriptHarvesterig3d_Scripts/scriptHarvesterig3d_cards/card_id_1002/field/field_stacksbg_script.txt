@@ -1,0 +1,14 @@
+--- field "stacksbg",card id 1002,scriptHarvesterig3d
+setprop stripes foobar
+  if the  hilitedlines of me < 10 then
+    put 0 into x
+    put x  into a
+    repeat 40
+      add 2 to x
+      put "," & x after a
+      put space & cr & space & cr after tL
+    end repeat
+    put tL into me
+    set the hilitedlines of me to a
+  end if
+end stripes

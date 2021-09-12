@@ -1,0 +1,12 @@
+--- image "windows_png",User,ig3d_UI_MAIN
+windows_png:rect(34,107,58,131)
+windows_png:short name("windows_png")
+windows_png:id(4242)
+windows_png:tooltip( 4242)
+windows_png:visible(true)
+windows_png:dontDither(false)
+windows_png:alwaysBuffer(true)
+windows_png:angle(0)
+windows_png:showBorder(false)
+windows_png:threeD(true)
+windows_png:borderWidth(2)

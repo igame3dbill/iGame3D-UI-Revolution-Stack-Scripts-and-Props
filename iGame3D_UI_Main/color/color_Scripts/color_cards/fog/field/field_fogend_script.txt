@@ -1,0 +1,24 @@
+--- field "fogend",fog,color
+on mouseUp
+  set lockText of me to false
+  select after the mouseCharChunk
+end mouseUp
+-- --
+on mouseDown
+  set lockText of me to false
+  select after the mouseCharChunk
+end mouseDown
+-- --
+on arrowKey theKey
+  set the navigationkeys of me to false
+   set the altArrowVal of this stack to .05
+  set the arrowVal of this stack to .1
+  set the shiftArrowVal of this stack to 1
+  doArrows ((the short name of me) & comma & keysDown())
+  updateFog
+end arrowKey
+-- --
+on returnInField
+  put line 1 of me into me
+  updateFog
+end returnInField

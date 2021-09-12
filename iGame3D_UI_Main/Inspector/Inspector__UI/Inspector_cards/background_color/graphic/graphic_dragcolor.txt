@@ -1,0 +1,1 @@
+--- graphic "dragcolor",background_color,Inspector

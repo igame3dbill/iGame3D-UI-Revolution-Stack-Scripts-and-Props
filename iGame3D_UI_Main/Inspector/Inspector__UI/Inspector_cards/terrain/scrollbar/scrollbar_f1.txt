@@ -1,0 +1,13 @@
+--- scrollbar "f1",terrain,Inspector
+f1:rect(10,-30,66,-8)
+f1:short name(f1)
+f1:visible(true)
+f1:disabled(false)
+f1:traversalOn(true)
+f1:orientation("horizontal")
+f1:startValue(1)
+f1:endValue(32767)
+f1:thumbPosition(1)
+f1:showValue(false)
+f1:pageInc(0.499977)
+f1:textAlign("left")

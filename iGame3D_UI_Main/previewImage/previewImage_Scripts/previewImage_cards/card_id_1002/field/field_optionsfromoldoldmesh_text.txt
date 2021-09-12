@@ -1,0 +1,10 @@
+--- field "optionsfromoldoldmesh" of group "newGridsArray" of card id 1002 of stack "previewImage" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+circle
+clone
+cube
+sphere
+plane
+tube
+halls
+walls
+grid

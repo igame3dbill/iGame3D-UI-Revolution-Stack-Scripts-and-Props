@@ -1,0 +1,37 @@
+--- field "Temp" of group "MasterLIBUI" of card "Materialslibcard" of stack "filesLibrary" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+4Fluid										./Fluid/
+	4telnetclient										./Fluid/telnetclient/
+		load script										./Fluid/telnetclient/load script.lua
+4Levels										./Levels/
+	4Car_n_Driver										./Levels/Car_n_Driver/
+		load script										./Levels/Car_n_Driver/load script.lua
+	4default										./Levels/default/
+		load script										./Levels/default/load script.lua
+	4FPS										./Levels/FPS/
+		load script										./Levels/FPS/load script.lua
+	4iFly										./Levels/iFly/
+		load script										./Levels/iFly/load script.lua
+	4iPhoneCar										./Levels/iPhoneCar/
+		load script										./Levels/iPhoneCar/load script.lua
+	4iPhoneHelloWorld										./Levels/iPhoneHelloWorld/
+		load script										./Levels/iPhoneHelloWorld/load script.lua
+	4Pong										./Levels/Pong/
+		load script										./Levels/Pong/load script.lua
+	4RPG										./Levels/RPG/
+		load script										./Levels/RPG/load script.lua
+	4testing123										./Levels/testing123/
+		load script										./Levels/testing123/load script.lua
+	4Third Person										./Levels/Third Person/
+		load script										./Levels/Third Person/load script.lua
+	4udeadgames										./Levels/udeadgames/
+		load script										./Levels/udeadgames/load script.lua
+	4UDG										./Levels/UDG/
+		load script										./Levels/UDG/load script.lua
+	4UFO										./Levels/UFO/
+		load script										./Levels/UFO/load script.lua
+	4ZFPS										./Levels/ZFPS/
+		load script										./Levels/ZFPS/load script.lua
+	4ZGS										./Levels/ZGS/
+		load script										./Levels/ZGS/load script.lua
+	4ZGS_default										./Levels/ZGS_default/
+		load script										./Levels/ZGS_default/load script.lua

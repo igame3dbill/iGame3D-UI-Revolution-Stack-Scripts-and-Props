@@ -1,0 +1,50 @@
+--- button "ZoomIn",User,ig3d_UI_MAIN
+ZoomIn:rect(23,325,41,341)
+ZoomIn:short name("ZoomIn")
+ZoomIn:label("+")
+ZoomIn:toolTip("Zoom In")
+ZoomIn:style("transparent")
+ZoomIn:visible(true)
+ZoomIn:showName(false)
+ZoomIn:autoHilite(true)
+ZoomIn:opaque(false)
+ZoomIn:sharedHilite(true)
+ZoomIn:traversalOn(true)
+ZoomIn:showfocusBorder(true)
+ZoomIn:icon(2290)
+ZoomIn:hiliteIcon(0)
+ZoomIn:borderWidth(2)
+ZoomIn:textFont("Arial")
+ZoomIn:textSize(14)
+ZoomIn:textAlign("center")
+
+ZoomIn:startMapLoc("126,211")
+
+ZoomIn:getOrigin("0.000000,0.000000,0.000000")
+
+ZoomIn:clickStart("683,367")
+
+ZoomIn:currentStacksList([["iGame3D
+Inspector
+3DDATA
+3D Scene
+"]])
+
+ZoomIn:lastClick("683,367")
+
+ZoomIn:GoingTo(true)
+
+ZoomIn:pathView("Levels/xman_44")
+
+ZoomIn:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+ZoomIn:GridProp("20,20,10,111,110,313,312")
+
+ZoomIn:oldValue(12)
+
+ZoomIn:GotoXZ("-40.5,-34")
+
+ZoomIn:schmand([["on mouseup
+beep
+end mouseup
+"]])

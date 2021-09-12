@@ -1,0 +1,24 @@
+--- button "Play_Game",User,ig3d_UI_MAIN
+on mouseUp
+  put getMkey(playGame) into playState
+updateLuaScriptMemory
+
+  if 1 = 1 then 
+    if playState = "false" or playState is empty then 
+      put  ig3d_GetLevelName__s()  into theLevel
+      set itemDel to "/" 
+      set label  of me to "esc.key!"
+      set the hilite of me to true
+     ####getCamera  into actionPlayinto actionPlay
+      put setMkey(playGame,true) into playGameState
+      ig3d_SetMode_i 4 ---playGame mode
+    else
+       ig3d_SetMode_i 1 -----Edit mode no bones
+      stopGame
+      set the hilite of me to false
+      set the label of me to ""
+      put setMkey(playGame,false) into playState
+     ####getCamera  into actionPlayinto actionPlay
+    end if
+  end if
+end mouseUp

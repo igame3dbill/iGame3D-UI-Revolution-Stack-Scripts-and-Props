@@ -1,0 +1,924 @@
+--- field "editField",Console,console
+### handlers below DUMP to be verified before terminal extermination
+global gHistory,gHistoryRedo
+local lSC,lData,lSelection
+-- --
+on scrollbardrag
+  set the scroll of fld "lineNum" to the scroll of me
+  if the scroll of me >  the scroll of fld "linenum" then set the scroll of me to the scroll of fld "linenum"
+end scrollbardrag
+-- --
+on selectionchanged
+  put the selectedchunk into lSelection
+  ### to copy selected text to consoleIn
+  ### modifier key can be changed
+  if the commandkey is down and the selectedtext <> "" then 
+    put the selectedtext into fld "consoleIn"
+    if the num of lines in fld "consoleIn" > 1 and icon of btn "consoleInToggle" = 1340 then send "mousedown" to btn "consoleInToggle"
+  end if
+  ### 
+  get the selectedline
+  if it is not "" then 
+    set the hilitedline of fld "lineNum" to word 2 of it
+  end if
+  updateLineNums the short name of me
+  setstacktitle
+  setUndoTooltip
+end selectionchanged
+-- --
+on rawkeydown x
+  --put x
+  
+  --enable btn "ScriptApplyButton" --> done in setStackTitle
+  --enable btn "ScriptRevertButton"
+  ### under construction beta stage
+  if "field" is in the target then writeHistory x  --and x is not among the items of "65507,65513,65505,65307,65361,65363,65362,65364,65379,65308,65309,65388,65289" then writeHistory x
+  setUndoTooltip
+  ###
+  switch x
+  case "65307" ### escape key
+  case "65308"  ### scrollwheel up and down
+  case "65309"
+    -- do nothing
+    pass rawkeydown
+    break
+  case "65293"  ### return in field
+    put word 2 selectedLine of me into tLS
+    if  line tLS of me contains ".top" then
+      delete line 1 to tLS of me
+      filter me with "*"
+    else if  line tLS of me contains ".end" then
+      delete line tLS to -1 of me
+      filter me with "*"
+    end if
+    --colorizeall "editfield"
+    send "selectionchanged" to me in 10 millisecs
+    pass rawkeydown
+    break
+  case "65421" ### enter in field
+    put the scroll of fld "editfield" into tScroll
+    put the selectedChunk into tChunk
+    ConsoleMenuPick "Files|save text"
+    set the scroll of fld "editfield" to tScroll
+    select tChunk
+    send "selectionchanged" to me in 10 millisecs
+    colorizeall "editfield"
+    break
+  case "120"  ###  cmnd - x 
+    if the commandkey is down then cut
+    else pass rawkeydown
+    break
+  case "122"  ###  cmnd - z 
+    if the commandkey is down then
+      updateLinenums
+      colorizeAll
+    else pass rawkeydown
+    break
+  case "99"
+    if the commandkey is down then copy
+    else pass rawkeydown
+    break
+  case "118"
+    if the commandkey is down then 
+      paste
+      updateLinenums
+    else pass rawkeydown
+    break
+  default
+    send "selectionchanged" to me in 10 millisecs
+    pass rawkeydown
+    break
+  end switch
+end rawkeydown
+-- --
+on mouseDown x
+  if x = 3 then
+    lock screen
+    put the button3 of me into btn "popMenu"
+    popup btn "popMenu"
+    if lSelection <> "" then select lSelection
+  end if
+end mouseDown
+ on escapeKey 
+  replace "" with empty in me
+  ----***focus cd btn 1  
+  send stopGame to stack (the mainStack of this stack)
+end escapeKey
+###############
+## undo code ##
+###############
+-- --
+on dragstart
+  put the selectedchunk into lSC
+  pass dragstart
+end dragstart
+-- --
+on dragend
+  send checkdragdata to me in 20 millisecs
+  put the dragData["text"] into lDATA
+  pass dragend
+end dragend
+-- --
+on checkdragdata
+  put the selectedchunk into tSC
+  if not (word 2 of tSC > word 4 of tSC) then
+    get the title of this stack
+    replace "*" with "" in it
+    put "d",lSC,tSC,hexadize(lDATA) & cr after gHistory[it]
+  end if
+  put "" into lSC
+end checkdragdata
+### first item indicates the action
+### w = write
+### v = paste
+### x = cut
+### b = backspace
+### d = dragplaced
+-- --
+on writeHistory x
+  if  x is among the items of "65289,65307,65308,65309,65361,65362,65363,65364,65379,268762986,65388,65505,65507,65509,65513" then exit writeHistory
+  put the title of this stack into tFName
+  replace "*" with "" in tFName
+  put the selectedchunk into tSC
+  if the commandkey is down then  ### ok for windows will be translated to controlkey
+    switch x
+    case "122"  ###  z
+      reverseHistory
+      break
+    case "118"  ### v
+      put clipboardData["text"] into x
+      put "v",tSC,hexadize(x) & cr after gHistory[tFName]
+      break
+    case "120"  ###   x
+      put the value of tSC into x
+      if x <> "" then
+        delete word 3 to 4 of tSC
+        put "x",tSC,hexadize(x) & cr after gHistory[tFName]
+      end if
+      break
+    end switch
+  else
+    switch x
+    case "65535"  ### deletekey
+    case "65288"  ### backspace
+      if word 4 of tSC <> 0 then
+        if word 2 of tSC < word 4 of tSC then
+          get the value of tSC
+          delete word 3 to 4 of tsC
+        else if word 2 of tSC > word 4 of tSC then
+          delete word 2 to 3 of tSC
+          get the value of tsC
+        end if
+        put hexadize(it) into x
+        put "b",tSC,x & cr after gHistory[tFName]
+      end if
+      break
+      --case "65421" ### enter in field
+    case "65293"  ### return in field
+      delete word 3 to 4 of tSC
+      put "w",tSC,hexadize(return) & cr after gHistory[tFName]
+      break
+    default
+      if x > 65000 or x = 0 then put translateX(x) into x   #### new adition to translate num keyboard input to ascii
+      delete word 3 to 4 of tSC
+      put "w",tSC,hexadize(numtochar(x)) & cr after gHistory[tFName]
+      break
+    end switch
+  end if
+end writeHistory
+-- --
+Function translateX x
+  switch x
+  case "0"  ### must be adapted in case of american qwerty keyboard layout
+    if the shiftkey is down then return "177"
+    else return "164"
+    break
+  case "65429"  ### 7
+  case "65463" ### win
+    return "55"
+    break
+  case "65430"  ### 4
+  case "65460" ### win
+    return "52"
+    break
+  case "65431"  ### 8
+  case "65464" ### win
+    return "56"
+    break
+  case "65432"  ### 6
+  case "65462" ### win
+    return "54"
+    break
+  case "65433"  ### 2
+  case "65458"  ### win
+    return "50"
+    break
+  case "65434"  ### 9
+  case "65465"  ### win
+    return "57"
+    break
+  case "65435"  ### 3
+  case "65459"  ### win
+    return "51"
+    break
+  case "65436"  ### 1
+  case "65457"  ###  win
+    return "49"
+    break
+  case "65437"  ### 5
+  case "65461"  ### win
+    return "53"
+    break
+  case "65438"  ### 0
+  case "65456"  ### win
+    return "48"
+    break
+  case "65439"  ### .
+  case "65454"  ### win  
+  ### 65535  ### . + numlock win  = value of deletekey on mac and pc!!!!
+  ### no way to discern because of no numlockkey function
+  ### may be with the keysdown function but not tested yet  (which is buggy too) 
+    return "46"
+    break
+  case "65450"  ### * (same on both)
+    return "42"
+    break
+  case "65451"  ### +
+    return "43"
+    break
+  case "65453"  ### -
+    return "45"
+    break
+  case "65455"  ### /
+    return "47"
+    break
+  case "65493"  ### =  ### other weirdness on win the numerical = key returns the chartonum value
+    if the platform is "macos" then return "61"
+    break
+  case "65407" ### numlock  (actually enters a char in the field on mac platform)
+    if the platform is "macos" then return "27"
+    break
+  end switch
+end translateX
+### undo --> redo?
+-- --
+on reverseHistory
+  put the title of this stack into tFName
+  replace "*" with "" in tFName
+  if gHistory[tFName] = "" then
+    beep
+    exit reverseHistory
+  end if
+  get line -1 of gHistory[tFName]
+  --put it & cr after gHistoryRedo
+  --delete line - 1 of gHistory[tFName]
+  switch item 1 of it
+  case "b"
+    put dehexadize(last item of it) into x
+    if x = return then put "cr" into x
+    else if x = space then put "space" into x
+    else if x = tab then put "tab" into x
+    else
+      replace quote with quote & "&quote&" & quote in x
+      replace cr with quote&"&cr&"& quote in x
+      put quote & x & quote into x
+    end if
+    do "put" &&  x  && "before" && item 2 of it
+    break
+  case "w"
+    do "delete" && item 2 of it
+    break
+  case "v"
+    put dehexadize(last item of it) into x
+    put the num of chars in x into y
+    put word 2 of item 2 of it + y - 1 into word 4 of item 2 of it
+    do " delete" &&  item 2 of it
+    break
+  case "x"
+    put dehexadize(last item of it) into x
+    if x = return then put "cr" into x
+    else if x = space then put "space" into x
+    else if x = tab then put "tab" into x
+    else 
+      replace quote with quote & "&quote&" & quote in x
+      replace cr with quote&"&cr&"& quote in x
+      put quote & x & quote into x
+    end if
+    do " put" && x && "before" &&  item 2 of it
+    break
+  case "d"
+    put dehexadize(last item of it) into x
+    if last char of x = cr then add 1 to word 4 of item 3 of it
+    if the num of lines in x > 1 then delete last char of x
+    if x = return then put "cr" into x
+    else if x = space then put "space" into x
+    else if x = tab then put "tab" into x
+    else 
+      replace quote with quote & "&quote&" & quote in x
+      replace cr with quote&"&cr&"& quote in x
+      put quote & x & quote into x
+    end if
+    do "delete" && item 3 of it
+    delete word 3 to 4 of item 2 of it
+    do " put" && x && "before" &&  item 2 of it
+    break
+  end switch
+  delete line - 1 of gHistory[tFName]
+end reverseHistory
+### Big Endian BinaryDecode ###
+-- --
+Function hexadize sx
+  get binarydecode("H*", sx, x1)
+  return x1
+end hexadize
+### Big Endian Binary Encode ###
+-- --
+Function deHexadize sx
+  replace space with "" in sx
+  try
+    get binaryEncode("H*", sx, x1)
+  catch errornum
+    put "no hex value" into it
+  finally
+    return it
+  end try
+end deHexadize
+-- --
+on setUndoTooltip
+  get the title of this stack
+  replace "*" with "" in it
+  set the itemdelimiter to "/"
+  put last item of it into tFName
+  replace ".lua" with "" in tFName
+  set the tooltip of me to tFName && "undolevels:" && num(lines in gHistory[it])  --it
+end setUndoTooltip
+#######################
+## for undo dev only ##
+#######################
+-- --
+on emptyHistory
+  delete global gHistory
+end emptyHistory
+-- --
+on putHistory
+  put the title of this stack into tFName
+  replace "*" with "" in tFName
+  put gHistory[tFName] into somethingHUH
+end putHistory
+-- --
+on historyKeys
+  put the keys of gHistory into GHISKEYS
+end historyKeys
+##################################
+##  DUMP  (point of no return)  ##
+##################################
+### 
+--on focusIn
+  set the label of btn "NumberOfThings" to ((word 2 selectedLine of me) && "of" && number of lines of me)
+  disable btn "ScriptApplyButton"
+  disable btn "ScriptRevertButton"
+end focusIn
+--on focusOut 
+  set the label of btn "NumberOfThings" to (word 2 selectedLine of me) && "of" && number of lines of me 
+  ----***focus cd btn 1  of stack (the mainStack of this stack)
+end focusOut
+ 
+ --on readMyLabel
+  global gStackDirectory
+  put label of group "EditScript1"  into thefileNam
+  
+  
+  ### this has to be sorted out because btn consoletoggle is doing lot of the work
+  --if thefileNam is empty then
+  --set the hilite of cd btn "consoleToggle" to false
+  --send mouseUp to cd btn "consoleToggle"
+   
+  --show group "ConsoleGroup"
+  --hide group "EditScript1"
+  --exit readMyLabel
+  --end if
+  
+  ---hide group "ConsoleGroup"
+  --show group "EditScript1"
+  --set the hilite of cd btn "consoleToggle" to true
+  --send mouseUp to cd btn "consoleToggle"
+  
+  set the title of stack "Console" to thefileNam
+  put gStackDirectory & thefileNam into theFile
+  set itemDel to "/"
+  put last item of thefileNam into theShortFile
+  delete last item of thefileNam
+  if filesin(thefileNam) contains theShortFile then
+    open file theFile for read
+    read from file theFile until eof
+    put it into fld "editField"
+    close file theFile
+  end if
+  
+  put the label  of group "EditScript1" into myName
+  if item 1 of myName is "levels" then
+    if item 3 of myName is "load script.txt" then
+      --show btn "LevelLoader" 
+      --set the enabled of btn "LevelLoader" to true
+      enable btn "LevelLoader" 
+    else
+      --hide btn "LevelLoader"  ### not necessary to hide btn if disabled
+      --set the enabled of btn "LevelLoader" to false
+      disable btn "LevelLoader"  ### or to disable when hidden
+    end if
+    
+  end if
+  
+  set the countColorLines of me to 1
+  --send colorizeAll to me
+  colorizeAll "editfield"
+end readMyLabel
+ 
+--put word 2 the name of me into theFLDName
+--put "cd fld" && theFLDName && "into" && "
+--" into MyFLDInto
+--do "put" && MyFLDInto
+--put  what && "into" && "cd fld" && theFLDName into InMyField
+--do "put" && InMyField
+--on rawKeyDown  ### first rawkeydown of the original
+  set the disabled of cd btn "ScriptApplyButton" to false
+  set the disabled of cd btn "ScriptRevertButton" to false
+  pass rawKeyDown
+end rawKeyDown
+--on rawKeyDown ### second rawkeydown of the original
+  if the  keysdown = "650307" then 
+    put word 2 selectedLine of me into m
+    send colorLine && m to me
+    
+    ------***focus cd btn 1  of stack (the mainStack of this stack) --ESCkey
+  end if
+ 
+  put the label of group "EditScript1" into myNam
+ if myNam is not empty then set the title of stack "Console" to myNam & "*"
+  pass rawKeyDown
+end rawKeyDown
+  ----put  the keysdown   into line 1 of cd fld "keysout"
+  --put the keysdown into mada
+  --set itemDelimiter to space
+  --put cd fld "editField" into HolyHold
+  --put (the number of chars of HolyHold)+(the number of items of HolyHold)+(the Number of lines of HolyHold)+2  into theBook
+  --put cd fld "UndoConsoleOut" into theLegend
+  --put  (the number of chars of HolyHold)+(the number of items of theLegend) +(the Number of lines of HolyHold) into History
+  --if theBook < History then put HolyHold into cd fld "UndoConsoleOut" of stack "Console"
+  --if theBook > (History) then put HolyHold into cd fld "UndoConsoleOut" of stack "Console"
+  ----     --DELETEkey
+  --if mada = 65288 then
+  --  put selection of me into sele
+  --  if num(lines of sele) >= num(lines of me) then put "" into me
+  --  if number of chars of me  < 3 then 
+  --  end if
+  --end if
+  --if mada <> 65421 then
+  --  if me is not empty then 
+  --    put title of stack "Console" into mooch
+  --    replace "*" with empty in mooch
+  --    put mooch  & "*" into mooch
+  --    set the title of stack "Console" to mooch
+  --    show group "ConsoleGroup"
+  --    hide group "EditScript1"
+  --  else
+  --    set the title of stack "Console" to "Console"
+  --    --show group "ConsoleGroup"
+  --     --hide group "EditScript1"
+  --  end if
+  --end if
+  --pass rawKeyDown
+  ----send checkConsole to cd btn "NumberOfThingsThere"
+  --end rawKeyDown
+  
+--on doSaveConsole
+  global gStackDirectory
+  put 0 into som
+  --put me into scrRun
+  --put scrRun into   cd fld "UndoConsoleOut" of stack "Console"
+  put me into fld "UndoConsoleOut" of stack "Console"
+  put the label of group "EditScript1" of stack "Console" into fileName
+  if fileName contains "*" then
+    replace "*" with empty in fileName
+    set the label of group "EditScript1" of stack "Console" to fileName
+    set the title of  stack "Console" to fileName
+  end if
+  
+  if fileName is "Console" then put "Data/Console/console" && filecount("Data/Console/") && ".lua" into fileName
+  if gStackDirectory is not in fileName then put gStackDirectory & fileName into theFile
+   
+  if  fileName is "/.txt" then
+    ask file "save file as" with ".lua"
+    if it is not empty then 
+      put it into theFile
+      put it into fileName
+      put gStackDirectory into rem
+      replace rem with empty in fileName
+      set the label of group "EditScript1" of stack "Console" to fileName
+      set the title of  stack "Console" to fileName
+    end if
+    
+  end if
+  
+  open file theFile for write
+  ##IF SPAM() is  true then  me to file theFile at 0
+  close file theFile
+end doSaveConsole
+--on enterInField
+  --put me into scrRun
+  --put scrRun into   cd fld "UndoConsoleOut" of stack "Console"
+  put me into fld "UndoConsoleOut" of stack "Console"  ####   ??????  editfield --- consoleOut
+  doSaveConsole
+  --ig3d_ExecuteLua_s_i(scrRun)
+  send colorError to me in 20 millisecs  --1 seconds
+  
+  --put me into scrRun
+  --put scrRun into   cd fld "UndoConsoleOut" of stack "Console"
+  put me into fld "UndoConsoleOut" of stack "Console"
+  --put scrRun into me
+end enterInField
+--on commandKeyDown x   ### is not necessary here
+  put line 1 of fld "keysout" into keysd
+  if  keysd = 122 then send rawKeyUp && the keysdown to me  ### z
+  
+  put  the keysdown   into line 1 of cd fld "keysout"
+  if the keysdown ="47" then  ###  /
+    put me into fld "UndoConsoleOut" of stack "Console"
+    send dohelp to me
+    
+  end if
+  
+  if the keysdown ="99" then copy selectedText  ### c
+  if the keysdown= "120" then  ### x
+    copy selectedText
+    put me into fld "UndoConsoleOut" of stack "Console"
+    cut selectedText"
+  end if
+  
+  if the keysdown ="118" then ### v
+    put me into fld "UndoConsoleOut" of stack "Console"
+    paste
+  end if
+  
+  ###  a
+  if the keysdown="97" then select line 1 to (number of lines of fld "editField") of fld "editField" 
+end commandKeyDown
+--on mouseStillDown
+  put me into fld "UndoConsoleOut" of stack "Console"
+end mouseStillDown
+--on rawKeyUp what
+  --send checkConsole to cd btn "NumberOfThingsThere"
+  
+  put line 1 of cd fld "keysout" into keysd
+  
+  if the commandKey is down then
+     
+    if keysd = 122 then
+      put word 2 selectedLine of me into bac
+      put word 2 the selectedChunk of me into buk
+      put me into undoAgain
+      put cd fld "UndoConsoleOut" into me
+      put undoAgain   into cd fld "UndoConsoleOut"
+      select after word buk  of me
+      if the commandKey is down then put "" into cd fld "keysout"
+      else
+        if the commandKey is down then put "" into cd fld "keysout"
+      end if
+      
+      --exit rawKeyUp
+    end if
+    
+  end if
+  
+  if me is not empty then 
+    put title of stack "Console" into mooch
+    replace "*" with empty in mooch
+    put mooch  & "*" into moonit
+    set the title of stack "Console" to moonit
+  else
+    set the title of stack "Console" to "Console"
+  end if
+  
+  pass rawKeyUp
+end rawKeyUp
+  
+--on mouseUp  ### no such message in unlocked field
+  set lockScreen to false
+  set lockText of me to false
+  --send checkConsole to cd btn "NumberOfThingsThere"
+  
+  --if me is not empty then 
+  --put title of stack "Console" into mooch
+  --replace "*" with empty in mooch
+  --put mooch  & "*" into moonit
+  --set the title of stack "Console" to moonit
+  --else
+  --set the title of stack "Console" to "Console"
+  --end if
+  
+  pass mouseUp
+end mouseUp
+  
+-- --
+on dohelp
+  put "/" & "/ dohelp handler commented out 09 01 04 needs update--Bill" & return after cd fld "consoleOut"
+  --  put word 1 of line  (word 2 the selectedLine of me) of me into cho
+  --  put cd fld "MasterScriptsField" of stack "iGame3DHelp" into svar
+  --  sort svar 
+  --  repeat with w=1 to the number of lines of svar
+  --    if word 1 of line w of svar = cho then
+  --set the itemDelimiter to tab
+  --put item 2 of line w of svar into moxie
+  ----delete word 1 of moxie
+  --if line (word 2 the selectedLine of me) of me contains moxie then exit dohelp
+  --put space & moxie after line (word 2  the selectedLine of me) of me
+  --       end if
+  --
+  --  end repeat
+  --
+  --repeat with w = 1 to the number of words of cd fld "editField"
+  --  if word w of cd fld "editField" contains cho then 
+  --    set the textColor of word w of cd fld "editField" to "100,0,0"
+  --    set the textStyle of word w of cd fld "editField"  to "bold, expanded"
+  --  end if
+  --
+  --  if word w of cd fld "editField" contains quote then
+  --    set the textColor of word w of cd fld "editField" to "0,0,100"
+  --    set the textStyle of word w of  cd fld "editField"  to "italic, expanded"
+  --  end if
+  --
+  --end repeat
+  
+  set scroll of me to the formattedHeight of me -height of me
+end dohelp
+-- --
+on findInMe 
+  put cd fld "helpLine" into termln
+  replace "find " with empty in termln
+  if me contains termln then
+    find  words termln in  me
+    select  foundChunk
+    set  textcolor of  selectedText  to 10,60,80
+    set the textStyle of selectedText to "expanded"
+    if visible of group "EditScript1" then 
+      focus cd fld "helpLine" of stack "Console"
+    else
+      focus cd fld "consoleIn" of stack "Console"
+    end if
+    
+  end if
+  
+end findInMe
+---on returnInField  ### --> into  rawkeydown handler
+  --chatmessage field "editField"
+  put word 2 selectedLine of me into thelin
+  if  line thelin of me contains ".top" then
+    repeat with w = 1 to  thelin
+      delete line w of me
+    end repeat
+    
+    put return  & return into boo
+    replace boo with "" in me
+  end if
+  
+  if  line thelin of me contains ".end" then
+    
+    repeat with w = thelin to  number of lines of me
+      delete line w of me
+    end repeat
+    
+    put return  & return into boo
+    replace boo with "" in me
+  end if
+  --send "colorizeAll editfield" to this cd in 10 millisecs
+  --colorizeNewInput
+  
+  pass returnInField
+end returnInField
+--> kind of superfluous because all lines preceeded by // are colored red by colorizeall
+--on colorError   
+ global gStackDirectory
+  repeat with e = 1 to num(lines of me)
+    if line e of me contains "WARNING" then set the textcolor of line e of me to 90,0,10
+    if line e of me contains "Error" then set the textcolor of line e of me to 70,0,30
+    if line e of me contains "!" then set the textcolor of line e of me to 80,0,50
+    if line e of me contains "failed" then 
+      replace gStackDirectory with empty in line e of me
+      set the textcolor of line e of me to 90,0,20
+    end if
+    
+  end repeat
+  
+end colorError
+--on colorizeAll
+  if the label of button "Play_Game" of stack (the mainStack of this stack)  is "esc.key!" then exit colorizeAll
+  put the label of group "EditScript1" into whatsmyname
+  set the title of stack "Console" to  whatsmyname
+  put num(lines of me)-1 into myLineCount
+  put the countColorLines of me into m
+  if m <1 or m is empty then
+    put 1 into m
+    set the countColorLines of me to 1
+  end if
+  
+  add 1 to m
+  if  m <= myLineCount then
+    colorLine m
+    set the countColorLines of me to m
+    send colorizeAll to me  in .05 seconds
+    
+  else
+    set the countColorLines of me to 1
+    exit colorizeAll
+  end if
+  
+end colorizeAll
+-- --
+on colorizeNewInput  ### shouldn't there be more checks for "//" addition?
+  put 0 into yeah
+  put the number of lines of  me into m
+  put word 2 selectedLine of cd fld "editField" into n
+  
+  if n < m then put n into m
+  
+  if line m of   me contains "Unknown" or line m of  me contains "Error:" then 
+    put "//" & space before line m of   me
+  end if
+  colorizeAll "editField"
+  
+  --put   line m of me into  termln
+  --put word 1 of termln into terms
+  --put m-1 into l
+  --put m+1 into o
+  --colorLine l
+  --colorLine o
+  --colorLine m
+end colorizeNewInput
+--on colorLine m
+  ---start black
+  if m <= number of lines of me then
+    set textColor of line m of me to black
+    set textStyle of line m of me to "plain"
+    ---keyword colorize
+    if char 1 to 4 of line m of me = "loop" then 
+      set textColor of char 1 to 4 of line m of me to violet
+      set the textStyle of line m of me to "expanded"
+    end if
+    
+     
+     if char 1 to 7 of line m of me = "endloop" 
+    
+     then set textColor of char 1 to 7 of line m of me to violet
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  
+  if char 1 to 4 of line m of me = "load" or char 1 to 5 of line m of me = "store" then
+    set textColor of word 1 of line m of me to blue
+    set the textColor of word 1 of line m of me to "Green4"
+    set the textColor of item 2 of me to blue
+     
+    set the textStyle of line m of me to "expanded"
+    set the textStyle of word 1 of line m of me to "expanded"
+    set the textStyle of item 2 of line m of me to "expanded"
+  end if
+  
+  if char 1 to 3 of line m of me = "def"   then 
+    set textColor of char 1 to 3 of line m of me to blue
+    set the textStyle of line m of me to "italic"
+  end if
+  
+  
+  if char 1 to 6 of line m of me = "repeat" then 
+    set textColor of char 1 to 6 of line m of me to blue
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  
+  if char 1 to 9 of line m of me = "endrepeat" then 
+    
+    set textColor of char 1 to 9 of line m of me to blue
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  if char 1 to 5 of line m of me = "begin" then 
+    set textColor of char 1 to 5 of line m of me to "Turquoise4"
+    set the textStyle of line m of me to "bold"
+    set the textStyle of word 1 of line m of me to "bold,expanded"
+    set textColor of word 2 of line m of me to "IndianRed4"
+  end if
+  
+  if char 1 to 3 of line m of me = "end" then 
+    
+    set textColor of char 1 to 5 of line m of me to "blue3"
+    set the textStyle of line m of me to "bold"
+  end if
+  
+  if char 1 to 2 of line m of me = "if" then 
+    set textColor of char 1 to 2 of line m of me to blue
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  if char 1 to 5 of line m of me = "endif" then 
+    
+    set textColor of char 1 to 5 of line m of me to blue
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  if char 1 to 4 of line m of me = "else" then 
+    set textColor of char 1 to 4 of line m of me to blue
+    set the textStyle of line m of me to "expanded"
+  end if
+  
+  if char 1 to 8 of line m of me = "exitloop" then 
+    set textColor of char 1 to 8 of line m of me to blue
+    set the textStyle of line m of me to "bold"
+  end if
+  
+  if char 1 to 4 of line m of me = "idle" then 
+    set textColor of char 1 to 4 of line m of me to violet
+    set the textStyle of line m of me to "bold"
+  end if
+  
+  if word 1 of line m of me = "put" or word 1 of line m of me = "spin"   then 
+    set textColor of char 1 to 4 of line m of me to "blue3"
+    set the textStyle of word 2 of line m of me to "plain"
+  end if
+  
+  ---string colorize
+  repeat with n=1 to the number of chars of line m of me
+    if char n of line m of me = quote then
+      repeat with o = n to the number of chars of line m of me
+        if char o of line m of me = quote then
+          set textColor of char n to o of line m of me to "0,80,10"
+          set the textStyle of char n  to o  of  line m of me to "expanded"
+          set the textStyle of word 1 of line m of me to "expanded"
+          put o+1 into n
+        end if
+        
+      end repeat
+      
+    end if
+    
+  end repeat
+  
+   
+  ---comment colorize
+  repeat with n=1 to the number of chars of line m of me
+    if char n to n+1 of line m of me= "//" then 
+      set textColor of char n to (number of chars of line m of me) of line m of me to "100,50,100"
+      set the textStyle of char n  to (number of chars of line m of me)  of  line m of me to "italic"
+      exit repeat
+    end if
+    
+    
+  end repeat
+  
+end if
+end colorLine
+--on mouseEnter
+  set the hilite of btn "console" of stack  "windowPicker" to true
+  set the hilite of btn "consoleToggle" to false
+  put label of group "EditScript1"  into thefileNam
+  
+  set itemDel to "/"
+  if last item of thefileNam is "load script.txt" then
+    show btn "LevelLoader"
+  else
+    hide btn "LevelLoader"
+  end if
+ 
+  if thefileNam is empty then 
+    set the title of this stack to label of group "EditScript1"
+    set the label of group "EditScript1" to "scripts/*.txt"
+  end if
+  ### ???? toggling groups on a mouseenter ???
+  ### the hilite of btn "consoleToggle" is set to false in line 2 of this handler???
+  if hilite of btn "consoleToggle" is true then 
+    show group "ConsoleGroup"
+    hide group "EditScript1"
+  else
+    show group "EditScript1"
+    hide group "ConsoleGroup"
+  end if
+  
+  if label of group "EditScript1" is not empty then
+    set the title of this stack to label of group "EditScript1"
+    set itemDel to "/"
+    put the  label of group "EditScript1" into myName
+    if item 1 of myName is "levels" then
+      if item 3 of myName is "load script.txt" then
+        show btn "LevelLoader"
+        set the enabled of cd btn "LevelLoader" to true
+      else
+        hide btn "LevelLoader"
+        set the enabled of btn "LevelLoader" to false
+      end if
+      
+    end if
+    
+  end if
+  
+  put the label of group "EditScript1" into myNam
+  if myNam is not empty then set the title of stack "Console" to myNam & "*"
+end mouseEnter

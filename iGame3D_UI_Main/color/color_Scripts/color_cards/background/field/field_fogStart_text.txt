@@ -1,0 +1,2 @@
+--- field "fogStart" of group "group_id_1052" of group "MainColorGroup" of card "background" of stack "color" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+0.000000

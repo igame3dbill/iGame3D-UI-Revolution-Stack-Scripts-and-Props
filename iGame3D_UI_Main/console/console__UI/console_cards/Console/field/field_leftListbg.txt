@@ -1,0 +1,39 @@
+--- field "leftListbg",Console,console
+leftListbg:rect(-2,14,187,377)
+leftListbg:short name("leftListbg")
+leftListbg:disabled(false)
+leftListbg:visible(true)
+leftListbg:sharedText(false)
+leftListbg:dontWrap(true)
+leftListbg:lockText(true)
+leftListbg:opaque(true)
+leftListbg:traversalOn(false)
+leftListbg:showFocusBorder(false)
+leftListbg:autoTab(false)
+leftListbg:threeD(false)
+leftListbg:showBorder(true)
+leftListbg:borderWidth(1)
+leftListbg:hScrollbar(false)
+leftListbg:vScrollbar(false)
+leftListbg:autoHilite(true)
+leftListbg:listBehavior(true)
+leftListbg:toggleHilites(false)
+leftListbg:fixedLineHeight(false)
+leftListbg:textHeight(14)
+leftListbg:firstIndent(0)
+leftListbg:textFont("Arial")
+leftListbg:textSize(11)
+leftListbg:textAlign("left")
+
+leftListbg:pristineCondition([["console
+scripts
+open files:"]])
+
+leftListbg:Button3([["new text
+open text
+close text
+-
+save text
+save text as
+-
+revert"]])

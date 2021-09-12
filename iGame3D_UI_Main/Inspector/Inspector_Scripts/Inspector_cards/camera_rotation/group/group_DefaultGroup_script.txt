@@ -1,0 +1,13 @@
+--- group "DefaultGroup",camera_rotation,Inspector
+on rawkeyDown theKey
+  put "65361,65362,65363,65364" into myarrows
+  put "1,2,3,4,5,6,7,8,9,0,.,-" into myVals
+  if numtochar(theKey) is not among the items of myVals then
+    if theKey is not among the items of myArrows then
+     
+    focus cd btn 1 of stack (the mainStack of this stack)
+    exit rawKeyDown
+    end if
+  end if
+  pass rawkEydown
+end rawkeyDown

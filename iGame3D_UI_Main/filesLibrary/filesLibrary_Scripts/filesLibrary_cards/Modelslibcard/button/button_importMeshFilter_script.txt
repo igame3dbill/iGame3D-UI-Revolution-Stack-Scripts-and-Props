@@ -1,0 +1,5 @@
+--- button "importMeshFilter",Modelslibcard,filesLibrary
+on menupick myPick
+   ClickImportTab (myPick)
+   set the label of me to myPick
+end menupick

@@ -1,0 +1,12 @@
+--- image "soundicon22x22_png",User,ig3d_UI_MAIN
+soundicon22x22_png:rect(26,69,48,91)
+soundicon22x22_png:short name("soundicon22x22_png")
+soundicon22x22_png:id(4580)
+soundicon22x22_png:tooltip(4580)
+soundicon22x22_png:visible(true)
+soundicon22x22_png:dontDither(false)
+soundicon22x22_png:alwaysBuffer(true)
+soundicon22x22_png:angle(0)
+soundicon22x22_png:showBorder(false)
+soundicon22x22_png:threeD(true)
+soundicon22x22_png:borderWidth(2)

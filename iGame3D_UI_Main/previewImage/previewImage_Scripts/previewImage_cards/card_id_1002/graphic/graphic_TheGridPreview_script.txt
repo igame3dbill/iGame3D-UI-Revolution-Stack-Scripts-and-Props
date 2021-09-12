@@ -1,0 +1,5 @@
+--- graphic "TheGridPreview",card id 1002,previewImage
+--on mouseUp
+--  put the theMesh of me into myMesh
+--  ig3d_ExecuteLua_s_i(myMesh)
+--end mouseUp

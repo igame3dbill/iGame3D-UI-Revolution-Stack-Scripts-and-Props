@@ -1,0 +1,35 @@
+--- image "materialstexture",materialstexture,Inspector
+on mouseUp
+  send mouseUp to cd btn "ApplyTex"
+end mouseUp
+-- --
+on mouseDown
+  put the filename of me into myName
+--  set itemDel to "/"
+--  delete last item of myName
+--  put shell("open" && quote& myName& quote) into shelMaster
+if the mouse is down and the mouseloc is within the rect of me then send dragit to me in 20 milliseconds
+end mouseDown
+-- --
+on dragit
+  put the short name of the current card of stack "inspector" into MN
+  replace "card" with empty in MN
+  delete last char of MN
+  set itemDel to tab
+  put last item of line (word 2 the mouseLine) of me into FNM
+put updateToolLabel("Drop" && MN && FNM) into updateTool
+   set the decorations of stack "previewImage" to none
+  if the mouse is down then 
+     put the screenmouseloc into xy
+  show stack "previewImage"
+  put the fileName of image "previewImage" of stack "previewImage" into film
+  set the fileName of player "previewPlayer" of stack "filesLibrary" to film
+    set the loc of stack "previewImage" to  xy
+     --show player "previewPlayer" of stack "filesLibrary" 
+    send dragit to me in 10 millisecs
+    exit dragit
+  else
+     DropMaterialTexture  -- to stack "previewImage" 
+      hide stack "previewImage" 
+  end if
+end dragit

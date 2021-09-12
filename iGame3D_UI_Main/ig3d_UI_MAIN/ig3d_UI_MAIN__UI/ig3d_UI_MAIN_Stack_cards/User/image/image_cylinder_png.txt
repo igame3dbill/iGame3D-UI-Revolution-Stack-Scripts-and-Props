@@ -1,0 +1,12 @@
+--- image "cylinder_png",User,ig3d_UI_MAIN
+cylinder_png:rect(254,69,278,93)
+cylinder_png:short name("cylinder_png")
+cylinder_png:id(4201)
+cylinder_png:tooltip( 4201)
+cylinder_png:visible(true)
+cylinder_png:dontDither(false)
+cylinder_png:alwaysBuffer(true)
+cylinder_png:angle(0)
+cylinder_png:showBorder(false)
+cylinder_png:threeD(true)
+cylinder_png:borderWidth(2)

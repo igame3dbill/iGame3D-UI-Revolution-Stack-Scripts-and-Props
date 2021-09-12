@@ -1,0 +1,11 @@
+--- group "ADSCEtabs",meshMaterials,Inspector
+on mouseUp
+   if the mouseControl is empty then exit mouseUp
+  put word 1 to wordOffset("stack",the long name of the mouseControl)+1 of the long name of the mouseControl into LOname
+  if word 1 LOname = "button" then 
+    put the short name of the mouseControl into Bname
+    if bname is  among the items of "Color,Ambient,Diffuse,Emission,Specular"  then 
+   put setInspectorHilitedMaterial(LOname,Bname) into SetHilitedButoon ##MAINSTACK
+  end if
+  end if
+end mouseUp

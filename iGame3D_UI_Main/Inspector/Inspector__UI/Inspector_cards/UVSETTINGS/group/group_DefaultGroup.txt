@@ -1,0 +1,18 @@
+--- group "DefaultGroup",UVSETTINGS,Inspector
+DefaultGroup:rect(-7,382,292,507)
+DefaultGroup:short name("DefaultGroup")
+DefaultGroup:disabled(false)
+DefaultGroup:showName(false)
+DefaultGroup:opaque(false)
+DefaultGroup:showborder(false)
+DefaultGroup:hScrollbar(false)
+DefaultGroup:vScrollbar(false)
+DefaultGroup:scrollbarWidth(20)
+DefaultGroup:visible(true)
+DefaultGroup:threeD(true)
+DefaultGroup:radioBehavior(true)
+DefaultGroup:tabGroupBehavior(false)
+DefaultGroup:backgroundBehavior(false)
+DefaultGroup:textAlign("left")
+
+DefaultGroup:lastVisiblemeshGroup("pathsgroup")

@@ -1,0 +1,12 @@
+--- image "keyINpoint_png",User,ig3d_UI_MAIN
+keyINpoint_png:rect(153,183,166,196)
+keyINpoint_png:short name("keyINpoint_png")
+keyINpoint_png:id(4514)
+keyINpoint_png:tooltip( 4514)
+keyINpoint_png:visible(true)
+keyINpoint_png:dontDither(false)
+keyINpoint_png:alwaysBuffer(true)
+keyINpoint_png:angle(0)
+keyINpoint_png:showBorder(false)
+keyINpoint_png:threeD(true)
+keyINpoint_png:borderWidth(2)

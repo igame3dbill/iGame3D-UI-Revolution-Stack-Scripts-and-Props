@@ -1,0 +1,12 @@
+--- image "poses_png",User,ig3d_UI_MAIN
+poses_png:rect(140,69,164,93)
+poses_png:short name("poses_png")
+poses_png:id(4221)
+poses_png:tooltip( 4221)
+poses_png:visible(true)
+poses_png:dontDither(false)
+poses_png:alwaysBuffer(true)
+poses_png:angle(0)
+poses_png:showBorder(false)
+poses_png:threeD(true)
+poses_png:borderWidth(2)

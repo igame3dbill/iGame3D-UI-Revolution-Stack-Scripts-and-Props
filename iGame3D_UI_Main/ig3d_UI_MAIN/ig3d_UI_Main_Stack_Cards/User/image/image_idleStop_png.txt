@@ -1,0 +1,12 @@
+--- image "idleStop_png",User,ig3d_UI_MAIN
+idleStop_png:rect(302,69,326,94)
+idleStop_png:short name("idleStop_png")
+idleStop_png:id(4204)
+idleStop_png:tooltip( 4204)
+idleStop_png:visible(true)
+idleStop_png:dontDither(false)
+idleStop_png:alwaysBuffer(true)
+idleStop_png:angle(0)
+idleStop_png:showBorder(false)
+idleStop_png:threeD(true)
+idleStop_png:borderWidth(2)

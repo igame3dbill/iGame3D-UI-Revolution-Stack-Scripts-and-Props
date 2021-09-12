@@ -1,0 +1,4 @@
+--- button "stk",card id 1002,sceneGraph
+on mouseUp
+  edit script of stack "scenegraph" 
+end mouseUp

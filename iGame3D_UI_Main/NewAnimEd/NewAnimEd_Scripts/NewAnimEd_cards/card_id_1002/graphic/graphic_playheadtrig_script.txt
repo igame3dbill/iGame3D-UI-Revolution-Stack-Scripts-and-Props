@@ -1,0 +1,44 @@
+--- graphic "playheadtrig",card id 1002,NewAnimEd
+on mouseDown
+  UnselectMarkers
+  set the hOffset of me to item 1 of the mouseLoc - item 1 of the loc of me
+set foreColor of grc "playheadline" of group "playhead" to 255,100,100
+ set backColor of grc "playheadtrig" to 255,100,100
+  repeat until the mouse is up
+    doit
+    updateAllBonesToPlaytime timeAtPlayhead()
+ig3d_Idle // be sure the viewport is updated all the time
+  end repeat
+set foreColor of grc "playheadline" of group "playhead" to 255,0,0
+ set backColor of grc "playheadtrig" to 255,0,0
+end mouseDown
+-- --
+on doit
+put item 1 of the mouseLoc - the hOffset of me into l
+put l into r
+put the right of group "Knochen" into rlim
+put the left of group "Knochen" + 4 into llim
+if r > rlim then
+  put the hScroll of group "Knochen" into hscr
+  add (r-rlim) to hscr
+  if hscr >= 11658 then put 11658 into hscr
+  put rlim into l
+  set the hScroll of group "Knochen" to hscr
+  end if
+  
+if l < llim then
+ put the hScroll of group "Knochen" into hscr
+  add (l-llim) to hscr
+  if hscr <= 0 then put 0 into hscr
+  put llim into l
+  set the hScroll of group "Knochen" to hscr
+  end if
+  set the loc of me to (l,item 2 of the loc of me)
+  set the loc of grc "playheadline" to (l, item 2 of the loc of grc "playheadline")
+end doit
+-- --
+on updateScroll
+  put item 1 of the loc of me into l
+ 
+  if l > right of group "Knochen" then set the hScroll of group "Knochen" to the hScroll of group "Knochen" + the width of group "Knochen"
+end updateScroll

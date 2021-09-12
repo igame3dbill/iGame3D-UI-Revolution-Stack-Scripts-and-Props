@@ -1,0 +1,32 @@
+--- button "undo",card id 1002ofFindT3d,Find T3D
+global gReplaceHistory
+-- --
+on mousedown
+  set the opaque of me to true
+end mousedown
+-- --
+on mouseup
+  set the opaque of me to false
+end mouseup
+-- --
+on mouserelease
+  set the opaque of me to false
+end mouserelease
+-- --
+on menupick x
+  put the hilitedline of fld "T3Ds" into tL
+  set the opaque of me to false
+  set the itemdelimiter to ":"
+  put word 2 of item 1 of x into tLN
+  put item 2 of x into tL2R
+  if char 1 of tL2R = space then delete char 1 of tL2R
+  put the uObject2Change of me into tObject
+  put the script of tObject into tObjectScript
+  put tL2R into line tLN  of tObjectScript
+  set the script of tObject to tObjectScript
+  ### test for the change
+  put "   line" && tLN && ":" && line tLN of the script of tObject into line tL of fld "T3Ds"
+  put the script of tObject into fld "scrbs"
+  select line tLN of fld "scrbs"
+  set the hilitedline of fld "T3Ds" to tL
+end menupick

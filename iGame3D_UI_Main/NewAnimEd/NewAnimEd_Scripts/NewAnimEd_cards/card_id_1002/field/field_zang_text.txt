@@ -1,0 +1,2 @@
+--- field "zang" of group "Rotation" of group "Marker_" of card id 1002 of stack "NewAnimEd" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+0.000000

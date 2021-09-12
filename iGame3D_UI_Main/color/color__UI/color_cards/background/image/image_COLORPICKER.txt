@@ -1,0 +1,12 @@
+--- image "COLORPICKER",background,color
+COLORPICKER:rect(178,6,250,78)
+COLORPICKER:short name("COLORPICKER")
+COLORPICKER:id(1009)
+COLORPICKER:tooltip("Click or drag to select light color")
+COLORPICKER:visible(true)
+COLORPICKER:dontDither(false)
+COLORPICKER:alwaysBuffer(true)
+COLORPICKER:angle(0)
+COLORPICKER:showBorder(false)
+COLORPICKER:threeD(false)
+COLORPICKER:borderWidth(2)

@@ -1,0 +1,12 @@
+--- image "locked2_png",User,ig3d_UI_MAIN
+locked2_png:rect(210,185,220,196)
+locked2_png:short name("locked2_png")
+locked2_png:id(4277)
+locked2_png:tooltip( 4277)
+locked2_png:visible(true)
+locked2_png:dontDither(false)
+locked2_png:alwaysBuffer(true)
+locked2_png:angle(0)
+locked2_png:showBorder(false)
+locked2_png:threeD(true)
+locked2_png:borderWidth(2)

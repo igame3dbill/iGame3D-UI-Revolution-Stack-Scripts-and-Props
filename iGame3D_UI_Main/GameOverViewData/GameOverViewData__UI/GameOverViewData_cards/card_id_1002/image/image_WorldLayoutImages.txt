@@ -1,0 +1,11 @@
+--- image "WorldLayoutImages",card id 1002,GameOverViewData
+WorldLayoutImages:rect(104,290,514,648)
+WorldLayoutImages:short name("WorldLayoutImages")
+WorldLayoutImages:id(1191)
+WorldLayoutImages:visible(true)
+WorldLayoutImages:dontDither(false)
+WorldLayoutImages:alwaysBuffer(false)
+WorldLayoutImages:angle(0)
+WorldLayoutImages:showBorder(true)
+WorldLayoutImages:threeD(true)
+WorldLayoutImages:borderWidth(2)

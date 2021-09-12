@@ -1,0 +1,3 @@
+--- graphic "playheadtrig",card id 1002,NewAnimEd
+
+playheadtrig:hOffset(3)

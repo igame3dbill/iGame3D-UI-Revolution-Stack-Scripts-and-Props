@@ -1,0 +1,18 @@
+--- group "FGroups",tint_color,Inspector
+on mouseDOwn
+  if word 1 the  name of the target is "button" then
+    put the name of the target into t
+  put the short name of t into n
+  if char 1 of n is f then
+  replace "f" with empty in n
+  set the rect of fld "f1" to the rect of t
+  show fld "f1"
+  put ig3d_GetCameraInfo__s() into myVars
+  replace cr with comma in myVars
+  put item n of myVars into fld "f1"
+  set the label of t to item n of myVars 
+else
+  hide fld "f1"
+end if
+end if
+end mouseDOwn

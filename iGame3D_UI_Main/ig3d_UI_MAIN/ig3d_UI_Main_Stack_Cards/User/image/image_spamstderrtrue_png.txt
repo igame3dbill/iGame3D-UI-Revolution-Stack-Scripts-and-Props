@@ -1,0 +1,12 @@
+--- image "spamstderrtrue_png",User,ig3d_UI_MAIN
+spamstderrtrue_png:rect(48,69,70,91)
+spamstderrtrue_png:short name("spamstderrtrue_png")
+spamstderrtrue_png:id(5274)
+spamstderrtrue_png:tooltip(5274)
+spamstderrtrue_png:visible(true)
+spamstderrtrue_png:dontDither(false)
+spamstderrtrue_png:alwaysBuffer(true)
+spamstderrtrue_png:angle(0)
+spamstderrtrue_png:showBorder(false)
+spamstderrtrue_png:threeD(true)
+spamstderrtrue_png:borderWidth(2)

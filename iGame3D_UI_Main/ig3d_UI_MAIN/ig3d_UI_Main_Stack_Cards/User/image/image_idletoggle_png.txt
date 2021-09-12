@@ -1,0 +1,12 @@
+--- image "idletoggle_png",User,ig3d_UI_MAIN
+idletoggle_png:rect(326,69,350,94)
+idletoggle_png:short name("idletoggle_png")
+idletoggle_png:id(4205)
+idletoggle_png:tooltip( 4205)
+idletoggle_png:visible(true)
+idletoggle_png:dontDither(false)
+idletoggle_png:alwaysBuffer(true)
+idletoggle_png:angle(0)
+idletoggle_png:showBorder(false)
+idletoggle_png:threeD(true)
+idletoggle_png:borderWidth(2)

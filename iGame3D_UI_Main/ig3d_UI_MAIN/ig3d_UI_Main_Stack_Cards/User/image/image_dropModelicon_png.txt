@@ -1,0 +1,12 @@
+--- image "dropModelicon_png",User,ig3d_UI_MAIN
+dropModelicon_png:rect(876,107,900,131)
+dropModelicon_png:short name("dropModelicon_png")
+dropModelicon_png:id(4491)
+dropModelicon_png:tooltip( 4491)
+dropModelicon_png:visible(true)
+dropModelicon_png:dontDither(false)
+dropModelicon_png:alwaysBuffer(true)
+dropModelicon_png:angle(0)
+dropModelicon_png:showBorder(false)
+dropModelicon_png:threeD(true)
+dropModelicon_png:borderWidth(2)

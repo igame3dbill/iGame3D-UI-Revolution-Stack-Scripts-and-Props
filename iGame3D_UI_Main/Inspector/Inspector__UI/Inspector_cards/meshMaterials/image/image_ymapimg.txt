@@ -1,0 +1,11 @@
+--- image "ymapimg",meshMaterials,Inspector
+ymapimg:rect(42,49,55,77)
+ymapimg:short name("ymapimg")
+ymapimg:id(1236)
+ymapimg:visible(false)
+ymapimg:dontDither(false)
+ymapimg:alwaysBuffer(true)
+ymapimg:angle(0)
+ymapimg:showBorder(false)
+ymapimg:threeD(true)
+ymapimg:borderWidth(2)

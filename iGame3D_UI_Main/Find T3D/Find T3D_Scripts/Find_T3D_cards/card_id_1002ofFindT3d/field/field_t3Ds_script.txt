@@ -1,0 +1,83 @@
+--- field "t3Ds",card id 1002ofFindT3d,Find T3D
+local lOptionKeyDown
+-- --
+on mousedown
+  put the optionkey is down into lOptionKeyDown
+  put the shiftkey is down into lShiftKeyDown
+  put the hilitedline of me into tL
+  put line tL of me into tLL
+  if tLL = "" or tLL = "nothing found" then exit to top
+  put fld "T3Ds" into tFTxt
+  put line tL of tFTxt into tLTxt
+  put tL into tLNum
+  repeat
+    if word 1 of line tLNum of tFTxt is among the items of "script,stackscript,cardscript" then exit repeat
+    subtract 1 from tLNum
+  end repeat
+  --set the itemdelimiter to ":"
+  put char 1 to -2 of (word 3 to -1 of line tLNum of tFTxt) into tObject
+  put the name of tObject into tObjectName
+  if tObjectName is not in the label of btn "scripts" then
+    put the script of tObject into fld "scrbs"
+    set the label of btn "scripts" to ":::::::::::   script of " & tObjectName & "   :::::::::::"
+  end if
+  if word 1 of line tL of tFTxt = "line" then
+    put word 2 of line tL of tFTxt into tHL
+    select line tHL of fld "scrbs"
+    put line thl of fld "scrbs" into pLine
+    if lShiftKeyDown is true then put pLine into fld "f1"
+  end if
+  manageHistory
+  if lOptionKeyDown then
+    if not the hilite of btn "check" then
+      answer question "edit script of"& tObjectName & "?" with "Cancel" or "OK" 
+      if it is "OK" then doexecute tObject,tHL
+      else exit to top
+    else doexecute tObject,tHL
+  end if
+end mousedown
+-- --
+on doexecute pObject,y
+  --if "license.rev" is in the effective filename of stack "home" then
+  if "revmenubar" is among the lines of the openstacks then
+    put "field" && quote&"Script"&quote into tC
+    put "revscripteditor*" into tFilter
+  else
+    put "field" && quote&"editor field"&quote  into tC
+    put "script editor*" into tFilter
+  end if
+  put the windows into tW
+  filter tW with tFilter
+  sort tW
+  put "Script Editor - " &  the name of pObject into tName
+  put false into tITW
+  repeat for each line i in tw
+    if tName is in the label of stack i then
+      put true into tITW
+      put i into tName
+      exit repeat
+    end if
+  end repeat
+  if not tITW then
+    do "edit script of" && pObject
+    repeat
+      wait 50 millisecs with messages
+      put the windows into tW
+      filter tW with tFilter
+      sort tW
+      repeat for each line i in tw
+        if tName is in the label of stack i then
+          put true into tITW
+          put i into tName
+          exit repeat
+        end if
+      end repeat
+      if tITW then exit repeat
+    end repeat
+  end if
+  if tName is in the windows and y is a number then
+    put the name of stack tName into sName
+    put tC &&"of" && sName into tObject
+    select line y of tObject
+  end if
+end doexecute

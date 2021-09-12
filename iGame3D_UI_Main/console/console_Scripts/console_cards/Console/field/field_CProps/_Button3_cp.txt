@@ -1,0 +1,8 @@
+commandHeader,Button3[["new text
+open text
+close text
+-
+save text
+save text as
+-
+revert"]]

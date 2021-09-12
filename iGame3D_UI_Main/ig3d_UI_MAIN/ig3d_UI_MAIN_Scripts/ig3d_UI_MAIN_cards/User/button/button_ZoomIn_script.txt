@@ -1,0 +1,21 @@
+--- button "ZoomIn",User,ig3d_UI_MAIN
+on mouseUp
+  put label of cd btn "vd" into bruch
+  if bruch <1 then put "16 : 16" into bruch
+ if word 1 of bruch is not 1 then
+   put word 1 of bruch / 2 into word 1 of bruch
+   else
+ put word 3 of bruch * 2 into word 3 of bruch
+ end if
+  T3DSetInfo "vd", word 1 of bruch / word 3 of bruch
+   set the label of cd btn "vd" to  bruch
+
+end mouseUp
+-- --
+on mouseEnter
+put updateToolLabel(the tooltip of me) into toolUpdate
+end mouseEnter
+-- --
+on mouseLeave
+
+end mouseLeave

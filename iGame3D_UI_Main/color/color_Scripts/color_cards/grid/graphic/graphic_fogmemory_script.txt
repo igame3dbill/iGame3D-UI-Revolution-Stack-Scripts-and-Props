@@ -1,0 +1,5 @@
+--- graphic "fogmemory",grid,color
+on mouseDown
+  set the secondColor of grc "dragColor" to the secondColor of me
+  send dragMe to grc "dragColor" in 40 milliseconds
+end mouseDown

@@ -1,0 +1,54 @@
+--- button "storeMainCasProps",card id 1002,ExternalReference
+on mouseUp
+  local AP
+  set the xcomref of stack "ExternalReference" to empty
+  put line 1 to -1 of fld "mainc" into Flist
+  replace "{"&quote with empty in flist
+  put quote & comma & " XCOMMAND, 0, " into xckill
+  put quote & comma & " XFUNCTION, 0, " into xkill
+  replace xckill with tab&"Command"&tab in flist
+  replace xkill with tab&"Function"&tab in flist
+  replace "XCabort},//" with tab in flist
+  replace ", , " with tab in flist
+  
+  
+  put "" into field com
+  repeat for each line n in flist
+    if n is not empty then
+      if char 1 to 2 of n is "//" then 
+        put char 3 to -1 of n into tHeader
+        put theader & cr after allhead
+        next repeat
+      end if
+      
+      set itemDel to tab
+      put item 1 of N  into  tWORD
+      put item 2 of n into FuncOrCom
+      put item 4 to -1 of n into tComOne
+      set itemDel to "."
+      if num(items of tcomone) = 1 then 
+        put tcomone into tcomment
+        put "$$" into tRequest
+      else 
+        put item 2 to -1 of tComOne into tComment
+        put item 1 of tcomone into tRequest
+      end if
+      set itemDel to comma
+      put tHeader &cr& FuncOrCom &  cr & tWord & cr & tRequest & cr & TComment into tArg3
+      put the XComRef of stack "ExternalReference" into AP
+      split AP by numtochar(13) and numtochar(14)
+      put tArg3 into AP[tWord]
+      combine AP with numtochar(13) and numtochar(14)
+      set the XComRef of stack ("ExternalReference")  to AP
+      
+      put FuncOrCom,tWord,tArg3 &cr & cr after acllomc 
+      IF char 1 of FuncOrCom is "F" THEN  
+        put tword & "()" &cr after allfunc 
+      else
+        put tWord & cr after allCom
+      end if
+    end if
+  end repeat
+  delete char -1 of allCom
+  put allfunc & allCom into field "com"
+end mouseUp

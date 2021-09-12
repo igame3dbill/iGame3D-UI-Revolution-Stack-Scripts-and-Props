@@ -1,0 +1,10 @@
+commandHeader,objectMaterialRoot[["col 
+alpha
+ambient
+diffuse
+specular
+shininess
+emission
+wire
+smooth
+tex"]]

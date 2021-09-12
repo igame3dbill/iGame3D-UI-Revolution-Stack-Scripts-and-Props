@@ -1,0 +1,8 @@
+--- group "importModeGroup",Modelslibcard,filesLibrary
+on mouseDown
+ send menuPick && ( label of the mousecontrol ) to me
+end mouseDown
+-- --
+on menuPick theModelImportMode
+SetModelImportMode theModelImportMode
+end menuPick

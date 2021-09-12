@@ -1,0 +1,41 @@
+--- field "DearDIary",Console,console
+DearDIary:rect(0,66,290,346)
+DearDIary:short name("DearDIary")
+DearDIary:disabled(false)
+DearDIary:visible(false)
+DearDIary:sharedText(true)
+DearDIary:dontWrap(false)
+DearDIary:lockText(false)
+DearDIary:opaque(true)
+DearDIary:traversalOn(true)
+DearDIary:showFocusBorder(false)
+DearDIary:autoTab(false)
+DearDIary:threeD(true)
+DearDIary:showBorder(true)
+DearDIary:borderWidth(2)
+DearDIary:hScrollbar(true)
+DearDIary:vScrollbar(true)
+DearDIary:autoHilite(true)
+DearDIary:listBehavior(false)
+DearDIary:toggleHilites(false)
+DearDIary:fixedLineHeight(false)
+DearDIary:textHeight(16)
+DearDIary:firstIndent(0)
+DearDIary:textFont("Arial")
+DearDIary:textSize(12)
+DearDIary:textAlign("left")
+
+DearDIary:titel("Scripts/load script.txt")
+
+DearDIary:treeDepth(0)
+
+DearDIary:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+DearDIary:tite("Console")

@@ -1,0 +1,58 @@
+-- script of stack "scriptHarvesterig3d"
+on resizestack x,y
+  if the hilite of btn "Filter" then 
+    set the rect of fld "stacks" to 0,-1,the width of fld "stacks",y - 80
+    get the rect of fld "stacks"
+    set the rect of fld "stacksbg" to it
+    set the rect of fld "hanfun" to item 3 of it - 1,-1,item 3 of it - 1 + the width of fld "hanfun",y - 14
+    set the rect of fld "hanfunbg" to the rect of fld "hanfun"
+    set bottomleft of grp "filter" to 0,y - 17
+  else 
+    set the rect of fld "stacks" to 0,-1,the width of fld "stacks",y - 14
+    get the rect of fld "stacks"
+    set the rect of fld "stacksbg" to it
+    set the rect of fld "hanfun" to item 3 of it - 1,-1,item 3 of it - 1 + the width of fld "hanfun",y - 14
+    set the rect of fld "hanfunbg" to the rect of fld "hanfun"
+  end if
+  if the hilite of btn "comment" then 
+    set the rect of fld "scripts" to the right of fld "hanfun" - 1,-1,x,y - 130
+    set the rect of fld "comment" to the right of fld "hanfun" - 1,y - 130,x,y - 14
+  else set the rect of fld "scripts" to the right of fld "hanfun" - 1,-1,x,y - 14
+  get the rect of btn "div1"
+  set the rect of btn "div1" to item 1 of it,item 2 of it,item 3 of it,bottom of fld "stacks"
+  set bottomleft of btn "wraptext" to right of fld "hanfun",y - 1
+  set bottomleft of btn "colorize" to right of btn "wraptext",y - 1
+  set bottomleft of btn "format" to right of btn "colorize",y - 1
+  set bottomleft of btn "filter" to 4,y - 1
+  set bottomright of btn "comment" to the width of this cd - 14,y - 1
+  set bottomleft of btn "save" to left of fld "hanfun",y - 1
+end resizestack
+-- --
+on divmove 
+  if the mouse is down then
+    put the width of this cd into x
+    put the height of this cd into y
+    get the loc of btn "div1"
+    put the mouseh into item 1 of it
+    set the loc of btn "div1" to it
+    lock screen
+    set the rect btn "div1" to left of btn "div1", 0, left of btn "Div1" + 4, height of this cd - 20
+    set the rect of fld "hanfun" to right of fld "stacks" - 1,top of fld "stacks",left of btn "Div1" + 2,y - 14
+    set the rect of fld "hanfunbg" to the rect of fld "hanfun"
+    if the hilite of btn "comment" then 
+      set the rect of fld "scripts" to the right of fld "hanfun" - 1,-1,x,y - 130
+      set the rect of fld "comment" to the right of fld "hanfun" - 1,y - 130,x,y - 14
+    else set the rect of fld "scripts" to the right of fld "hanfun" - 1,-1,x,y - 14
+    set bottomleft of btn "wraptext" to right of fld "hanfun",y - 1
+    set bottomleft of btn "colorize" to right of btn "wraptext",y - 1
+    set bottomleft of btn "format" to right of btn "colorize",y - 1
+    set bottomright of btn "comment" to the width of this cd - 14,y - 1
+    set rect of btn "save" to left of fld "hanfun",y - 14,right of fld "hanfun" - 12, y - 1
+   send "divmove" to me in 50 millisecs
+  end if
+end divmove
+-- --
+on checkstripes
+  set the stripes of fld "stacksbg" to foobar
+  set the stripes of fld "hanfunbg" to foobar
+end checkstripes

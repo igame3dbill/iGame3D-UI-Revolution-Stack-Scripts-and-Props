@@ -1,0 +1,6 @@
+--- button "paste",card id 1002ofFindT3d,Find T3D
+on mouseUp
+  if the clipboard is text then
+  set the label of  btn "find_what" to the clipboardData["text"]  
+end if
+end mouseUp

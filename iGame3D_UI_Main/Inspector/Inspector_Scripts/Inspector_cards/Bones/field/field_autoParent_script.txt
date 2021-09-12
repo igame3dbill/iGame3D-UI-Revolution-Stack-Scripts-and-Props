@@ -1,0 +1,20 @@
+--- field "autoParent",Bones,Inspector
+on returnInField
+  closeField
+end returnInField
+-- --
+on closeField
+  if line 1 of me is empty then put getMkey(selectedBone) into me
+  put line 1 of me into me
+    
+  put getMkey(autoBones) into parentChild
+  
+  set itemdel to "|" 
+  put item 2 of parentChild into fld "autoCHild"
+  put me & "|" &  fld "autoCHild" into newAuto
+  put setMkey(autoBones,newAuto) into newBone
+  set the autoBones of stack (the mainstack of this stack) to theSetBones
+--   put AutoBoneTool() into autoboner
+  
+ 
+end closeField

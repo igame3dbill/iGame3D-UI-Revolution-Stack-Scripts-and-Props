@@ -1,0 +1,4 @@
+--- image "previewImage",card id 1002,previewImage
+on mouseDoubleUp
+  hide stack "previewImage"
+end mouseDoubleUp

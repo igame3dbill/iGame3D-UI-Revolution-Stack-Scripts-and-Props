@@ -1,0 +1,35 @@
+--- field "theList",card id 1002ofdev,Dev
+
+-- --
+on rawKeydown theKey
+  put numtochar(theKey) into k
+  put me into mystuff
+  filter mystuff with k&"*"
+  
+  put lineOffset(line 1 of mystuff,me) into n
+  select line n of me
+end rawKeydown
+-- --
+on mouseDown
+if the target is empty  then exit mouseDown
+  put (word 2 selectedLine of me) into n
+  if the listBehavior of me is true then
+ copy hilitedText
+     end if
+     select line n of me
+  if the commandKey is down then checkCom
+end mouseDown
+-- --
+on checkCom
+  switch word 2 the title of stack "Dev"
+    case "Xternals"
+      put the selectedText of me into myWords
+      if char -1 of myWords is ")" then do "put" && myWords
+      break
+    case "CustomPropLengths"
+       put the selectedText of me into myWords
+       put word 2 to -1 of myWords into myGetp
+       do "put" && myGetP
+      break
+  end switch
+end checkCom

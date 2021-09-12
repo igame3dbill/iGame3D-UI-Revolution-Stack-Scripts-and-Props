@@ -1,0 +1,7 @@
+--- button "fog",background,color
+
+-- --
+on mouseUp
+    send menuPick &&"fog" to fld "root"
+updateFogFromControls
+end mouseUp

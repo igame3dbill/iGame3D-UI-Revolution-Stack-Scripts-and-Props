@@ -1,0 +1,20 @@
+--- button "sep1",Console,console
+sep1:rect(183,12,193,377)
+sep1:short name("sep1")
+sep1:label(".
+.
+.")
+sep1:style("rectangle")
+sep1:visible(true)
+sep1:showName(true)
+sep1:autoHilite(false)
+sep1:opaque(false)
+sep1:sharedHilite(false)
+sep1:traversalOn(false)
+sep1:showfocusBorder(true)
+sep1:icon(0)
+sep1:hiliteIcon(0)
+sep1:borderWidth(2)
+sep1:textFont("Lucida Grande")
+sep1:textSize(10)
+sep1:textAlign("center")

@@ -1,0 +1,81 @@
+--- button "B1",card id 1002ofFindT3d,Find T3D
+local lTarget,tW,tFH,tFlag
+-- --
+on mouseDown
+  put the id of img "comboRightSmallnoHilite.gif" into tNH
+  put the id of img "comboRightSmallHilite.gif" into tWH
+  put word 5 to - 4 of the long id of the target into lTarget
+  set the icon of btn "bgb1" of lTarget to tNH
+  set the hilitedicon of btn "bgb1" of lTarget to tWH
+  set the hilite of btn "bgb1" of lTarget to true
+  put the defaultstack into tOD
+  put the width of lTarget - 4 into tW
+  if the optionkey is down then 
+    put fld "F1" of lTarget into tStr
+    if the num of words in tStr > 0 then
+      put the comboList of me into tList
+      if tStr is not among the lines of tList then put cr & tStr after tLIst
+      set the comboList of me to word 1 to -1 of tList
+    end if
+  end if
+  if the shiftkey is down then 
+    put fld "F1" of lTarget into tStr
+    if the num of words in tStr > 0 then
+      put the comboList of me into tList
+      put "" into line lineoffset(tStr,tList) of tList
+      filter tList with "*"
+      set the comboList of me to word 1 to -1 of tList
+    end if
+  end if
+  put the comboList of me into tList
+  if tList is "" then put "<empty>" into tList
+  put tList into fld "temp" of lTarget
+  put the formattedwidth of fld "temp" of lTarget into tT
+  put the htmltext of fld "temp" of lTarget into tList
+  if not tFlag then
+    if "mymenu2" is not in loadedstackList() then  --the mainstacks then
+      get the myMenuData of me
+      go invisible stack it
+      set the loc of stack "mymenu2" to -500,-500
+      set the visible of stack "mymenu2" to true
+    else put true into tFlag
+  end if
+  if tT > tW then put tT into tW
+  set the width of fld "F2" of stack "myMenu2" to tW
+  set the htmltext of fld "F2" of stack "myMenu2" to tList
+  put the effective textheight of fld "f2" of stack "myMenu2" * the num of lines in fld "f2" of stack "myMenu2" + the effective textheight of fld "f2" of stack "myMenu2" div 2 into tFH
+  set the height of fld "f2" of stack "myMenu2" to tFH
+  set the width of fld "F2" of stack "myMenu2" to tW
+  set the maxwidth of stack "myMenu2" to tW
+  set the maxheight of stack "myMenu2" to tFH
+  set the width of stack "myMenu2" to tW
+  set the height of stack "myMenu2" to tFH - 4
+  set topleft of fld "F2" of stack "myMenu2" to 0,-2
+end mouseDown
+-- --
+on menupick x
+  if x <> "<empty>" then
+    get bottomleft of fld "F1" of lTarget
+    if the mouseloc is within it,item 1 of it + tW,item 2 of it + tFH then put x into fld "F1" of lTarget
+  end if
+  set the hilite of btn "bgb1" of lTarget to false
+  select line 1 of fld "F1" of lTarget
+end menupick
+-- --
+Function loadedstackList
+  put the mainstacks into tSL
+  sort tSL
+    repeat for each line i in tSL
+      put i & cr after tList
+      put the substacks of stack i into tSS
+      if tSS <> "" then 
+        sort tSS
+        put tSS after tList
+      else put cr after tList
+    end repeat
+  return word 1 to-1 of tList
+end loadedstackList
+-- --
+on emptylocal
+  put false into tFlag
+end emptylocal

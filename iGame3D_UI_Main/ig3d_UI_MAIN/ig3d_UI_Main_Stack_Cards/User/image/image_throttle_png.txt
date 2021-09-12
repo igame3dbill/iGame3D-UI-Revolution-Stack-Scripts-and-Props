@@ -1,0 +1,12 @@
+--- image "throttle_png",User,ig3d_UI_MAIN
+throttle_png:rect(400,106,424,131)
+throttle_png:short name("throttle_png")
+throttle_png:id(4233)
+throttle_png:tooltip( 4233)
+throttle_png:visible(true)
+throttle_png:dontDither(false)
+throttle_png:alwaysBuffer(true)
+throttle_png:angle(0)
+throttle_png:showBorder(false)
+throttle_png:threeD(true)
+throttle_png:borderWidth(2)

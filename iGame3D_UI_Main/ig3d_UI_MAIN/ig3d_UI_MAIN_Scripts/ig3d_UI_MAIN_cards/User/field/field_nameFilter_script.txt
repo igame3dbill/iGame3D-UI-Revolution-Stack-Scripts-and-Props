@@ -1,0 +1,5 @@
+--- field "nameFilter",User,ig3d_UI_MAIN
+on rawkeydown x
+  send "parsetree fooBar" to fld "list" of stack "filesLibrary" in 50 millisecs
+  pass rawkeydown
+end rawkeydown

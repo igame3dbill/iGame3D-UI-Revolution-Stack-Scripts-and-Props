@@ -1,0 +1,12 @@
+--- image "slidexz_png",User,ig3d_UI_MAIN
+slidexz_png:rect(232,107,256,131)
+slidexz_png:short name("slidexz_png")
+slidexz_png:id(4225)
+slidexz_png:tooltip( 4225)
+slidexz_png:visible(true)
+slidexz_png:dontDither(false)
+slidexz_png:alwaysBuffer(true)
+slidexz_png:angle(0)
+slidexz_png:showBorder(false)
+slidexz_png:threeD(true)
+slidexz_png:borderWidth(2)

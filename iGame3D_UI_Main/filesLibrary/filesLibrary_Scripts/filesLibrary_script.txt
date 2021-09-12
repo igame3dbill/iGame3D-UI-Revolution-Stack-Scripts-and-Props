@@ -1,0 +1,214 @@
+-- script of stack "filesLibrary"
+on rawKeyDown
+  if the short name of the focusedObject is not "nameFilter" then 
+  focus  btn 1 of stack (the mainStack of this stack)
+  exit rawKeydown
+else
+  pass rawKeydown
+  end if
+end rawKeyDown
+-- --
+on openCard
+put the short name of the current card of stack "filesLibrary" into tCard
+if tCard is "ModelsLibCard" then SetModelImportMode (the dropModelMode of stack (the mainStack of this stack))
+end openCard
+-- --
+on SetModelImportMode theModelImportMode
+  switch theModelImportMode
+  case "mesh"
+    case "dropMesh"
+    put setMkey(DropModelMode,"dropMesh") into setMode
+    put fld "list" into checkwtf
+    filter checkwtf with "*.wtf"
+    if num(lines of checkwtf) = 0 then
+      put "." & the label of btn "importMeshFilter" into myFilta
+      set the hilite of button "makeMode" to false
+      set the hilite of button "meshMode" to true
+      set the textstyle of btn "makeMode" to plain
+      set the textstyle of button "meshMode" to bold
+      put setmkey(libraryFilter,myFilta) into SetitLib
+      show group "importtabGrouP"
+      ClickImportTab (the label of btn "importMeshFilter")
+      send "BuildTree" to fld "list"
+    end if
+    break
+  case "make"
+    case "objects"
+    set the hilite of btn "meshMode" to false
+    set the textstyle of btn "meshMode" to plain
+    set the hilite of btn "makeMode" to true
+    set the textstyle of btn "makeMode" to bold
+    put setmkey(libraryFilter,".wtf") into SetitLib
+    hide group "importtabGrouP"
+    if "replacemodelssubstack" is in the windows then send repModelSetUp to stack "replacemodelssubstack" 
+    send "BuildTree" to fld "list"
+    set the dropModelMode of stack (the mainStack of this stack)   to "make" 
+    put chooseAtool("objects") into action
+    break
+  end switch
+end  SetModelImportMode
+-- --
+on ClickImportTab whatTAB
+ set the cursor to busy
+put whatTab into wFilta
+replace "import" with "." in wFilta
+put setmkey(libraryFilter,wFilta) into SetitLib
+set the title of stack "filesLibrary" to wFilta&& "Models" 
+set the label of grp "filterBtnGrP" to "Filter:" && wFilta&& "Models" 
+   send "BuildTree" to fld "list"
+end ClickImportTab
+-- --
+on ClickLibraryTab whattab
+  if whatTab is empty then
+    put the pickedLibrary of stack (the mainStack of this stack) into chkLib
+    if chkLib is empty then put "Levels" into chklib
+    put chklib into Whattab
+  end if
+  put whatTab into WhatChk
+  replace "tab" with empty in whatchk
+  set the title of stack "filesLIbrary" to  whatchk
+  set the label of grp "filterBtnGrP" to "Filter:" && whatchk 
+  set the pickedLibrary of stack (the mainStack of this stack) to whatchk
+  set the fileName of player "previewPlayer" to "" 
+  set the fileName of player "previewPlayer" of stack "previewStack" to ""
+  hide player "previewPlayer"
+  close stack "previewStack"
+  put "" into fld "nameFilter"
+  set the cursor to busy
+  
+  put "" into fld  "fullpathlabel"
+  
+  put whatCHK & "libcard" into tCard
+  if exists (cd tCard) is true  then   go cd tCard  ####  
+  if exists (cd tCard) is false  then create  cd tCard  ####
+  put the short name of the current card of stack "filesLibrary" into Chknm
+  replace "libcard" with empty in chknm
+  set the title of stack "filesLIbrary" to  chknm
+  if whattab is empty then put last word of chk  into chklastword
+  switch WhatChk
+  case "emitters"
+    put setmkey(libraryFilter,".emt") into SetitLib
+    break
+  case "images"
+    show player "previewPlayer"
+    put setmkey(libraryFilter,".png") into SetitLib
+    break
+  case "Levels"
+    put setmkey(libraryFilter,"load script.lua") into SetitLib
+    break
+  case "materials"
+    put setmkey(libraryFilter,".mat") into SetitLib
+    break
+  case "Models"
+    put getMkey(dropModelMode) into dmm
+    if dmm is among the items of "make,objects" then
+    put setmkey(libraryFilter,".wtf") into SetitLib
+  else
+    put "."&the label of button "importMeshFilter" of card "ModelsLibCard" of stack "fileslibrary" into theFilter
+       put setmkey(libraryFilter,theFilter) into SetitLib 
+       end if
+    break
+  case "Scripts"
+    put setmkey(libraryFilter,".lua") into SetitLib
+    break
+  case "Sounds"
+    put setmkey(libraryFilter,".ogg") into SetitLib
+    break
+  case "Texts"
+    put setmkey(libraryFilter,".txt") into SetitLib
+    break
+  case "Animations"
+    put setmkey(libraryFilter,".mov") into SetitLib
+    break
+  end switch
+  send "BuildTree" to fld "list"
+  unlock screen
+  
+  ######### old stuff here needs to be looked at!
+ 
+  end clickLibraryTab
+-- --
+on refreshWTFLIST
+  if visible of group "ModelsGroup" is true then put the hilitedLine of field "WTFLIST" into n
+  put listWTF("WTF") into myList
+  if the label of btn "modelsFilterAdd" <> ""  then  filter myList with   the label of btn "modelsFilterAdd" & "*"
+  replace ".wtf" with empty in myList
+  put myList into field "WTFLIST"
+end refreshWTFLIST
+-- --
+on preopenCard
+  updateLIBSiz
+end preopenCard
+ 
+-- --
+on updateLIBSiz x,y
+   if x is empty then put the width of stack "filesLibrary" into x
+  if y is empty then put the height of stack "Fileslibrary" into y
+  put the bottom of grp "filterbtngrp"+2into n
+  put the short name of the current card of stack "filesLibrary" into shnm
+  if shnm is "modelsLibcard" then put the bottom of group "importmodegroup" of card "modelslibcard" +2 into n
+  if shnm is "imagesLibcard" then put the bottom of group "ImageFilterGroup" of card "imageslibcard" +2 into n
+  put the height of fld "fullpathLabel" into H
+  set the rect of fld "fullpathLabel" to 0,y-h,x-30,y
+  put the top of fld "fullpathlabel" into T
+  set the rect of fld "list" to 0,n,x-4,y-h-12 --was 180 insteadofx-3
+  set the top of btn "baseDivider" to the bottom of fld "list"+4
+put the rect of group "filterbtngrp" into fbg
+set the rect of group "filterbtngrp" to (item 1 of fbg),(item 2 of fbg),(x-4),(item 4 of fbg)
+put the rect of fld "namefilter" into fbg
+set the rect of fld "namefilter"  to (item 1 of fbg),(item 2 of fbg),(x-8),(item 4 of fbg)
+end updateLIBSiz
+-- --
+on resizestack x,y
+updateLIBSiz
+end resizestack
+#########MODEL DROPS
+-- --
+on checkReplaceModels
+  lock screen
+  put  ig3d_GetObjectsList__s() into theMods
+  put ListWTF("WTF") into allMods
+  replace ".wtf" with empty in allMods
+  replace cr with comma in allMods
+  put the title of stack "previewImage"   into repWHO
+  set the replaceModel of btn "applyReplace" to repWho
+  put "*" & repWHO  &"*"  into filtWHO
+  filter theMods with filtWHO
+  sort theMods
+  put num(lines of theMods)+1 into AN
+  put ig3d_GetObjectsList__s() into TheMods2
+  filter theMods2 without filtWho
+  put theMods2 into field "repModelsList"
+  if the mouseloc is within the rect of field "repModelsList" then
+    put word 2 the mouseLine into n
+    put line n of fld "repMOdelsList" into who
+    if who <> "" then 
+      repeat with x = the  number of characters of who down to 1
+        put char 1 to x of who into ThisModel
+        if ThisModel is among the items of allMods then exit repeat
+      end repeat
+      if hilite of btn "replaceSame" is true then
+        put field "repModelsList" into toRep
+        put "*" & thisModel & "*" into toFILT
+        filter toRep with toFILT
+        sort toRep
+        set the Replacers of button "ApplyReplace" to toRep
+        replace thisModel with repWho in field "repModelsList"
+        put field "repModelsList" into RepList
+        filter replist with filtWHO
+        sort repList
+        set the replaceList of button "ApplyReplace" to repList
+      else
+        put line n of fld "repModelsList" into repList
+        set the Replacers of button "ApplyReplace" to repList
+        put (repWho &AN) into  line n of field "repModelsList"
+      end if
+      
+    end if
+    set the hilitedLine of field "repModelsList" to n
+    set the textStyle of line n of field "repModelsList" to bold
+  end if
+  repeat with B = 1 to the number of lines of  field "repModelsList"
+    if line B of field "repModelsList" contains repWho then set the textStyle of line B of field "repModelsList" to bold
+  end repeat
+end checkReplaceModels

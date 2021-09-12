@@ -1,0 +1,12 @@
+--- image "views_png",User,ig3d_UI_MAIN
+views_png:rect(10,107,34,131)
+views_png:short name("views_png")
+views_png:id(4241)
+views_png:tooltip( 4241)
+views_png:visible(true)
+views_png:dontDither(false)
+views_png:alwaysBuffer(true)
+views_png:angle(0)
+views_png:showBorder(false)
+views_png:threeD(true)
+views_png:borderWidth(2)

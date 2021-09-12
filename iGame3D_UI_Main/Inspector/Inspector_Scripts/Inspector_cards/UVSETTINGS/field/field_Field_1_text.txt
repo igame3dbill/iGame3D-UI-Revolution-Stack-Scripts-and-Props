@@ -1,0 +1,2 @@
+--- field "Field_1" of group "colormat" of group "COLORTRANSGROUP" of group "materialsCardGroup" of card "UVSETTINGS" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+Shine:

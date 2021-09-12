@@ -1,0 +1,11 @@
+--- image "singleline_msg_png",Console,console
+singleline_msg_png:rect(157,0,173,16)
+singleline_msg_png:short name("singleline_msg_png")
+singleline_msg_png:id(1340)
+singleline_msg_png:visible(false)
+singleline_msg_png:dontDither(false)
+singleline_msg_png:alwaysBuffer(true)
+singleline_msg_png:angle(0)
+singleline_msg_png:showBorder(false)
+singleline_msg_png:threeD(true)
+singleline_msg_png:borderWidth(2)

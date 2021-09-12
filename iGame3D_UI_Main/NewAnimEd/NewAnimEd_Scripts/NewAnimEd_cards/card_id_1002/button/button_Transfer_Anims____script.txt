@@ -1,0 +1,83 @@
+--- button "Transfer_Anims___",card id 1002,NewAnimEd
+on mouseUp
+  ask "Please enter model name to copy the animations from:"
+  if it is not empty then
+    put it into model1
+    ask "Please enter name of model you want to copy the animations to:"
+    if it is not empty then
+    put it into model2
+    put T3DCommand("make" && quote & model1 & quote) into nothingham
+    put T3DGetBonesModel() into bones1
+    put T3DGetInfo("model") into path1
+    put T3DCommand("off") into nothingham
+    put T3DCommand("make" && quote & model2 & quote) into nothingham
+    put T3DGetBonesModel() into bones2
+    put T3DGetInfo("model") into path2
+    put T3DCommand("off") into nothingham
+    repeat with m=1 to the number of lines of bones1
+      delete last word of line m of bones1
+    end repeat
+    repeat with m=1 to the number of lines of bones2
+      delete last word of line m of bones2
+    end repeat
+    
+      open file path1 for read
+  read from file path1 until eof
+  put it into fcontents
+  put offset("#Animations",fcontents) into theOffset
+  put char theOffset to (number of chars of fcontents) of fcontents into raw1
+  close file path1
+  
+  put "" into replacementList
+  //now check for same bone names and set the animation correctly:
+  repeat with m=1 to the number of lines of bones1
+    repeat with n=1 to the number of lines of bones2
+      if line n of bones2 = line m of bones1 then
+        put m-1 & comma & n-1 & return after replacementList
+        exit repeat
+        end if
+    end repeat
+  end repeat
+  if last line of replacementList is empty then delete last char of replacementList
+ 
+ put line 2 of raw1 into numAnims
+ put line 3 to (number of lines of raw1) of raw1 into anims
+ 
+ //now apply the replacementList!!:
+put 3 into theStart
+repeat with m=1 to numAnims
+put line theStart-1 of anims into numMarkers
+repeat with n= theStart to theStart + (numMarkers * 2)-2
+ set itemDel to "="
+ put item 1 of line n+1 of anims into cmd
+ put item 2 of line n+1 of anims into theData
+ set itemDel to comma
+ repeat with o=1 to the number of lines of replacementList
+   if item 1 of theData = item 1 of line o of replacementList then
+     put item 2 of line o of replacementList into item 1 of theData
+     exit repeat
+     end if
+   end repeat
+ put cmd & "=" & theData into line n+1 of anims
+ 
+ add 1 to n
+ end repeat
+add numMarkers * 2 + 2 to theStart
+ end repeat
+ 
+ //put "#Animations" & return & numAnims & return & anims into cd fld "animExport"
+  
+  open file path2 for read
+  read from file path2 until eof
+  put it into fcontents
+  put offset("#Animations",fcontents) into theOffset
+  put char theOffset to (number of chars of fcontents) of fcontents into raw1
+  close file path1
+put "file:/" &  path2 into WPATH
+put char 1 to (theOffset-1) of fcontents & "#Animations" & return & numAnims & return & anims into URL WPATH
+    
+--    //put bones1 & return & return & bones2 & return & return & replacementList
+    
+    end if
+    end if
+end mouseUp

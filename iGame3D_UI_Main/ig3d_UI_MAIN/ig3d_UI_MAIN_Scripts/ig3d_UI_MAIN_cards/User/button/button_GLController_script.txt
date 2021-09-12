@@ -1,0 +1,5 @@
+--- button "GLController",User,ig3d_UI_MAIN
+on mouseDown
+  put not ig3d_Get3DControllerVisibility__b() into cbool
+  ig3d_Set3DControllerVisibility_b cbool
+end mouseDown

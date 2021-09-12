@@ -1,0 +1,102 @@
+--- button "Find",card id 1002ofFindT3d,Find T3D
+global gReplaceHistory,gFindWhat
+-- --
+on mouseUp
+  set the setStackScript of field "scrbs" to empty
+  put empty into field "t3Ds"
+  put empty into field "scrbs"
+  set the label of btn "result" to "::::::::::   search result   ::::::::::"
+  set the htmltext of line 15 of field "scrbs" to "<h3>                  searching....</h3>"
+  set the label of btn "scripts" to "::::::::::   script   ::::::::::"
+  put "" into tList
+  put "" into gReplaceHistory
+  disable btn "undo"
+  put "" into btn "undo"
+  if the mainstack of this stack <> "find t3d" then 
+    put stackList() into tSL
+    put tSL into field "Stacks"
+    put the label of btn "find_what" into tSS
+  else
+    put the hilitedLines of fld "stacks" into tHL
+    if tHl = "" then
+      put empty into field "scrbs"
+      set the htmltext of line 5 of field "scrbs" to "<h3>         please select some stacks in the list field...</h3>"
+      send "cleanup" to me in 3 secs
+      exit mouseUp
+    end if
+  end if
+  if the mainstack of this stack <> "find t3d" then put label of button "find_what" into tSS
+  else put line 1 of field "F1" into tSS 
+   
+  if tSS is empty or tSS is "find_what" or tSS is in "               " then 
+    put empty into field "scrbs"
+    set the htmltext of line 15 of field "scrbs" to "<h3>         please enter a search string...</h3>"
+    send "cleanup" to me in 3 secs
+    exit mouseUp
+  end if
+  repeat for each item i in tHL
+    put line i of fld "stacks" & cr after tSL
+  end repeat
+  replace tab with "" in tSL
+  
+   
+  repeat for each line i in tSL
+    put the name of stack i into tSName
+    if the password of tSName <> "" then 
+      put "<p><b>"&tSName& "</b> is<font color="&quote&"#C61E04"&quote& "> password protected</font></p><p></p>" & cr after tList
+      next repeat
+    end if
+    put the script of tSName into tS
+    get findInstances(tS)
+    if it is not false then put "<p><b>stackscript of " && tSName & ": </b><br />" & cr & it & "</p>" after tList
+    repeat with j = 1 to the num of cds in tSName
+      put the script of cd j of stack i into tS
+      put the long name of cd j of stack i into tN
+      replace extractString2Replace(tN) with tSName in tN
+      get findInstances(tS)
+      if it is not false then put "<p><b>cardscript of cd"&& j&& "of" && tSName & ": </b><br /><font color=" &quote&"#408000"&quote&">"& tN & "</font><br />" & cr & it & "</p>" after tList
+    end repeat
+    put getControls(tSName) into tCL
+    if tCl = "no controls" then   --put "<p>  no controls in"&&tSName& "</p>" & cr after tList
+    else
+      repeat for each line j in tCL
+        do "put the script of" && j && "into tS"
+        get findInstances(tS)
+        if it is not false then 
+          put the long name of j into tN
+          replace extractString2Replace(tN) with tSName in tN
+          put "<p><b>script of" && j & ": </b><br /><font color=" &quote&"#408000"&quote&">" & tN & "</font><br />"& cr & it & "</p>" after tList
+        end if
+      end repeat
+    end if
+  end repeat
+  if tList = "" then put "<p>nothing found</p>" into tList
+  put empty into field "scrbs"
+  set the htmltext of fld "t3ds" to tList
+  get fld "t3ds"
+  filter it with "   line*"
+  set the label of btn "result" to "::::::::::   search result for" && quote& tSS& quote && ":" && the number of lines in it && "hits   ::::::::::"
+  set the title of stack "Find t3d" to "Found" && quote& tSS& quote && ":" && the number of lines in it && "hits   ::::::::::"
+end mouseUp
+-- --
+on cleanup
+  put "" into fld "scrbs"
+end cleanup
+-- --
+on mousedown
+  if   clipboard() is text then
+  select line 1 of fld "f1"
+   paste
+   put line 1 of fld "f1"  into fld "f1"
+   end if
+  checkTheMouseLoc
+end mousedown
+-- --
+on checkTheMouseLoc
+  if the mouse is down then
+    if the mouseloc is within the rect of me then set the foregroundcolor of me to 255,255,255
+    else set the foregroundcolor of me to 0,0,0
+    send "checkTheMouseLoc" to me in 25 millisecs
+  else set the foregroundcolor of me to 0,0,0
+end checkTheMouseLoc
+----by WOUTER September 1 2004

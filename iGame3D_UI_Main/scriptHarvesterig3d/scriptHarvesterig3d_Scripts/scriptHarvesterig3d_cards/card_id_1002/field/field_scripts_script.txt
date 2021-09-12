@@ -1,0 +1,5 @@
+--- field "scripts",card id 1002,scriptHarvesterig3d
+on mousedown
+  select word 1 to -1 of me
+  set the clipboardData["text"] to the text of me
+end mousedown

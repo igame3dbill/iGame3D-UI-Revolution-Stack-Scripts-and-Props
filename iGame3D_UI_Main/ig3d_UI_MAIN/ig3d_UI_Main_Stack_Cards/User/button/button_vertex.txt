@@ -1,0 +1,34 @@
+--- button "vertex",User,ig3d_UI_MAIN
+vertex:rect(424,22,454,48)
+vertex:short name("vertex")
+vertex:label("vertex")
+vertex:toolTip("Create Vertex Tool")
+vertex:style("transparent")
+vertex:visible(true)
+vertex:showName(false)
+vertex:autoHilite(false)
+vertex:opaque(false)
+vertex:sharedHilite(false)
+vertex:traversalOn(true)
+vertex:showfocusBorder(false)
+vertex:icon(4235)
+vertex:hiliteIcon(0)
+vertex:borderWidth(1)
+vertex:textFont("Arial")
+vertex:textSize(9)
+vertex:textAlign("right")
+
+vertex:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+vertex:oldValue(12)
+
+vertex:lastClick("-679,-170")
+
+vertex:blend(1000)
+
+vertex:pathView("Levels/xman_44")
+
+vertex:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")

@@ -1,0 +1,12 @@
+--- image "bone_png",User,ig3d_UI_MAIN
+bone_png:rect(164,69,188,93)
+bone_png:short name("bone_png")
+bone_png:id(4196)
+bone_png:tooltip( 4196)
+bone_png:visible(true)
+bone_png:dontDither(false)
+bone_png:alwaysBuffer(true)
+bone_png:angle(0)
+bone_png:showBorder(false)
+bone_png:threeD(true)
+bone_png:borderWidth(2)

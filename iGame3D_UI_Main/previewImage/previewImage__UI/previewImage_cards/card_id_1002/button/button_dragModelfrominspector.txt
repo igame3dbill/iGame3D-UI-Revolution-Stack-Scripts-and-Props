@@ -1,0 +1,22 @@
+--- button "dragModelfrominspector",card id 1002,previewImage
+dragModelfrominspector:rect(0,110,182,129)
+dragModelfrominspector:short name("dragModelfrominspector")
+dragModelfrominspector:label("player")
+dragModelfrominspector:style("transparent")
+dragModelfrominspector:visible(true)
+dragModelfrominspector:showName(true)
+dragModelfrominspector:autoHilite(false)
+dragModelfrominspector:opaque(false)
+dragModelfrominspector:sharedHilite(false)
+dragModelfrominspector:traversalOn(true)
+dragModelfrominspector:showfocusBorder(false)
+dragModelfrominspector:icon(0)
+dragModelfrominspector:hiliteIcon(0)
+dragModelfrominspector:borderWidth(2)
+dragModelfrominspector:textFont("Arial")
+dragModelfrominspector:textSize(11)
+dragModelfrominspector:textAlign("left")
+
+dragModelfrominspector:dragIt(false)
+
+dragModelfrominspector:fullRootLine("particles,e6")

@@ -1,0 +1,12 @@
+--- image "alphacircle_png",User,ig3d_UI_MAIN
+alphacircle_png:rect(92,174,114,196)
+alphacircle_png:short name("alphacircle_png")
+alphacircle_png:id(4504)
+alphacircle_png:tooltip( 4504)
+alphacircle_png:visible(true)
+alphacircle_png:dontDither(false)
+alphacircle_png:alwaysBuffer(true)
+alphacircle_png:angle(0)
+alphacircle_png:showBorder(false)
+alphacircle_png:threeD(true)
+alphacircle_png:borderWidth(2)

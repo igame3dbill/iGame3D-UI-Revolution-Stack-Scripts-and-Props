@@ -1,0 +1,3 @@
+commandHeader,restoreObjects[["player
+put 5.225652,29.323566,54.521065
+spin 3.333328,-170.206421,0.000000"]]

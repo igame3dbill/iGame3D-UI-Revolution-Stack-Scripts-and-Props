@@ -1,0 +1,4 @@
+--- button "save",card id 1002,scriptHarvesterig3d
+on mouseUp
+  save this stack
+end mouseUp

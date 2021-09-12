@@ -1,0 +1,12 @@
+--- image "showmesh_png",User,ig3d_UI_MAIN
+showmesh_png:rect(860,115,876,131)
+showmesh_png:short name("showmesh_png")
+showmesh_png:id(4415)
+showmesh_png:tooltip( 4415)
+showmesh_png:visible(true)
+showmesh_png:dontDither(false)
+showmesh_png:alwaysBuffer(true)
+showmesh_png:angle(0)
+showmesh_png:showBorder(false)
+showmesh_png:threeD(true)
+showmesh_png:borderWidth(2)

@@ -1,0 +1,17 @@
+--- button "Export_Every_Font",card id 1002,GLfontMaker07
+Export_Every_Font:rect(392,286,490,312)
+Export_Every_Font:short name("Export_Every_Font")
+Export_Every_Font:style("standard")
+Export_Every_Font:visible(true)
+Export_Every_Font:showName(true)
+Export_Every_Font:autoHilite(true)
+Export_Every_Font:opaque(true)
+Export_Every_Font:sharedHilite(true)
+Export_Every_Font:traversalOn(true)
+Export_Every_Font:showfocusBorder(true)
+Export_Every_Font:icon(0)
+Export_Every_Font:hiliteIcon(0)
+Export_Every_Font:borderWidth(2)
+Export_Every_Font:textAlign("center")
+
+Export_Every_Font:pnum(1)

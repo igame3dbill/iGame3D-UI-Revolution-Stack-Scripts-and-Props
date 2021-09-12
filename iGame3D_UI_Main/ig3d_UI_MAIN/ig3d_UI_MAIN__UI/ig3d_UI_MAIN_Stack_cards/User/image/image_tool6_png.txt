@@ -1,0 +1,12 @@
+--- image "tool6_png",User,ig3d_UI_MAIN
+tool6_png:rect(786,69,810,93)
+tool6_png:short name("tool6_png")
+tool6_png:id(4239)
+tool6_png:tooltip( 4239)
+tool6_png:visible(true)
+tool6_png:dontDither(false)
+tool6_png:alwaysBuffer(true)
+tool6_png:angle(0)
+tool6_png:showBorder(false)
+tool6_png:threeD(true)
+tool6_png:borderWidth(2)

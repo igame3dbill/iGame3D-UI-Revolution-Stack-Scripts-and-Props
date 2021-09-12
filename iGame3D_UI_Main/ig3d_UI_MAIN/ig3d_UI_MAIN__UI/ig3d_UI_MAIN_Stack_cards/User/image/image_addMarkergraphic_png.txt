@@ -1,0 +1,12 @@
+--- image "addMarkergraphic_png",User,ig3d_UI_MAIN
+addMarkergraphic_png:rect(424,99,456,131)
+addMarkergraphic_png:short name("addMarkergraphic_png")
+addMarkergraphic_png:id(4422)
+addMarkergraphic_png:tooltip( 4422)
+addMarkergraphic_png:visible(true)
+addMarkergraphic_png:dontDither(false)
+addMarkergraphic_png:alwaysBuffer(true)
+addMarkergraphic_png:angle(0)
+addMarkergraphic_png:showBorder(false)
+addMarkergraphic_png:threeD(true)
+addMarkergraphic_png:borderWidth(2)

@@ -1,0 +1,6 @@
+--- field "list2" of group "group_id_1243" of group "guigroup" of card "revcard" of stack "murgaRevOut" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+  do local object = fltk:Fl_Double_Window(437, 238, "Console");
+    do consoleScroll = fltk:Fl_Scroll(5, 5, 420, 195);
+      do consoleOut = fltk:Fl_Multiline_Output(5, 5, 2048, 2048);
+    do consoleIn = fltk:Fl_Input(10, 205, 345, 25);
+    do local object = fltk:Fl_Button(360, 205, 65, 25, "Run");

@@ -1,0 +1,12 @@
+--- image "SpinXZ_png",User,ig3d_UI_MAIN
+SpinXZ_png:rect(352,106,376,131)
+SpinXZ_png:short name("SpinXZ_png")
+SpinXZ_png:id(4231)
+SpinXZ_png:tooltip( 4231)
+SpinXZ_png:visible(true)
+SpinXZ_png:dontDither(false)
+SpinXZ_png:alwaysBuffer(true)
+SpinXZ_png:angle(0)
+SpinXZ_png:showBorder(false)
+SpinXZ_png:threeD(true)
+SpinXZ_png:borderWidth(2)

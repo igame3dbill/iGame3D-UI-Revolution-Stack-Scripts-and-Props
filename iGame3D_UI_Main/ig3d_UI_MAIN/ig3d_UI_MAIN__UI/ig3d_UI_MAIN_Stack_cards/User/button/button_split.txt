@@ -1,0 +1,30 @@
+--- button "split",User,ig3d_UI_MAIN
+split:rect(514,22,544,48)
+split:short name("split")
+split:label("split")
+split:toolTip("Split Mesh Line Tool")
+split:style("transparent")
+split:visible(true)
+split:showName(false)
+split:autoHilite(false)
+split:opaque(false)
+split:sharedHilite(false)
+split:traversalOn(true)
+split:showfocusBorder(false)
+split:icon(4237)
+split:hiliteIcon(0)
+split:borderWidth(1)
+split:textFont("Arial")
+split:textSize(9)
+split:textAlign("right")
+
+split:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+split:oldValue(12)
+
+split:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+split:pathView("Levels/xman_44")

@@ -1,0 +1,3 @@
+--- player "previewPlayer",card id 1002,previewStack
+
+previewPlayer:source(1103)

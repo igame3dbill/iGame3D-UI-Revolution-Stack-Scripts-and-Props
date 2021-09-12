@@ -1,0 +1,10 @@
+--- button "popMenu",card id 1002,scriptHarvesterig3d
+
+-- --
+on menupick x
+  switch x
+  case "harvest"
+    collectthescripts
+    break
+  end switch
+end menupick

@@ -1,0 +1,12 @@
+--- image "autoBoneicon_png",User,ig3d_UI_MAIN
+autoBoneicon_png:rect(829,65,861,97)
+autoBoneicon_png:short name("autoBoneicon_png")
+autoBoneicon_png:id(4494)
+autoBoneicon_png:tooltip( 4494)
+autoBoneicon_png:visible(true)
+autoBoneicon_png:dontDither(false)
+autoBoneicon_png:alwaysBuffer(true)
+autoBoneicon_png:angle(0)
+autoBoneicon_png:showBorder(false)
+autoBoneicon_png:threeD(true)
+autoBoneicon_png:borderWidth(2)

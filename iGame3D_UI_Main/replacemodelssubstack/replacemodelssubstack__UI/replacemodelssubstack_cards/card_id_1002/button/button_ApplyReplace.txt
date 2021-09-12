@@ -1,0 +1,18 @@
+--- button "ApplyReplace",card id 1002,replacemodelssubstack
+ApplyReplace:rect(14,240,156,262)
+ApplyReplace:short name("ApplyReplace")
+ApplyReplace:label("Apply Replace")
+ApplyReplace:style("standard")
+ApplyReplace:visible(true)
+ApplyReplace:showName(true)
+ApplyReplace:autoHilite(true)
+ApplyReplace:opaque(true)
+ApplyReplace:sharedHilite(true)
+ApplyReplace:traversalOn(true)
+ApplyReplace:showfocusBorder(true)
+ApplyReplace:icon(0)
+ApplyReplace:hiliteIcon(0)
+ApplyReplace:borderWidth(2)
+ApplyReplace:textAlign("center")
+
+ApplyReplace:replaceModel("120sphere")

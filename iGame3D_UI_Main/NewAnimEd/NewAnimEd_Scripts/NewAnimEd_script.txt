@@ -1,0 +1,272 @@
+-- script of stack "NewAnimEd"
+on closeField
+  updateFromAnimationControls
+end closeField
+-- --
+on openField
+  updateFromAnimationControls
+end openField
+-- --
+on enterInField
+  updateFromAnimationControls
+end enterInField
+-- --
+on exitField
+  updateFromAnimationControls
+end exitField
+-- --
+on returnInField
+  updateFromAnimationControls
+end returnInField
+-- --
+on updateFromAnimationControls
+  lock messages
+  put "x,y,z" into theXYZ
+  repeat for each item W in theXYZ
+    put W & "pos" into thePOS
+    put W & "posArrow" into theSCRL
+    if fld thePOS is not a number or fld thePOS is empty then put "0.00" into fld thePOS
+     put W & "ang" into theRot
+     put W & "angslid" into theRotSC
+       if fld theRot is not a number or fld theRot is empty then put "0.00" into fld theRot
+       if fld theRot  > 180 then put 180 into fld theRot
+       if fld theRot < -180 then put -180 into fld theRot
+   put fld theROT into newRot
+  set the thumbPosition of scrollbar theRotSC to newRot
+end repeat
+put "stime,etime" into tTime
+repeat for each item TT in tTime
+  if fld TT is empty then put 0 into fld TT
+  if fld TT < 0 then put 0 into fld TT
+  if fld TT is not a number then put 0 into fld TT
+end repeat
+curMarkersUpdate
+end updateFromAnimationControls
+-- --
+on doArrows what 
+  
+  set itemDel to comma
+  put item 1 of what into theObj
+  put item 2 of what into theKey
+  put ig3d_GetElapsedSeconds__f() into p
+  put the arrowVal of this stack into senseMove
+  if the shiftKey is down then  put the shiftArrowVal of this stack into senseMove
+if the altKey is down then put the altArrowVal of this stack into senseMove
+  put "line 1 of field" && quoted(theObj) && "into n" into getVal
+  do "put" && getVal
+  switch theKey
+    case "65362" ---- "up"
+      put n+(senseMove*10) into newVal
+      put "newVal into line 1 of field" && quoted(theObj) into putVal
+do "put" && putVal
+      break
+     case "65364"    --- "down"
+      put n-(senseMove*10) into newVal
+      put "newVal into line 1 of field" && quoted(theObj) into putVal
+do "put" && putVal
+      break
+    case "65361" ---"left"
+   put n-(senseMove*10) into newVal
+      break
+case "65363" --- "right"
+        put n+(senseMove*10) into newVal
+  break
+end switch
+updateFromAnimationControls
+ig3d_Idle
+put the short name of the current card into tCard
+put keysDown()  into K
+if K contains "65505" then  replace (65505 & comma) with empty in K
+if item 1 of K <= 65364 and item 1 of K  >= 65361   then send "doArrowsFIELD" && quoted(theObj & comma & item 1 of K) to field "bonelist" in 0 seconds
+end doArrows
+-- --
+Function timeAtPlayHead
+  return (item 1 of  loc of grc "playheadtrig" of group "playhead" - (left of group "Knochen" + 4 - the hScroll of group "Knochen")) / 100
+end timeAtPlayHead
+-- --
+Function timeToHCoord theTime
+  return round((theTime*100) + left of group "Knochen" + 4 - the hScroll of group "Knochen")
+end timeToHCoord
+-- --
+Function hCoordToTime hCoord
+    return (hCoord - (left of group "Knochen" + 4 - the hScroll of group "Knochen")) / 100
+end hCoordToTime
+-- --
+on movePlayHeadToTime theTime
+  set the loc of graphic "playheadtrig" to (timeToHCoord(theTime),item 2 of loc of graphic "playheadtrig")
+  set the loc of graphic "playheadline" to (timeToHCoord(theTime),item 2 of loc of graphic "playheadline")
+end movePlayHeadToTime
+-- --
+on curMarkersUpdate
+  repeat with m=1 to the number of lines of cd fld "selMarkers"
+    send "updateMDataFromGUI" to graphic (line m of cd fld "selMarkers")
+  end repeat
+  if word 2 of the selectedLine of cd fld "bonelist" > 0 and word 2 of the selectedLine of cd fld "bonelist" is not empty then
+  
+  ig3d_SetObjectBoneInfo_2s6f objectName(), boneName(), cd fld "xpos",cd fld "ypos",cd fld "zpos", cd fld "xang",cd fld "yang" & ,cd fld "zang"
+  
+  end if
+end curMarkersUpdate
+ on UnselectMarkers
+ repeat with m=1 to the number of lines of cd fld "selMarkers"
+   if there is a graphic (line m of cd fld "selMarkers") then set the backColor of graphic (line m of cd fld "selMarkers") to the myOffColor of graphic "markertemplate"
+ end repeat
+ put "" into cd fld "selMarkers"
+end UnselectMarkers
+-- --
+on updateAllBonesToPlaytime tim
+  put cd fld "allMarkers" into matchingMarkers
+  //sort out any markers that dont match the time frame and convert the list with the names of the markers to a list containing the data of each marker
+  repeat with m= the number of lines of matchingMarkers down to 1
+    if there is not a graphic (line m of matchingMarkers) then
+      delete line m of matchingMarkers
+    else
+      if item 3 of the mData of graphic (line m of matchingMarkers) > tim then
+        delete line m of matchingMarkers
+      else
+        put the mData of graphic (line m of matchingMarkers) into line m of matchingMarkers
+      end if
+    end if
+  end repeat
+  
+  set the blockSelBone of this stack to true
+  //now sort the markers by time in each bone timeline
+  repeat with m = 1 to the number of lines of cd fld "bonelist"
+    put "" into thisBoneMarkers
+    repeat with n=1 to the number of lines of matchingMarkers
+      if item 1 of line n of matchingMarkers = m then put line n of matchingMarkers into line (number of lines of thisBoneMarkers + 1) of thisBoneMarkers
+    end repeat
+    repeat with j=1 to the number of lines of thisBoneMarkers
+      put item 3 of line j of thisBoneMarkers & comma before line j of thisBoneMarkers
+    end repeat
+    sort thisBoneMarkers
+    --put T3DCommand("bone" && quote & line m of cd fld "bonelist" & quote) into waste
+    put "0,0,0,0,0,0" into boneData
+    repeat with j=1 to the number of lines of thisBoneMarkers
+      put item 4 of line j of thisBoneMarkers into stime
+      put item 5 of line j of thisBoneMarkers into etime
+      //now items 6 to 8 store x,y,z position mods and 9 to 11 the x,y,z rotation mods
+      
+      if item 3 of line j of thisBoneMarkers is false or tim > etime then
+        put item 6 to 11 of line j of thisBoneMarkers into boneData
+      else
+        put tim - stime into passedTime
+        put etime - stime into dur
+        put passedTime / dur into multiman
+        put item 6 of line j of thisBoneMarkers - item 1 of boneData into step
+        put item 1 of boneData + (step * multiman) into item 1 of boneData
+        put item 7 of line j of thisBoneMarkers - item 2 of boneData into step
+        put item 2 of boneData + (step * multiman) into item 2 of boneData
+        put item 8 of line j of thisBoneMarkers - item 3 of boneData into step
+        put item 3 of boneData + (step * multiman) into item 3 of boneData
+        put item 9 of line j of thisBoneMarkers - item 4 of boneData into step
+        put item 4 of boneData + (step * multiman) into item 4 of boneData
+        put item 10 of line j of thisBoneMarkers - item 5 of boneData into step
+        put item 5 of boneData + (step * multiman) into item 5 of boneData
+        put item 11 of line j of thisBoneMarkers - item 6 of boneData into step
+        put item 6 of boneData + (step * multiman) into item 6 of boneData
+      end if
+      
+    end repeat
+      ig3d_SetObjectBoneInfo_2s6f objectName(), line m of cd fld "bonelist", item 1 of boneData, item 2 of boneData, item 3 of boneData, item 4 of boneData, item 5 of boneData, item 6 of boneData
+     end repeat
+  --put T3DCommand("bone" && quote & line (word 2 of the selectedLine of cd fld "bonelist") of cd fld "bonelist" & quote) into waste
+  set the blockSelBone of this stack to false
+end updateAllBonesToPlaytime
+-- --
+on preOpenStack
+  put ig3d_GetSelection__s() into i
+  put last word of line 1 of i into cd fld "objectname" of stack "NewAnimEd"
+  ig3d_SetMode_i 2
+end preOpenStack
+-- --
+on closeStack
+  ig3d_SetMode_i 1
+end closeStack
+-- --
+on DeleteAllMarkers
+  set lockScreen to true
+  repeat with m=the number of lines of cd fld "allMarkers" down to 1
+    if there is a graphic (line m of cd fld "allMarkers") then
+    delete graphic (line m of cd fld "allMarkers")
+    end if
+  end repeat
+put "" into cd fld "selMarkers"
+put "" into cd fld "allMarkers"
+set lockScreen to false
+end DeleteAllMarkers
+-- --
+Function GUIToMarkerList
+  //now build the list of markers:
+  put cd fld "allMarkers" into markerList
+  repeat with m= 1 to the number of lines of markerList
+    if there is a graphic (line m of markerList) then put the mData of grc (line m of markerList) into line m of markerList
+  end repeat
+  replace return with "¶" in markerList
+return markerList
+end GUIToMarkerList
+-- --
+on markerListToGUI markerList
+  DeleteAllMarkers
+  replace "¶" with return in markerList
+  set lockScreen to true
+  repeat with m=1 to the number of lines of markerList
+    clone graphic "markertemplate"
+put "marker" & word 3 of it into grcName
+set name of it to grcName
+put grcName into line (number of lines of cd fld "allMarkers" + 1) of cd fld "allMarkers"
+set the mData of grc (grcName) to line m of markerList
+set hilite of cd btn "Transition" to item 2 of line m of markerList
+put grcName into cd fld "selMarkers"
+send mouseUp to cd btn "Transition"
+send updateAppearanceFromMData to grc (grcName)
+set loc of grc (grcName) to (item 1 of loc of grc (grcName),item 2 of the loc of grc "markertemplate" + (item 1 of line m of markerList -1)*14)
+show grc (grcName)
+  end repeat
+  put "" into cd fld "selMarkers"
+set lockScreen to false
+end markerListToGUI
+-- --
+on updateNewAnimEd
+  //sent by main stack from external event:
+  DeleteAllMarkers
+  send "mouseUp" to cd btn "Load Animations" of stack "NewAnimEd"
+   if number of lines of cd fld "bonelist" of stack "NewAnimEd" > 0 then
+if the wantedBone of this stack is not empty then
+  send "selBone" && the wantedBone of this stack to cd fld "bonelist"
+else
+        select line 1 of cd fld "bonelist" of stack "NewAnimEd" 
+  send "mouseUp" to cd fld "bonelist" of stack "NewAnimEd"
+  end if
+end if
+end updateNewAnimEd
+-- --
+on InitNewAnimEd
+ set the textHeight of cd fld "bonelist" of stack "NewAnimEd" to 14
+  set the textHeight of cd fld "boneTable" of group "Knochen" of stack "NewAnimEd"  to 14
+//get rid of bone  markers first:
+DeleteAllMarkers
+//
+  //show the bones
+  ig3d_SetMode_i 2
+      put SetMkey(showBones,true) into showthebones
+   //
+   
+   //load the selected object's anims
+ send "mouseUp" to cd btn "Load Animations" of stack "NewAnimEd"
+   if number of lines of cd fld "bonelist" of stack "NewAnimEd" > 0 then
+      select line 1 of cd fld "bonelist" of stack "NewAnimEd" 
+  send "mouseUp" to cd fld "bonelist" of stack "NewAnimEd" 
+end if
+   
+  //rev fucks up the lineIncrement values for the position fields on save, we reset them here
+  //set lockScreen to false
+end InitNewAnimEd
+-- --
+Function objectName
+  return cd fld "objectname"
+end objectName
+-- --
+Function boneName
+  return line (word 2 of the selectedLine of cd fld "bonelist") of cd fld "bonelist"
+end boneName

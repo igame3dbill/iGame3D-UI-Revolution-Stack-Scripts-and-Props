@@ -1,0 +1,152 @@
+--- graphic "markertemplate",card id 1002,NewAnimEd
+on mouseDown
+  set the hOffset of me to item 1 of the mouseLoc - the left of me
+  
+ repeat with m=1 to the number of lines of cd fld "selMarkers"
+   if there is a graphic (line m of cd fld "selMarkers") then set the backColor of graphic (line m of cd fld "selMarkers") to the myOffColor of graphic "markertemplate"
+ end repeat
+  put the short name of me into cd fld "selMarkers"
+  set the backColor of me to the myDragColor of me
+  
+  set the blockSelBone of this stack to true
+  --put T3DCommand("bone" && quote & line (item 1 of the mData of me) of cd fld "bonelist" & quote) into waste
+  select line 0 of cd fld "bonelist"--
+  select line (item 1 of the mData of me) of cd fld "bonelist"
+   updateGUIFromMData
+  select line (item 1 of the mData of me) of cd fld "bonelist"
+  
+  
+  repeat until the mouse is up
+    switch the sizeDrag of me
+      case ""
+        doit
+        break
+      case "l"
+        put the right of me into r
+        put (r-item 1 of the mouseLoc) into newwidth
+        put the width of me into w
+        if newwidth > 4 then set the width of me to newwidth
+        if the left of me < left of group "Knochen" + 4 then set the width of me to w
+        set the right of me to r
+        break
+      case "r"
+        put the left of me into l
+        put (item 1 of the mouseLoc-l) into newwidth
+        put the width of me into w
+        if newwidth > 4 then set the width of me to newwidth
+if the right of me > right of group "Knochen" then set the width of me to w
+        set the left of me to l
+        break
+      
+    end switch
+    updateMDataFromAppearance
+  updateGUIFromMData
+  end repeat
+  
+  set the loc of graphic "playheadtrig" to (left of me, item 2 of loc of graphic "playheadtrig")
+  set the loc of graphic "playheadline" to (left of me, item 2 of loc of graphic "playheadline")
+  updateAllBonesToPlaytime timeAtPlayhead()
+  set the blockSelBone of this stack to false
+  set the backColor of me to the mySelColor of me
+end mouseDown
+-- --
+on mouseWithin
+  put item 1 of the mouseLoc into h
+  put the left of me into h2
+  put the right of me into h3
+  
+  set lockScreen to true
+  set the sizeDrag of me to ""
+  set the defaultCursor to hand
+  
+  if (abs(h2-h) < 4) then
+  set the defaultCursor to cross
+  set the sizeDrag of me to "l"
+  end if
+  
+  if (abs(h3-h) < 4) then 
+  set the defaultCursor to cross
+  set the sizeDrag of me to "r"
+  end if
+set lockScreen to false
+end mouseWithin
+-- --
+on mouseLeave
+  set the defaultCursor to hand
+end mouseLeave
+-- --
+on doit
+put item 1 of the mouseLoc - the hOffset of me into l
+put l + the width of me into r
+put the right of group "Knochen" into rlim
+put the left of group "Knochen" + 4 into llim
+if r > rlim then
+  put the hScroll of group "Knochen" into hscr
+  add (r-rlim) to hscr
+  if hscr >= 11658 then put 11658 into hscr
+  put rlim - the width of me into l
+  set the hScroll of group "Knochen" to hscr
+  end if
+  
+if l < llim then
+ put the hScroll of group "Knochen" into hscr
+  add (l-llim) to hscr
+  if hscr <= 0 then put 0 into hscr
+  put llim into l
+  set the hScroll of group "Knochen" to hscr
+  end if
+  set the left of me to l
+end doit
+-- --
+on updateMDataFromAppearance
+  put the mData of me into mdat
+  put hCoordToTime(left of me) into item 3 of mdat
+  put hCoordToTime(right of me) into item 4 of mdat
+  set the mData of me to mdat
+end updateMDataFromAppearance
+-- --
+on updateAppearanceFromMData
+  set lockScreen to true
+  put the mData of me into mdat
+  put timeToHCoord(item 3 of mdat) into l
+  put timeToHCoord(item 4 of mdat) into r
+  set width of me to (r-l)
+  set the left of me to l
+  set lockScreen to false
+end updateAppearanceFromMData
+-- --
+on updateGUIFromMData
+  set lockScreen to true
+  put the mData of me into mdat
+  set the hilite of cd btn "Transition" to item 2 of mdat
+  put item 5 of mdat into cd fld "xpos"
+  put item 6 of mdat into cd fld "ypos"
+  put item 7 of mdat into cd fld "zpos"
+ 
+  put item 8 of mdat into cd fld "xang"
+  put item 9 of mdat into cd fld "yang"
+  put item 10 of mdat into cd fld "zang"
+  set the thumbPosition of scrollbar "xangslid" to item 8 of mdat
+  set the thumbPosition of scrollbar "yangslid" to item 9 of mdat
+  set the thumbPosition of scrollbar "zangslid" to item 10 of mdat
+  put item 3 of mdat into cd fld "stime"
+  put item 4 of mdat into cd fld "etime"
+  set lockScreen to false
+end updateGUIFromMData
+-- --
+on updateMDataFromGUI
+  if the blockSelBone of this stack is false then
+  put the mData of me into mdat
+  put hilite of cd btn "Transition" into item 2 of mdat
+  put cd fld "stime" into item 3 of mdat
+  put cd fld "etime" into item 4 of mdat
+  put cd fld "xpos" into item 5 of mdat
+  put cd fld "ypos" into item 6 of mdat
+  put cd fld "zpos" into item 7 of mdat
+  put cd fld "xang" into item 8 of mdat
+  put cd fld "yang" into item 9 of mdat
+  put cd fld "zang" into item 10 of mdat
+set the mData of me to mdat
+updateAppearanceFromMData
+end if
+end updateMDataFromGUI

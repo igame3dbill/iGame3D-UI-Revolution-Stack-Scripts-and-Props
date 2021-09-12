@@ -1,0 +1,15 @@
+--- button "Button_1",card id 1002ofFindT3d,Find T3D
+on mouseDown
+  save this stack
+  set the visible of fld "FindAndReplaceList" to not the visible of fld "findAndReplaceList"
+--  put the label of btn "result" into theFN
+--  replace space with  empty in theFN
+--  replace "/" with empty in theFN
+--    replace ":" with empty in theFN
+--  put word -2 to -1 of theFN into theHits
+--  
+--  put fld "f1" into theSearchString
+-- 
+--  put "file:/" & folderPath("output/searches") & "search" && theSearchString && theHits &   ".txt" into gCurrentOutputPath
+--  put fld "T3DS" into URL giGame3DOutput
+end mouseDown

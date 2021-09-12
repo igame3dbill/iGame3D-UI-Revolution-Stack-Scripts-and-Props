@@ -1,0 +1,4 @@
+--- player "previewPlayer",Soundslibcard,filesLibrary
+on mouseDown
+  send dragit to fld "List"
+end mouseDown

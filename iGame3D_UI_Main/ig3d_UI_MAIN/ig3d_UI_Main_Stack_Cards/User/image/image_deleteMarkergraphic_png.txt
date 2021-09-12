@@ -1,0 +1,12 @@
+--- image "deleteMarkergraphic_png",User,ig3d_UI_MAIN
+deleteMarkergraphic_png:rect(456,99,488,131)
+deleteMarkergraphic_png:short name("deleteMarkergraphic_png")
+deleteMarkergraphic_png:id(4423)
+deleteMarkergraphic_png:tooltip( 4423)
+deleteMarkergraphic_png:visible(true)
+deleteMarkergraphic_png:dontDither(false)
+deleteMarkergraphic_png:alwaysBuffer(true)
+deleteMarkergraphic_png:angle(0)
+deleteMarkergraphic_png:showBorder(false)
+deleteMarkergraphic_png:threeD(true)
+deleteMarkergraphic_png:borderWidth(2)

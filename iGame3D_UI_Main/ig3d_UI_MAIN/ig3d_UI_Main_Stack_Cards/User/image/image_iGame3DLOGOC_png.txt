@@ -1,0 +1,11 @@
+--- image "iGame3DLOGOC_png",User,ig3d_UI_MAIN
+iGame3DLOGOC_png:rect(-3,-10,61,54)
+iGame3DLOGOC_png:short name("iGame3DLOGOC_png")
+iGame3DLOGOC_png:id(4460)
+iGame3DLOGOC_png:visible(true)
+iGame3DLOGOC_png:dontDither(false)
+iGame3DLOGOC_png:alwaysBuffer(true)
+iGame3DLOGOC_png:angle(0)
+iGame3DLOGOC_png:showBorder(false)
+iGame3DLOGOC_png:threeD(true)
+iGame3DLOGOC_png:borderWidth(2)

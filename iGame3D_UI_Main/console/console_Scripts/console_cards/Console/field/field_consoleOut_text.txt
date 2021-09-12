@@ -1,0 +1,3 @@
+--- field "consoleOut" of group "ConsoleGroup" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+
+	-- [string "line"]:128: attempt to call global 'ig3d_RebuildMacMenubar' (a nil value)

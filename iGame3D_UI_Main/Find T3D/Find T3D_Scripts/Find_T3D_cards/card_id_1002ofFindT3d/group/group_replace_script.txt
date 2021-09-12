@@ -1,0 +1,80 @@
+--- group "replace",card id 1002ofFindT3d,Find T3D
+global gReplaceHistory,gFindWhat
+-- --
+on mouseup
+  if the num of words in fld "T3Ds" < 3 then exit to top
+  switch the short name of the target
+  case "replace"
+    --put the label of btn "find_what" into tFW
+    if the mainstack of this stack <> "find t3d" then put the label of btn "find_what" into tFW
+    else put fld "F1" into tFW
+    put fld "Replace" into tR
+    put the hilitedLine of fld "T3Ds" into tL
+    switch word 1 of line tL of fld "T3Ds"
+    case "line"
+      put fld "T3Ds" into tFT
+      put word 1 to -1 of line tL of tFT into tLineToChange
+      put tL into tLNum
+      repeat
+        if word 1 of line tLNum of tFT is among the items of "script,stackscript,cardscript" then exit repeat
+        subtract 1 from tLNum
+      end repeat
+      set the itemdelimiter to ":"
+      put word 3 to -1 of item 1 of line tLNum of tFT into tObject
+      put the script of tObject into tObjectScript
+      put word 2 of item 1 of tLineToChange into tRLN
+      replace tFW with tR in line tRLN of tObjectScript
+      set the script of tObject to tObjectScript
+   
+      put gReplaceHistory[tObject] into tLookUp
+      if offset(tLineToChange,tLookup) = 0 then put the long seconds & tab & word 1 to -1 of tLineToChange  & tab & tObject & cr after gReplaceHistory[tObject]
+      if offset(("line" && tRLN && ":" && line tRLN of tObjectScript),tLookup) = 0 then put the long seconds &tab & "line" && tRLN && ":" && line tRLN of tObjectScript & cr after gReplaceHistory[tObject]
+      ### test for the change
+      put "   line" && tRLN && ":" && line tRLN of the script of tObject into line tL of fld "T3Ds"
+      put the script of tObject into fld "scrbs"
+      select line tRLN of fld "scrbs"
+      set the hilitedline of fld "T3Ds" to tL
+      manageHistory
+    end switch
+    break
+  default
+    beep
+    break
+  case "skip"
+    selectNextOrSkipLine
+    break
+  end switch
+end mouseup
+-- --
+on changeScriptIfNecessary
+  put the hilitedline of fld "T3Ds" into tL
+  put fld "T3Ds" into tFT
+  repeat
+    if word 1 of line tL of tFT is among the items of "script,stackscript,cardscript" then exit repeat
+    subtract 1 from tL
+  end repeat
+  put char 1 to -2 of (word 3 to -1 of line tL of tFT) into tN
+  put the name of tN into tNN
+  put the hilitedline of fld "T3Ds" into tL
+  if tNN is not in the label of btn "scripts" then send "mousedown" to fld "T3Ds"
+  else if word 1 of line tl of tFT = "line" then select line (word 2 of line tL of tFT) of fld "scrbs"
+  manageHistory tN
+end changeScriptIfNecessary
+-- --
+on selectNextOrSkipLine
+  get the hilitedLine of fld "T3Ds"
+  put it into tL 
+  if it = "" then get 0
+  add 1 to it
+  repeat
+    if it > num(lines in fld "T3Ds") then 
+      put true into tEOF
+      exit repeat
+    --else if line it of fld "T3Ds" <> "" then exit repeat
+    else if word 1 of line it of fld "T3Ds" = "line" then exit repeat
+    else add 1 to it
+  end repeat
+  if tEOF then set the hilitedLine of fld "T3Ds" to tL
+  else set the hilitedLine of fld "T3Ds" to it
+  changeScriptIfNecessary
+end selectNextOrSkipLine

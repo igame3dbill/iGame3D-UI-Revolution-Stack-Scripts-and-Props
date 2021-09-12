@@ -1,0 +1,22 @@
+--- button "animChooser",card id 1002,NewAnimEd
+on mouseDown
+  put the allDaAnimationsData of me into theData
+   put GUIToMarkerList() into line (word 2 of the selectedLine of me) of theData
+   set the allDaAnimationsData of me to theData
+end mouseDown
+-- --
+on menuPick what
+  if the blockSelBone of this stack is false then
+  repeat with m= 1 to the number of lines of me
+    if line m of me = what then
+      --put T3DCommand("straight true") into waste // reposition the model when loading a new animation
+      put ig3d_ExecuteLua_s_i("setObjectInfo(get(ig3d_object, " && quote & objectName() & quote & "), IG3D_ANIMATION, " & quote & "STOP" & quote & ",0,true)")
+      MarkerListToGUI (line m of the allDaAnimationsData of me)
+      movePlayHeadToTime 0
+  updateAllBonesToPlaytime timeAtPlayhead()
+set the hScroll of group "Knochen" to 0
+      exit repeat
+      end if
+  end repeat
+  end if
+end menuPick

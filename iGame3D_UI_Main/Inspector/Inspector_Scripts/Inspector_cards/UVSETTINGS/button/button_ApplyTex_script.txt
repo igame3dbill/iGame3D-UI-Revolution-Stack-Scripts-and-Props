@@ -1,0 +1,5 @@
+--- button "ApplyTex",UVSETTINGS,Inspector
+on mouseUp
+ applyUV
+  closeField
+end mouseUp

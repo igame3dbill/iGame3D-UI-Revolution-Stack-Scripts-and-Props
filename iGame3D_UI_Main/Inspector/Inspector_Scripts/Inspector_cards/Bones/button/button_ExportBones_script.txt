@@ -1,0 +1,32 @@
+--- button "ExportBones",Bones,Inspector
+
+-- --
+on mouseUp
+answer "Export Style" with "Bones" and "line" and "vertex" and "path" and "raw"
+put it into exportStyle
+switch exportStyle
+  case "line"
+    case "vertex"
+    put it & space into pre
+    break 
+  case "path"
+    case "raw"
+      put empty into pre
+      break
+end switch
+put T3DGetBonesMesh() into theBones
+repeat for each line L in theBones
+T3DChangeGlobal 41,(word 1 of L) --SelectBone
+if exportStyle is "Bones" then put word 1 of L & space into pre
+put pre & ig3d_GetMeshCentroid__3f()   after theBonesXYZ
+end repeat
+delete last char of theBonesXYZ
+put thisLevel("long") into theLevel
+put listScripts(theLevel) into theScripts
+put exportStyle & "*" into filta
+filter theScripts with filta
+put num(lines of thescripts) into n
+if exportStyle is "path" then put num(lines of theBonesXYZ) & cr before theBonesXYZ
+put "file:/" & thisLevel("path") & exportStyle &"_"&n &".lua" into theFile
+put theBonesXYZ into URL theFile
+end mouseUp

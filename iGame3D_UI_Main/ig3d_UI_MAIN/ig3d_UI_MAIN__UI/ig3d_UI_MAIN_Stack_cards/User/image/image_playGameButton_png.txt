@@ -1,0 +1,12 @@
+--- image "playGameButton_png",User,ig3d_UI_MAIN
+playGameButton_png:rect(188,176,210,196)
+playGameButton_png:short name("playGameButton_png")
+playGameButton_png:id(4272)
+playGameButton_png:tooltip( 4272)
+playGameButton_png:visible(true)
+playGameButton_png:dontDither(false)
+playGameButton_png:alwaysBuffer(true)
+playGameButton_png:angle(0)
+playGameButton_png:showBorder(false)
+playGameButton_png:threeD(true)
+playGameButton_png:borderWidth(2)

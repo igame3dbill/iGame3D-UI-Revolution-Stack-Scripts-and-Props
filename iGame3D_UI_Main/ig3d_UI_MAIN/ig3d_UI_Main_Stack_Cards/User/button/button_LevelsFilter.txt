@@ -1,0 +1,31 @@
+--- button "LevelsFilter",User,ig3d_UI_MAIN
+LevelsFilter:rect(457,-83,581,-61)
+LevelsFilter:short name("LevelsFilter")
+LevelsFilter:toolTip("Filter Model List")
+LevelsFilter:style("menu")
+LevelsFilter:visible(false)
+LevelsFilter:showName(true)
+LevelsFilter:autoHilite(false)
+LevelsFilter:opaque(true)
+LevelsFilter:sharedHilite(true)
+LevelsFilter:traversalOn(true)
+LevelsFilter:showfocusBorder(true)
+LevelsFilter:icon(0)
+LevelsFilter:hiliteIcon(0)
+LevelsFilter:borderWidth(1)
+LevelsFilter:textFont("Arial")
+LevelsFilter:textSize(9)
+LevelsFilter:textAlign("center")
+
+LevelsFilter:historyMenu([["
+being
+being
+being
+e
+d
+c
+c
+v
+b
+a
+"]])

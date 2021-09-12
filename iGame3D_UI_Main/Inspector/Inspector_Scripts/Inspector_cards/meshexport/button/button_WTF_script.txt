@@ -1,0 +1,13 @@
+--- button "WTF",meshexport,Inspector
+on mouseUp
+  
+  if the hilite of me is false then
+    disable button "Make_after_Export"
+    set the hilite of button "Make_after_Export" to false
+    set the hilite of button "savePreviewPNG" to false
+    disable button "savePreviewPNG" 
+else
+enable btn "savePreviewPNG"
+  if hilite of btn "WTF" is true then  then  enable button "Make_after_export"
+end if
+end mouseUp

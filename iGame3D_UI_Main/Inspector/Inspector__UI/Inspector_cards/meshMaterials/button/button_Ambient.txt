@@ -1,0 +1,21 @@
+--- button "Ambient",meshMaterials,Inspector
+Ambient:rect(40,50,96,70)
+Ambient:short name("Ambient")
+Ambient:style("rectangle")
+Ambient:visible(true)
+Ambient:showName(true)
+Ambient:autoHilite(false)
+Ambient:opaque(true)
+Ambient:sharedHilite(false)
+Ambient:traversalOn(true)
+Ambient:showfocusBorder(true)
+Ambient:icon(0)
+Ambient:hiliteIcon(0)
+Ambient:borderWidth(2)
+Ambient:textFont(" Arial")
+Ambient:textSize(9)
+Ambient:textAlign("center")
+
+Ambient:ranger(-1)
+
+Ambient:colVals("0,0.871094,0.742188,1")

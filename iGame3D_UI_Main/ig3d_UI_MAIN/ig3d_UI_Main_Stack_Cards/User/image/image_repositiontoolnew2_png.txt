@@ -1,0 +1,12 @@
+--- image "repositiontoolnew2_png",User,ig3d_UI_MAIN
+repositiontoolnew2_png:rect(922,109,944,131)
+repositiontoolnew2_png:short name("repositiontoolnew2_png")
+repositiontoolnew2_png:id(4502)
+repositiontoolnew2_png:tooltip( 4502)
+repositiontoolnew2_png:visible(true)
+repositiontoolnew2_png:dontDither(false)
+repositiontoolnew2_png:alwaysBuffer(true)
+repositiontoolnew2_png:angle(0)
+repositiontoolnew2_png:showBorder(false)
+repositiontoolnew2_png:threeD(true)
+repositiontoolnew2_png:borderWidth(2)

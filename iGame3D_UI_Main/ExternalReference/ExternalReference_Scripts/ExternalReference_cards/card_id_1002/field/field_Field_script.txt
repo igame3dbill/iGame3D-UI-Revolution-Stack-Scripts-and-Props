@@ -1,0 +1,40 @@
+--- field "Field",card id 1002,ExternalReference
+on rawKeyUp
+  put line 1 to -1 of fld "mainc" into Flist
+  replace "{"&quote with empty in flist
+  put quote & comma & " XCOMMAND, 0, " into xckill
+  put quote & comma & " XFUNCTION, 0, " into xkill
+  replace xckill with tab&"Command"&tab in flist
+  replace xkill with tab&"Function"&tab in flist
+  replace "XCabort},//" with tab in flist
+  replace ", , " with tab in flist
+  
+  
+  put "" into field com
+  repeat for each line n in flist
+    if n is not empty then
+      if char 1 to 2 of n is "//" then 
+        put char 3 to -1 of n into tHeader
+        put theader & cr after allhead
+        next repeat
+      end if
+      
+      set itemDel to tab
+      put item 1 of N  into  tWORD
+      put item 2 of n into FuncOrCom
+ 
+     
+      IF char 1 of FuncOrCom is "F" THEN  
+        put tword & "()" &cr after allfunc 
+      else
+        put tWord & cr after allCom
+      end if
+    end if
+  end repeat
+  
+  delete char -1 of allCom
+  put allfunc & allCom into tFltData
+  put "*"&line 1 of me & "*" into fltFor
+    if line 1 of me is not empty then filter tFltData with fltfor
+    put tFltData into  field "com"
+end rawKeyUp

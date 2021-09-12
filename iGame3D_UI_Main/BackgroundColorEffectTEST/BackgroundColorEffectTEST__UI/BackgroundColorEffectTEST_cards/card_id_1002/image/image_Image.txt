@@ -1,0 +1,12 @@
+--- image "Image",card id 1002,BackgroundColorEffectTEST
+Image:rect(20,38,180,202)
+Image:short name("Image")
+Image:fileName("/Volumes/DEV/06iGame3d1230PC/Data/Images/skyboss2.png")
+Image:id(1004)
+Image:visible(true)
+Image:dontDither(false)
+Image:alwaysBuffer(false)
+Image:angle(0)
+Image:showBorder(true)
+Image:threeD(false)
+Image:borderWidth(1)

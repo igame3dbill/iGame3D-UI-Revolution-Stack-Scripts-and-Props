@@ -1,0 +1,12 @@
+--- image "consoleButtonimageangle_png",User,ig3d_UI_MAIN
+consoleButtonimageangle_png:rect(624,99,656,131)
+consoleButtonimageangle_png:short name("consoleButtonimageangle_png")
+consoleButtonimageangle_png:id(4391)
+consoleButtonimageangle_png:tooltip( 4391)
+consoleButtonimageangle_png:visible(true)
+consoleButtonimageangle_png:dontDither(false)
+consoleButtonimageangle_png:alwaysBuffer(true)
+consoleButtonimageangle_png:angle(0)
+consoleButtonimageangle_png:showBorder(false)
+consoleButtonimageangle_png:threeD(true)
+consoleButtonimageangle_png:borderWidth(2)

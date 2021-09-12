@@ -1,0 +1,40 @@
+--- field "boneXYZ",Bones,Inspector
+--on mouseEnter
+--  set itemDel to tab
+--  select the mouseText
+--  set the selLin of me to word 2 selectedLine of me
+--  put the selectedText of me into mySel
+--  
+--  put itemOffset(mySel,line word 2 selectedLine of me of me) into i
+--  select item i of line word 2 selectedLine of me of  me
+--end mouseEnter
+-- --
+on mouseDown
+  set itemDel to tab
+  select the mouseText
+  set the selLin of me to word 2 selectedLine of me
+  put the selectedText of me into mySel
+  put itemOffset(mySel,line word 2 selectedLine of me of me) into i
+    select item i of line word 2 selectedLine of me of  me
+    set the changeItem of me to i
+    put item i of line word 2 selectedLine of me of  me into myVal
+    set the changeVal of me to myVal
+    set the firstClick of me to the mouseloc
+    pass mouseDown
+end mouseDown
+-- --
+on mouseStillDown
+  if the mouseloc is in the rect of me then
+  put the changeVal of me into myVal
+  put the firstClick of me into oxoy
+  put the mouseloc into xy
+    put (item 1 of  xy - item 1 of oxoy)/10 into theunit
+     put theunit + myVal into myNewVal
+     set the changeVal of me to myNewVal
+     put the changeItem of me into i
+     put the selLin of me into n
+     put myNewVal into item i of line n of me
+   end if
+   
+   pass mouseStillDown
+end mouseStillDown

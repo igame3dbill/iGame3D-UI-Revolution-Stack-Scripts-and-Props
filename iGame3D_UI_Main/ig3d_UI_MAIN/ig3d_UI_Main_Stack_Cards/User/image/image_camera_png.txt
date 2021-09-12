@@ -1,0 +1,12 @@
+--- image "camera_png",User,ig3d_UI_MAIN
+camera_png:rect(100,103,124,128)
+camera_png:short name("camera_png")
+camera_png:id(4197)
+camera_png:tooltip( 4197)
+camera_png:visible(true)
+camera_png:dontDither(false)
+camera_png:alwaysBuffer(true)
+camera_png:angle(0)
+camera_png:showBorder(false)
+camera_png:threeD(true)
+camera_png:borderWidth(2)

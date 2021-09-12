@@ -1,0 +1,14 @@
+--- button "LineNumtoggle",Console,console
+on mousedown
+  lock screen
+  set the visible of fld "lineNum" to not the visible of fld "lineNum"
+  if the visible of fld "lineNum" then 
+    set the label of me to "LN <"
+    set the tabstops of fld "bgField" to 39,2000
+  else 
+    set the label of me to "LN >"
+    set the tabstops of fld "bgField" to 2000
+  end if
+   updateLineNums
+  resizestack the width of this cd,the height of this cd
+end mousedown

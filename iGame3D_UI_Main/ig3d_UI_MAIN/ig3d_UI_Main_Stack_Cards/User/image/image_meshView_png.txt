@@ -1,0 +1,12 @@
+--- image "meshView_png",User,ig3d_UI_MAIN
+meshView_png:rect(494,69,518,93)
+meshView_png:short name("meshView_png")
+meshView_png:id(4211)
+meshView_png:tooltip( 4211)
+meshView_png:visible(true)
+meshView_png:dontDither(false)
+meshView_png:alwaysBuffer(true)
+meshView_png:angle(0)
+meshView_png:showBorder(false)
+meshView_png:threeD(true)
+meshView_png:borderWidth(2)

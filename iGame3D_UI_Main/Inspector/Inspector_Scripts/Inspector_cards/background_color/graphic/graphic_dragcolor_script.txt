@@ -1,0 +1,69 @@
+--- graphic "dragcolor",background_color,Inspector
+on dragMe
+   if the visible of me is false then show me
+  if the mouse is down then 
+ 
+    send dragMe to me in 20 milliseconds
+    set the loc of me to the mouseloc
+  else
+    dropMe
+  end if
+end dragMe
+-- --
+on dropMe
+  put the loc of me into theLoc
+  put the cardNames of stack "inspector" into theList
+  put the secondColor of me into myRGB
+     put FixMouseColor(myRGB) into argh
+    hide me
+put item 1 of argh/256.0 into R
+  put  item 2 of argh/256.0 into G
+  put  item 3 of argh/256.0 into B
+  put R & comma & G & comma & B into RGB
+filter theList with "*_color*"
+  repeat for each line C in theList
+    replace "_color" with empty in C
+    put C & "rect" into theGrc
+    put C & "memory" into memGrc
+    put c & "_color" into tcard
+    if theLoc is within the rect of grc "preview" then
+      set the secondColor of grc "preview" of card tcard of stack "inspector" to myRGB
+      set the secondColor of grc memGrc  stack "inspector" to myRGB
+     exit repeat
+      end if
+  end repeat
+put 0 into nc
+put false into fieldFilled
+   repeat with nc = 1 to 3 
+       
+       put "f" & nc into bnam
+     if theLoc is within the rect of btn bnam then 
+     set the label of btn bnam to ( item nc of RGB)
+     put true into fieldFilled
+     exit repeat
+   end if
+ end repeat
+ 
+  if filledField = false then  
+  put "red,green,blue"  into theFlds
+  repeat with x = 1 to 3
+    put item x of rgb  into fld (item x of theflds) of card C of stack "inspector"
+  end repeat
+end if
+      
+--send MenuPick && C to fld "root" of stack "inspector"
+   put item itemOffset(c,"TINT,Background") of "IG3D_TINT_COLOR,IG3D_BACKGROUND_COLOR" into theluaCommand
+ switch c
+   case "grid"
+      ig3d_SetGridColor_3f (R),(G),(B)
+     break
+     case "tint"
+         case "background"
+        put "setSceneInfo("&theLUACommand & "," &  rgb &")" into theLUAColorCommand
+     put ig3d_ExecuteLua_s_i(theLUAColorCommand) into livecolor
+       break
+       case "fog"
+         updateFog
+         break
+ end switch
+end dropMe

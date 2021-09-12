@@ -1,0 +1,38 @@
+--- button "stackschoice",card id 1002ofFindT3d,Find T3D
+on mousedown
+  set the opaque of me to true
+end mousedown
+-- --
+on mouseup
+  set the opaque of me to false
+end mouseup
+-- --
+on mouserelease
+  set the opaque of me to false
+end mouserelease
+-- --
+on menupick x
+  switch x
+  case "all"
+    put stackList("all","true") into tSL
+    break
+  case "no rev & no plugins"
+    put stackList("noIDE+","true") into tSL
+    break
+  case "no rev"
+    put stackList("noIDE","true") into tSL
+    break
+  case "only plugins"
+    put stackList("onlyPlugIns","true") into tSL
+    break
+  case "only rev"
+    put stackList("onlyIde","true") into tSL
+    break
+  case "the windows"
+    put stackList("windows","true") into tSL
+    break
+  end switch
+  put tSl into field "Stacks"
+  mouserelease
+  resetControls
+end menupick

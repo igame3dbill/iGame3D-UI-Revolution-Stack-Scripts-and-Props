@@ -1,0 +1,26 @@
+-- script of stack "previewImage"
+on imagesTabPick
+  show stack "previewImage"
+    set the decorations of stack "previewImage" to none
+   set the loc of stack "previewImage" to -256,-256
+  set the width of stack "previewImage" to 72
+  set the height of stack "previewImage" to 72
+ set the rect of image "previewImage" of stack "PreviewImage" to 0,0,72,72 
+  hide    stack "previewImage"
+end imagesTabPick
+-- --
+on mouseUp
+  hide stack "previewImage"
+end mouseUp
+-- --
+on resetPreviewStack what
+  set the topLeft of stack "previewImage" to     -200,-200
+  set the dragit of stack "previewImage" to false
+  put fileName of image "previewImage" into fileP
+  if what is "corner" then
+    put screenRect() into SR
+    put item -3 of SR - the width of stack "previewImage" into L
+     put item -4 of SR - the Height of stack "previewImage" into T
+     set the topLeft of stack "previewImage" to T & comma & L
+     end if
+end resetPreviewStack

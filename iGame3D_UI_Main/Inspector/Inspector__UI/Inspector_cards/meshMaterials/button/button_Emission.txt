@@ -1,0 +1,21 @@
+--- button "Emission",meshMaterials,Inspector
+Emission:rect(40,110,96,130)
+Emission:short name("Emission")
+Emission:style("rectangle")
+Emission:visible(true)
+Emission:showName(true)
+Emission:autoHilite(false)
+Emission:opaque(true)
+Emission:sharedHilite(false)
+Emission:traversalOn(true)
+Emission:showfocusBorder(true)
+Emission:icon(0)
+Emission:hiliteIcon(0)
+Emission:borderWidth(2)
+Emission:textFont(" Arial")
+Emission:textSize(9)
+Emission:textAlign("center")
+
+Emission:ranger(-1)
+
+Emission:colVals("0.582031,0.417969,1,1")

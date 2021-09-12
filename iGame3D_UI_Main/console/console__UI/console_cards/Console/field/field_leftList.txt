@@ -1,0 +1,39 @@
+--- field "leftList",Console,console
+leftList:rect(-2,14,187,377)
+leftList:short name("leftList")
+leftList:disabled(false)
+leftList:visible(true)
+leftList:sharedText(false)
+leftList:dontWrap(true)
+leftList:lockText(true)
+leftList:opaque(false)
+leftList:traversalOn(false)
+leftList:showFocusBorder(false)
+leftList:autoTab(false)
+leftList:threeD(false)
+leftList:showBorder(true)
+leftList:borderWidth(1)
+leftList:hScrollbar(false)
+leftList:vScrollbar(false)
+leftList:autoHilite(true)
+leftList:listBehavior(true)
+leftList:toggleHilites(false)
+leftList:fixedLineHeight(false)
+leftList:textHeight(14)
+leftList:firstIndent(0)
+leftList:textFont("Arial")
+leftList:textSize(11)
+leftList:textAlign("left")
+
+leftList:pristineCondition([["console
+scripts
+open files:"]])
+
+leftList:Button3([["new text
+open text
+close text
+-
+save text
+save text as
+-
+revert"]])

@@ -1,0 +1,8 @@
+--- button "New___",card id 1002,NewAnimEd
+on mouseUp
+  ask "Please enter the name of the new animation:" with "New Animation"
+  if it is not empty then
+    put it into line (number of lines of cd btn "animChooser"+1) of cd btn "animChooser"
+    select last line of cd btn "animChooser"
+    end if
+end mouseUp

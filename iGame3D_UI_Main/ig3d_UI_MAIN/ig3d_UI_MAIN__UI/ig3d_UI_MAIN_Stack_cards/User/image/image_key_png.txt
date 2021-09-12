@@ -1,0 +1,12 @@
+--- image "key_png",User,ig3d_UI_MAIN
+key_png:rect(398,69,422,93)
+key_png:short name("key_png")
+key_png:id(4207)
+key_png:tooltip( 4207)
+key_png:visible(true)
+key_png:dontDither(false)
+key_png:alwaysBuffer(true)
+key_png:angle(0)
+key_png:showBorder(false)
+key_png:threeD(true)
+key_png:borderWidth(2)

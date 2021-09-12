@@ -1,0 +1,4 @@
+--- field "f1",meshexport,Inspector
+on returninfield
+  send returninfield to the current card of this stack
+end returninfield

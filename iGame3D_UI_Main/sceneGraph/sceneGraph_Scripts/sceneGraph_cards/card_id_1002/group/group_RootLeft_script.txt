@@ -1,0 +1,246 @@
+--- group "RootLeft",card id 1002,sceneGraph
+local lTarget,lHilites,lPicks,lPath 
+-- --
+on resetRoot
+  put the initialRoot of fld "root" of lPath into fld "root" of lPath
+  set the hilitedline of fld "root" of lPath to 1
+  clearcols
+  checkhilites
+  exit to top
+end resetRoot
+ 
+-- --
+on rawKeyDown theKey   --- captures the mouseWheel 01 08 07 ---bill
+  put the editingMode of stack (the mainStack of this stack) into EM
+  if visible of field "f1" is false then
+    focus btn 1 of stack (the mainStack of this stack)
+         --send rawKeyDown && keysdown() to stack (the mainStack of this stack) in 0 milliseconds
+         exit rawKeyDown
+end if
+      if theKey is among the items of "65361,65362,65363,65364" then send arrowkey && thekey to field "f1" in 30 milliseconds
+pass rawKeyDown
+--02 09 07 bill
+--if thekey  is among the items of "65308,65309" then put the short name of the mouseControl into col
+--     if numToChar(theKey) is a number then put true into IsAnumber
+--     if theKey is among the items of "65293,65421,65361,65362,65363,65364" then put true into checkEdit
+--     if checkEdit is true or isAnumber is true then
+--     put the short name of the focusedObject into col
+--     if the visible of field "f1" is false  then 
+--          focus btn 1 of stack (the mainStack of this stack)
+--     send rawKeyDown && theKey to stack (the mainStack of this stack)
+--     else
+--
+--  end if
+--   end if
+--   pass rawkeydown
+end rawkeyDown
+-- --
+on mouseUp
+send updateColumnPositions to me  in 40 milliseconds
+end mouseUp
+-- --
+on mousedown
+put setMkey(lastClick,(the screenmouseLoc)) into setIt
+if visible of fld "f1" is true and the ScreenMouseLoc is not within the rect of fld "f1" then hideFone
+  put the short name of the target into tName
+  put the ruggedPath of this stack into lPath
+  --if the optionkey is down then resetroot
+  switch tName
+  case "div1"
+  case "div2"
+  case "div3"
+    divmove
+  
+ break
+  case "root"
+  case "col1"
+  case "col2"
+  case "col3"
+    set the lastClick of fld tName to the mouseLoc
+    lock screen
+    MatchedLineHilites tName
+    checkhilites --tPath
+    ### to force update on hilite before the manageFields has run
+    wait 0 millisecs with messages ### may be not necessary anymore
+         lock screen
+           
+    manageFields tName
+    checkhilites --tPath
+    scenePopCheck
+    
+  if num(chars of the mouseLine)  = 0  then 
+    hideFone
+    focus btn 1 of stack (the mainStack of this stack)
+  end if
+  unlock screen
+  break
+end switch
+end mousedown
+-- --
+on scenePopCheck
+  put the short name of target into COL
+   if col is not among the items of "root,col1,col2,col3" then exit scenePopCheck
+  put the hilitedLine of fld COL into ColLine
+  put the hilitedText of fld COL into COLPick
+   put theRootPick() into rp
+     put checkForMenuPop(col,rp) into checkpopinfo
+     if the visible of field "f1" is false  then 
+       put colt(col) into ct
+       put coln(col) into cn
+     checkForAskField col,cn,ct
+end if
+end scenePopCheck
+-- --
+on sendManageRoot
+  put "group "&quoted("RootLeft")&" of card "&quoted("card id 1002")&" of stack "&quoted("sceneGraph") into trgt
+  send manageFields &&  trgt to group "rootLeft"
+end sendManageRoot
+-- --
+on manageFields pField
+  local checkList
+  if pField = "" then put the short name of the target into tField
+put the ruggedPath of stack "SceneGraph" into lpath
+put lpath into tpath
+  put the chosenSceneGraphMatrix of stack (the  mainStack of this stack) into checkList
+     put getMkey(editingmode) into EM
+  repeat for each item i in "root,col1,col2,col3"
+    get the hilitedline of fld i of lpath
+    if it <> "" then put it into lHilites[i]
+    else put 0 into lHilites[i]  ### this should solve the empty items of the hilites after a while
+    put the hilitedtext of fld i of lpath into lPicks[i]
+    put the hilitedtext of fld i of lpath &"," after alflds
+  end repeat
+  put setMkey(rootPick,lPicks["root"]) into lPicks["setRootLinePick"]
+  put getmkey(sceneGraphPicks) into previousLinePicks
+  put line lHilites["root"] of previousLinePicks into PreviousPick
+  put item 2 of PreviousPick into lHilites["col1pick"]
+  put item 3 of PreviousPick into lHilites["col2pick"]
+  put item 4 of PreviousPick into  lHilites["col3pick"]
+  put lPick["root"],lPick["Column1Pick"],lPick["Column2Pick"],lPick["Column3Pick"] into chosenMeshEntityPicks
+  put alflds into line lHilites["root"] of checkList
+  put (lHilites["root"],lHilites["col1"],lHilites["col2"],lHilites["col3"]) into CurrentLinePicks
+  put currentLinePicks into line lHilites["root"] of previousLinePicks
+  set the sceneGraphPicks of stack (the  mainstack of this stack) to previousLinePicks
+set the sceneGraphPickLines of stack (the mainStack of this stack) to currentLinePicks
+set the sceneGraphPickWords of stack (the mainstack of this stack) to alflds
+  set the sceneGraphPickText of stack (the  mainStack of this stack) to line 1 to -1 of checkList 
+  ###  sceneGraphPickText ##== was meshEntityList ## REMOVE ALL &check chosenSceneGraphMatrix
+ 
+###ARRRAY
+  split checkList by numtochar(13) and numtochar(14)
+  put "sceneGraphPicks,SceneGraphPickLines,SceneGraphPickWords,ScenegraphPickText" into tList
+  put previousLinePicks&"¢"&currentLinePicks&"¢"&currentLinePicks&"¢"&alflds&"¢"&line 1 to -1 of checkList into managedFieldData
+  set itemDel to "¢"
+  repeat with x = 1 to 4
+    put item x of managedFieldData into checkList[EM,(item x of tlist)]
+  end repeat
+  combine checkList with numtochar(13) and numtochar(14)
+  set the chosenSceneGraphMatrix of stack (the mainStack of this stack) to checkList
+   switch pField
+ 
+  case "root"
+    clearcols
+    wait 0 secs with messages
+    rootFieldClick
+    break
+  case "col1" --Column1Pick
+    col1FieldClick
+    break
+  case "col2"
+    col2FieldClick
+    break
+  case "col3"
+    col3FieldClick
+    break
+  end switch
+  checkscrollbars
+  refillColumns
+end manageFields
+-- --
+on updateColumnPositions
+  put the ruggedPath of stack "SceneGraph" into lpath
+  put the width of stack "sceneGraph" into W
+  put the width of fld "root" of lpath into defaultW
+  put W- defaultW into SavePortion
+  put SavePortion/4 into Stretch
+  if fld "col1" of lpath is empty then set the width of fld "col1" to stretch
+   else set the width of fld "col1" of lpath to the formattedWidth of fld "col1" of lpath
+       if fld "col2" of lpath is empty then set the width of fld "col2" to stretch
+      else set the width of fld "col2" to the formattedWidth of fld "col2" of lpath
+      set the left of fld "col1" of lpath to the right of fld "root" of lpath
+    set the left of fld "col2" of lpath to the right of fld "col1" of lpath
+put the right of fld "col2" of lpath into defaultW
+  put W- defaultW into SavePortion
+   set the width of fld "col3" to SavePortion
+   --else set the width of fld "col3" of lpath to  the formattedWidth of fld "col3" of lpath
+    set the left of fld "col3" of lpath to the right of fld "col2" of lpath
+  end updateColumnPositions
+  
+-- --
+on divmove 
+  if the mouse is down then
+    if lTarget = "" then put the long name of the target into lTarget
+    if "button" && quote & "div" is not in lTarget then
+      put "" into lTarget
+      exit divmove
+    end if
+    put char offset("group",lTarget) to offset("of stack",lTarget) - 2 of lTarget into lpath
+    --|| fld root |div1| fld col1 |div2| fld col2 |div3| fld col3 ||
+    lock screen
+    set the loc of lTarget to mouseh(),item 2 of the loc of lTarget
+    
+    switch the short name of lTarget
+    case "div1"
+      set the rect of fld "root" of lpath to 0,-2,right of btn "div1" of lpath - 2,bottom of fld "root" of lpath
+      set the rect of fld "rootbg" of lpath to the rect of fld "root" of lpath
+      set the rect of fld "col1" of lpath to topright of btn "div1" of lpath,bottomright of fld "col1" of lpath
+      break
+    case "div2"
+      set the rect of fld "col1" of lpath to topleft of fld "col1" of lpath,left of btn "div2" of lpath + 3,bottom of btn "div2" of lpath
+      set the rect of fld "col2" of lpath to left of btn "div2" of lpath + 2,top of btn "div2" of lpath,bottomright of fld "col2" of lpath
+      break
+    case "div3"
+      set the rect of fld "col2" of lpath to topleft of fld "col2" of lpath,left of btn "div3" of lpath + 3,bottom of btn "div3" of lpath
+      set the rect of fld "col3" of lpath to left of btn "div3" of lpath + 2,top of btn "div3" of lpath,the width of this cd,bottom of btn "div3" of lpath
+      break
+    end switch
+    unlock screen
+    send "divmove" to me in 50 millisecs
+  else put "" into lTarget
+end divmove
+-- --
+on mouseEnter
+  if the short name of the target is among the items of "div1,div2,div3" then
+    lock cursor
+    set the cursor to 1031
+  end if
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+end mouseleave
+-- --
+on clearCols
+  put "Col1,Col2,Col3" into tFields
+  repeat for each item i in tFields
+    put "" into fld i of lPath
+  end repeat
+end clearCols
+-- --
+on updateVisibility
+  put getcol2Text("visibility") into theBools
+end updateVisibility
+-- --
+on updateSwitchedHilites whatField
+  checkhilites
+    ### to force update on hilite before the manageFields has run
+    wait 0 millisecs with messages ### may be not necessary anymore
+         --lock screen
+           MatchedLineHilites whatField
+     manageFields   whatField 
+    checkhilites --tPath
+    put colt(whatField) into whatText
+    put coln(whatField) into WhatLine
+    checkForAskField whatField,whatline,whattext
+    scenePopCheck
+end updateSwitchedHilites

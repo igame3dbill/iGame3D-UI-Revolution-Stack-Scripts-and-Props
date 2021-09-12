@@ -1,0 +1,20 @@
+--- field "GameOverViewList" of group "Game_OverView" of card id 1002 of stack "GameOverViewData" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+Overview
+Philosophy
+What is the Game?
+What are the Goals?
+Audience
+Setting
+Avatar(s)
+Focus
+Unique Features
+General Features
+Editors
+GamePlay
+GameWorld Overview
+GameWorld Features
+Physical World
+Overview
+Travel
+Scale
+Weather

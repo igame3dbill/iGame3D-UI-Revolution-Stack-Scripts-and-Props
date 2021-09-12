@@ -1,0 +1,13 @@
+--- button "InsertToLoadScript",meshexport,Inspector
+on mouseUp
+  
+  if the hilite of me is false then
+    disable button "Make after Export"
+    set the hilite of button "Make after Export" to false
+    set the hilite of button "savePreviewPNG" to false
+    disable button "savePreviewPNG" 
+else
+enable btn "savePreviewPNG"
+  if field "PathForExport" contains "WTF" then  enable button "Make after Export"
+end if
+end mouseUp

@@ -1,0 +1,18 @@
+--- group "playhead",card id 1002,NewAnimEd
+playhead:rect(141,18,167,36)
+playhead:short name("playhead")
+playhead:disabled(false)
+playhead:showName(false)
+playhead:opaque(false)
+playhead:showborder(false)
+playhead:hScrollbar(false)
+playhead:vScrollbar(false)
+playhead:scrollbarWidth(20)
+playhead:visible(true)
+playhead:threeD(true)
+playhead:radioBehavior(true)
+playhead:tabGroupBehavior(false)
+playhead:backgroundBehavior(false)
+playhead:textAlign("left")
+
+playhead:hOffset(2)

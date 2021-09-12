@@ -1,0 +1,12 @@
+--- image "sphere_png",User,ig3d_UI_MAIN
+sphere_png:rect(304,107,328,131)
+sphere_png:short name("sphere_png")
+sphere_png:id(4229)
+sphere_png:tooltip( 4229)
+sphere_png:visible(true)
+sphere_png:dontDither(false)
+sphere_png:alwaysBuffer(true)
+sphere_png:angle(0)
+sphere_png:showBorder(false)
+sphere_png:threeD(true)
+sphere_png:borderWidth(2)

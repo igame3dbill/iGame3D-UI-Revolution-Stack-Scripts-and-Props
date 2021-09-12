@@ -1,0 +1,10 @@
+--- group "colorRootGroup",fog,color
+on mouseDown
+  put the short Name of the current Card of stack "Color" into tNam
+  put tNam & "memory" into memgrc
+  if the mouseloc is within the rect of grc tNam of card tNam then 
+  set the secondColor of grc memgrc to the secondColor of grc tNam of card Tnam
+   set the secondColor of grc "dragColor" to the secondColor of grc tNam of card Tnam
+  send dragMe to grc "dragColor" in 40 milliseconds
+end if
+end mouseDown

@@ -1,0 +1,2 @@
+--- field "GREEN" of group "colorRootGroup" of group "MainColorGroup" of card "fog" of stack "color" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+0.03125

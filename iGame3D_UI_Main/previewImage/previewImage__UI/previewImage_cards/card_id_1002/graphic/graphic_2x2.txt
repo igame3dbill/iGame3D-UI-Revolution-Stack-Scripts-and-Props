@@ -1,0 +1,1 @@
+--- graphic "2x2",card id 1002,previewImage

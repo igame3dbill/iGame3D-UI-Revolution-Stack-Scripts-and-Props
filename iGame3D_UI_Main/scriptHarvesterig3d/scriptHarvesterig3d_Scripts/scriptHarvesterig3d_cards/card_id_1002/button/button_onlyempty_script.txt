@@ -1,0 +1,15 @@
+--- button "onlyempty",card id 1002,scriptHarvesterig3d
+on mouseup
+  switch the hilite of me
+  case true
+    disable grp "withwithout"
+    disable btn "filtermenu"
+    filterkeysbycomment "onlyempty"
+    break
+  case false
+    enable grp "withwithout"
+    enable btn "filtermenu"
+    filterkeysbycomment the label of btn "filtermenu"
+    break
+  end switch
+end mouseup

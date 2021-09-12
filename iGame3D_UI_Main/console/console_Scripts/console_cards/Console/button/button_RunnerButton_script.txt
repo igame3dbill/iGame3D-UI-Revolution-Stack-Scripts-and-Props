@@ -1,0 +1,56 @@
+--- button "RunnerButton",Console,console
+on mouseUp
+  set the timeLimit of me to 1
+  set the hilite of me to false 
+  ask "Run for 1 to 100 seconds" with"100"
+  
+  if it  <1 or it  > 100  or it is empty then exit mouseUp
+set the hilite of me to true
+  set the timeLimit of me to it
+    set the readLine of me to 1
+  put cd fld "editField" into mySc
+  set the igame3Dscript of me to mySC
+  put ig3d_GetObjectInfo_s_s() into mySel
+if mySel is not empty then
+put "get" && quoted(line 1 of mySel) into A
+put "put" && line 2 of mySel into B
+put "spin" && line 3 of mySel into C
+put A & return & B & return & C & return  into myPutBack
+end if
+put T3DGetInfo("camera") into mySel
+put "put" && line 1 of mySel into B
+put "spin" && line 2 of mySel into C
+runmySc
+ pass mouseUp
+end mouseUp
+-- --
+on runmySc
+put the readLine of me into rl
+put the timeLimit of me into T
+put the igame3Dscript of me into mySc
+put the Timer of me into n
+put T3DCommand(line rl of mySc) into silents
+put T3DResult("passed 1") into myTime
+if n < 0 or n is empty then 
+set the Timer of me to 1
+put 1 into n
+end if
+if rl > num(lines of mySc) then 
+put 1 into rl 
+set the readLine of me to 1
+put  1 + n into n
+set the Timer of me to n
+set the label of me to n
+end if
+if n < T then 
+put 1 + rl into rl
+set the readLine of me to rl
+else
+set the Timer of me to 1
+set the hilite of me to false
+set the label of me to 1
+put the restoreObjects of me into myRst
+put T3DCommand(line rl of mySc) into silents
+end if
+if the hilite of  me is true then send runmySc to me in myTime seconds
+end runmySc

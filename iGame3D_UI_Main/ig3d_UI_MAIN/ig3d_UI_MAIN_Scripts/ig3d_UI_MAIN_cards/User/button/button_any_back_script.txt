@@ -1,0 +1,56 @@
+--- button "any_back",User,ig3d_UI_MAIN
+on mouseEnter
+  put the name of me into myNam
+  put word 2 myNam into myWire
+  replace "back" with "line" in myWire
+    put  word 2 myNam into myPin
+ replace "back" with "pin" in myPin
+ put "button" && myPin into myPin
+do "put the loc of" && myPin && "into myLoc"
+put item 1 of myLoc into myX
+  put item 2 of  myLoc into stcky
+  do "put the points of graphic" && myWire && " into sensloc"
+    do "put item 1 line 1 the points of cd graphic" &&  myWire && " into grphX"
+  put item 1 of sensloc into stpx
+  put item 3 of sensloc into stpxtoo
+  put abs(stpx-item 1 of the mouseloc) into mouX
+  if mouX >= 101 then put 100 into mouX
+  if item 1 of the mouseloc <= stpx then put 1 into mouX
+  put stpx+mouX into mouX
+  --if the mouseloc is within the rect of me then do "set the loc of" && myPin && "to" && (mouX & comma & stcky)
+    do "put the loc of " &&  myPin && "into myLoc"
+  put item 1 of myLoc into myX
+  put abs(myX-grphX) into distFrom
+set the label of  me to distFrom
+end mouseEnter
+-- --
+on mouseDown
+  send mouseStillDown to me
+  pass mouseDown
+end mouseDown
+-- --
+on mouseStillDown
+  put the name of me into myNam
+  put word 2 myNam into myWire
+  replace "back" with "line" in myWire
+    put  word 2 myNam into myPin
+ replace "back" with "pin" in myPin
+ put "button" && myPin into myPin
+do "put the loc of" && myPin && "into myLoc"
+put item 1 of myLoc into myX
+  put item 2 of  myLoc into stcky
+  do "put the points of graphic" && myWire && " into sensloc"
+    do "put item 1 line 1 the points of cd graphic" &&  myWire && " into grphX"
+  put item 1 of sensloc into stpx
+  put item 3 of sensloc into stpxtoo
+  put abs(stpx-item 1 of the mouseloc) into mouX
+  if mouX >= 101 then put 100 into mouX
+  if item 1 of the mouseloc <= stpx then put 1 into mouX
+  put stpx+mouX into mouX
+  put myPin into SILENTPIN
+  if the mouseloc is within the rect of me then do "set the loc of" && myPin && "to" && (mouX & comma & stcky)
+    do "put the loc of " &&  myPin && "into myLoc"
+  put item 1 of myLoc into myX
+  put abs(myX-grphX) into distFrom
+set the label of  me to distFrom
+end mouseStillDown

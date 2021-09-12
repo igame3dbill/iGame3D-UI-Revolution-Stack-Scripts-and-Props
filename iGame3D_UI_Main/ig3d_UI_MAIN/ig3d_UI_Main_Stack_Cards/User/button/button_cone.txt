@@ -1,0 +1,77 @@
+--- button "cone",User,ig3d_UI_MAIN
+cone:rect(962,18,988,48)
+cone:short name("cone")
+cone:label("Cone")
+cone:toolTip("Cone")
+cone:style("transparent")
+cone:visible(false)
+cone:showName(false)
+cone:autoHilite(true)
+cone:opaque(false)
+cone:sharedHilite(true)
+cone:traversalOn(true)
+cone:showfocusBorder(false)
+cone:icon(4198)
+cone:hiliteIcon(0)
+cone:borderWidth(1)
+cone:textFont("Arial")
+cone:textSize(9)
+cone:textAlign("right")
+
+cone:oldValue(12)
+
+cone:lastClick("1036,184")
+
+cone:changeVal(0.000000)
+
+cone:grambient1("248,104,248")
+
+cone:grambient2("96,96,248")
+
+cone:grambient3("220,220,220")
+
+cone:grambient4("72,248,80")
+
+cone:firstClick("197,117")
+
+cone:pathView("Levels/xman_44")
+
+cone:selLin(7)
+
+cone:ambient1("0.003906,0.001637,0.003906")
+
+cone:grambient7("8,8,0")
+
+cone:ambient7("0.000125,0.000125,0")
+
+cone:ambient4("0.001133,0.003906,0.001262")
+
+cone:clickStart("1036,184")
+
+cone:ambient3("0.003465,0.003465,0.003465")
+
+cone:ambient2("0.001512,0.001512,0.003906")
+
+cone:ambientAlphaSetter("0.003465,0.003465,0.003465")
+
+cone:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+cone:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+cone:grambientAlphaSetter("220,220,220")
+
+cone:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+cone:treeDepth(0)
+
+cone:changeItem(1)

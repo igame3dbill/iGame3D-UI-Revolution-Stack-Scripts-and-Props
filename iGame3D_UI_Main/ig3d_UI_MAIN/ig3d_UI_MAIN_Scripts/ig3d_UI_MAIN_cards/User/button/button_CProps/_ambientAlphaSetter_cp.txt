@@ -1,0 +1,1 @@
+commandHeader,ambientAlphaSetter"0.003465,0.003465,0.003465"

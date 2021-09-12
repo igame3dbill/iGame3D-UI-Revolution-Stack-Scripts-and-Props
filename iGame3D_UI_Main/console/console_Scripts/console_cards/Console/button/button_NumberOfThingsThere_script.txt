@@ -1,0 +1,20 @@
+--- button "NumberOfThingsThere",Console,console
+on checkConsole
+  if  fld "consoleOut" of stack "Console" is empty then set the label of me to "1 of 1"
+  if the name of the focusedObject contains "consoleOut" then
+    put word 2 selectedLine of  fld "consoleOut" of stack "Console" into WhereAt
+    put (number of lines of  fld "consoleOut" of stack "Console") into HOWMany
+    if HOWMany <= WhereAt then put WhereAt into HOWMany
+    set the label of btn "NumberOfThingsThere" to  WhereAt && "of" && HOWMany
+    if  the name of the focusedObject contains "Console" then send checkConsole to me in 1 seconds
+  end if
+  
+end checkConsole
+-- --
+on mouseEnter
+  checkConsole
+end mouseEnter
+-- --
+on mouseUp
+   select line (word 1 of label of me) of fld "consoleOut" of stack "Console"
+end mouseUp

@@ -1,0 +1,5 @@
+--- button "without",card id 1002ofFindT3d,Find T3D
+--on mouseUp
+  if the hilite of me then enable fld "without"
+  else disable fld "without"
+end mouseUp

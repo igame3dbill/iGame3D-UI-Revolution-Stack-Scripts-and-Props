@@ -1,0 +1,4 @@
+--- button "pathselect",User,ig3d_UI_MAIN
+on mouseUp
+  
+end mouseUp

@@ -1,0 +1,33 @@
+--- button "PopMenu",Console,console
+on menupick which
+  switch which 
+  case "new text"
+  case "open text"
+  case "save text"
+  case "save text as"
+    ConsoleMenuPick "Files|"&which
+    break
+  case "revert"
+  case "close text"
+    --case "remove open file"
+    if tab is in line (the hilitedLine of fld "leftList") of fld "leftList" then 
+      ConsoleMenuPick "Files|"&which
+    else answer information "first select one of the open files..."
+    break
+  case "Copy text"
+  case "Cut text"
+  case "Paste text"
+  case "Select All text"
+  case "Delete text"
+  case "Clear text"
+  case "clear console"
+    ConsoleMenuPick "Edit|"&which
+    break
+  case "copy to clipboard"
+    send "finishMenupick" && which to fld "consoleOut"
+    break
+  default
+    addToConsoleOpenFiles "Scripts/" & which,"open"
+    break
+  end switch
+end menupick

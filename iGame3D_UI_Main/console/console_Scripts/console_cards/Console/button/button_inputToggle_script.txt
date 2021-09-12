@@ -1,0 +1,18 @@
+--- button "inputToggle",Console,console
+on mouseDown
+  if the icon of btn "consoleInToggle" = 1341 then 
+    set the label of me to "input: mixed"
+  else
+    switch the label of me
+    case "input: rev"
+      set the label of me to "input: mixed"
+      break
+    case "input: mixed"
+      set the label of me to "input: iGame3D"
+      break
+    case "input: iGame3D"
+      set the label of me to "input: rev"
+      break
+    end switch
+  end if
+end mouseDown

@@ -1,0 +1,12 @@
+--- image "greendownarrow_png",User,ig3d_UI_MAIN
+greendownarrow_png:rect(384,174,398,196)
+greendownarrow_png:short name("greendownarrow_png")
+greendownarrow_png:id(4615)
+greendownarrow_png:tooltip( 4615)
+greendownarrow_png:visible(true)
+greendownarrow_png:dontDither(false)
+greendownarrow_png:alwaysBuffer(true)
+greendownarrow_png:angle(0)
+greendownarrow_png:showBorder(false)
+greendownarrow_png:threeD(true)
+greendownarrow_png:borderWidth(2)

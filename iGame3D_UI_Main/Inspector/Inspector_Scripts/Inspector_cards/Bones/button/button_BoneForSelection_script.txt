@@ -1,0 +1,5 @@
+--- button "BoneForSelection",Bones,Inspector
+on mouseUp
+  put boneForSelection() into boneSel -- see mainStackScript
+    send "updateBoneTree" to cd fld "bonehier"
+end mouseUp

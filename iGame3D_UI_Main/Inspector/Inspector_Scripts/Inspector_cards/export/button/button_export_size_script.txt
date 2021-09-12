@@ -1,0 +1,51 @@
+--- button "export_size",export,Inspector
+on mouseUp
+  put folderPath() into whereAt
+  set the lockText of fld "nameofexport" to true
+    put cd fld "Export size" into MeshSize
+    put cd fld "PathForExport" into ThePath
+        put field "NameOfExport" into theFileName
+     if  the hilite of cd btn "3DS" is true then put  ".3ds" into theExportList
+  if  the hilite of cd btn "Meshwork" is true then put ".mesh" after theExportList
+  if  the hilite of cd btn "Obj" is true then put ".obj" after theExportList
+   if  the hilite of cd btn "WTF" is true then put ".wtf" after theExportList
+ set itemDel to "."
+ delete char 1 of theExportList
+ put "" into makeAction
+ repeat with x = 1 to the number of items of theExportList
+   put theFileName &"." & item x of theExportList & comma & ThePath & comma & MeshSize into ExportData
+      put quoted( theFileName &"." & item x of theExportList) into theExport
+if hilite of cd btn "Make After Export" is true and item x of theExportList is "wtf" then put "make(" & theExport &")" into makeAction
+   if hilite of cd btn "Selection Only" is true then
+     put ExportData & cr & saveSelectedVertex(theExport) & return after theExportOut
+    put "selection" into theAction
+  else
+     put "all" into theAction
+   put ExportData & cr & ExportMesh(ExportData) & cr after theExportOut
+  
+ end if
+  
+ end repeat
+    if the hilite of btn "savePreviewPng" is true then savesnap(theFileName)
+ if hilite of cd btn "Clear after export" is true then
+ig3d_PushMeshToUndoCache
+   if theAction is "all" then ig3d_SelectWholeMesh --select all
+ ig3d_DeleteMesh_b false  --delete vertices
+ end if
+if makeAction is not "" then 
+  put chooseATool("view") into theTool
+SendLuaCommand(makeAction)
+end if
+##close stack "Export3D"
+end mouseUp
+-- --
+on preopenCard
+  set the idleRate to 500
+  
+end preopenCard
+-- --
+on closeCard
+  set the idleRate to 1
+   
+ 
+end closeCard

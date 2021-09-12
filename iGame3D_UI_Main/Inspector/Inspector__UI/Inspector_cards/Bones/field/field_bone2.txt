@@ -1,0 +1,37 @@
+--- field "bone2",Bones,Inspector
+bone2:rect(398,54,468,168)
+bone2:short name("bone2")
+bone2:disabled(false)
+bone2:visible(true)
+bone2:sharedText(true)
+bone2:dontWrap(true)
+bone2:lockText(true)
+bone2:opaque(true)
+bone2:traversalOn(false)
+bone2:showFocusBorder(false)
+bone2:autoTab(false)
+bone2:threeD(true)
+bone2:showBorder(true)
+bone2:borderWidth(2)
+bone2:hScrollbar(false)
+bone2:vScrollbar(false)
+bone2:autoHilite(true)
+bone2:listBehavior(true)
+bone2:toggleHilites(false)
+bone2:fixedLineHeight(true)
+bone2:textHeight(14)
+bone2:firstIndent(0)
+bone2:textFont("Arial")
+bone2:textSize(9)
+bone2:textAlign("left")
+
+bone2:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+bone2:treeDepth(0)

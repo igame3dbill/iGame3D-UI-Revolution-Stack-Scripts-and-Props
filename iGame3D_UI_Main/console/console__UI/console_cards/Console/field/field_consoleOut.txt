@@ -1,0 +1,33 @@
+--- field "consoleOut",Console,console
+consoleOut:rect(190,55,676,377)
+consoleOut:short name("consoleOut")
+consoleOut:toolTip("Edit text. Command ? on a line to view help text of script syntax.")
+consoleOut:disabled(false)
+consoleOut:visible(true)
+consoleOut:sharedText(true)
+consoleOut:dontWrap(true)
+consoleOut:lockText(true)
+consoleOut:opaque(false)
+consoleOut:traversalOn(true)
+consoleOut:showFocusBorder(false)
+consoleOut:autoTab(false)
+consoleOut:threeD(false)
+consoleOut:showBorder(false)
+consoleOut:borderWidth(2)
+consoleOut:hScrollbar(true)
+consoleOut:vScrollbar(true)
+consoleOut:autoHilite(true)
+consoleOut:listBehavior(false)
+consoleOut:toggleHilites(false)
+consoleOut:fixedLineHeight(true)
+consoleOut:textHeight(16)
+consoleOut:firstIndent(0)
+consoleOut:textFont("Arial")
+consoleOut:textSize(11)
+consoleOut:textAlign("left")
+
+consoleOut:DOUNdO(true)
+
+consoleOut:button3([["copy to clipboard
+-
+clear console"]])

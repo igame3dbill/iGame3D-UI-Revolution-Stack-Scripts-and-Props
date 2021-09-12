@@ -1,0 +1,13 @@
+--- field "F1",card id 1002ofFindT3d,Find T3D
+on returninfield
+  send "mouseUp" to btn "find"
+end returninfield
+-- --
+on enterinfield
+  returninfield
+end enterinfield
+-- --
+on rawkeyDown theKey
+  if the commandKey is down and numtochar(item 1 of keysdown()) is "c" and  the clipboard is text then paste 
+     pass rawKeyDown
+end rawkeyDown

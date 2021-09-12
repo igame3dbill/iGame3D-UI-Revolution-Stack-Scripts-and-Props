@@ -1,0 +1,15 @@
+--- button "ImportWorldLayouts",card id 1002,GameOverViewData
+
+
+-- --
+on mouseUp
+  ask file "Import  World Layout Image"
+  if it is not empty then 
+  set the fileName of image "WorldLayoutImages" to it
+  put word 2 selectedLine of  cd fld "WorldLayoutList" into n
+  if n is not empty or n > 0 then
+  put  "the filePath" & n  && "of cd fld" & quote &  "WorldLayoutList" & quote into doSetz
+  do "set" & doSetz
+  end if
+  end if
+end mouseUp

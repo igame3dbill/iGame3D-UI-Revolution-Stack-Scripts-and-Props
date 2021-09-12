@@ -1,0 +1,21 @@
+--- button "colors",User,ig3d_UI_MAIN
+colors:rect(132,20,162,46)
+colors:short name("colors")
+colors:label("colors")
+colors:toolTip("colors")
+colors:style("transparent")
+colors:visible(true)
+colors:showName(false)
+colors:autoHilite(false)
+colors:opaque(false)
+colors:sharedHilite(false)
+colors:traversalOn(true)
+colors:showfocusBorder(true)
+colors:icon(4608)
+colors:hiliteIcon(4608)
+colors:borderWidth(2)
+colors:textAlign("center")
+
+colors:hiliteIcond(4597)
+
+colors:chosenCard("grid")

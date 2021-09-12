@@ -1,0 +1,2 @@
+--- field "typs" of group "InfoGroup" of card id 1002 of stack "ExternalReference" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+This forces the external to simulate a mouse down in the OpenGL window at the position the mouse is at (mouse button pressed but not released yet).

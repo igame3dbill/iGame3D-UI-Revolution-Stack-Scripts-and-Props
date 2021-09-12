@@ -1,0 +1,12 @@
+--- image "SpinZY_png",User,ig3d_UI_MAIN
+SpinZY_png:rect(376,107,400,131)
+SpinZY_png:short name("SpinZY_png")
+SpinZY_png:id(4232)
+SpinZY_png:tooltip( 4232)
+SpinZY_png:visible(true)
+SpinZY_png:dontDither(false)
+SpinZY_png:alwaysBuffer(true)
+SpinZY_png:angle(0)
+SpinZY_png:showBorder(false)
+SpinZY_png:threeD(true)
+SpinZY_png:borderWidth(2)

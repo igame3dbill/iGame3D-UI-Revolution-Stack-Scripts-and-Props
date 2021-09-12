@@ -1,0 +1,13 @@
+--- button "cards",camera_rotation,Inspector
+on mouseDown
+  put the cardNames of this stack into me
+ --put the text of me
+end mouseDown
+-- --
+on menuPick which
+ go to card which of stack "inspector"
+end menuPick
+-- --
+on whatever
+  
+end whatever

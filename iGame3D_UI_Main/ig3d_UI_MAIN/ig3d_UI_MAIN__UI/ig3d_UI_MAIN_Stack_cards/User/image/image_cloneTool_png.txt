@@ -1,0 +1,12 @@
+--- image "cloneTool_png",User,ig3d_UI_MAIN
+cloneTool_png:rect(488,107,512,131)
+cloneTool_png:short name("cloneTool_png")
+cloneTool_png:id(4425)
+cloneTool_png:tooltip( 4425)
+cloneTool_png:visible(true)
+cloneTool_png:dontDither(false)
+cloneTool_png:alwaysBuffer(true)
+cloneTool_png:angle(0)
+cloneTool_png:showBorder(false)
+cloneTool_png:threeD(true)
+cloneTool_png:borderWidth(2)

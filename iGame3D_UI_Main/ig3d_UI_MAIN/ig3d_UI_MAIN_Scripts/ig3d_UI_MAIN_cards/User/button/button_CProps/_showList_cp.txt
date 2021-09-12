@@ -1,0 +1,10 @@
+commandHeader,showList[["Inspector
+toolPicker
+revTools
+revScriptEditor 1
+NewMatEd
+previewImage
+moveControls
+Dev
+3D Scene
+revMenubar"]]

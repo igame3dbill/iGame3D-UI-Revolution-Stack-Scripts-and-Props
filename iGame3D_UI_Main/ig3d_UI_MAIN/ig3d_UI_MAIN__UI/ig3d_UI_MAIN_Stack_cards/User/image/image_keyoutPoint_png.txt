@@ -1,0 +1,12 @@
+--- image "keyoutPoint_png",User,ig3d_UI_MAIN
+keyoutPoint_png:rect(140,183,153,196)
+keyoutPoint_png:short name("keyoutPoint_png")
+keyoutPoint_png:id(4513)
+keyoutPoint_png:tooltip( 4513)
+keyoutPoint_png:visible(true)
+keyoutPoint_png:dontDither(false)
+keyoutPoint_png:alwaysBuffer(true)
+keyoutPoint_png:angle(0)
+keyoutPoint_png:showBorder(false)
+keyoutPoint_png:threeD(true)
+keyoutPoint_png:borderWidth(2)

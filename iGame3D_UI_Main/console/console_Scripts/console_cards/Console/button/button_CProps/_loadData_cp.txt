@@ -1,0 +1,11 @@
+commandHeader,loadData[["if the commandkey is down then
+    answer file "Locate the file..." as sheet
+    if it is not "" then
+      set the itemdelimiter to "/"
+      put last item of it into tTemp
+      set the HelpData of me to url("binfile:" & it)
+      save this stack
+      answer "Ready" as sheet
+    end if
+  end if
+exit to top"]]

@@ -1,0 +1,6 @@
+--- field "list" of card "list main cd" of stack "exportscripts" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+exportscripts
+murgaRevOut
+ig3d_UI_MAIN_may2007
+filesLibrary
+sceneGraph

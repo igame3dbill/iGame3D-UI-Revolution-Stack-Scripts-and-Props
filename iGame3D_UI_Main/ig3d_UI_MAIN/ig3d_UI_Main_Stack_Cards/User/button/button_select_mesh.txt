@@ -1,0 +1,32 @@
+--- button "select_mesh",User,ig3d_UI_MAIN
+select_mesh:rect(396,22,424,48)
+select_mesh:short name("select_mesh")
+select_mesh:label("mesh editing")
+select_mesh:toolTip("mesh editing")
+select_mesh:style("transparent")
+select_mesh:visible(true)
+select_mesh:showName(false)
+select_mesh:autoHilite(false)
+select_mesh:opaque(false)
+select_mesh:sharedHilite(false)
+select_mesh:traversalOn(true)
+select_mesh:showfocusBorder(false)
+select_mesh:icon(4239)
+select_mesh:hiliteIcon(0)
+select_mesh:borderWidth(1)
+select_mesh:textFont("Arial")
+select_mesh:textSize(9)
+select_mesh:textAlign("right")
+
+select_mesh:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+select_mesh:oldValue(12)
+
+select_mesh:lastClick("377,-99")
+
+select_mesh:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+select_mesh:pathView("Levels/xman_44")

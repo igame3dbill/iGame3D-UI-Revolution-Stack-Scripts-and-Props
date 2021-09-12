@@ -1,0 +1,42 @@
+--- field "autoChild",Bones,Inspector
+autoChild:rect(13,144,85,164)
+autoChild:short name("autoChild")
+autoChild:toolTip("Set Child Bone")
+autoChild:disabled(false)
+autoChild:visible(true)
+autoChild:sharedText(false)
+autoChild:dontWrap(true)
+autoChild:lockText(false)
+autoChild:opaque(true)
+autoChild:traversalOn(true)
+autoChild:showFocusBorder(true)
+autoChild:autoTab(true)
+autoChild:threeD(true)
+autoChild:showBorder(true)
+autoChild:borderWidth(2)
+autoChild:hScrollbar(false)
+autoChild:vScrollbar(false)
+autoChild:autoHilite(true)
+autoChild:listBehavior(false)
+autoChild:toggleHilites(false)
+autoChild:fixedLineHeight(true)
+autoChild:textHeight(11)
+autoChild:firstIndent(0)
+autoChild:textFont("Arial")
+autoChild:textSize(9)
+autoChild:textAlign("center")
+
+autoChild:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+autoChild:oldValue(1.0)
+
+autoChild:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+autoChild:navigationkeys(false)
+
+autoChild:reallabel("Select Object")
+
+autoChild:pathView("Levels/xman_44")

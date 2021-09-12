@@ -1,0 +1,12 @@
+--- image "slideXY_png",User,ig3d_UI_MAIN
+slideXY_png:rect(208,107,232,131)
+slideXY_png:short name("slideXY_png")
+slideXY_png:id(4224)
+slideXY_png:tooltip( 4224)
+slideXY_png:visible(true)
+slideXY_png:dontDither(false)
+slideXY_png:alwaysBuffer(true)
+slideXY_png:angle(0)
+slideXY_png:showBorder(false)
+slideXY_png:threeD(true)
+slideXY_png:borderWidth(2)

@@ -1,0 +1,8 @@
+--- field "keysout",Console,console
+on mouseDown
+  put line 1 of me after cd fld "consoleOut" of stack "Console"
+end mouseDown
+-- --
+on mouseUp
+ put line 1 of me after cd fld "consoleOut" of stack "Console"
+end mouseUp

@@ -1,0 +1,6 @@
+--- button "TextureFlag",meshMaterials,Inspector
+
+-- --
+on mouseUp
+     put toggleMaterialTexture((the hilite of me)) into togleTex 
+end mouseUp

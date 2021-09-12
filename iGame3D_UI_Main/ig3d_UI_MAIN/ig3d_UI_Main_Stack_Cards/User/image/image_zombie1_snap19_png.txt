@@ -1,0 +1,12 @@
+--- image "zombie1_snap19_png",User,ig3d_UI_MAIN
+zombie1_snap19_png:rect(792,98,828,134)
+zombie1_snap19_png:short name("zombie1_snap19_png")
+zombie1_snap19_png:id(4412)
+zombie1_snap19_png:tooltip("snap19.png 4412")
+zombie1_snap19_png:visible(true)
+zombie1_snap19_png:dontDither(false)
+zombie1_snap19_png:alwaysBuffer(true)
+zombie1_snap19_png:angle(0)
+zombie1_snap19_png:showBorder(false)
+zombie1_snap19_png:threeD(true)
+zombie1_snap19_png:borderWidth(2)

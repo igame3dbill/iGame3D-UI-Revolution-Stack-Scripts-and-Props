@@ -1,0 +1,11 @@
+--- field "Root" of group "RootLeft" of card "card id 1002" of stack "sceneGraph" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+centroid
+rotate
+scale
+-
+materials
+mesh_tags
+-
+edges
+points
+info

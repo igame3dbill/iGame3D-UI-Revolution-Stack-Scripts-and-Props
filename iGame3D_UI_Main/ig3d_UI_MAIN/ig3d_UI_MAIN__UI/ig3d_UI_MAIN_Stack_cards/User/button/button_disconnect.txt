@@ -1,0 +1,30 @@
+--- button "disconnect",User,ig3d_UI_MAIN
+disconnect:rect(484,22,514,48)
+disconnect:short name("disconnect")
+disconnect:label("Disconnect")
+disconnect:toolTip("Disconnect Mesh Line Tool")
+disconnect:style("transparent")
+disconnect:visible(true)
+disconnect:showName(false)
+disconnect:autoHilite(false)
+disconnect:opaque(false)
+disconnect:sharedHilite(false)
+disconnect:traversalOn(true)
+disconnect:showfocusBorder(false)
+disconnect:icon(4238)
+disconnect:hiliteIcon(0)
+disconnect:borderWidth(1)
+disconnect:textFont("Arial")
+disconnect:textSize(9)
+disconnect:textAlign("right")
+
+disconnect:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+disconnect:oldValue(12)
+
+disconnect:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+disconnect:pathView("Levels/xman_44")

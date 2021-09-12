@@ -1,0 +1,26 @@
+--- button "consoleInToggle",Console,console
+on mouseDown
+  switch the icon of me
+  case "1340"
+    --if the visible of grp "consolegroup" then
+      set the icon of me to 1341 ### multi line consoleIn
+      set the tooltip of me to "multi line execution"
+      set the style of fld "consoleIn" to scrolling
+      set the scrollbarwidth of fld "consoleIn" to 12
+      set the label of btn "inputToggle" to "input: mixed"  ###
+    --end if
+    break
+  case "1341"
+    set the icon of me to 1340 ### single line consoleIn
+    set the tooltip of me to "single line execution"
+    set the style of fld "consoleIn" to rectangle
+    break
+  end switch
+  resizestack
+end mouseDown
+--on mouseEnter
+  set the showborder of me to true
+end mouseEnter
+--on mouseleave
+  set the showborder of me to false
+end mouseleave

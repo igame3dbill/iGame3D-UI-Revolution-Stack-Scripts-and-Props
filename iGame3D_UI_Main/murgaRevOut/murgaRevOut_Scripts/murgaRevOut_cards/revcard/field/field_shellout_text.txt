@@ -1,0 +1,3 @@
+--- field "shellout" of group "guigroup" of card "revcard" of stack "murgaRevOut" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+/Volumes/iGame3D/Data/Utilities/murgaLua
+/Volumes/iGame3D/Data/GUI/console.lua

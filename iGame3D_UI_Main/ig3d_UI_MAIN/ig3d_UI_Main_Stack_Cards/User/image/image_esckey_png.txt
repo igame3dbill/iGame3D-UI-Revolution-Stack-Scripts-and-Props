@@ -1,0 +1,12 @@
+--- image "esckey_png",User,ig3d_UI_MAIN
+esckey_png:rect(592,99,624,131)
+esckey_png:short name("esckey_png")
+esckey_png:id(4389)
+esckey_png:tooltip( 4389)
+esckey_png:visible(true)
+esckey_png:dontDither(false)
+esckey_png:alwaysBuffer(true)
+esckey_png:angle(0)
+esckey_png:showBorder(false)
+esckey_png:threeD(true)
+esckey_png:borderWidth(0)

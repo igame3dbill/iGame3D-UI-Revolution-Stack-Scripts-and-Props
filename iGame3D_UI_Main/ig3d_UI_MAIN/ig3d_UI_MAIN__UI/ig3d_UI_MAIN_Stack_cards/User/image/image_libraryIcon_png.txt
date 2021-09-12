@@ -1,0 +1,12 @@
+--- image "libraryIcon_png",User,ig3d_UI_MAIN
+libraryIcon_png:rect(236,174,258,196)
+libraryIcon_png:short name("libraryIcon_png")
+libraryIcon_png:id(4567)
+libraryIcon_png:tooltip( 4567)
+libraryIcon_png:visible(true)
+libraryIcon_png:dontDither(false)
+libraryIcon_png:alwaysBuffer(true)
+libraryIcon_png:angle(0)
+libraryIcon_png:showBorder(false)
+libraryIcon_png:threeD(true)
+libraryIcon_png:borderWidth(2)

@@ -1,0 +1,4 @@
+--- button "div1",card id 1002,scriptHarvesterig3d
+on mousedown
+  divmove
+end mousedown

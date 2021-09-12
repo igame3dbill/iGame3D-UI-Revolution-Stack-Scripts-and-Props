@@ -1,0 +1,6 @@
+--- button "Tab_Menu",revcard,murgaRevOut
+on menuPick newPick,oldpick
+  put newPick&"card" into theCard
+ SwitchTabs theCard
+end menuPick
+

@@ -1,0 +1,25 @@
+--- button "baseDivider",background_color,Inspector
+on mouseDown
+  send dragme to me in 30 milliseconds
+  
+end mouseDown
+-- --
+on dragMe
+  
+  put item 2 the mouseloc into t
+  put the rect of stack "inspector" into R
+  put the rect of me into mr
+  put item 3 of r into item 3 of mr
+  put 1 into item 1 of mr
+  set the rect of me to mr
+  put (item 1 the loc of me,t) into MyLoc
+  set the loc of me to MyLoc
+  put  item 4 the rect of me into item 4 of r
+ put item 2 the screenmouseLoc+10 into item 4 of r
+ 
+  set the rect of stack "inspector" to R
+  set the bottom of group "DefaultGroup" to (the top of me)-10
+  if the top of group "DefaultGroup" < 2 and t < item 2 the loc of grp "DefaultGroup" then exit dragMe
+  if the mouse is down then send dragme to me in 40 milliseconds
+  
+  end dragMe

@@ -1,0 +1,6 @@
+--- field "list1" of group "guigroup" of card "cxxcard" of stack "murgaRevOut" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+console.cxx
+draw.cxx
+editor.cxx
+igame3dUI001.cxx
+list.cxx

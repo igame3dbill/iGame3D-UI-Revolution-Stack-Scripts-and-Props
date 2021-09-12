@@ -1,0 +1,7 @@
+--- field "Field" of card "default" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+graphic "any_line"
+graphic "movSen_line"
+graphic "Top_BG"
+graphic "Graphic_1"
+graphic "Graphic_3"
+graphic "Graphic_2"

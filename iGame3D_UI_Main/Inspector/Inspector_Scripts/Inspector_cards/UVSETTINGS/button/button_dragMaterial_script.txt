@@ -1,0 +1,13 @@
+--- button "dragMaterial",UVSETTINGS,Inspector
+on DropMaterial
+  put the topLeft of me into TL
+  put the bottomRight of me into BR
+  put getMkey(GLRECT) into theGL
+  hide me
+  set the topLeft of me to the bottomleft of field "materiallist"
+  set the dragit of me to false
+   if the screenmouseloc is within theGL then
+          put word 2 of the selectedLine of cd fld "materialList" into n
+  setTOMeshMaterial n
+     end if
+end DropMaterial

@@ -1,0 +1,5 @@
+--- button "Export_Every_Font",card id 1002,GLfontMaker07
+on mouseUp
+ exportEveryFontToPng
+
+end mouseUp   

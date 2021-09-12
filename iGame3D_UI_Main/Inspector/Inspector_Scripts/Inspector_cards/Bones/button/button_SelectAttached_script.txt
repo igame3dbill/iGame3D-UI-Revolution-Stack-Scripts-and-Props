@@ -1,0 +1,16 @@
+--- button "SelectAttached",Bones,Inspector
+
+-- --
+on mouseDown
+  put the short name of me into whoBut
+  put the selectedBone of stack (the mainStack of this stack) into Bone
+  switch whoBut
+  case "AttachTobone"
+    T3DChangeGlobal 21,Bone
+    break
+  case "SelectAttached"
+    T3DChangeGlobal 40,Bone
+    break
+  end switch
+  beep
+end mouseDown

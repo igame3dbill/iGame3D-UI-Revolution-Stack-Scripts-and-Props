@@ -1,0 +1,4 @@
+--- button "euler",card id 1002,NewAnimEd
+on mouseUp
+ig3d_SetBonesEulersOnly_s objectName()
+end mouseUp

@@ -1,0 +1,127 @@
+-- script of stack "sceneGraph"
+local lPath
+-- --
+on preopenstack
+  put DefineSceneGraphContent() into fld "root"
+  put the ruggedPath of this stack into lPath
+  doUpdateWhenInThewindows
+end preopenstack
+#### SHUT REV UP
+########## FIELD LISTS TEXTS
+-- --
+Function hilitedFieldTN what
+  put the hilitedLine of fld what of lpath into n
+  put the hilitedText of fld what of lpath into ctext
+  return n,ctext
+end hilitedFieldTN
+-- --
+on resizeStack  x,y
+  set the rect of fld "root" to 0,-2,right of fld "root",y - 15
+  set the rect of fld "rootbg" to the rect of fld "root"
+  set the opaque of fld "root" to false
+  set  bottomleft of btn "clickmessages" to 2,y - 2
+ if there is a grp "dev" then set topleft of grp "dev" to topright of btn "clickmessages"
+  put GlRect() into GLR
+  put the GLWidthHeight of stack (the mainStack of this stack) into GLWH
+  put the rect of stack "Scenegraph" into SR
+ig3d_SetWindowBounds_4i (item 3 of sr+2),(item 2 of sr),(item 3 of GLR),(item 4 of GLR)
+set the rect of stack "FilesLibrary" to item 1 of sr,item 4 of sr+20,x,item 4 the rect of stack "fileslibrary"
+  setColumns x,y
+end resizestack
+-- --
+on setColumns x,y
+  if the optionkey is down then
+    set the rect btn "div1" to left of btn "Div1",top of fld "root",left of btn "Div1" + 4,bottom of fld "root"
+    set the rect btn "div2" to left of btn "Div2",top of fld "root",left of btn "Div2" + 4,bottom of fld "root"
+    set the rect btn "div3" to left of btn "Div3",top of fld "root",left of btn "Div3" + 4,bottom of fld "root"
+  else
+    put (x - left of fld "col1") div 3 into tT
+    set the rect btn "div1" to left of btn "Div1",top of fld "root",left of btn "Div1" + 4,bottom of fld "root"
+    set the rect btn "div2" to left of fld "col1" + tT,top of fld "root",left of fld "col1" + tT + 4,bottom of fld "root"
+    set the rect btn "div3" to left of btn "Div2" + tT,top of fld "root",left of btn "Div2" + tT + 4,bottom of fld "root"
+  end if
+  set the rect of fld "col1" to right of fld "root" + 2,top of fld "root",left of btn "Div2" + 2,bottom of fld "root"
+  set the rect of fld "col2" to right of fld "col1" - 1,top of fld "root",left of btn "Div3" + 2,bottom of fld "root"
+  set the rect of fld "col3" to right of fld "col2" - 1,top of fld "root",right of this cd,bottom of fld "root"
+  --fix f1 field
+  
+  put "the rect of" && getmkey(sourcePopupField) && "into crec" into dgrect
+  
+  do "put" && dgrect 
+  
+  put the rect of fld "f1" into fr
+  put item 1 of crec into item 1 of fr
+  put item 3 of crec into item 3 of fr
+  set the rect of fld "f1" to fr
+  
+  
+  checkscrollbars
+end setColumns
+### use of explicit names  --> changed to "rugged" names
+### --> <name of control>  + card 1 of stack "scenegraph"
+-- --
+on checkscrollbars 
+  put the ruggedPath of stack "SceneGraph" into lpath
+ repeat for each item i in "col1,col2,col3"
+    if the visible of fld i of lpath then
+      put the hilitedline of fld i of lpath into tHL
+      if the formattedheight of fld i of lpath > the height of fld i of lpath then
+        set the vScrollbar of fld i of lpath to true
+        set the scrollbarwidth of fld i of lpath to 12
+      else set the vscrollbar of fld i of lpath to false
+      set the hilitedline of fld i of lpath to tHL
+    end if
+  end repeat
+end checkscrollbars
+-- --
+on doUpdateWhenInThewindows
+  if "scenegraph" is in the windows then
+ 
+    ### must be adapted according to the returned value
+    ### of T3DGetInfo
+    put ig3d_GetSelection__s() into tSel
+    put lineoffset(tSel,fld "root" of lpath) into tHL
+    if tHL = 0 then put 1 into tHL
+    set the hilitedLine of fld "Root" of lpath to tHl
+    checkhilites  --tP
+  else send "doUpdateWhenInThewindows" to me in 20 millisecs
+end doUpdateWhenInThewindows
+-- --
+on checkhilites --pPath
+  put the ruggedPath of stack "sceneGraph"  into lPath
+  put "root,Col1,Col2,Col3" into theFields
+  lock screen
+---- if the hilitedlines of fld "rootbg" of lpath = "" then set the stripes of fld "rootbg" of lpath to "foobar"
+  repeat for each item i in theFields
+    if the visible of fld i of lpath then
+      put the hilitedline of fld i of lpath into tHL
+      if tHL = "" then
+        put lineoffset("#FFFFFF",the htmltext of fld i of lpath) into tHL 
+        if tHL > 0 then 
+          set the hilitedLine of fld i of lpath to tHL
+           if line thl of  fld i of lpath is "-------" then set the hilitedLine of fld i of lpath to none
+        
+          next repeat
+        end if
+      else
+        put the scroll of fld i of lpath into tS
+        put fld i of lPath into fld i of lpath
+        set the textcolor of line tHl of fld i of lpath to white
+        set the scroll of fld i of lpath to tS
+        set the hilitedline of fld i of lpath to tHL
+        if line thl of  fld i of lpath is "-------" then set the hilitedLine of fld i of lpath to none
+      end if
+    end if
+  end repeat
+  unlock screen
+end checkhilites
+-- --
+Function initScenePicks   ### not used 
+  repeat with x = 1 to 13
+    put x & ",1,1,1,1" & cr after SP
+  end repeat
+  delete last char of cp
+  set the sceneGraphPicks of stack (the mainStack of this stack) to SP
+  set the chosenSceneGraphMatrix of stack (the mainstack of this stack) to sp
+  return sp
+end initScenePicks

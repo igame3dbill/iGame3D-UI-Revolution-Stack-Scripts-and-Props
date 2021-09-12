@@ -1,0 +1,12 @@
+--- image "backfacecull_png",User,ig3d_UI_MAIN
+backfacecull_png:rect(116,69,140,92)
+backfacecull_png:short name("backfacecull_png")
+backfacecull_png:id(4195)
+backfacecull_png:tooltip( 4195)
+backfacecull_png:visible(true)
+backfacecull_png:dontDither(false)
+backfacecull_png:alwaysBuffer(true)
+backfacecull_png:angle(0)
+backfacecull_png:showBorder(false)
+backfacecull_png:threeD(true)
+backfacecull_png:borderWidth(2)

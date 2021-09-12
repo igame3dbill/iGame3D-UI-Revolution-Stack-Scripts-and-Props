@@ -1,0 +1,17 @@
+--- field "xang",card id 1002,NewAnimEd
+on arrowKey theKey
+  set the navigationkeys of me to false
+   set the altArrowVal of this stack to .005
+  set the arrowVal of this stack to .01
+  set the shiftArrowVal of this stack to .1
+  doArrows ((the short name of me) & comma & keysDown())
+  
+end arrowKey
+-- --
+on mouseLeave
+  --put the realLabel of cd fld "maintoollabel" of stack "iGame3D"  into cd fld "maintoollabel" of stack "iGame3D" 
+end mouseLeave
+-- --
+on mouseEnter
+  --put toolTip  of me into cd fld "maintoollabel" of stack "iGame3D" 
+end mouseEnter

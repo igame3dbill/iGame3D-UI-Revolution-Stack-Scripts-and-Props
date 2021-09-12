@@ -1,0 +1,19 @@
+--- button "slideit",card id 1002ofFindT3d,Find T3D
+on mouseMove x,y
+  if the mouse is up then exit mouseMove
+  if the tool is not "browse tool" then exit mouseMove
+  if x <= right of btn "stacks" or x  >= right of this cd then exit mousemove
+  else set the loc of me to item 1 of the mouseloc ,item 2 of the loc of me
+  lock screen
+  resetcontrols2
+  unlock screen
+end mouseMove
+-- --
+on mouseEnter
+  lock cursor
+  set the cursor to 1091
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+end mouseleave

@@ -1,0 +1,6 @@
+--- scrollbar "shininess",meshMaterials,Inspector
+on scrollbarDrag x
+  
+  put x into fld "shininess"
+ put updateMaterialFromInspector() into UpdateMaterialsCOLORS
+end scrollbarDrag

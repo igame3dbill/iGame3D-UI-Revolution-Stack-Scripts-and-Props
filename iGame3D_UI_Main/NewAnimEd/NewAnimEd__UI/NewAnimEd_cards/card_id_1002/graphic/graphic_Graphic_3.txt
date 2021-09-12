@@ -1,0 +1,1 @@
+--- graphic "Graphic_3",card id 1002,NewAnimEd

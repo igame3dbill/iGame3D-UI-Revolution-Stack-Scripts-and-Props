@@ -1,0 +1,42 @@
+--- field "editField",Console,console
+editField:rect(190,55,676,347)
+editField:short name("editField")
+editField:toolTip("scenegraph undolevels: 0")
+editField:disabled(false)
+editField:visible(true)
+editField:sharedText(false)
+editField:dontWrap(true)
+editField:lockText(false)
+editField:opaque(false)
+editField:traversalOn(true)
+editField:showFocusBorder(false)
+editField:autoTab(false)
+editField:threeD(false)
+editField:showBorder(false)
+editField:borderWidth(2)
+editField:hScrollbar(true)
+editField:vScrollbar(true)
+editField:autoHilite(true)
+editField:listBehavior(false)
+editField:toggleHilites(false)
+editField:fixedLineHeight(true)
+editField:textHeight(16)
+editField:firstIndent(0)
+editField:textFont("Arial")
+editField:textSize(11)
+editField:textAlign("left")
+
+editField:Button3([["Copy selected text to consoleIn
+-
+Select All text
+Clear text
+-
+Revert"]])
+
+editField:lastselline(30)
+
+editField:countColorLines(1)
+
+editField:listbehaviour(false)
+
+editField:startmd5Digest("y2/BYnusXrdsIXdJNYS1+A==")

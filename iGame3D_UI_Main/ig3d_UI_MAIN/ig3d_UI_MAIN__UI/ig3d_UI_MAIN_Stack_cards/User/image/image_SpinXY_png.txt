@@ -1,0 +1,12 @@
+--- image "SpinXY_png",User,ig3d_UI_MAIN
+SpinXY_png:rect(328,107,352,131)
+SpinXY_png:short name("SpinXY_png")
+SpinXY_png:id(4230)
+SpinXY_png:tooltip( 4230)
+SpinXY_png:visible(true)
+SpinXY_png:dontDither(false)
+SpinXY_png:alwaysBuffer(true)
+SpinXY_png:angle(0)
+SpinXY_png:showBorder(false)
+SpinXY_png:threeD(true)
+SpinXY_png:borderWidth(2)

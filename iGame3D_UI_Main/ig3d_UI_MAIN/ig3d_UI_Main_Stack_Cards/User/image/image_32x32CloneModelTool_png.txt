@@ -1,0 +1,12 @@
+--- image "32x32CloneModelTool_png",User,ig3d_UI_MAIN
+32x32CloneModelTool_png:rect(544,99,576,131)
+32x32CloneModelTool_png:short name(32x32CloneModelTool_png)
+32x32CloneModelTool_png:id(4446)
+32x32CloneModelTool_png:tooltip( 4446)
+32x32CloneModelTool_png:visible(true)
+32x32CloneModelTool_png:dontDither(false)
+32x32CloneModelTool_png:alwaysBuffer(true)
+32x32CloneModelTool_png:angle(0)
+32x32CloneModelTool_png:showBorder(false)
+32x32CloneModelTool_png:threeD(true)
+32x32CloneModelTool_png:borderWidth(2)

@@ -1,0 +1,12 @@
+--- image "playgame_png",User,ig3d_UI_MAIN
+playgame_png:rect(576,115,592,131)
+playgame_png:short name("playgame_png")
+playgame_png:id(4388)
+playgame_png:tooltip( 4388)
+playgame_png:visible(true)
+playgame_png:dontDither(false)
+playgame_png:alwaysBuffer(true)
+playgame_png:angle(0)
+playgame_png:showBorder(false)
+playgame_png:threeD(true)
+playgame_png:borderWidth(0)

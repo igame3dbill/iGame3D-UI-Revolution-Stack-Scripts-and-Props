@@ -1,0 +1,25 @@
+--- button "Button_1",User,ig3d_UI_MAIN
+Button_1:rect(-2,0,38,22)
+Button_1:short name("Button_1")
+Button_1:label("focusteller")
+Button_1:style("transparent")
+Button_1:visible(true)
+Button_1:showName(true)
+Button_1:autoHilite(true)
+Button_1:opaque(false)
+Button_1:sharedHilite(true)
+Button_1:traversalOn(true)
+Button_1:showfocusBorder(false)
+Button_1:icon(0)
+Button_1:hiliteIcon(0)
+Button_1:borderWidth(2)
+Button_1:textAlign("center")
+
+Button_1:lastClick("30,37")
+
+Button_1:mouseMoveRec([["0.000000
+
+0
+loads "hitName",1 // "]])
+
+Button_1:clickStart("30,37")

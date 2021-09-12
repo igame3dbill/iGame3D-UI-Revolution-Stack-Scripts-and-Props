@@ -1,0 +1,12 @@
+--- image "newpathicon_png",User,ig3d_UI_MAIN
+newpathicon_png:rect(858,69,880,91)
+newpathicon_png:short name("newpathicon_png")
+newpathicon_png:id(4530)
+newpathicon_png:tooltip( 4530)
+newpathicon_png:visible(true)
+newpathicon_png:dontDither(false)
+newpathicon_png:alwaysBuffer(true)
+newpathicon_png:angle(0)
+newpathicon_png:showBorder(false)
+newpathicon_png:threeD(true)
+newpathicon_png:borderWidth(2)

@@ -1,0 +1,29 @@
+--- button "LoopPlay",card id 1002,NewAnimEd
+on mouseUp
+  set lockScreen to true
+  repeat with m=1 to the number of lines of cd fld "selMarkers"
+  
+  put the rect of graphic (line m of cd fld "selMarkers") into theRect
+  put theRect into oldRect
+  add 1 to item 2 of theRect
+  subtract 1 from item 4 of theRect
+  add 1 to item 1 of theRect
+  subtract 1 from item 3 of theRect
+put the mData of graphic (line m of cd fld "selMarkers") into mdat
+if hilite of me is false then
+  put item 1 of theRect & "," & item 2 of theRect & return & item 3 of theRect & "," & item 2 of theRect & return & item 3 of theRect & "," & item 4 of theRect & return & item 1 of theRect & "," & item 4 of theRect into thePoints
+put false into item 2 of mdat
+  else
+  put item 1 of theRect & comma & round((item 2 of theRect + item 4 of theRect)/2) into thePoints
+  put return & item 3 of theRect & comma & item 2 of theRect after thePoints
+  put return & item 3 of theRect & comma & item 4 of theRect after thePoints
+  put return & item 1 of theRect & comma & round((item 2 of theRect + item 4 of theRect)/2) after thePoints
+  
+  put true into item 2 of mdat
+end if
+  set the points of graphic (line m of cd fld "selMarkers") to thePoints
+set the rect of graphic (line m of cd fld "selMarkers") to oldRect
+set the mData of graphic (line m of cd fld "selMarkers") to mdat
+end repeat
+set lockScreen to false
+end mouseUp

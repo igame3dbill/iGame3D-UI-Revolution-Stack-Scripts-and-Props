@@ -1,0 +1,54 @@
+--- button "Load_animations",card id 1002,NewAnimEd
+on mouseUp
+  set lockScreen to true
+  
+  put ig3d_GetObjectBonesList_s_s(objectName()) into cd fld "bonelist"
+  //put T3DGetBonesModel() into cd fld "bonelist"
+  send "clearLastWords" to cd fld "bonelist"
+  put number of lines of cd fld "bonelist" into numBones
+  
+  
+  put gameRoot() into sourcePath
+  put ig3d_GetObjectModelPath_s_s(objectName()) into theFile
+  open file theFile for read
+  read from file theFile until eof
+  put it into fcontents
+  put offset("#Animations",fcontents) into theOffset
+  put char theOffset to (number of chars of fcontents) of fcontents into raw
+  put raw into animImportData
+  close file theFile
+   
+  put line 2 of raw into numAnims
+  put line 3 to (number of lines of raw) of raw into theData
+  put 1 into nameLine
+  put "" into cd btn "animChooser"
+   
+  
+  repeat with m=1 to numAnims
+    put line nameLine of theData into theName
+    put theName into line m of cd btn "animChooser"
+    put line nameLine + 1 of theData into numMarkers
+    put line nameLine + 2 to (nameLine + 1 + (numMarkers * 2)) of theData into rawMarkers
+     put "" into thisAnimMarkers
+    repeat with n=1 to the number of lines of rawMarkers
+      put item 1 of line n of rawMarkers into stime
+      put item 2 of line n of rawMarkers into etime
+      if etime - stime < 0.06 then put stime + 0.06 into etime
+      add 1 to n
+      replace "=" with space in line n of rawMarkers
+      put false into theMorph
+      if word 1 of line n of rawMarkers = "morph" then put true into theMorph
+      put word 2 of line n of rawMarkers into bData
+      put item 1 of bData + 1 & comma & theMorph & comma & stime & comma & etime & comma & item 2 to 7 of bData into line (number of lines of thisAnimMarkers+1) of thisAnimMarkers
+    end repeat
+     replace return with "¶" in thisAnimMarkers
+     put thisAnimMarkers into line m of newAnimationStuff
+    put nameLine + 2 + (numMarkers * 2) into nameLine
+  end repeat
+  set the allDaAnimationsData of cd btn "animChooser" to newAnimationStuff
+  send "menuPick" && line 1 of cd btn "animChooser" to cd btn "animChooser"
+  
+  
+  set the vScroll of group "Knochen" to the vScroll of cd fld "bonelist"
+  set lockScreen to false
+end mouseUp

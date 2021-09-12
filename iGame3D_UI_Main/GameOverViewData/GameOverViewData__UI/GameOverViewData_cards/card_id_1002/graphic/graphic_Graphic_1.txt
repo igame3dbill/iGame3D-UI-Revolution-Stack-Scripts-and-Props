@@ -1,0 +1,1 @@
+--- graphic "Graphic_1",card id 1002,GameOverViewData

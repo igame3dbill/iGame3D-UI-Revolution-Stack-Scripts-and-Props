@@ -1,0 +1,18 @@
+--- button "layout",card id 1002ofFindT3d,Find T3D
+on mousedown
+  lock screen
+  if top of btn "result" = top of btn "scripts" then 
+    set the label of me to "layout 2"
+    hide btn "slideit"
+    show btn "div1"
+    set the icon of me to 1094
+    resetControls
+  else
+    set the label of me to "layout 1"
+    show btn "slideit"
+    hide btn "div1"
+    set the icon of me to 1095
+    resetControls2
+  end if
+  unlock screen
+end mousedown

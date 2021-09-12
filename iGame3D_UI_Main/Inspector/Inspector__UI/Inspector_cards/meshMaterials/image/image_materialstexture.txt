@@ -1,0 +1,12 @@
+--- image "materialstexture",meshMaterials,Inspector
+materialstexture:rect(45,86,101,142)
+materialstexture:short name("materialstexture")
+materialstexture:fileName("/Volumes/DEV/06igame3d/")
+materialstexture:id(1159)
+materialstexture:visible(true)
+materialstexture:dontDither(false)
+materialstexture:alwaysBuffer(false)
+materialstexture:angle(0)
+materialstexture:showBorder(false)
+materialstexture:threeD(true)
+materialstexture:borderWidth(2)

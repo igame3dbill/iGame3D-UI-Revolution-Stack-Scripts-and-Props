@@ -1,0 +1,10 @@
+--- button "wholematches",card id 1002ofFindT3d,Find T3D
+on mouseUp
+  if the hilite of me then
+    disable group "options"
+    disable fld "withoutwith"
+  else 
+    enable group "options"
+    if the hilite of btn "without" or the hilite of btn "with" then enable fld "withoutwith"
+  end if
+end mouseUp

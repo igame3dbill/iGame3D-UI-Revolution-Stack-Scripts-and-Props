@@ -1,0 +1,12 @@
+--- image "linkson_png",User,ig3d_UI_MAIN
+linkson_png:rect(468,184,480,196)
+linkson_png:short name("linkson_png")
+linkson_png:id(4310)
+linkson_png:tooltip( 4310)
+linkson_png:visible(true)
+linkson_png:dontDither(false)
+linkson_png:alwaysBuffer(true)
+linkson_png:angle(0)
+linkson_png:showBorder(false)
+linkson_png:threeD(true)
+linkson_png:borderWidth(2)

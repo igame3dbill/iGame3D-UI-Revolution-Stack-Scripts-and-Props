@@ -1,0 +1,4 @@
+--- button "KeepScripts",card id 1002,replacemodelssubstack
+on mouseUp
+  set the retainScripts of btn "ApplyReplace" to the hilite of me
+end mouseUp

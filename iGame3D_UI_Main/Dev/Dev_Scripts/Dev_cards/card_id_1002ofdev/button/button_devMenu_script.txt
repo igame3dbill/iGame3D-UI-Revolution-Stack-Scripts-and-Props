@@ -1,0 +1,10 @@
+--- button "devMenu",card id 1002ofdev,Dev
+on mouseDown
+  put the text of btn "dev" of stack (the mainStack of this stack) into me
+end mouseDown
+-- --
+on menuPick myLine
+  send updateAndEmpty to  btn "devfilter" of stack "dev"
+  
+  send menuPick && myLine to btn "dev" of stack (the mainStack of this stack)
+end menuPick

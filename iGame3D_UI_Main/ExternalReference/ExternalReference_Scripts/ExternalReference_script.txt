@@ -1,0 +1,31 @@
+-- script of stack "ExternalReference"
+function setRevARRAY arg1,arg2
+  local AP
+  put the XComRef of stack "ExternalReference" into AP
+  split AP by numtochar(13) and numtochar(14)
+  put the keys of AP into APK
+if arg2 is empty then return AP[arg1]
+  put arg2 into AP[arg1]
+  combine AP with numtochar(13) and numtochar(14)
+  set the XComRef of stack ("ExternalReference")  to AP
+  return arg1 , arg2 
+end setRevARRAY
+-- --
+on resizeStack x,y
+  put the rect of fld "typs" into rxy
+  put x-5 into item 3 of rxy
+  put y-10 into item 4 of rxy
+  set the rect of fld "typs" to rxy
+  put the rect of fld "com" into cxy
+  put y-10 into item 4 of cxy
+  set the rect of fld "com" to cxy
+  put the rect of fld "l2" into lxy
+  put x-10 into item 3 of lxy
+  set the rect of fld "l2" to lxy
+  set the right of fld "funcom" to x
+  put the left of fld "funcom" into L
+  put the rect of fld "tHeads" into tRect
+  put L into item 3 of TRect
+  set the rect of fld "theads" to trect
+  if the tool is "browse tool" then set the top of group "DeveloperGroup" to y+10
+end resizeStack

@@ -1,0 +1,12 @@
+--- image "tinytext_png",User,ig3d_UI_MAIN
+tinytext_png:rect(672,115,688,131)
+tinytext_png:short name("tinytext_png")
+tinytext_png:id(4393)
+tinytext_png:tooltip( 4393)
+tinytext_png:visible(true)
+tinytext_png:dontDither(false)
+tinytext_png:alwaysBuffer(true)
+tinytext_png:angle(0)
+tinytext_png:showBorder(false)
+tinytext_png:threeD(true)
+tinytext_png:borderWidth(0)

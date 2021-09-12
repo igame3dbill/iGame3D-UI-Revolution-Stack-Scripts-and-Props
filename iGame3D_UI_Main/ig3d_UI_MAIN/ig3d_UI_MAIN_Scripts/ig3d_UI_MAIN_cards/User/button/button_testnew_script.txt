@@ -1,0 +1,41 @@
+--- button "testnew",User,ig3d_UI_MAIN
+on mouseUp
+  stretchPath
+  mesevent (not the messageTheEvents of stack (The mainStack of this stack)) -- set 01 06 07
+  ## ig3d_SetProjection_b5f true,90.000000,-10.000000,10.000000,-10.000000,10.000000  -- test 01 04 07
+end mouseUp
+
+-- --
+on mouseEnter
+  put the script of me into m
+  put word 1 of line 2 of m into n
+  set the label of me to n
+end mouseEnter
+
+-- --
+on stretchPath
+  put ig3d_GetPathInfo_i_s(1) into p
+  put 0 into c
+repeat for each line L in p
+put .15 into po
+put -.15 into ne
+if l is not empty then
+repeat with n = 1 to 3
+  put item n of l into i
+  if i is a number then
+    --put i+(i*po) into item n of L
+if i>1 then put i+(i*po) into item n of L
+if i<1 then put i+(i*ne) into item n of L
+end if
+end repeat
+if num(items of l) = 3 then put L & cr after allpoints
+end if
+
+end repeat
+--put allpoints
+delete char -1 of allpoints
+
+put "10,3,10" into allpoints
+ig3d_SetPathInfo_is 1,(line 1 to -1 of allpoints)
+
+end stretchPath

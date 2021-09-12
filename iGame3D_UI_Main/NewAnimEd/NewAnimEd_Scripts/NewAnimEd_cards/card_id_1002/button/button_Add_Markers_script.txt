@@ -1,0 +1,31 @@
+--- button "Add_Markers",card id 1002,NewAnimEd
+on mouseUp
+  set lockScreen to true
+  repeat with l=1 to the number of lines of cd fld "bonelist"
+  put ig3d_GetObjectBoneInfo_2s_6f(objectName(), line l of cd fld "bonelist") into BBop
+  
+  clone graphic "markertemplate"
+put "marker" & word 3 of it into grcName
+set name of it to grcName
+put grcName into line (number of lines of cd fld "allMarkers" + 1) of cd fld "allMarkers"
+put timeToHCoord(timeAtPlayHead()) & comma & item 2 of the loc of grc "markertemplate" + (l-1)*14 into markerLoc
+set loc of grc (grcName) to markerLoc
+set left of grc (grcName) to item 1 of markerLoc
+put the mData of grc (grcName) into mdat
+put l into item 1 of mdat
+ put BBop into item 5 to 10 of mdat
+ put item 3 of mdat + (cd fld "etime"-cd fld "stime") into item 4 of mdat
+set the mData of grc (grcName) to mdat
+send mouseUp to cd btn "Transition"
+send updateMDataFromAppearance to grc (grcName)
+--setup marker width
+put the mData of grc (grcName) into mdat
+put item 3 of mdat + (cd fld "etime"-cd fld "stime") into item 4 of mdat
+set the mData of grc (grcName) to mdat
+send updateAppearanceFromMData to grc (grcName)
+--
+--send mouseDown to grc (grcName)
+show grc (grcName)
+end repeat
+set lockScreen to false
+end mouseUp

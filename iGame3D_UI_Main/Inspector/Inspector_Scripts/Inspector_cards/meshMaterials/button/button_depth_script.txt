@@ -1,0 +1,15 @@
+--- button "depth",meshMaterials,Inspector
+on mouseUp
+  --updateMaterialDepthMaskForView
+   put updateMaterialFromInspector() into UpdateMaterialsCOLORS
+end mouseUp
+-- --
+on updateMaterialDepthMaskForView
+put getMkey(pickedMaterialNumber) into n
+  put the pickedMaterialName of this stack into matName
+  if hilite of me is true then put 1 into val
+  else put 0 into val
+  put matName & return & 1 & return & "depth=" & val into matInfo
+T3DSetInfo "mat",n,matInfo
+  
+end updateMaterialDepthMaskForView

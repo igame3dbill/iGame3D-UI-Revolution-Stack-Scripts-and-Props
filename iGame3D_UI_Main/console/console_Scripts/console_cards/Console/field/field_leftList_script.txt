@@ -1,0 +1,150 @@
+--- field "leftList",Console,console
+global gConsoleOpenFiles,gHistory
+local lMouseCheck,lPersistance
+-- --
+on mouseDown x
+  if the mouseline = "" then setHilite
+  hilitedTextColorToggle
+  if x = 1 and word 2 of the mouseline = the hilitedline of me then actOnSelection
+  if x = 3 then 
+    put the button3 of me into btn "popMenu"
+    popup btn "popMenu"
+  end if
+end mouseDown
+-- --
+on actOnSelection n
+  put the scroll of me into oldscroll
+  ### new to accomodate the revCom
+  if n = "" then put word 2 selectedLine of me into n
+  else set the hilitedLine of me to n
+  ###
+  put line n of me into myLine
+  if the number of lines in me > 3 then SaveOpenFileToArray
+  if myLine is "console" or myLine is ".out" then
+    lock screen
+    consoleToggle "console"
+    colorizeAll
+    exit to top
+  else if word 1 of  myLine is "Scripts" then
+    put filesIn("scripts") into x
+    put x into btn "popMenu"
+    
+    put the num of chars in myline into tC
+    put the textHeight of me into tH
+    put (the formattedwidth of char 1 to tC of line n of me) + 7 into tX
+    if tX > the right of me then put the right of me - 3 into tX
+    put tX, (n - (the scroll of me div tH) )* tH - the scroll of me mod tH + top of me + 2 into tLoc
+    
+    popup btn "popMenu" at tLoc
+    if  line (the hilitedline of me) of me = "Scripts" then
+      get the title of this stack
+      replace "*" with "" in it
+      if "console" is in it then set the hilitedLine of fld "leftList" to 1
+      else
+        set the hilitedLine of fld "leftlist" to lineoffset(it,fld "leftList")
+      end if
+    end if
+    --trackcolors
+    hilitedTextColorToggle
+  else if "Open Files" is in myLine then
+    if the optionkey is down then put smartDialog("AnswerFile") into tName
+    if tName <> "" then addToConsoleOpenFiles tName,"open"
+    else
+      put the title of this stack into tName
+      replace "*" with "" in tName
+      set the hilitedline of me to lineOffset(tName,me)
+    end if
+  else if char 1 of myLine = tab then
+    lock screen
+    set itemdelimiter to tab
+    put word 1 to - 1 of myline  into tName
+    put last item of myLine into tName
+    set label of group "editscript1" to tName
+    --put line 2 to -1 of gConsoleOpenFiles[tName&".lua"] into fld "editfield"
+    ### had to replace previous line by next 4 lines to keep the number of trailing empty lines
+    get gConsoleOpenFiles[tName]
+    put line 1 of it into tMd5
+    delete line 1 of it
+    put it into fld "editfield"
+     
+    if tMd5 = "savedtofile" then put base64Encode(md5Digest(fld "editfield")) into line 1 of gConsoleOpenFiles[tName]
+    set the startmd5Digest of fld "editfield" to line 1 of gConsoleOpenFiles[tName]
+    if not the visible of grp "editscript1" then consoletoggle "edit"
+    else updateLineNums
+    colorizeAll
+    setStackTitle
+    setUndoTooltip
+  end if
+  --trackcolors
+  hilitedTextColorToggle
+end actOnSelection
+--on mousestilldown
+  --trackcolors
+  hilitedTextColorToggle
+end mousestilldown
+-- --
+on selectionchanged
+  --trackcolors
+  hilitedTextColorToggle
+end selectionchanged
+-- --
+on closefield
+  --trackcolors
+  hilitedTextColorToggle
+end closefield
+-- --
+on mousemove
+  put word 2 of the mouseline into x
+  if the style of me is scrolling then put the scrollbarwidth of me + 5 into y
+  else put 5 into y
+  if the formattedwidth of line x of me > the width of me - y then
+    set itemdelimiter to tab
+    if "~" is in word - 1 of the value of the mouseline then put "in memory..." into fld "myTooltip"
+    else put last item of the value of the mouseline into fld "myTooltip"
+    set the width of fld "myTooltip" to the formattedwidth of fld "myToolTip"
+    put the num of chars in item 2 of line x of me + 1 into tC
+    put the textHeight of me into tH
+    put (the formattedwidth of char 1 to tC of line x of me) + 7 into tX
+    if tX > the right of me then put the right of me - 3 into tX
+    set topleft of fld "myTooltip" to tX, (x - (the scroll of me div tH) - 1)* tH - the scroll of me mod tH + top of me + 2
+    if  mouseh() <=  right of me - y then
+      show fld "myTooltip"
+      if not lMouseCheck then
+        put true into lMouseCheck
+        checkMouse
+      end if
+    end if
+  else hidemytooltip
+end mousemove
+-- --
+on checkMouse
+  if the visible of fld "myTooltip" then
+    get the rect of me
+    subtract the scrollbarwidth of me of item 3 of it
+    if the mouseloc is not within the rect of fld "myTooltip" then
+      if  the mouseloc is not within it then
+        hidemytooltip
+      end if
+    end if
+  end if
+  if checkpersisting() then send "checkMouse" to me in 200 millisecs
+  else hidemytooltip
+end checkMouse
+-- --
+on hidemytooltip
+  hide fld "myTooltip"
+  put false into lMouseCheck
+end hidemytooltip
+-- --
+Function checkpersisting
+  set the itemdelimiter to "/"
+  if the mouseloc <> item 1 of lPersistance then
+    put the mouseloc&"/0" into lPersistance
+    else add 1 to item 2 of lPersistance
+  if item 2 of lPersistance < 16 then return true
+  else return false
+end checkpersisting
+-- --
+on scrollbardrag
+  hide fld "myTooltip"
+end scrollbardrag

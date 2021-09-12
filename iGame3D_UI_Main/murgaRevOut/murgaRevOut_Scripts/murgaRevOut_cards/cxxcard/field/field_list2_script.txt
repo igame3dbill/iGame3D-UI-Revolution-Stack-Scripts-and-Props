@@ -1,0 +1,9 @@
+--- field "list2",cxxcard,murgaRevOut
+on mouseUp
+  if the hilitedText of me is not empty then
+    put  the hilitedText of me into tFile
+
+  
+    end if
+end mouseUp
+

@@ -1,0 +1,2 @@
+--- field "nameFilter" of group "filterbtngrp" of group "MasterLIBUI" of card "ImagesLibCard" of stack "filesLibrary" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+igame3d

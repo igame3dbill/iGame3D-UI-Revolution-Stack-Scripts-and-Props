@@ -1,0 +1,22 @@
+--- button "Help",Console,console
+on mouseUp
+  if the commandkey is down then do the loadData of me
+--  if "iG3Dhelp"  is not in the windows then
+--    get the HelpData of me
+--    go invisible it as palette
+--    set the loc of stack "iG3Dhelp" to the screenloc
+--    show stack "iG3Dhelp"
+--  else go stack "iG3Dhelp"
+end mouseUp
+-- --
+on mousedown
+  checkforhilite
+end mousedown
+-- --
+on checkforhilite
+  if the mouse is down then
+    if the hilite of me then set the foregroundcolor of me to 255,255,255
+    else set the foregroundcolor of me to 0,0,0
+    send "checkforhilite" to me in 25 millisecs
+  else set the foregroundcolor of me to 0,0,0
+end checkforhilite

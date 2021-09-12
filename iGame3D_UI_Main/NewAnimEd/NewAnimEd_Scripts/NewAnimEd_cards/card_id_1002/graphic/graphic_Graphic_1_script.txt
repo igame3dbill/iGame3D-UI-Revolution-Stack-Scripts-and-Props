@@ -1,0 +1,11 @@
+--- graphic "Graphic_1",card id 1002,NewAnimEd
+on mouseDown
+  set lockScreen to true
+  put the clickLoc into l
+  put item 2 of the loc of grc "playheadtrig" of group "playhead" into item 2 of l
+  set loc of graphic "playheadtrig" of group "playhead" to l
+  put item 2 of the loc of grc "playheadline" of group "playhead" into item 2 of l
+  set loc of graphic "playheadline" of group "playhead" to l
+  updateAllBonesToPlaytime timeAtPlayhead()
+set lockScreen to false
+end mouseDown

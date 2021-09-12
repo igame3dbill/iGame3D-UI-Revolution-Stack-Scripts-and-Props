@@ -1,0 +1,12 @@
+--- image "particles_png",User,ig3d_UI_MAIN
+particles_png:rect(124,107,148,131)
+particles_png:short name("particles_png")
+particles_png:id(4218)
+particles_png:tooltip( 4218)
+particles_png:visible(true)
+particles_png:dontDither(false)
+particles_png:alwaysBuffer(true)
+particles_png:angle(0)
+particles_png:showBorder(false)
+particles_png:threeD(true)
+particles_png:borderWidth(2)

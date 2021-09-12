@@ -1,0 +1,8 @@
+--- button "Option_Menu",card id 1002,GLfontMaker07
+on mouseDown
+  set the text of me to the fontNames
+end mouseDown
+-- --
+on menuPick theFont
+  ig3d_FontmenuPick theFont -- in stack GLFontMaker script 
+end menuPick

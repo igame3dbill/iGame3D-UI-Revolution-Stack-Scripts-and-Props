@@ -1,0 +1,5 @@
+--- button "Delete_All_Markers",card id 1002,NewAnimEd
+on mouseUp
+ DeleteAllMarkers
+ 
+end mouseUp

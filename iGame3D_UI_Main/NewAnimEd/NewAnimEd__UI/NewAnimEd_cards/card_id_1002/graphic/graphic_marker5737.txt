@@ -1,0 +1,11 @@
+--- graphic "marker5737",card id 1002,NewAnimEd
+
+marker5737:myDragColor("0,128,0")
+
+marker5737:mData("2,true,0,0.18,0.000000,0.000000,0.000000,-48.290001,0.000000,0.000000")
+
+marker5737:myOffColor("193,193,193")
+
+marker5737:mySelColor("0,255,0")
+
+marker5737:hOffset(42)

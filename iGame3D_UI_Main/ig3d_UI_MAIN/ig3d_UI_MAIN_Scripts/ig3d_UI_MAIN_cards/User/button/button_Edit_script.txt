@@ -1,0 +1,131 @@
+--- button "Edit",User,ig3d_UI_MAIN
+on menuPick which
+    set itemDel to "/"
+  put item 1 of which into realItems
+
+  put the focusedObject into FOB
+  if word 1 of  FOB is "field" then 
+    ---the selectedField 
+    put the long name of the focusedObject into whoSel
+  end if
+  
+  switch realItems
+  case "FindT3D"
+    open stack "find t3D"
+    break
+  case "Undo"
+    ig3d_MeshUndo //undo mesh
+    put ig3d_GetMeshCentroid__3f()  into meshXYZ
+    set the lastMesh of stack (the mainStack of this stack) to meshXYZ
+    if word 1 of the focusedObject is "field" then  undo
+    break
+  case "Cut"
+    if the mouseloc is within glrect() then
+      set the cursor to busy
+      cutMesh
+      set the cursor to arrow
+      exit menuPick
+    end if
+    put the name of the focusedObject into focob
+    put the ID of the focusedObject into focID
+    if focob contains "field" then 
+      if the selectedField is not empty then copy the selectedText
+      if the lockText of the selectedField = false then 
+        cut the selectedText  
+      else 
+        copy the selectedText
+      end if
+    end if
+    break
+  case "Copy"
+    try
+      copy selectedText
+    end try
+    if the screenmouseloc is within ig3d_GetWindowBounds__4i()  then  put copy3DPos() into copyWhat
+    break
+  case "Paste"
+    set the defaultStack to the topStack
+    put the name of the focusedObject into focob
+    if focob contains "field" or getMkey("fieldisfocused") is true then 
+      if the lockText of the selectedField is true then
+        exit menuPick
+      else
+        paste
+      end if
+    else
+      put paste3DPos() into pasteWhat
+    end if
+    break
+  case "Delete"
+    if the selectedField is not empty then
+      if the lockText of the selectedField is true then exit menuPick
+      if MCcheckDelete() then delete
+    end if
+    break 
+  case "Select All Text"
+
+    put the focusedObject into FOB
+     
+    if the screenmouseloc is within glrect() then 
+       
+      ig3d_SelectWholeMesh
+   
+    end if
+    
+    if word 1 of  FOB = "field" then 
+      if the selectedField is not empty then
+        if the lockText of the selectedField is true then 
+          ---if the selectedField = "Explain" then select text of cd fld "Explain" of stack "iGame3DHelp"
+          exit menuPick
+        else
+          put "line 1 to -1 of" &&  FOB into selWha
+          do "select " && selWha
+          unlock screen
+        end if
+      end if
+    end if
+    
+    break
+  case "boom"
+    if the commandKey is down then put setMkey("askBeforeBoom",true) into doask
+    boomScene "false"
+    break
+  case "delete(ig3d_scene,true)"
+    if the commandKey is down then put setMkey("askBeforeBoom",true) into doask
+    boomScene "true"
+    break
+  case "Select Connected"
+    ig3d_SelectConnectedMesh 
+    break
+  case "Invert Selection"
+    ig3d_InvertMeshSelection 
+    break
+  case "Duplicate"
+    ig3d_DuplicateMesh
+    break
+  case "Delete Vertices"
+    DeleteVertices
+    break
+    
+  case "Select Attached To Bone"
+    ask "BoneName"
+    if it is not empty then put it into boneName
+    T3DChangeGlobal 40,boneName
+    break
+  case "Select Same Material"
+    T3DChangeGlobal 39,1
+    break
+    --case "Save Selection"
+    --saveSelectedVertex
+    --break
+  case "Make Invisible"
+    T3DChangeGlobal 42,1
+    break
+  case "Make Visible"
+    T3DChangeGlobal 42,0
+    break
+    
+  end switch
+  
+  
+end menuPick

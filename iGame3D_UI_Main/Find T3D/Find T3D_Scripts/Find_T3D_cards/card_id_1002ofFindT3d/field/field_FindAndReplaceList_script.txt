@@ -1,0 +1,15 @@
+--- field "FindAndReplaceList",card id 1002ofFindT3d,Find T3D
+on mouseDown
+  --put "" into fld "marked"
+  put word 2 selectedLine of me into n
+  put line n of me into storeLine
+ replace ("• " ) with empty in line n of me
+  put word 1 of line n me into fld "f1"
+  put word 2 of line n of me into fld "Replace"
+  put word 2 of line n of me into fld "withoutwith"
+  set the hilite of btn "without" to true
+  enable fld "withoutwith"
+  send "mouseUp" to btn "find"
+if char 1 of storeLine is  not "•" then  put "• " before line n of me
+select line n of me
+end mouseDown

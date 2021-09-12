@@ -1,0 +1,7 @@
+--- group "Knochen",card id 1002,NewAnimEd
+on scrollbarDrag
+  set lockScreen to true
+  set the hScroll of group "timebargroup" to the hscroll of me
+  set the hScroll of group "playhead" to the hscroll of me
+  set lockScreen to false
+end scrollbarDrag

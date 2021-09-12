@@ -1,0 +1,23 @@
+--- button "VertexToChild",Bones,Inspector
+
+-- --
+on mouseUp
+  put fld "autoChild" into child
+  put T3DGetBonesMesh() into theBones
+put the selectedBone of stack (the mainStack of this stack) into parent
+if parent is child or child is among the lines of theBones then 
+  set itemDel to "_"
+  put  item 1 of child & "*" into filta
+  
+  filter theBones with filta
+  put num(lines of theBones)+1 into n
+  put item 1 of child & "_" & n into child
+  put child into fld "autoChild"  
+end if
+put parent & "|" & child into autoBoners
+put setMkey(autoBones,autoBoners) into setama
+put ig3d_GetMeshCentroid__3f()  into mesh
+ put autoBoneAction(mesh) into autoon
+  send updateBonetree to fld "boneHier"
+  beep
+end mouseUp

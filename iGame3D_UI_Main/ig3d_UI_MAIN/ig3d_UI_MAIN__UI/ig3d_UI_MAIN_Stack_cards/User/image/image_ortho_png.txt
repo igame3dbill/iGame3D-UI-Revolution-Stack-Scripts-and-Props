@@ -1,0 +1,12 @@
+--- image "ortho_png",User,ig3d_UI_MAIN
+ortho_png:rect(422,172,446,196)
+ortho_png:short name("ortho_png")
+ortho_png:id(4619)
+ortho_png:tooltip( 4619)
+ortho_png:visible(true)
+ortho_png:dontDither(false)
+ortho_png:alwaysBuffer(true)
+ortho_png:angle(0)
+ortho_png:showBorder(false)
+ortho_png:threeD(true)
+ortho_png:borderWidth(2)

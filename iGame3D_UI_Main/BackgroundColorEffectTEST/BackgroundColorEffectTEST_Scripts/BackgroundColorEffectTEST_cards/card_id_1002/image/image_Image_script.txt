@@ -1,0 +1,27 @@
+--- image "Image",card id 1002,BackgroundColorEffectTEST
+on mouseDown
+   put "IG3D_BACKGROUND_COLOR" into theLuaCommand
+  put folderPath() into rem
+  put the fileName of me into myName
+  replace rem with empty in myName
+  put "Data/" before myName
+  put ig3d_GetColorInTexture_s6i_4f(myName, the left of me, the top of me, the right of me, the bottom of me, item 1 of the mouseLoc, item 2 of the mouseLoc) into RGB
+   put "setSceneInfo("&theLUACommand & "," &  rgb &")" into theLUAColorCommand
+     put ig3d_ExecuteLua_s_i(theLUAColorCommand) into livecolor
+put myName & cr & rgb into fld "something"
+set the lastloc of me to the mouseloc
+end mouseDown
+-- --
+on mouseStillDown
+  put "IG3D_BACKGROUND_COLOR" into theLuaCommand
+  put folderPath() into rem
+  put the fileName of me into myName
+  replace gStackDirectory with empty in myName
+  put ig3d_GetColorInTexture_s6i_4f(myname, the left of me, the top of me, the right of me, the bottom of me, item 1 of the mouseLoc, item 2 of the mouseLoc) into RGB
+put "setSceneInfo("&theLUACommand & "," &  rgb &")" into theLUAColorCommand
+if abs(item 1 the lastloc of me - item 1 the mouseloc) > 2 or abs(item 2 the lastloc of me - item 2 the mouseloc) > 2 then
+     put ig3d_ExecuteLua_s_i(theLUAColorCommand) into livecolor
+put theLUAColorCommand & cr & myName & cr & rgb into fld "something"
+set the lastloc of me to the mouseloc
+end if
+end mouseStillDown

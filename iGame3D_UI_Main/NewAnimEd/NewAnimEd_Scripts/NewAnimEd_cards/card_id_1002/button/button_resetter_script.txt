@@ -1,0 +1,4 @@
+--- button "resetter",card id 1002,NewAnimEd
+on mouseUp
+      put ig3d_ExecuteLua_s_i("setObjectInfo(get(ig3d_object, " && quote & objectName() & quote & "), IG3D_ANIMATION, " & quote & "STOP" & quote & ",0,true)")
+end mouseUp

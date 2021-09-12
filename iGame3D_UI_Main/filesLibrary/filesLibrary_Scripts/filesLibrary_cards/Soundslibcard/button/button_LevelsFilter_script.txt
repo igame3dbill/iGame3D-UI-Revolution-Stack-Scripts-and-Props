@@ -1,0 +1,47 @@
+--- button "LevelsFilter",Soundslibcard,filesLibrary
+  on closeField
+   
+ 
+    set the buttonHasFocus of stack (the mainStack of this stack) to true
+end closeField 
+-- --
+on openField
+    
+  set the buttonHasFocus of stack (the mainStack of this stack) to true
+end openField
+-- --
+on rawKeyUp
+put the label of me into myPick 
+ 
+  pass rawKeyUp
+end rawKeyUp
+-- --
+on rawKeyDown
+  
+  if the controlKey is down then
+    closeField
+   ----###focus cd btn 1 of stack (the mainStack of this stack)
+    exit rawKeyDown
+  end if
+  pass rawKeyDown
+end rawKeyDown
+-- --
+on returnInField 
+put the label of me & cr into myList
+  put the historyMenu of me after myList
+set the historyMenu of me to myList
+end returnInField
+-- --
+on menuPick myPick
+set the label of me to myPick 
+ 
+send (setTriangles && Sources) to field "scriptsList"
+end menuPick
+-- --
+on mouseLeave
+end mouseLeave
+-- --
+on mousedown
+put the label of me into myLine
+  put the historyMenu of me into me
+  end mouseDown

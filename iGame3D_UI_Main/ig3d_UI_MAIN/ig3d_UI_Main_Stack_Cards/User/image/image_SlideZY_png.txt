@@ -1,0 +1,12 @@
+--- image "SlideZY_png",User,ig3d_UI_MAIN
+SlideZY_png:rect(256,107,280,131)
+SlideZY_png:short name("SlideZY_png")
+SlideZY_png:id(4226)
+SlideZY_png:tooltip( 4226)
+SlideZY_png:visible(true)
+SlideZY_png:dontDither(false)
+SlideZY_png:alwaysBuffer(true)
+SlideZY_png:angle(0)
+SlideZY_png:showBorder(false)
+SlideZY_png:threeD(true)
+SlideZY_png:borderWidth(2)

@@ -1,0 +1,16 @@
+--- button "File_2",User,ig3d_UI_MAIN
+on mouseDown
+  put the name of me into who
+  replace "_2" with empty in who
+  put the text of btn who of group "igame3dmenu1" into me
+  
+end mouseDown
+
+-- --
+on menuPick myPick mypick2
+  put myPick & myPick2 into mypicks
+  put the name of me into who
+  replace "_2" with empty in who
+send menuPick && myPicks to btn who
+
+end menuPick

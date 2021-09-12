@@ -1,0 +1,11 @@
+--- image "Image_1",card id 1002,GameOverViewData
+Image_1:rect(106,104,212,210)
+Image_1:short name("Image_1")
+Image_1:id(1241)
+Image_1:visible(true)
+Image_1:dontDither(false)
+Image_1:alwaysBuffer(false)
+Image_1:angle(0)
+Image_1:showBorder(false)
+Image_1:threeD(true)
+Image_1:borderWidth(2)

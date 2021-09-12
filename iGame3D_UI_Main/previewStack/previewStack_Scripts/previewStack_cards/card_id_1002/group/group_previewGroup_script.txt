@@ -1,0 +1,95 @@
+--- group "previewGroup",card id 1002,previewStack
+local inspPath
+-- --
+on mouseDown
+  put  the name of the current card of stack "inspector" && "of stack"&&  quoted("inspector") into inspPath
+  if "_color" is not in word 2 of inspPath then exit mouseDown
+  put the short name of the current card of stack "inspector"  into theNam
+  replace "card" with empty in theNam
+  put item itemOffset(theNam,"TINT,Background") of "IG3D_TINT_COLOR,IG3D_BACKGROUND_COLOR" into theluaCommand
+if the mouseLoc is within the rect of me then
+  put globalLoc(the mouseLoc) into myLocoLoc 
+  set the secondColor of cd grc "preview" of inspPath to the mouseColor
+  set the left of grc "preview" of inspPath to the right of fld "red" of inspPath 
+  set the top of grc "preview" of inspPath to the top of fld "red" of inspPath 
+put FixMouseColor(secondColor of cd grc "preview" of inspPath) into argh
+  put item 1 of argh/256.0 into R
+  put  item 2 of argh/256.0 into G
+  put  item 3 of argh/256.0 into B
+  put R & comma & G & comma & B into RGB
+  put "red,green,blue"  into theFlds
+  repeat with x = 1 to 3
+    put item x of rgb  into fld (item x of theflds)  of inspPath
+  end repeat
+  put theNam && rgb into theNameTHERGB
+   ##put theNam
+ switch theNam
+   case "grid"
+      ig3d_SetGridColor_3f (R),(G),(B)
+     break
+     case "tint"
+         case "background"
+        put "setSceneInfo("&theLUACommand & "," &  rgb &")" into theLUAColorCommand
+     put ig3d_ExecuteLua_s_i(theLUAColorCommand) into livecolor
+       break
+       case "fog"
+         updateFog
+         break
+ end switch
+end if
+end mouseDown
+-- --
+on mouseStillDown
+ put the short name of the current card of stack "inspector" into theNam
+  replace "card" with empty in theNam
+  put item itemOffset(theNam,"TINT,Background") of "IG3D_TINT_COLOR,IG3D_BACKGROUND_COLOR" into theluaCommand
+if the mouseLoc is within the rect of me then
+  put globalLoc(the mouseLoc) into myLocoLoc 
+  set the secondColor of cd grc "preview" of inspPath to the mouseColor
+put FixMouseColor(secondColor of cd grc "preview" of inspPath) into argh
+  put item 1 of argh/256.0 into R
+  put  item 2 of argh/256.0 into G
+  put  item 3 of argh/256.0 into B
+  put R & comma & G & comma & B into RGB
+  put "red,green,blue"  into theFlds
+  repeat with x = 1 to 3
+    put item x of rgb  into fld (item x of theflds) 
+  end repeat
+  put theNam && rgb into theNameTHERGB
+  
+ switch theNam
+   case "grid"
+      ig3d_SetGridColor_3f (R),(G),(B)
+     break
+     case "tint"
+         case "background"
+        put "setSceneInfo("&theLUACommand & "," &  rgb &")" into theLUAColorCommand
+     put ig3d_ExecuteLua_s_i(theLUAColorCommand) into livecolor
+       break
+       case "fog"
+         updateFog
+         break
+ end switch
+end if
+  end mouseStillDown
+  
+-- --
+on GLTEXTCOLORCHANGE
+  put the short name of the current card of stack "inspector"  into theNam
+  replace "card" with empty in theNam
+  if the mouseLoc is within the rect of me then
+    put globalLoc(the mouseLoc) into myLocoLoc 
+    set the secondColor of cd grc "preview" of inspPath  to the mouseColor
+     set the textColor of  fld "theBodyText" to the mouseColor
+    put FixMouseColor(secondColor of cd grc "preview" of inspPath) into argh
+      put item 1 of argh/256.0 & comma & item 2 of argh/256.0 & comma & item 3 of argh/256.0 into pickedColor
+    set the pickedGLTextColor of stack (the mainStack of this stack) to pickedColor
+    put item 1 of argh/256.0 & return & item 2 of argh/256.0 & return & item 3 of argh/256.0 into fld "textColorFloats"
+    put T3DCommand("textcol" && line 1 of fld "textColorFloats" & "," & line 2 of fld "textColorFloats" & "," & line 3 of fld "textColorFloats" ) into livecolor
+    put GLTextField("text" & cr & fld "theBodyText") into secaaa
+  end if
+end GLTEXTCOLORCHANGE
+-- --
+on doArrowsFIELD what
+  doArrows what
+end doArrowsFIELD

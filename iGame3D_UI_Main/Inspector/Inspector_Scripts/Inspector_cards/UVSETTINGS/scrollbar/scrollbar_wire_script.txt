@@ -1,0 +1,6 @@
+--- scrollbar "wire",UVSETTINGS,Inspector
+on scrollbarDrag x
+  
+  put x into fld "wire"
+ put updateMaterialFromInspector() into UpdateMaterialsCOLORS
+end scrollbarDrag

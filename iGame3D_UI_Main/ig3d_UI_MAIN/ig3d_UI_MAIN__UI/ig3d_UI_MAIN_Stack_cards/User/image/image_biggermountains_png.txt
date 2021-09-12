@@ -1,0 +1,12 @@
+--- image "biggermountains_png",User,ig3d_UI_MAIN
+biggermountains_png:rect(752,115,768,131)
+biggermountains_png:short name("biggermountains_png")
+biggermountains_png:id(4408)
+biggermountains_png:tooltip( 4408)
+biggermountains_png:visible(true)
+biggermountains_png:dontDither(false)
+biggermountains_png:alwaysBuffer(true)
+biggermountains_png:angle(0)
+biggermountains_png:showBorder(false)
+biggermountains_png:threeD(false)
+biggermountains_png:borderWidth(2)

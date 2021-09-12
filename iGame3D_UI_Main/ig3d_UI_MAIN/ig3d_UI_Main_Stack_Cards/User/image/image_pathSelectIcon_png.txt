@@ -1,0 +1,11 @@
+--- image "pathSelectIcon_png",User,ig3d_UI_MAIN
+pathSelectIcon_png:rect(638,174,660,196)
+pathSelectIcon_png:short name("pathSelectIcon_png")
+pathSelectIcon_png:id(5338)
+pathSelectIcon_png:visible(true)
+pathSelectIcon_png:dontDither(false)
+pathSelectIcon_png:alwaysBuffer(true)
+pathSelectIcon_png:angle(0)
+pathSelectIcon_png:showBorder(false)
+pathSelectIcon_png:threeD(true)
+pathSelectIcon_png:borderWidth(2)

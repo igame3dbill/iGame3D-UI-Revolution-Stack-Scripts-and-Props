@@ -1,0 +1,4 @@
+--- field "theMenu",card id 1002ofdev,Dev
+on enterInField
+  setDevMenu
+end enterInField

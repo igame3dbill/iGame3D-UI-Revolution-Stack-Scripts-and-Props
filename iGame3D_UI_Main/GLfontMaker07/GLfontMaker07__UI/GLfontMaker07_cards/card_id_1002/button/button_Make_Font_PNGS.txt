@@ -1,0 +1,17 @@
+--- button "Make_Font_PNGS",card id 1002,GLfontMaker07
+Make_Font_PNGS:rect(300,286,390,312)
+Make_Font_PNGS:short name("Make_Font_PNGS")
+Make_Font_PNGS:style("standard")
+Make_Font_PNGS:visible(true)
+Make_Font_PNGS:showName(true)
+Make_Font_PNGS:autoHilite(true)
+Make_Font_PNGS:opaque(true)
+Make_Font_PNGS:sharedHilite(true)
+Make_Font_PNGS:traversalOn(true)
+Make_Font_PNGS:showfocusBorder(true)
+Make_Font_PNGS:icon(0)
+Make_Font_PNGS:hiliteIcon(0)
+Make_Font_PNGS:borderWidth(2)
+Make_Font_PNGS:textAlign("center")
+
+Make_Font_PNGS:pnum(1)

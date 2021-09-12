@@ -1,0 +1,5 @@
+--- button "colorize",card id 1002,scriptHarvesterig3d
+on mouseUp
+  if the hilite of me then colorizescript
+  else put fld "scripts" into fld "scripts"
+end mouseUp

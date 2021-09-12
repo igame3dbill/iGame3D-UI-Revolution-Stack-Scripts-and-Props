@@ -1,0 +1,9 @@
+--- button "File",User,ig3d_UI_MAIN
+----iGame3D File Menu Functionalit moved to stack script iGame3dFIleMenuPick function 09 -15 -04
+-- --
+on menuPick item1 item2 item3
+  put quoted(item1 & item2 & item3)  into myItems 
+  set itemDel to "/"
+  put item 1 of myItems into realItems
+  put iGame3dFIleMenuPick(realItems) into theMenuPick
+  end menuPick

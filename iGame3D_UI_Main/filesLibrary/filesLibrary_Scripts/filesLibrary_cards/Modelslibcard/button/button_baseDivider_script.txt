@@ -1,0 +1,25 @@
+--- button "baseDivider",Modelslibcard,filesLibrary
+on mouseDown
+  send dragme to me in 30 milliseconds
+  
+end mouseDown
+--on dragMe
+--  put item 2 the loc of me into t
+--  if the screenmouseLoc is within the rect of stack "filesLibrary" then  put item 2 the mouseloc into t
+--  put the rect of stack "filesLibrary" into R
+--  put the rect of me into mr
+--  put item 3 of r into item 3 of mr
+--  put 1 into item 1 of mr
+--  set the rect of me to mr
+--  put (item 1 the loc of me,t) into MyLoc
+--  set the loc of me to MyLoc
+--  put  item 2 the screenmouseloc+the height of me into item 4 of r
+--  
+--  if the  screenmouseLoc is within the rect of stack "filesLibrary" then put item 2 the screenmouseLoc+2 into item 4 of r
+--   
+--  if item 2 of the  screenmouseLoc > the bottom of group "filterbtngrp" of stack "fileslibrary" then  set the rect of stack "filesLibrary" to R
+--  --set the bottom of group "DefaultGroup" to (the top of me)-10
+--  --if the top of group "DefaultGroup" < 2 and t < item 2 the loc of grp "DefaultGroup" then exit dragMe
+--  if the mouse is down then send dragme to me in 40 milliseconds
+--  
+--end dragMe

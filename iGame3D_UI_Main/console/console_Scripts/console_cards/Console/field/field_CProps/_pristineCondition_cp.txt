@@ -1,0 +1,3 @@
+commandHeader,pristineCondition[["console
+scripts
+open files:"]]

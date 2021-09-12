@@ -1,0 +1,9 @@
+--- button "path",User,ig3d_UI_MAIN
+on mouseUp
+  
+end mouseUp
+
+-- --
+on mouseDoubleUp
+ put CubeToolUnits("gridUnit")  into CTV
+end mouseDoubleUp

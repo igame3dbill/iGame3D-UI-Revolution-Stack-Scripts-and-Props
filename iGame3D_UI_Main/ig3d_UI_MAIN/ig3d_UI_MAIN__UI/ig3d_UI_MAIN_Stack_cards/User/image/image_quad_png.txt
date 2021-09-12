@@ -1,0 +1,12 @@
+--- image "quad_png",User,ig3d_UI_MAIN
+quad_png:rect(188,69,212,93)
+quad_png:short name("quad_png")
+quad_png:id(4222)
+quad_png:tooltip( 4222)
+quad_png:visible(true)
+quad_png:dontDither(false)
+quad_png:alwaysBuffer(true)
+quad_png:angle(0)
+quad_png:showBorder(false)
+quad_png:threeD(true)
+quad_png:borderWidth(2)

@@ -1,0 +1,12 @@
+--- image "depthteston_png",User,ig3d_UI_MAIN
+depthteston_png:rect(813,69,829,85)
+depthteston_png:short name("depthteston_png")
+depthteston_png:id(4493)
+depthteston_png:tooltip( 4493)
+depthteston_png:visible(true)
+depthteston_png:dontDither(false)
+depthteston_png:alwaysBuffer(true)
+depthteston_png:angle(0)
+depthteston_png:showBorder(false)
+depthteston_png:threeD(true)
+depthteston_png:borderWidth(2)

@@ -1,0 +1,35 @@
+--- button "Play_Game",User,ig3d_UI_MAIN
+Play_Game:rect(682,22,712,48)
+Play_Game:short name("Play_Game")
+Play_Game:label("esc.key!")
+Play_Game:style("transparent")
+Play_Game:visible(true)
+Play_Game:showName(false)
+Play_Game:autoHilite(true)
+Play_Game:opaque(false)
+Play_Game:sharedHilite(true)
+Play_Game:traversalOn(true)
+Play_Game:showfocusBorder(false)
+Play_Game:icon(4272)
+Play_Game:hiliteIcon(4389)
+Play_Game:borderWidth(2)
+Play_Game:textFont("Arial")
+Play_Game:textSize(9)
+Play_Game:textAlign("center")
+
+Play_Game:showList([["Inspector
+toolPicker
+revTools
+revScriptEditor 1
+NewMatEd
+previewImage
+moveControls
+Dev
+3D Scene
+revMenubar"]])
+
+Play_Game:lastClick("906,310")
+
+Play_Game:clickStart("906,310")
+
+Play_Game:firstRun(true)

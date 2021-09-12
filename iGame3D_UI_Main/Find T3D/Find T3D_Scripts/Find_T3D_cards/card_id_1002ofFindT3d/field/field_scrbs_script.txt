@@ -1,0 +1,15 @@
+--- field "scrbs",card id 1002ofFindT3d,Find T3D
+on mousedown
+  if the optionkey is down then 
+    select word 1 to -1 of the clickline
+    get value(the clickline)
+    switch (word 1 of it)
+    case "script"
+    case "stackscript"
+    case "cardscript"
+      put char 1 to -2 of word 3 to -1 of it into it
+      edit script of it
+      break
+    end switch
+  end if
+end mousedown

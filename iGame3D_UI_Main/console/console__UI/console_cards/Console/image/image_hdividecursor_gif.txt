@@ -1,0 +1,12 @@
+--- image "hdividecursor_gif",Console,console
+hdividecursor_gif:rect(241,16,257,32)
+hdividecursor_gif:short name("hdividecursor_gif")
+hdividecursor_gif:id(1469)
+hdividecursor_gif:tooltip(201582)
+hdividecursor_gif:visible(false)
+hdividecursor_gif:dontDither(false)
+hdividecursor_gif:alwaysBuffer(true)
+hdividecursor_gif:angle(0)
+hdividecursor_gif:showBorder(false)
+hdividecursor_gif:threeD(true)
+hdividecursor_gif:borderWidth(2)

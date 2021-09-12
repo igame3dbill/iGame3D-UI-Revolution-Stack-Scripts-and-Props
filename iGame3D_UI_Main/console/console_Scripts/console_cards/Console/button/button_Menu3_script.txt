@@ -1,0 +1,9 @@
+--- button "Menu3",Console,console
+on mouseDown
+  put getLuaCom() into me
+end mouseDown
+-- --
+on menuPick what
+  if num(words of fld "consoleIN") < 2 then put what&"()" into   fld "consoleIn"
+else put what&"()" after   fld "consoleIn"
+end menuPick

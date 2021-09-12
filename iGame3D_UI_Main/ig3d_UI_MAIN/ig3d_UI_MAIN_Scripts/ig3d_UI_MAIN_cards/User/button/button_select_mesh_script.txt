@@ -1,0 +1,9 @@
+--- button "select_mesh",User,ig3d_UI_MAIN
+--on mouseUp
+--  put glrect() into glr
+--  set the topLEft of stack "verticeTools" to item 3 of glr,bottom of stack "toolpicker"
+--  -- item 1 the screenMouselOc-12,the item 4 the rect  of stack "toolpicker"
+--  --if "verticalTools" is not in the windows then palette stack "verticetools"
+--  --show stack "verticeTools"
+--  put chooseAtool("select") into theTOOL
+--end mouseUp

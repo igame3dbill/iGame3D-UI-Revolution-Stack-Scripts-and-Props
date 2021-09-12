@@ -1,0 +1,1 @@
+--- graphic "fogrect",fog_color,Inspector

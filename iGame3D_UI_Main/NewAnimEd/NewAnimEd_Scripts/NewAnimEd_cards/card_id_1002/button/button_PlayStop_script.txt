@@ -1,0 +1,26 @@
+--- button "PlayStop",card id 1002,NewAnimEd
+on mouseUp
+  if the gPlayAnimation of this stack is true then
+    set the gPlayAnimation of this stack to false
+    set the label of me to "Play"
+    else
+    UnselectMarkers
+  movePlayHeadToTime 0
+  set the hScroll of group "Knochen" to 0
+set the gAnimationStart of this stack to the last word of ig3d_GetUptime__f()
+put 0 into theEnd
+repeat with m=1 to the number of lines of cd fld "allMarkers"
+  if item 4 of the mData of graphic (line m of cd fld "allMarkers") > theEnd then put item 4 of the mData of graphic (line m of cd fld "allMarkers") into theEnd
+end repeat
+set the gAnimationEnd of this stack to theEnd
+set the gPlayAnimation of this stack to true
+set the label of me to "Stop"
+if the hilite of btn "looPplay" is true then send checkloop to me in 5 milliseconds
+end if
+end mouseUp
+-- --
+on checkloop
+   if the gPlayAnimation of this stack is false then send mouseUp to me
+   else send checkloop to me in 5 milliseconds
+ 
+end checkloop

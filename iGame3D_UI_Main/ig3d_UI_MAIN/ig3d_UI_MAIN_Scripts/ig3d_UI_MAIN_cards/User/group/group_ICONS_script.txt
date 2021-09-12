@@ -1,0 +1,29 @@
+--- group "ICONS",User,ig3d_UI_MAIN
+--on mouseDown
+--   if the commandKey is not down then 
+--  put the ID of the mouseControl into I
+--  put the mouseLoc into xy
+--  put item 2 of xy-100 into item 2 of xy
+--  set the rect of the templateButton to 24,24,48,48
+--  set the loc of the templateButton to xy
+--  set the icon of the templatebutton to i
+--  set the name of the templatebutton to i
+--  set the style of the templateButton to transparent
+--  create button
+--  choose browse tool
+--  end if
+--end mouseDown
+--
+--on mouseWithin
+--  if the commandKey is not down then choose browse tool
+--end  mouseWithin
+--
+--on mouseLeave
+--  pointerAction
+--end mouseLeave
+--
+--
+--on mouseEnter
+--   if the commandKey is not down then choose browse tool
+--end mouseEnter
+

@@ -1,0 +1,12 @@
+--- image "previewImage",card id 1002,previewImage
+previewImage:rect(0,0,32,32)
+previewImage:short name("previewImage")
+previewImage:id(4489)
+previewImage:tooltip("camera.png")
+previewImage:visible(true)
+previewImage:dontDither(true)
+previewImage:alwaysBuffer(true)
+previewImage:angle(0)
+previewImage:showBorder(false)
+previewImage:threeD(true)
+previewImage:borderWidth(10)

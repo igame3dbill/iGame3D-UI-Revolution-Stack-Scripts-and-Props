@@ -1,0 +1,14 @@
+--- button "TabGroup1",card id 1002,GameOverViewData
+on menuPick pNewTab,pOldTab
+  -- menuPick pNewTab, pOldTab
+  --   menuPick is the name of the handler/function that gets called when a tab is clicked
+  --   pNewTab is the name of the new tab that was picked (it is equal to the name visible on the tab)
+  --   pOldTab is the name of the tab that we were on (it is equal to the name visible on the tab)
+
+  lock screen            -- lock the screen so the redraw is nice
+  
+  -- by placing the controls that belong on the tab into a group you can easily switch the tabs
+  -- name your group the same as the tab (ie. [ Buttons ][ Tabs ]  =>  group "Buttons", group "Tabs")
+  hide group pOldTab     -- hide the original tab's controls
+  show group pNewTab     -- show the new tab's controls
+end menuPick

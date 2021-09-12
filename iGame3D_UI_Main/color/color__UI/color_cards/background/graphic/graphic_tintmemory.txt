@@ -1,0 +1,1 @@
+--- graphic "tintmemory",background,color

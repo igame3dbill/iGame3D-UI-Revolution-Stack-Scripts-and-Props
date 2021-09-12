@@ -1,0 +1,63 @@
+--- button "ReplaceFilter",card id 1002,replacemodelssubstack
+  on closeField
+   
+ 
+    set the buttonHasFocus of stack (the mainStack of this stack) to false
+     ----###focus cd btn 1 of stack (the mainStack of this stack)
+end closeField 
+-- --
+on openField
+    
+  set the buttonHasFocus of stack (the mainStack of this stack) to true
+end openField
+-- --
+on rawKeyUp
+   set the buttonHasFocus of stack (the mainStack of this stack) to true
+refreshREPLIST
+  pass rawKeyUp
+end rawKeyUp
+-- --
+on refreshREPLIST
+     put ig3d_GetObjectsList__s() into  myList
+     put myList into original
+   if the label of me <> ""  then  filter myList with  the label of me & "*"
+put myList into field "repModelsList"
+if myList is original then set the disabled of button "applyReplace" to true
+end refreshREPLIST
+-- --
+on rawKeyDown
+    set the buttonHasFocus of stack (the mainStack of this stack) to true
+  if the controlKey is down then
+    closeField
+    exit rawKeyDown
+  end if
+  
+  pass rawKeyDown
+end rawKeyDown
+-- --
+on returnInField 
+  put the historyMenu of me into myList
+  put "*" & the label of me into mylab
+  filter myList with myLab
+if myList is "" then
+put the label of me & cr before myList
+set the historyMenu of me to myList
+end if
+end returnInField
+--
+--on mouseEnter
+--  set the buttonHasFocus of stack (the mainStack of this stack) to false
+--end mouseEnter
+-- --
+on menuPick myPick
+set the label of me to myPick 
+ refreshREPLIST
+end menuPick
+-- --
+on mouseLeave
+end mouseLeave
+-- --
+on mousedown
+  refreshREPLIST
+  put T3DObjectList() into me
+  end mouseDown

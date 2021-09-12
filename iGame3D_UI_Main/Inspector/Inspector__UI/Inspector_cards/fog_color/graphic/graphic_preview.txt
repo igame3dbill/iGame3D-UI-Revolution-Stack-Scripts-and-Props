@@ -1,0 +1,1 @@
+--- graphic "preview",fog_color,Inspector

@@ -1,0 +1,345 @@
+--- field "theLoadscript",textlibcard,filesLibrary
+local zap,lShowTime,lRealTree,lTempField
+-- --
+on mousedown
+  put "" into fld "fullpathlabel"
+  lock screen
+  set the loc of stack "previewImage" to -300,-300
+    palette stack "previewImage"
+  hide player "previewplayer"
+  set the fileName of image "previewImage" of stack "previewImage" to ""
+  set the fileName of player "previewPlayer" of stack "filesLibrary" to ""
+  if the optionkey is down then put true into lShowTime
+  parsetree the hilitedLine of me
+  ### to keep drag stuff out of parsetree (not the right place)
+  checkLibraryDrag
+  setPreviewImageOnPick 32
+  put false into lShowTime
+  put "" into zap
+   
+ 
+end mousedown
+-- --
+on BuildTree
+  put the long seconds into zap
+  put "" into PathsArray
+  put "" into FilesArray
+  put "" into foldersArray
+  put tab&tab&tab&tab&tab&tab&tab&tab&tab&tab&tab&tab into tTabs
+  put char 1 to 10 of tTabs into tWedge
+  get gameroot()
+  set the directory to it
+  put getMkey(libraryFilter) into tF  ----put the label of btn "filter" into tF
+  put "find . -iname "&quote&"*" &tF&quote into x
+  put shell(x) into tPL
+  ### remove from list
+  filter tPL without "*.app/*"
+  filter tPL without "*/save/*"
+  filter tPL without "*.saver/*"
+  ### only for dev to check
+  set the pathList of fld 1 to tPL
+  ###
+  set the itemdelimiter to "/"
+  if tf = "Load script.txt" then put ".lua" into tF
+  repeat for each line i in tPL
+    ### slower
+    --get matchText(i,"(.*\/)",tFP)  -- gets the folderpath
+    --get matchText(i,".*\/(.*?)$",tFN)  -- gets the file name
+    ### faster
+    put item 1 to -2 of i &"/" into tFP
+    put item -1 of i into tFN
+    ### slowing down
+    replace tf with "" in tFN
+    ###
+    
+    put the num of items in i - 2 into tN
+    put "<p>"&char 1 to tN of tTabs &tFN & tWedge & i & "</p>" & cr after FilesArray[tFP]
+  end repeat
+  ### prepping fontTag
+  put the fontTag of me into tFT
+  replace "xFont" with "webdings" in tFT
+  replace "xSize" with 10 in tFT
+  replace "xText" with 4 in tFt
+  ###
+  set the itemdelimiter to "/"
+  get the keys of FilesArray
+  put "" into tList
+  sort it
+  repeat for each line i in it
+    put 1 into tC
+    repeat the num of items in i - 1
+      put  "<p>" & char 1 to tC - 1 of tTabs &tft& item tC + 1 of i &  tWedge & item 1 to tC + 1 of i &"/" &cr after tList
+      add 1 to tC
+    end repeat
+  end repeat
+  set the itemdelimiter to tab
+  repeat for each line i in tList
+    put i& "</p>" into temparray[item -1 of i]
+  end repeat
+  get the keys of temparray
+  sort it
+  put "" into tList
+  repeat for each line i in it
+    put temparray[i] & cr after tList
+    put FilesArray[i] into xxx
+    if xxx <> "" then put xxx  after tList
+  end repeat
+  set the rawtree of me to tList
+  set the htmltext of fld "temp" to tList
+  parsetree
+end BuildTree
+-- --
+on parseFilter
+  put fld "nameFilter" into tNF
+  if tNF = "" and lRealtree <> "" then
+    set the htmltext of fld "list" to lRealTree
+    set the htmltext of fld "temp" to lTempField
+    put "" into lRealTree
+    put "" into lTempField
+    exit parseFilter
+  else if tNF <> "" then
+    if lRealtree = "" then
+      put the htmltext of fld "list" into lRealtree
+      put the htmltext of fld "temp" into lTempField
+    end if
+    put the rawTree of me into tRT
+    replace ">4<" with ">6<" in tRT
+    set the htmltext of fld "temp" to tRT
+    put fld "temp" into tTemp
+    put 1 into tC
+    set the itemdel to tab
+    repeat for each line i in tTemp
+      if char 1 of word 1 of i = "6" or tNF is in item 1 to -2 of i then put line tC of tRT & cr before tList
+      add 1 to tC
+    end repeat
+    set the htmltext of fld "temp" to tList
+    put fld "temp" into tTemp
+    put 1 into tC
+    put "" into tX
+    repeat for each line i in tTemp
+      if char 1 of word 1 of i <> "6" then
+        put line tC of tList before tL2
+        put i into tX
+      else if char 1 of word 1 of i = "6" and tx <> "" then
+        if char 1 of word 1 of tx = "6" then
+          put itemoffset(word 1 of i,i) into xxx
+          put itemoffset(word 1 of tx,tx) into xxxx
+          if itemoffset(word 1 of i,i) < itemoffset(word 1 of tx,tx) then
+            put line tC of tList before tL2
+            put i into tX
+          end if
+        else 
+          put line tC of tList before tL2
+          put i into tX
+        end if
+      end if
+      add 1 to tC
+    end repeat
+    set the htmltext of fld "list" to tL2
+    set the htmltext of fld "temp" to tL2
+  end if
+end parseFilter
+-- --
+on parsetree x
+  if zap = "" then put the long seconds into zap
+  put the scroll of fld "list" into tScroll
+  if x = "" then  ### pick completely closed list
+    put the rawtree of me into xx
+    set the htmltext of fld "temp" to xx
+    get fld "temp"
+    put 1 into tC
+    repeat for each line i in it
+      if char 1 of i = 4 then put the line tC of xx & cr after tList
+      add 1 to tC
+    end repeat
+  else
+    set the itemdelimiter to tab
+    put the htmltext of fld "temp" into tHTML
+    if x is a number then 
+      get fld "temp"
+      put fld "nameFilter" into tNF
+      put item -1 of line x of fld "list" into tT
+      put lineOffset(tT,it) into tLO
+      put char 1 of word 1 of line tLO of it into tS
+      put line tLO of tHTML into tL
+       
+      if tNF <> "" then
+        if tS is 4 or ts is 6 then exit parsetree
+        put item -1 of line x of fld "list" into LSFile
+        put folderPath() & char 3 to -1 of LSFile into fld "fullpathlabel"
+        exit parsetree
+      else
+        if tS is 4  then replace ">4<" with ">6<" in tL
+        else if tS = 6  then replace ">6<" with ">4<" in tL
+        else
+          put item -1 of line x of fld "list" into LSFile
+          put folderPath() & char 3 to -1 of LSFile into fld "fullpathlabel"
+           
+          ########
+          ---put cr & the long seconds - zap after msg
+          if lShowTime then put the long seconds - zap
+          exit parsetree
+        end if
+        #########################
+        put tL into line tLO of tHTML
+        set the htmltext of fld "temp" to tHTML 
+      end if
+    else put line (the hilitedLine of fld "list") of fld "list" into tHL
+    put fld "nameFilter" into tNF
+    get fld "temp"
+    put 1 into tC
+    repeat for each line i in it
+      put itemoffset(word 1 of i,i) into tIO
+      if tIO = 1 then put false into tFlags
+      switch char 1 of word 1 of i
+      case "4"  ###ARROWCLOSE
+        if tIO = 1 or item tIO - 1  of tFlags then
+          put line tC of tHTML  & cr after tList
+          put false into item tIO of tFlags
+          delete item tIO + 1 to -1 of tFlags
+        end if
+        break
+      case "6"  ###ARROWOPEN
+        if tIO = 1 or item tIO - 1  of tFlags then
+          put line tC of tHTML  & cr after tList
+          put true into item tIO of tFlags
+          delete item tIO + 1 to -1 of tFlags
+        end if
+        break
+      default
+        --if item tIO - 1 of tFlags then put line tC of tHTML  & cr after tList
+        if item tIO - 1 of tFlags then 
+          --if tNF = "" or tNF is in word 1 of i then put line tC of tHTML  & cr after tList
+          if tNF = ""  then put line tC of tHTML  & cr after tList
+        end if
+        break
+      end switch
+      add 1 to tC
+    end repeat
+  end if
+  set the htmlText of fld "List" to tList
+  --set the hilitedline of fld "list" to x
+  if x is a number then set the hilitedline of fld "list" to x
+  else if tHL <> "" then set the hilitedLine of fld "list" to lineOffset(tHL,fld "list")
+  set the scroll of fld List to tScroll
+  if lShowTime then put the long seconds - zap
+  put "" into zap
+  --end if
+end parsetree
+--on parsetree x
+  if zap = "" then put the long seconds into zap
+  put the scroll of fld "list" into tScroll
+  if x = "" then  ### pick completely closed list
+    put the rawtree of me into xx
+    set the htmltext of fld "temp" to xx
+    get fld "temp"
+    put 1 into tC
+    repeat for each line i in it
+      if char 1 of i = 4 then put the line tC of xx & cr after tList
+      add 1 to tC
+    end repeat
+  else
+    set the itemdelimiter to tab
+    put the htmltext of fld "temp" into tHTML
+    if x is a number then 
+      get fld "temp"
+      put fld "nameFilter" into tNF
+      put item -1 of line x of fld "list" into tT
+      put lineOffset(tT,it) into tLO
+      put char 1 of word 1 of line tLO of it into tS
+      put line tLO of tHTML into tL
+       
+      if tS is 4 and tNF = "" then replace ">4<" with ">6<" in tL
+      else if tS = 6 and tNF = "" then replace ">6<" with ">4<" in tL
+      else
+        put item -1 of line x of fld "list" into LSFile
+        put folderPath() & char 3 to -1 of LSFile into fld "fullpathlabel"
+         
+        ########
+        ---put cr & the long seconds - zap after msg
+        if lShowTime then put the long seconds - zap
+        exit parsetree
+      end if
+      #########################
+      put tL into line tLO of tHTML
+      set the htmltext of fld "temp" to tHTML 
+    end if
+    put line (the hilitedLine of fld "list") of fld "list" into tHL
+    put fld "nameFilter" into tNF
+    get fld "temp"
+    put 1 into tC
+    repeat for each line i in it
+      put itemoffset(word 1 of i,i) into tIO
+      if tIO = 1 then put false into tFlags
+      switch char 1 of word 1 of i
+      case "4"  ###ARROWCLOSE
+        if tIO = 1 or item tIO - 1  of tFlags then
+          put line tC of tHTML  & cr after tList
+          put false into item tIO of tFlags
+          delete item tIO + 1 to -1 of tFlags
+        end if
+        break
+      case "6"  ###ARROWOPEN
+        if tIO = 1 or item tIO - 1  of tFlags then
+          put line tC of tHTML  & cr after tList
+          put true into item tIO of tFlags
+          delete item tIO + 1 to -1 of tFlags
+        end if
+        break
+      default
+        --if item tIO - 1 of tFlags then put line tC of tHTML  & cr after tList
+        if item tIO - 1 of tFlags then 
+          --if tNF = "" or tNF is in word 1 of i then put line tC of tHTML  & cr after tList
+          if tNF = ""  then put line tC of tHTML  & cr after tList
+        end if
+        break
+      end switch
+      add 1 to tC
+    end repeat
+  end if
+  set the htmlText of fld "List" to tList
+  --set the hilitedline of fld "list" to x
+  if x is a number then set the hilitedline of fld "list" to x
+  else if tHL <> "" then set the hilitedLine of fld "list" to lineOffset(tHL,fld "list")
+  set the scroll of fld List to tScroll
+  if lShowTime then put the long seconds - zap
+  put "" into zap
+end parsetree
+-- --
+on checkLibraryDrag
+  if  fld "fullpathlabel" is not empty then 
+    put fld "fullpathlabel" into tFP
+    set the pickedLongFile of stack (the mainStack of this stack) to tFP
+    replace gameRoot() with "" in tFP 
+    set the pickedShortFile of stack (the mainStack of this stack) to tFP
+    set itemdel to "/"
+    put last item of tFP into FNM
+    put char -4 to -1 of tFP into EXTN
+put  setPreviewStack(extn) into setuppre 
+    if the mouse is down then send dragit to me in 40 millisecs  #### Drag and DROP START
+  end if
+end checkLibraryDrag
+-- --
+on dragit
+  put the pickedLibrary of stack (the mainStack of this stack) into MN
+  set itemDel to "/"
+  put the last item of fld "fullpathlabel" into FNM
+      if visible of stack "previewImage" is false then 
+   set the decorations of stack "previewImage" to none
+end if
+  put updateToolLabel("Drop:" && MN && FNM) into toolupdate
+     put the pickedShortFile of stack (the mainStack of this stack) into shortedFile
+      put the pickedLongFile of stack (the mainStack of this stack) into LongedFile
+  if the mouse is down then 
+     put the screenmouseloc into xy
+     checkDRAGS
+  show stack "previewImage"
+    set the loc of stack "previewImage" to  xy
+    send dragit to me in 10 millisecs
+    exit dragit
+  else
+checkDrop
+      hide stack "previewImage"
+  end if
+end dragit
+###### DRAGGING OPERATIONS MOVED TO MAIN STACK 05 16 05

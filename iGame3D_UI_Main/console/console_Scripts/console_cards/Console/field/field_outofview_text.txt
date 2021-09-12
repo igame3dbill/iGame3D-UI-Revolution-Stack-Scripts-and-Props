@@ -1,0 +1,6 @@
+--- field "outofview" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+o f..open s
+
+
+d
+w2169,766

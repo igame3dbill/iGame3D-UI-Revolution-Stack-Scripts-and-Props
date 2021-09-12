@@ -1,0 +1,19 @@
+--- button "insertionline",Console,console
+insertionline:rect(0,153,15,169)
+insertionline:short name("insertionline")
+insertionline:style("transparent")
+insertionline:visible(false)
+insertionline:showName(false)
+insertionline:autoHilite(false)
+insertionline:opaque(false)
+insertionline:sharedHilite(false)
+insertionline:traversalOn(true)
+insertionline:showfocusBorder(false)
+insertionline:icon(200947)
+insertionline:hiliteIcon(0)
+insertionline:borderWidth(2)
+insertionline:textAlign("center")
+
+insertionline:lastClick("90,400")
+
+insertionline:clickStart("90,400")

@@ -1,0 +1,42 @@
+--- field "RecentItemsofConsole" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+attenuation 0,.2
+alpha 1,.20
+mesh "models/test6.wtf"
+
+mesh "models/test4.wtf"
+vertex 0,0,0
+mesh "models/test3.wtf"
+
+mesh "models/test2.wtf"
+mesh "Models/cubetest.wtf"
+
+mesh "Models/cubetest"
+light 1
+cls\
+mesh "models/bob.mesh"
+
+mesh "models/bob.mesh"
+mesh "Models/bankBuilding1"
+"mesh" && "Models/bankBuilding1"
+off
+setf 1,90.0
+fov
+setf 1,90
+set the customKeys of stack "Materials" to None
+clks
+level "levels/newTest33"
+levels "levels/newTest33"
+level "levels/newleveltest"
+
+level "levels/newleveltest"
+
+level "levels/newleveltest"
+T3DSetInfo "level","levels/tietattoine"
+clone
+so whow has control here?
+xls
+c;ls
+mark 1
+player
+
+put 0,0,0

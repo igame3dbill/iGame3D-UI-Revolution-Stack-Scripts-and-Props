@@ -1,0 +1,5 @@
+--- button "button_1",cxxcard,murgaRevOut
+on mouseUp
+
+  answer folder "find .CXX files"
+end mouseUp

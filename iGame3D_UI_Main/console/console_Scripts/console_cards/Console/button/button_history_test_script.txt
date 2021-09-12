@@ -1,0 +1,6 @@
+--- button "history_test",Console,console
+on mouseUp 
+  if the commandkey is down then --send "emptyHistory" to fld "editField"
+  else if the optionkey is down then send "historyKeys" to fld "editField"
+  else send "putHistory" to fld "editfield"
+end mouseUp

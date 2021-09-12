@@ -1,0 +1,58 @@
+--- field "Stacks",card id 1002ofFindT3d,Find T3D
+local tHL
+-- --
+on mousedown
+  setTextColors
+  if the mainstack of this stack <> "Find t3d" then doiGame3Dstuff
+end mousedown
+-- --
+on setTextColors x
+  put the hilitedlines of me into tTemp
+  if x <> "" or tTemp <> tHL then
+    set the textcolor of line 1 to - 1 of me to 0,0,0
+    repeat for each item i in tTemp
+      set the textcolor of line i of me to 255,255,255
+    end repeat
+    put tTemp into tHL
+  end if
+  if the mouse is down then send "setTextColors" to me in 20 millisecs
+end setTextColors
+ 
+-- --
+on mouseup
+  if the optionkey is down then 
+    select line 1 to -1  of me
+    setTextColors
+  end if
+end mouseup
+-- --
+on mousedoubleup
+  if the mainstack of this stack <> "Find t3d" then exit mousedoubleup
+  set the hilitedlines of me to ""
+  setTextColors
+end mousedoubleup
+-- --
+on  doiGame3Dstuff
+  put empty into field "t3Ds"
+  put line word 2 selectedLine of me of me into theStack
+  set the label of btn "result" to "::::::::::   result  ::::::::::"
+  set the setStackScript of field "scrbs" to theStack
+  put "stack" && quote & theStack & quote into tSname
+  set the label of btn "scripts" to "::::::::::   script   ::::::::::"
+  if the password of tSName <> "" then 
+    put "<p><b>"&tSName& "</b> is<font color="&quote&"#C61E04"&quote& "> password protected</font></p><p></p>" & cr into tTempList
+  else
+    put the script of tSName into tS
+    put "<p><b>stackscript of" &&tSname & ":</b><br />" & cr into tTempList
+    get findInstances(tS) 
+    if it = false then 
+    put "nothing found</p>" after tTempList
+    put "" into it
+    else put it & "</p>" after tTempList
+  end if
+  if the num of words in tS = 0 then put "no stack script" into tS
+  put tS into fld "scrbs"
+  set the htmltext of fld "t3ds" to tTempList
+    set the label of btn "result" to "::::::::::   search result for" && quote& the label of btn "find_what"& quote && ":" && the number of lines in it && "hits   ::::::::::"
+  set the hscroll of field "scrbs" to 1
+end doiGame3Dstuff

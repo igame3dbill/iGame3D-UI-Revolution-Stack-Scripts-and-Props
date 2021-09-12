@@ -1,0 +1,12 @@
+--- image "vdividecursor_gif",card id 1002,scriptHarvesterig3d
+vdividecursor_gif:rect(204,-1,220,15)
+vdividecursor_gif:short name("vdividecursor_gif")
+vdividecursor_gif:id(1013)
+vdividecursor_gif:tooltip(1367)
+vdividecursor_gif:visible(false)
+vdividecursor_gif:dontDither(false)
+vdividecursor_gif:alwaysBuffer(true)
+vdividecursor_gif:angle(0)
+vdividecursor_gif:showBorder(false)
+vdividecursor_gif:threeD(true)
+vdividecursor_gif:borderWidth(2)

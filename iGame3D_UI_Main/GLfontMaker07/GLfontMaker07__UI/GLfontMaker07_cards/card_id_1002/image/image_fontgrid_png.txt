@@ -1,0 +1,11 @@
+--- image "fontgrid_png",card id 1002,GLfontMaker07
+fontgrid_png:rect(10,8,266,264)
+fontgrid_png:short name("fontgrid_png")
+fontgrid_png:id(2034)
+fontgrid_png:visible(false)
+fontgrid_png:dontDither(false)
+fontgrid_png:alwaysBuffer(true)
+fontgrid_png:angle(0)
+fontgrid_png:showBorder(false)
+fontgrid_png:threeD(true)
+fontgrid_png:borderWidth(2)

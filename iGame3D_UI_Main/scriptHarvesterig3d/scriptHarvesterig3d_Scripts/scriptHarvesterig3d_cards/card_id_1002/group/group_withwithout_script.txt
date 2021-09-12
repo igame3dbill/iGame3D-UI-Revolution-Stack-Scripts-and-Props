@@ -1,0 +1,4 @@
+--- group "withwithout",card id 1002,scriptHarvesterig3d
+on mouseup
+  filterkeysbycomment the label of btn "filtermenu"
+end mouseup

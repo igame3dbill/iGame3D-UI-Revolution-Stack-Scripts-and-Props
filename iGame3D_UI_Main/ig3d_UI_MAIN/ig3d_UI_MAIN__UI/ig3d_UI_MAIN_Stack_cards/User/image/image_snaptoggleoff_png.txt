@@ -1,0 +1,12 @@
+--- image "snaptoggleoff_png",User,ig3d_UI_MAIN
+snaptoggleoff_png:rect(324,174,346,196)
+snaptoggleoff_png:short name("snaptoggleoff_png")
+snaptoggleoff_png:id(4598)
+snaptoggleoff_png:tooltip( 4598)
+snaptoggleoff_png:visible(true)
+snaptoggleoff_png:dontDither(false)
+snaptoggleoff_png:alwaysBuffer(true)
+snaptoggleoff_png:angle(0)
+snaptoggleoff_png:showBorder(false)
+snaptoggleoff_png:threeD(true)
+snaptoggleoff_png:borderWidth(2)

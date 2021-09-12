@@ -1,0 +1,134 @@
+--- field "editField" of group "EditScript1" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+gScengraph=nil
+function simpleLightsList()
+	return "1\n2\n3\n4\n5\n6\n7\n8"
+end
+
+function customBoneInfo(s1, s2)
+	local f1,f2,f3,f4,f5,f6=ig3d_GetObjectBoneInfo_2s_6f(s1, s2)
+	return f1.."\n"..f2.."\n"..f3.."\n"..f4.."\n"..f5.."\n"..f6
+end
+
+sglut={}
+sglut[1]={singular="Object", plural="Objects", list=ig3d_GetObjectsList__s, get=ig3d_GetObjectInfo_s_s, set=ig3d_SetObjectInfo_2s, spawn=nil, del=nil,  sub={ singular="Bone", plural="Bones", list=ig3d_GetObjectBonesList_s_s, get=customBoneInfo } }
+sglut[2]={singular="Particle emitter", plural="Particle emitters", list=ig3d_GetParticle_emittersList__s, get=ig3d_GetParticle_emitterInfo_s_s, set=ig3d_SetParticle_emitterInfo_2s, spawn=nil, del=nil, sub=nil}
+sglut[3]={singular="Light", plural="Lights", list=simpleLightsList, get=ig3d_GetLightInfo_i_s, set=ig3d_SetLightInfo_is, spawn=nil, del=nil, sub=nil}
+sglut[4]={singular="Sound emitter", plural="Sound emitters", list=ig3d_GetSound_emittersList__s, get=ig3d_GetSound_emitterInfo_s_s, set=ig3d_SetSound_emitterInfo_2s, spawn=nil, del=nil, sub=nil}
+
+
+
+
+
+function setupLevel1()
+	level1:clear()
+	level3:label("")
+	
+	local i=1
+	while sglut[i]~= nil do
+		level1:add(sglut[i].plural)
+		i=i+1
+	end
+end
+
+function setupLevel2()
+	level2:clear()
+	level3:clear()
+	level3:label("")
+	
+	local list=sglut[level1:value()].list()
+	
+     	for w in string.gmatch(list, "[^\n]+") do
+       		level2:add(w)
+     	end
+end
+
+function setupLevel3()
+	level3:clear()
+	
+	
+	local getf=sglut[level1:value()].get
+	local str=level2:text(level2:value())
+	local info=getf(str)
+	
+	rawData:value(info)
+     	
+     	if sglut[level1:value()].sub~=nil then
+     		local list=sglut[level1:value()].sub.list(str)
+		
+		level3:label(sglut[level1:value()].singular.." "..sglut[level1:value()].sub.plural)
+		
+     		for w in string.gmatch(list, "[^\n]+") do
+       			level3:add(w)
+     		end
+     	end    	
+end
+
+
+function level1Clicked(w)
+	level2:clear()
+	level3:clear()
+	rawData:value("")
+	
+	if w:value()>0 then
+		setupLevel2()	
+	end
+end
+
+function level2Clicked(w)
+	level3:clear()
+	rawData:value("")
+		
+	if w:value()>0 then
+		setupLevel3()
+	end
+end
+
+function level3Clicked(w)
+	rawData:value("")
+	if w:value()>0 then
+
+	local str=level2:text(level2:value())
+	     	
+     	if sglut[level1:value()].sub~=nil then
+     		local info=sglut[level1:value()].sub.get(str, level3:text(level3:value()))
+		
+		rawData:value(info)
+     	end
+	end
+end
+
+function scenegraph()
+
+--fluid auto
+  do local object = fltk:Fl_Double_Window(555, 407, "Scenegraph");
+    window = object;
+    do level1 = fltk:Fl_Browser(5, 5, 180, 210);
+      level1:type(2);
+      level1:callback(level1Clicked);
+    end -- Fl_Browser* level1
+    do level2 = fltk:Fl_Browser(185, 5, 180, 210);
+      level2:type(2);
+      level2:callback(level2Clicked);
+    end -- Fl_Browser* level2
+    do level3 = fltk:Fl_Browser(365, 20, 180, 195, "Nothing");
+      level3:type(2);
+      level3:labelsize(12);
+      level3:callback(level3Clicked);
+      level3:align(fltk.FL_ALIGN_TOP);
+      Fl_Group:current():resizable(level3);
+    end -- Fl_Browser* level3
+    do rawData = fltk:Fl_Multiline_Input(5, 215, 540, 180);
+    end -- Fl_Multiline_Input* rawData
+    Fl_Group:current(Fl_Group:current():parent());
+  end
+	
+setupLevel1()
+
+  window:show();
+    Fl:scheme("plastic")
+  ig3d_RebuildMacMenubar();
+      Fl:wait(0);
+end
+
+if gScenegraph==nil then gScenegraph=scenegraph() end
+

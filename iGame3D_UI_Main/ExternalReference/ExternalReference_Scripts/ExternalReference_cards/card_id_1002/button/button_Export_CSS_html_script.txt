@@ -1,0 +1,30 @@
+--- button "Export_CSS_html",card id 1002,ExternalReference
+on mouseUp
+  put num(lines of fld "Com") into E
+  repeat with n = 1 to e
+--  put word 2 the selectedLine of me into n
+  put line n of field "com" into myLine
+  replace "()" with empty in myline
+  
+  put setRevArray(myline) into ArraCom
+replace "$$" with empty in arracom
+put line 1 of arracom into field "theads"
+  put line 2 of arracom into field "funcom"
+  put myLine into fld "l2"
+  put line 4 of arracom after field "l2"
+  put line 5 of arracom into fld "typs"
+  if char 1 of line 1 of fld "typs" is space then delete char 1 of line 1 of fld "typs"
+ 
+    put fld "typs" into Bodytext
+   
+put fld "HTMLTEMPLATE" into myTempline
+replace "COMMAND" with myLine  in myTempline
+-- put "<div class=" & quote & "date" & quote & ">VARIABLES</div>" into rpt
+if  line 4 of arracom is not empty  then replace "VARIABLES" with line 4 of arracom in myTempLine
+else replace "VARIABLES" with "  " in myTempline
+replace "BODYTEXT" with bodyText in mytempline
+put tab & mytempline & cr & cr  after myHtml
+end repeat
+replace "<div class=" with cr & tab & "<div class=" in myHTML
+put field "Head" & myHTML & field "tail"
+end mouseUp

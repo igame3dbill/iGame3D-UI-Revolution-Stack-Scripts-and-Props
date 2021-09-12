@@ -1,0 +1,13 @@
+--- field "list1",revcard,murgaRevOut
+
+-- --
+on mouseUp
+if the target is empty  then exit mouseUp
+  put (word 2 selectedLine of me) into n
+  if the listBehavior of me is true then
+put char 1 to -1 of line n of me into myrealLine
+ copy selectedText
+ select line lineOffset(myrealLine,me) of me 
+     end if
+switchList1 myrealLine
+end mouseUp

@@ -1,0 +1,3 @@
+--- field "bone2" of group "HiddenBoneStuff" of group "BoneGroup" of card "Bones" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+None
+turretBase

@@ -1,0 +1,28 @@
+--- field "DesignContents",card id 1002,GameOverViewData
+on mouseDown
+  put "group" &&  quoted(line word 2 selectedLine of me of me) into Groop
+  
+--  if the firstClick of me is empty then 
+--    
+--    set the firstClick of me to sg
+--  else
+--    
+--    set the secondClick of me to sg
+--  end if
+--  lock screen            -- lock the screen so the redraw is nice
+  
+
+    repeat with x = 1 to number of lines of me
+ put "group" &&  quoted(line x  of me) into Grt
+ if exists(Grt) then 
+ if Grt is not Groop then 
+ do "hide" &&  Grt
+ else
+ do "show" && Grt
+ end if
+end if
+    end repeat
+
+--  if exists(group sClick) then show group sClick     -- show the new tab's controls
+--  unlock screen
+end mouseDown

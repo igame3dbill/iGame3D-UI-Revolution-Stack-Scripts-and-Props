@@ -1,0 +1,12 @@
+--- image "COLORPICKER",card id 1002,previewStack
+COLORPICKER:rect(40,40,112,112)
+COLORPICKER:short name("COLORPICKER")
+COLORPICKER:id(1009)
+COLORPICKER:tooltip("Click or drag to select light color")
+COLORPICKER:visible(true)
+COLORPICKER:dontDither(false)
+COLORPICKER:alwaysBuffer(true)
+COLORPICKER:angle(0)
+COLORPICKER:showBorder(false)
+COLORPICKER:threeD(false)
+COLORPICKER:borderWidth(2)

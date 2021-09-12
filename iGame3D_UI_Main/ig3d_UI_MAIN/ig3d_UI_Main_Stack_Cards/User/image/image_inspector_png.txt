@@ -1,0 +1,12 @@
+--- image "inspector_png",User,ig3d_UI_MAIN
+inspector_png:rect(374,69,398,93)
+inspector_png:short name("inspector_png")
+inspector_png:id(4206)
+inspector_png:tooltip( 4206)
+inspector_png:visible(true)
+inspector_png:dontDither(false)
+inspector_png:alwaysBuffer(true)
+inspector_png:angle(0)
+inspector_png:showBorder(false)
+inspector_png:threeD(true)
+inspector_png:borderWidth(2)

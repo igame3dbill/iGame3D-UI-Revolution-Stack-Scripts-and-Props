@@ -1,0 +1,12 @@
+--- button "ParentLabel",Bones,Inspector
+on mouseUp
+  put getMkey(selectedBone) into parent
+  put getMkey(autoBones) into parentChild
+  set itemdel to "|" 
+  put parent & "|" & item 2 of parentChild into newAuto
+  put setMkey(autoBones,newAuto) into newBone
+  put parent into field "autoParent"
+end mouseUp
+--on mouseEnter
+--  set the label of me to "Set Parent"
+--end mouseEnter

@@ -1,0 +1,23 @@
+--- button "ScriptRevertButton",Console,console
+global stackDirectory
+-- --
+on mouseUp
+  consoleMenuPick "files|revert"
+end mouseUp
+--on mouseUp
+ 
+put field "editField" into theScript
+put label of group "EditScript1" into theFileName
+put stackDirectory & theFileName into theFile
+open file theFile 
+read from file theFile until eof
+close file theFile
+put it into cd fld "editField"
+### the above is done by the consolemenupick
+ 
+### but why set the revertScript of me to fld "editField" if it
+### is always done from file??
+set the disabled of cd btn "ScriptApplyButton" to true
+set the revertScript of me to cd fld "editField"
+set the disabled of me to true 
+end mouseUp

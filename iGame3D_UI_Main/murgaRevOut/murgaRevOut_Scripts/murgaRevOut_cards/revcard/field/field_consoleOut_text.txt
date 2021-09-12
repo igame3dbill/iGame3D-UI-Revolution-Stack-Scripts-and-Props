@@ -1,0 +1,2 @@
+--- field "consoleOut" of group "guigroup" of card "revcard" of stack "murgaRevOut" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+0

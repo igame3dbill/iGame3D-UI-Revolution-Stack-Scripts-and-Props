@@ -1,0 +1,39 @@
+--- button "ApplyReplace",card id 1002,replacemodelssubstack
+on mouseUp
+  put the replacers of me into R
+  put the replaceList of me into RL
+  put the replaceModel of me into RM
+put 1 into Rc
+  repeat for each line x in R
+    put T3DCommand("get" && quoted(x)) into gonnaKill
+    put ig3d_GetObjectInfo_s_s() into rawData
+    put T3DObjectScriptList() into theScripts
+    if theScripts <> "" then
+      repeat for each line S in theScripts
+        delete the last word of S
+      end repeat
+      end if
+    put T3DCommand("off") into killit
+    put T3DCommand("make" && quoted(RM)) into Action
+    
+    put line RC of RL into daname
+    put T3DCommand("setName" && quoted(daname)) into SetNa
+    put daName into line 1 of rawData
+    T3DSetInfo "object",rawData
+    
+       if theScripts <> "" then
+    repeat for each line S in theScripts
+        put T3DCommand("script" && quoted(S)) into ScriptATTACH
+      end repeat
+ end if
+    add 1 to RC
+  end repeat
+ send refreshREPLIST to btn "replaceFilter"
+   set disabled of me to true
+end mouseUp
+-- --
+on mouseEnter
+  
+  put the replaceList of me& cr &cr& the Replacers of me & cr& the replaceModel of me  into replacapple
+ 
+end mouseEnter

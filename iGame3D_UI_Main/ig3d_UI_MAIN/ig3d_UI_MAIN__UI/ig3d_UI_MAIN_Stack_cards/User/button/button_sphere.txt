@@ -1,0 +1,77 @@
+--- button "sphere",User,ig3d_UI_MAIN
+sphere:rect(988,18,1017,48)
+sphere:short name("sphere")
+sphere:label("Sphere")
+sphere:toolTip("Sphere")
+sphere:style("transparent")
+sphere:visible(false)
+sphere:showName(false)
+sphere:autoHilite(true)
+sphere:opaque(false)
+sphere:sharedHilite(true)
+sphere:traversalOn(true)
+sphere:showfocusBorder(false)
+sphere:icon(4229)
+sphere:hiliteIcon(0)
+sphere:borderWidth(1)
+sphere:textFont("Arial")
+sphere:textSize(9)
+sphere:textAlign("right")
+
+sphere:oldValue(12)
+
+sphere:lastClick("1036,184")
+
+sphere:changeVal(0.000000)
+
+sphere:grambient1("248,104,248")
+
+sphere:grambient2("96,96,248")
+
+sphere:grambient3("220,220,220")
+
+sphere:grambient4("72,248,80")
+
+sphere:firstClick("197,117")
+
+sphere:pathView("Levels/xman_44")
+
+sphere:selLin(7)
+
+sphere:ambient1("0.003906,0.001637,0.003906")
+
+sphere:grambient7("8,8,0")
+
+sphere:ambient7("0.000125,0.000125,0")
+
+sphere:ambient4("0.001133,0.003906,0.001262")
+
+sphere:clickStart("1036,184")
+
+sphere:ambient3("0.003465,0.003465,0.003465")
+
+sphere:ambient2("0.001512,0.001512,0.003906")
+
+sphere:ambientAlphaSetter("0.003465,0.003465,0.003465")
+
+sphere:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])
+
+sphere:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+sphere:grambientAlphaSetter("220,220,220")
+
+sphere:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+sphere:treeDepth(0)
+
+sphere:changeItem(1)

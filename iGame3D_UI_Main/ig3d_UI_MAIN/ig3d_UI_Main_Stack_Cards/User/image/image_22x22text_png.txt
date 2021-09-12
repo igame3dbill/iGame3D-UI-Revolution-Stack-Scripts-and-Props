@@ -1,0 +1,12 @@
+--- image "22x22text_png",User,ig3d_UI_MAIN
+22x22text_png:rect(70,174,92,196)
+22x22text_png:short name(22x22text_png)
+22x22text_png:id(4503)
+22x22text_png:tooltip( 4503)
+22x22text_png:visible(true)
+22x22text_png:dontDither(false)
+22x22text_png:alwaysBuffer(true)
+22x22text_png:angle(0)
+22x22text_png:showBorder(false)
+22x22text_png:threeD(true)
+22x22text_png:borderWidth(2)

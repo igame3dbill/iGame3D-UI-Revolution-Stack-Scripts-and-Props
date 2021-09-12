@@ -1,0 +1,67 @@
+--- button "BoneOptionsMenu",Bones,Inspector
+on mouseUp
+  
+saveUNdoMesh
+  switch selection of me
+case "Update List" 
+send updateBoneTree to cd fld "bonehier"
+break
+case "Vertex to Bone"
+  ask "Please enter the name for the bone:"
+put it into boneChild 
+ask "Please enter the name for the bone‘s parent bone" with "None"
+put it into boneParent
+    T3DChangeGlobal 20,boneChild,boneParent
+    send "updateBoneTree" to cd fld "bonehier"
+  break
+case "Attach to Bone"
+  --open stack "BoneAttacher"
+  put the selectedBone of stack (the mainStack of this stack) into Bone
+  T3DChangeGlobal 21,Bone
+  break
+case "Attach to None"
+    T3DChangeGlobal 21,"None"
+  break
+  case "Select Attached"
+    put selection of cd fld "bonehier" into thebone
+    replace "  ——	" with empty in thebone
+    replace tab with empty in thebone
+    if thebone is empty then
+    ask "BoneName"
+    if it is not empty then put it into boneName
+    end if
+    T3DChangeGlobal 40,boneName
+    put "bone" && quote & boneName & quote  into theBoner
+    SendT3DCommand(theBoner)
+    break
+  
+  case "Bone for Selection"
+  put ig3d_GetMeshCentroid__3f()  into centroid
+    ig3d_InvertMeshSelection      -- "Invert Selection"
+    T3DChangeGlobal 34,1 -- "Hide Selected"
+    SendT3DCommand("vertex" && centroid)
+       ask "Please enter the name for the bone:"
+put it into childName 
+ask "Please enter the name for the bone‘s parent bone" with "None"
+put it into parentBone
+    T3DChangeGlobal 20,childName,parentBone
+    send "updateBoneTree" to cd fld "bonehier"
+  -- "Select All"
+    T3DChangeGlobal 23,1
+T3DChangeGlobal 21,it1
+  -- "View All"
+    ig3d_SelectWholeMesh    --Select All
+    break
+case "Bones Parse"
+--show group "BonesParse"
+--hide group "BoneComboGroup"
+break
+case "Word Lists"
+hide group "BonesParse"
+hide group "BoneComboGroup"
+break 
+end switch
+put word 2 selectedLine of me into m
+if m < (num(lines of me)-2) then 
+end if
+end mouseUp

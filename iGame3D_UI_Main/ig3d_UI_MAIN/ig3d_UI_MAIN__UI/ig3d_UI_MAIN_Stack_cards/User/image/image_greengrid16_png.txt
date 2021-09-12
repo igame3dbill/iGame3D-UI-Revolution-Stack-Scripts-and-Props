@@ -1,0 +1,12 @@
+--- image "greengrid16_png",User,ig3d_UI_MAIN
+greengrid16_png:rect(656,115,672,131)
+greengrid16_png:short name("greengrid16_png")
+greengrid16_png:id(4392)
+greengrid16_png:tooltip( 4392)
+greengrid16_png:visible(true)
+greengrid16_png:dontDither(false)
+greengrid16_png:alwaysBuffer(true)
+greengrid16_png:angle(0)
+greengrid16_png:showBorder(false)
+greengrid16_png:threeD(true)
+greengrid16_png:borderWidth(0)

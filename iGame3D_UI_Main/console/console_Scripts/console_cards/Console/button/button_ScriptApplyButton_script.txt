@@ -1,0 +1,13 @@
+--- button "ScriptApplyButton",Console,console
+on mouseUp
+ consolemenupick "files|save text"
+end mouseUp
+--on mouseUp
+  --send doSaveConsole to fld "editField"
+  consolemenupick "files|save text"
+  set the revertScript of btn "ScriptRevertButton" to fld "editField"
+  send disabme to me in 1 seconds
+end mouseUp
+--on disabme
+  set the disabled of me to true
+end disabme

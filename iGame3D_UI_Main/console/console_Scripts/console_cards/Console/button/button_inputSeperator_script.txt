@@ -1,0 +1,26 @@
+--- button "inputSeperator",Console,console
+on mouseEnter
+  if the icon of btn "consoleInToggle" = 1341 then 
+    lock cursor
+    set the cursor to 1366
+  end if
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+  --set the cursor to arrow
+end mouseleave
+-- --
+on mouseup
+   if the commandKey is down then 
+    set style of stack "Console" to toplevel
+    exit to top
+  end if
+end mouseup
+--on mouseEnter
+set the lineMem of me to  the selectedLines of field "consoleout"
+end mouseEnter
+--on mouseDown
+put btn "ConsoleMenus" of group "igame3dMenu1" of stack "igame3D" into btn "ConsolePopu"
+ popup btn "ConsolePopu"
+end mouseDown

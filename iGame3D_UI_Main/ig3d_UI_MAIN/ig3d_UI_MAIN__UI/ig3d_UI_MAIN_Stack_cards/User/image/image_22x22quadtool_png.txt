@@ -1,0 +1,12 @@
+--- image "22x22quadtool_png",User,ig3d_UI_MAIN
+22x22quadtool_png:rect(280,174,302,196)
+22x22quadtool_png:short name(22x22quadtool_png)
+22x22quadtool_png:id(4534)
+22x22quadtool_png:tooltip( 4534)
+22x22quadtool_png:visible(true)
+22x22quadtool_png:dontDither(false)
+22x22quadtool_png:alwaysBuffer(true)
+22x22quadtool_png:angle(0)
+22x22quadtool_png:showBorder(false)
+22x22quadtool_png:threeD(true)
+22x22quadtool_png:borderWidth(2)

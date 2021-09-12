@@ -1,0 +1,13 @@
+--- button "Delete_Marker",card id 1002,NewAnimEd
+on mouseUp
+  set lockScreen to true
+  repeat with m=the number of lines of cd fld "selMarkers" down to 1
+    if there is a graphic (line m of cd fld "selMarkers") then
+    delete graphic (line m of cd fld "selMarkers")
+    
+    delete line (lineOffset(line m of cd fld "selMarkers", cd fld "allMarkers")) of cd fld "allMarkers"
+    delete line m of cd fld "selMarkers"
+    end if
+  end repeat
+set lockScreen to false
+end mouseUp

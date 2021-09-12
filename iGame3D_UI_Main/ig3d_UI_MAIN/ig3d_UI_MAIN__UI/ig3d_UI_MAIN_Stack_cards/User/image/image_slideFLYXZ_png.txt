@@ -1,0 +1,12 @@
+--- image "slideFLYXZ_png",User,ig3d_UI_MAIN
+slideFLYXZ_png:rect(184,107,208,131)
+slideFLYXZ_png:short name("slideFLYXZ_png")
+slideFLYXZ_png:id(4223)
+slideFLYXZ_png:tooltip( 4223)
+slideFLYXZ_png:visible(true)
+slideFLYXZ_png:dontDither(false)
+slideFLYXZ_png:alwaysBuffer(true)
+slideFLYXZ_png:angle(0)
+slideFLYXZ_png:showBorder(false)
+slideFLYXZ_png:threeD(true)
+slideFLYXZ_png:borderWidth(2)

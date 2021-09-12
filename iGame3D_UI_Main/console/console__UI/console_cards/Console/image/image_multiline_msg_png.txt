@@ -1,0 +1,11 @@
+--- image "multiline_msg_png",Console,console
+multiline_msg_png:rect(174,0,190,16)
+multiline_msg_png:short name("multiline_msg_png")
+multiline_msg_png:id(1341)
+multiline_msg_png:visible(false)
+multiline_msg_png:dontDither(false)
+multiline_msg_png:alwaysBuffer(true)
+multiline_msg_png:angle(0)
+multiline_msg_png:showBorder(false)
+multiline_msg_png:threeD(true)
+multiline_msg_png:borderWidth(2)

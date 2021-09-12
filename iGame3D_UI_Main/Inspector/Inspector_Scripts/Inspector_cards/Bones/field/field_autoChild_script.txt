@@ -1,0 +1,17 @@
+--- field "autoChild",Bones,Inspector
+on returnInField
+  closeField
+end returnInField
+-- --
+on closeField
+  put line 1 of me into me
+  put me & "|" & fld "autoChild" into theSetBones
+  set the autoBones of stack (the mainstack of this stack) to theSetBones
+   put AutoBoneTool() into autoboner
+  
+ 
+end closeField
+-- --
+on mouseDown
+  put the long name of me into mnm
+end mouseDown

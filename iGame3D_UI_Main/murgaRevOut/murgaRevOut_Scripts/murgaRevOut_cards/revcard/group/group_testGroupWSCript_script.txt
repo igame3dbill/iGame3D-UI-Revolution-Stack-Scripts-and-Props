@@ -1,0 +1,7 @@
+--- group "testGroupWSCript",revcard,murgaRevOut
+on mouseUp
+  put word 1 the name of the mouseControl into check
+  if check is "button" then put murgaTheControls()
+  doMurgaShell
+end mouseUp
+

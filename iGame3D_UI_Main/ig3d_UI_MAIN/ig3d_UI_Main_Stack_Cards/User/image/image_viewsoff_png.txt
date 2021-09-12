@@ -1,0 +1,12 @@
+--- image "viewsoff_png",User,ig3d_UI_MAIN
+viewsoff_png:rect(58,107,82,131)
+viewsoff_png:short name("viewsoff_png")
+viewsoff_png:id(4276)
+viewsoff_png:tooltip( 4276)
+viewsoff_png:visible(true)
+viewsoff_png:dontDither(false)
+viewsoff_png:alwaysBuffer(true)
+viewsoff_png:angle(0)
+viewsoff_png:showBorder(false)
+viewsoff_png:threeD(true)
+viewsoff_png:borderWidth(2)

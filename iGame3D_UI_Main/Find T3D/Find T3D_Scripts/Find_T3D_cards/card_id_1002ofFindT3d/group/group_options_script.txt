@@ -1,0 +1,13 @@
+--- group "options",card id 1002ofFindT3d,Find T3D
+on mouseUp
+  switch the short name of the target
+  case "without"
+    if the hilite of btn "without" then set the hilite of btn "with" to false
+    break
+  case "with"
+    if the hilite of btn "with" then set the hilite of btn "without" to false
+    break
+  end switch
+  if not the hilite of btn "without" and not the hilite of btn "with" then disable fld "withoutwith"
+  else enable fld "withoutwith"
+end mouseUp

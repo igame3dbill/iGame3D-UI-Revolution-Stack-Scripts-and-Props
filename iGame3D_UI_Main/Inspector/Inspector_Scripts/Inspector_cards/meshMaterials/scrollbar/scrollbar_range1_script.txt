@@ -1,0 +1,47 @@
+--- scrollbar "range1",meshMaterials,Inspector
+on scrollbarDrag x
+  if the blocked of me is false then
+    set lockScreen to true
+    set the thumbPosition of scrollbar "r" to the thumbPosition of scrollbar "r" * the oldThumb of me/x
+    set the thumbPosition of scrollbar "g" to the thumbPosition of scrollbar "g" * the oldThumb of me/x
+    set the thumbPosition of scrollbar "b" to the thumbPosition of scrollbar "b" * the oldThumb of me/x
+    set the thumbPosition of scrollbar "a" to the thumbPosition of scrollbar "a" * the oldThumb of me/x
+    set the oldThumb of me to x
+    set lockScreen to false
+    get the thumbPosition of scrollbar "range1"
+    put the thumbPosition of scrollbar "r" * it,the thumbPosition of scrollbar "g" * it,the thumbPosition of scrollbar "b" * it into theCol
+     
+    --put item 1 of theCol * thumbPosition of scrollbar "range1" into item 1 of theCol
+    --put item 2 of theCol * thumbPosition of scrollbar "range1" into item 2 of theCol
+    --put item 3 of theCol * thumbPosition of scrollbar "range1" into item 3 of theCol
+     
+    put theCol,thumbPosition of scrollbar "a" * it into fld "colVals"
+    replace "," with return in cd fld "colVals"
+    put "0 - " & x into fld "texasranger"
+  end if
+end scrollbarDrag
+--on scrollbarDrag
+  if the blocked of me is false then
+  set lockScreen to true
+  set the thumbPosition of scrollbar "r" to the thumbPosition of scrollbar "r" * the oldThumb of me/the thumbPosition of me
+  set the thumbPosition of scrollbar "g" to the thumbPosition of scrollbar "g" * the oldThumb of me/the thumbPosition of me
+  set the thumbPosition of scrollbar "b" to the thumbPosition of scrollbar "b" * the oldThumb of me/the thumbPosition of me
+  set the thumbPosition of scrollbar "a" to the thumbPosition of scrollbar "a" * the oldThumb of me/the thumbPosition of me
+  
+ set the oldThumb of me to the thumbPosition of me
+ set lockScreen to false
+   put the thumbPosition of scrollbar "r" & comma & the thumbPosition of scrollbar "g" & comma & the thumbPosition of scrollbar "b" into theCol
+  
+  put item 1 of theCol * thumbPosition of scrollbar "range1" into item 1 of theCol
+  put item 2 of theCol * thumbPosition of scrollbar "range1" into item 2 of theCol
+  put item 3 of theCol * thumbPosition of scrollbar "range1" into item 3 of theCol
+  
+  put theCol & comma & thumbPosition of scrollbar "a" * thumbPosition of scrollbar "range1" into cd fld "colVals"
+  replace "," with return in cd fld "colVals"
+put "0 - " & the thumbPosition of me into cd fld "texasranger"
+end if
+end scrollbarDrag
+-- --
+on mouseUp
+ put updateMaterialFromInspector() into UpdateMaterialsCOLORS
+end mouseUp

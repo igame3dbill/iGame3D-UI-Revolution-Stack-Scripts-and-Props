@@ -1,0 +1,4 @@
+--- field "hanfun",card id 1002,scriptHarvesterig3d
+on scrollbardrag x
+  set the scroll of fld "hanfunbg" to x
+end scrollbardrag

@@ -1,0 +1,12 @@
+--- image "backfaceon_png",User,ig3d_UI_MAIN
+backfaceon_png:rect(720,115,736,131)
+backfaceon_png:short name("backfaceon_png")
+backfaceon_png:id(4399)
+backfaceon_png:tooltip( 4399)
+backfaceon_png:visible(true)
+backfaceon_png:dontDither(false)
+backfaceon_png:alwaysBuffer(true)
+backfaceon_png:angle(0)
+backfaceon_png:showBorder(false)
+backfaceon_png:threeD(true)
+backfaceon_png:borderWidth(0)

@@ -1,0 +1,2 @@
+--- field "RED" of group "RedGroup" of group "LightColorScrollsFields" of group "backColor" of group "materialsCardColorgroup" of group "Material_Color_and_Reflection_Settings" of group "colormat" of group "COLORTRANSGROUP" of group "materialsCardGroup" of card "meshMaterials" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+0.000000

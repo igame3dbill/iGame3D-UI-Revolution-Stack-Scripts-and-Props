@@ -1,0 +1,12 @@
+--- image "hideMesh_png",User,ig3d_UI_MAIN
+hideMesh_png:rect(903,115,919,131)
+hideMesh_png:short name("hideMesh_png")
+hideMesh_png:id(4416)
+hideMesh_png:tooltip( 4416)
+hideMesh_png:visible(true)
+hideMesh_png:dontDither(false)
+hideMesh_png:alwaysBuffer(true)
+hideMesh_png:angle(0)
+hideMesh_png:showBorder(false)
+hideMesh_png:threeD(true)
+hideMesh_png:borderWidth(2)

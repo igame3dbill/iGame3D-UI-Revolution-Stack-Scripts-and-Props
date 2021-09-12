@@ -1,0 +1,2 @@
+--- field "HTMLTEMPLATE" of group "DeveloperGroup" of card id 1002 of stack "ExternalReference" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+<div class="post"><div class="posttop"><div class="funcom">COMMAND</div><div class="arguments">VARIABLES</div></div><div class="posttext">BODYTEXT</div></div>

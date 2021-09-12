@@ -1,0 +1,4 @@
+--- button "get_stack_list",list main cd,exportscripts
+ON mouseUp
+    putStackListIntoFld
+END mouseUp

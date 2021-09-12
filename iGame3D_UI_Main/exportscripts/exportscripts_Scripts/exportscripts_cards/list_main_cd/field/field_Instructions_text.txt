@@ -1,0 +1,2 @@
+--- field "Instructions" of card "list main cd" of stack "exportscripts" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+Choose a stack to export scripts from:

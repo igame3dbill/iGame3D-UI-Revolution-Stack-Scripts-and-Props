@@ -1,0 +1,9 @@
+--- button "Mesh",User,ig3d_UI_MAIN
+on menuPick menuItem1 menuItem2
+  put menuItem1  & menuItem2 into theItems
+  set itemDel to "/"
+  put item 1 of theItems into realItems
+  put  meshMenu(realItems) into ThePick
+  
+ 
+end menuPick

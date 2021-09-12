@@ -1,0 +1,12 @@
+--- image "cone_png",User,ig3d_UI_MAIN
+cone_png:rect(350,69,374,93)
+cone_png:short name("cone_png")
+cone_png:id(4198)
+cone_png:tooltip( 4198)
+cone_png:visible(true)
+cone_png:dontDither(false)
+cone_png:alwaysBuffer(true)
+cone_png:angle(0)
+cone_png:showBorder(false)
+cone_png:threeD(true)
+cone_png:borderWidth(2)

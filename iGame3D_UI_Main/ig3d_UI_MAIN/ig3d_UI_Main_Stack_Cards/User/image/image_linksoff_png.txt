@@ -1,0 +1,12 @@
+--- image "linksoff_png",User,ig3d_UI_MAIN
+linksoff_png:rect(456,184,468,196)
+linksoff_png:short name("linksoff_png")
+linksoff_png:id(4309)
+linksoff_png:tooltip( 4309)
+linksoff_png:visible(true)
+linksoff_png:dontDither(false)
+linksoff_png:alwaysBuffer(true)
+linksoff_png:angle(0)
+linksoff_png:showBorder(false)
+linksoff_png:threeD(true)
+linksoff_png:borderWidth(2)

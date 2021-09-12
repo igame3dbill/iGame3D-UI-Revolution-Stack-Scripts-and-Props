@@ -1,0 +1,12 @@
+--- image "RunAnimation",User,ig3d_UI_MAIN
+RunAnimation:rect(148,105,172,131)
+RunAnimation:short name("RunAnimation")
+RunAnimation:id(4219)
+RunAnimation:tooltip( 4219)
+RunAnimation:visible(true)
+RunAnimation:dontDither(false)
+RunAnimation:alwaysBuffer(true)
+RunAnimation:angle(0)
+RunAnimation:showBorder(false)
+RunAnimation:threeD(true)
+RunAnimation:borderWidth(2)

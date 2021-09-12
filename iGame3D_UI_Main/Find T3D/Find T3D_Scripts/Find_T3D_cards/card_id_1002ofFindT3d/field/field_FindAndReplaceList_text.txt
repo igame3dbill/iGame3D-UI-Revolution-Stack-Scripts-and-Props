@@ -1,0 +1,46 @@
+--- field "FindAndReplaceList" of card "card id 1002ofFindT3d" of stack "Find T3D" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+• ig3d_GetTexturesList_s	ig3d_GetTexturesList__s
+• ig3d_GetObjectBonesList_s	ig3d_GetObjectBonesList__s
+• ig3d_GetMeshBonesList_s	ig3d_GetMeshBonesList__s
+• ig3d_IsMouseButtonDown_b	ig3d_IsMouseButtonDown__b
+• ig3d_LoadMesh_sf	ig3d_LoadMesh_sf_b
+• ig3d_SaveMesh_sf	ig3d_SaveMesh_sf_b
+• ig3d_GetObjectsList_s   ig3d_GetObjectsList__s 
+• ig3d_GetMatchingUVSizesForMesh_2f   ig3d_GetMatchingUVSizesForMesh_fb3f_2f 
+• ig3d_GetParticle_emittersList_s   ig3d_GetParticle_emittersList__s 
+• ig3d_GetStateScript_s   ig3d_GetStateScript__s 
+• ig3d_GetSamplesList_s   ig3d_GetSamplesList__s 
+• ig3d_GetSound_emittersList_s   ig3d_GetSound_emittersList__s 
+• ig3d_GetSound_emitterInfo_s   ig3d_GetSound_emitterInfo_s_s 
+• ig3d_GetMesh_tagsList_s   ig3d_GetMesh_tagsList__s 
+• ig3d_GetPathsList_s   ig3d_GetPathsList__s 
+• ig3d_GetPathInfo_i   ig3d_GetPathInfo_i_s 
+• ig3d_GetMeshBounds_6f   ig3d_GetMeshBounds__6f 
+• ig3d_GetLevelName_s   ig3d_GetLevelName__s 
+• ig3d_GetObjectInfo_s   ig3d_GetObjectInfo_s_s 
+• ig3d_GetLightInfo_s   ig3d_GetLightInfo_i_s 
+• ig3d_GetMeshCentroid_3f   ig3d_GetMeshCentroid__3f 
+• ig3d_GetNumberOfPolys_i   ig3d_GetNumberOfPolys__i 
+• ig3d_IsFileWritable_b   ig3d_IsFileWritable_s_b 
+ig3d_GetSelection_s   ig3d_GetSelection__s 
+• ig3d_Get3DPositionFrom2DCoordinates_3fb   ig3d_Get3DPositionFrom2DCoordinates_2ib_3f
+• ig3d_GetScreenBounds_4i   ig3d_GetScreenBounds__4i 
+• ig3d_GetSelectionMode_i   ig3d_GetSelectionMode__i 
+• ig3d_GetCameraInfo_s   ig3d_GetCameraInfo__s 
+• ig3d_GetGroupsList_s   ig3d_GetGroupsList__s 
+ig3d_GetObjectModelPath_s   ig3d_GetObjectModelPath_s_s 
+• ig3d_GetElapsedSeconds_f   ig3d_GetElapsedSeconds__f 
+• ig3d_GetParticle_emitterInfo_s   ig3d_GetParticle_emitterInfo_s_s 
+• ig3d_RotatePointAroundPoint_3f   ig3d_RotatePointAroundPoint_9f_3f 
+• ig3d_GetBoneInfo_6f   ig3d_GetBoneInfo_2s_6f 
+• ig3d_GetCurrentMaterialNumber_i   ig3d_GetCurrentMaterialNumber__i 
+• ig3d_GetGroupInfo_s   ig3d_GetGroupInfo_s_s 
+• ig3d_GetMeshMaterialsList_s   ig3d_GetMeshMaterialsList__s 
+ig3d_GetObjectMaterialsList_s   ig3d_GetObjectMaterialsList_s_s 
+• ig3d_GetMeshMaterialInfo_s   ig3d_GetMeshMaterialInfo_i_s 
+ig3d_GetObjectMaterialInfo_s   ig3d_GetObjectMaterialInfo_si_s
+ig3d_ExecuteLuaScript_s   ig3d_ExecuteLuaScript_s_i 
+• ig3d_ExecuteLua_s   ig3d_ExecuteLua_s_i
+• ig3d_GetLuaOutput_s   ig3d_GetLuaOutput__s 
+• ig3d_GetFogInfo_b5f   ig3d_GetFogInfo__b5f 
+• ig3d_GetPlaneInfo_if   ig3d_GetPlaneInfo__if 

@@ -1,0 +1,1211 @@
+-- script of stack "console"
+global gStackDirectory,gConsoleOpenFiles,gLastdir,gHistory
+local lMultiLinetoggle,lCommandToggle,lLineNumList
+constant cToggle = false
+#############################
+## test toggle TraversalOn ##
+#############################
+-- --
+on suspendStack
+end suspendStack
+-- --
+on resumeStack
+end resumeStack
+##############
+-- --
+on suspendstack
+  if cToggle then toggleTraversalon "off" ### if traversalOn is needed then change the cToggle constant
+end suspendstack
+-- --
+on toggleTraversalon x
+  repeat for each item i in "editfield,consoleOut,consoleIn"
+    if x = "off" then set the traversalOn of fld i to false
+    else set the traversalOn of fld i to true
+  end repeat
+end toggleTraversalon
+-- --
+on rawkeydown x
+  if cToggle and x = 65289 then toggleTraversalon ### if traversalOn is needed then change the cToggle constant
+  pass rawkeydown
+end rawkeydown
+######
+-- --
+on openField
+  
+  hilitedTextColorToggle
+end openField
+-- --
+on closeField
+   
+ 
+end closeField
+### used to load the local used in the resizestack handler
+### called from btn "consoleToggle"
+-- --
+on setLocal x
+ put x into lCommandToggle
+end setLocal
+-- --
+on resizeStack x,y
+  put screenrect() into SR
+  if y > item 4 of sr then put item 4 of sr into y
+  if x = "" and y = "" then  #### to accomodate some calls without params to this resize handler
+    put the width of this cd into x
+    put the height of this cd into y
+  end if
+  lock messages
+  put the scroll of fld "lineNum" into tLN
+  put the hilitedline of fld "lineNum" into tHL
+  put the hilitedline of fld "leftlist" into tHL2
+  put the hilitedlines of fld "leftlistbg" into tHL3
+  put the scroll of fld "consoleout" into tCO
+  put the scroll of fld "editfield" into tEF
+  put the scroll of fld "leftlist" into tLL
+  get the rect of btn "sep1"
+  set the rect of btn "sep1" to item 1 of it,12,item 3 of it,y - 2 
+  get the rect of btn "sep1"
+  set the rect of fld "leftList" to -2,item 2 of it + 2,item 1 of it + 4,item 4 of it
+  set the rect of fld "leftListbg" to the rect of fld "leftList"
+  if the formattedheight of fld "leftList" > the height of fld "leftList" then
+    --set the style of fld "leftlist" to scrolling
+    set the vscrollbar of fld "leftList" to true
+    set the scrollbarwidth of fld "leftList" to 12
+    --else set the style of fld "leftList" to rectangle
+  else set the vscrollbar of fld "leftList" to false
+  if the icon of btn "consoleInToggle" = 1340 then --or the visible of grp "editscript1" then ### single line
+    set the rect of btn "consoletoggle" to item 1 of it + 8,item 2 of it + 31,x,item 2 of it + 41
+  else  ### multi line
+    if lMultiLinetoggle = "" then
+      set the rect of btn "consoletoggle" to item 1 of it + 8,item 2 of it + 71,x,item 2 of it + 81
+    else set the rect of btn "consoletoggle" to item 1 of it + 8,lMultiLinetoggle - 10,x,lMultiLinetoggle
+  end if
+  if the style of fld "consoleIn" is rectangle then
+    set the rect of fld "consoleIn" to item 1 of it + 7,item 2 of it + 2 ,x - 1,top of btn "consoletoggle" --item 2 of it + 31
+  else set the rect of fld "consoleIn" to item 1 of it + 7,item 2 of it + 2 ,x - 2,top of btn "consoletoggle"
+  if the visible of fld "lineNum" then 
+    set the rect of fld "consoleOut" to item 1 of it + 47,bottom of btn "consoletoggle" + 2,x - 2,item 4 of it --2
+  else
+    set the rect of fld "consoleOut" to item 1 of it + 7,bottom of btn "consoletoggle" + 2,x - 2,item 4 of it -- 2
+  end if
+  set the rect of fld "editfield" to topleft of fld "consoleOut", x - 2,item 4 of it - 30  ### - 2 - 56 
+  if the visible of grp "consolegroup" then
+    set the rect of fld "lineNum" to item 1 of it + 8,bottom of btn "consoletoggle" + 2,item 1 of it + 51,item 4 of it - 3 - 12
+    set the rect of fld "bgfield" to item 1 of it + 7,bottom of btn "consoletoggle",x - 1,item 4 of it 
+  else 
+    set the rect of fld "lineNum" to item 1 of it + 8,bottom of btn "consoletoggle" + 2,item 1 of it + 51,bottom of fld "editfield" - 1 - 12
+    set the rect of fld "bgfield" to item 1 of it + 7,bottom of btn "consoletoggle",x - 1,bottom of fld "editfield"
+  end if
+  set topleft of btn "LineNumtoggle" to left of fld "consoleIn",bottom of fld "consoleIn" + 1
+  set the rect of  btn "BackGroundButton" to item 1 of it + 7,bottom of fld "editfield", x - 1, y - 2
+  get the loc of btn "BackGroundButton"
+  set  loc of btn "ScriptApplyButton" to x - 50 , item 2 of it + 1
+  set  loc of btn "ScriptRevertButton" to left of btn "ScriptApplyButton" - 40, item 2 of it + 1
+  unlock messages
+  if the visible of grp "consolegroup" then set the scroll of fld "consoleOUt" to the scroll of fld "lineNum"
+  else set the scroll of fld "editfield" to the scroll of fld "lineNum"
+  set the hilitedline of fld "lineNum" to tHL
+  set the hilitedline of fld "leftlist" to tHL2
+  if tHL3 = "" then alternateLines
+  else set the hilitedlines of fld "leftlistbg" to tHL3
+  set the scroll of fld "leftlist" to tLL
+end resizeStack
+### to do or not:
+### if openfile is saved to file --> keep or delete undo history? (now it is kept)
+-- --
+on saveFromArrayToFile x,saveMode  ### x = name
+  if the visible of grp "consoleGroup" then put "consoleOut" into tFieldName
+  else put "editfield" into tFieldName
+  if the num of words in field tFieldName < 1 then
+    --get smartDialog("dialog","bummer"&cr&"Files are not saved when the field is empty...")
+    answer "Files are not saved when the field is empty..." with "bummer"
+    exit to top
+  end if
+  put x into tFName
+  switch saveMode
+  case "saveAs"
+  case "remove"
+    if tFname contains "console" then 
+      put "console"&the seconds into tFName
+      put fld "consoleOut" into tText
+    else if tFname contains "~" then 
+      replace "~" with "" in tFName
+      replace "*" with "" in tFName
+      put fld "editField" into tText
+    else
+      set the itemdelimiter to "/"
+      put last item of tFName into tFName
+      put fld "editField" into tText
+    end if
+    if char -4 to -1 of tFName <> ".lua" then put ".lua" after tFName
+    get smartDialog("askFile",tFName)
+    if it = "" then exit to top
+    else put it into tFName
+    break
+  case "save"
+    if tFname contains "~" then
+      replace "~" with "" in tFName
+      if tFName contains "untitled" then
+        put folderPath("scripts") into tFPath
+        put the directory into tOldDir
+        set the directory to tFPath
+        put the files into tFiles
+        set the directory to tOldDir
+        put "please enter a name..." into tPrompt
+        repeat
+          ask tPrompt with tFName
+          if it = "" then exit to top
+          else
+            put it into tFName
+            if char -4 to -1 of tFName <> ".lua" then put ".lua" after tFName
+            if tFName is among the lines of tFiles then
+              put "sorry that name is already taken..." into tPrompt
+              next repeat
+            else exit repeat
+          end if
+        end repeat
+        put "Scripts/" & tFName into tFName
+      else if tFName contains "revCom" then put "Data/Console/"&tFname into tFname
+      if char -4 to -1 of tFName <> ".lua" then put ".lua" after tFName
+    end if
+    put fld "editField" into tText
+    break
+  end switch
+  replace "*" with "" in tFName
+  put "file:/" & gStackDirectory & tFName into tURLPath
+  put tText into URL tURLPath
+  if the result <> "" then
+    answer error the result
+    exit to top
+  end if
+  if x contains "console" then put "//console saved as: .../" & tFName & cr after fld "consoleOut"
+  if saveMode = "remove" or saveMode = "saveAs" then exit saveFromArrayToFile
+  put tText into gConsoleOpenFiles[tFName]
+  if "~" is in x then
+    delete global gConsoleOpenFiles[x]
+    delete global gHistory[x]  ###
+    set label of group "editscript1" to tFName
+    updateOpenFiles
+  end if
+  ### base64Encode because of possible returns in the md5Digest 
+  put base64Encode(md5Digest(field "editfield")) & cr before gConsoleOpenFiles[tFName]
+  set the startmd5Digest of field "editfield" to line 1 of gConsoleOpenFiles[tFName]
+  setStackTitle
+end saveFromArrayToFile
+-- --
+on saveOpenFileToArray
+  if the visible of grp "EditScript1" then 
+    put title of this stack into tST
+    if tST = "no open file" then exit SaveOpenFileToArray
+    replace "*" with "" in tST
+    put fld "editfield" into gConsoleOpenFiles[tST]
+    put the startmd5Digest of fld "editfield" & cr before gConsoleOpenFiles[tST]
+  end if
+end saveOpenFileToArray
+-- --
+on removeOpenFileFromArray x
+  if x = "" then 
+    if the visible of grp "EditScript1" then put title of this stack into x
+  end if
+  if last char of x is "*" then
+    replace "*" with "" in x
+    if the number of words in fld "editfield" > 0 then
+      answer "Do you want to save changes before removing...?" with "yes" or "no"
+      if it is "yes" then saveFromArrayToFile x,"remove"
+    end if
+  end if
+  delete global gConsoleOpenFiles[x]
+  delete global gHistory[x]  ###
+  updateOpenFiles
+  get line -1 of fld "leftlist"
+  lock screen
+  if "open files" is in it then 
+    set label of group "editscript1" to "no open file"
+    consoleToggle "console"
+    colorizeAll
+    set the hilitedline of fld "leftList" to 1
+    setHilite
+    exit to top
+  else 
+    set the itemdelimiter to tab
+    put last item of it into tName
+    set label of group "editscript1" to tName
+     
+    --put line 2 to -1 of gConsoleOpenFiles[tName&".lua"] into fld "editfield"
+    ### had to replace previous line by next 3 lines to keep the number of trailing empty lines
+    get gConsoleOpenFiles[tName]
+    delete line 1 of it
+    put it into fld "editfield"
+     updateLineNums
+    set the startmd5Digest of fld "editfield" to line 1 of gConsoleOpenFiles[tName]
+    if not the visible of grp "editscript1" then consoletoggle "edit"
+    else setStackTitle
+    colorizeAll
+    set the hilitedline of fld "leftList" to the number of lines in fld "leftList"
+    setHilite
+  end if
+end removeOpenFileFromArray
+-- --
+on updateOpenFiles
+  --breakpoint
+  get the keys of gConsoleOpenFiles
+  put tab & "option-click this line to choose a file..." into tTooltip
+  if it = "" then 
+    set label of group "editscript1" to "no open file"
+    put the pristineCondition of fld "leftList" && "(none)" &  tTooltip into fld "leftList"
+  else
+    set the itemdelimiter to "/"
+    sort lines of it by last item of each
+    repeat for each line i in it
+      put tab & char 1 to -5 of last item of i & tab & i & cr after tList
+    end repeat
+    put the pristineCondition of fld "leftList" & tTooltip & cr & char 1 to -2 of tList into fld "leftList"
+  end if 
+end updateOpenFiles
+-- --
+on addToConsoleOpenFiles pFName,pAction
+  --breakpoint
+  lock screen
+  if the visible of grp "EditScript1" and the number of lines in fld "leftlist" > 3 and pAction <> "revert" then 
+    SaveOpenFileToArray
+  else if not the visible of group "editscript1" then consoleToggle "edit"
+  get the keys of gConsoleOpenFiles
+  if pFName is not among the lines of it then
+    switch pAction
+    case "new"
+      put "" into fld "editField" of stack "Console"
+      set label of group "editscript1" to pFName
+      break
+    case "revert"
+    case "open"
+    case ""
+      if "~" is in pFName then
+        put "" into fld "editField" of stack "Console"
+        set label of group "editscript1" to pFName
+      else
+        set label of group "editscript1" to  pFName
+        put "file:/" & gStackDirectory & pFName into tURLPath
+        put url tUrlPath into tSCriptText
+        if tScriptText <> tUrlPath then put tScriptText into fld "editfield"
+      end if
+      break
+    end switch
+    updateLineNums  
+    colorizeAll
+    put fld "editfield" into gConsoleOpenFiles[pFName]
+    ### base64Encode because of possible returns in the md5Digest 
+    set the startmd5Digest of fld "editfield" to base64Encode(md5Digest(fld "editfield"))
+    put the startmd5Digest of fld "editfield" & cr before gConsoleOpenFiles[pFName]
+    updateOpenFiles
+    setstacktitle
+    put "" into gHistory[the title of this stack]  ###
+    setUndoTooltip
+  end if
+  set the hilitedline of fld "leftList" to lineoffset(pFName,fld "leftList")
+  --trackcolors
+  hilitedTextColorToggle
+end addToConsoleOpenFiles
+-- --
+on ConsoleMenuPick pWhich
+  --put btn "ConsoleMenus" of group "igame3dMenu1" of stack "igame3D" into recrdAA
+  put gStackDirectory into removeThisWhen
+  if the visible of grp "consolegroup" then put "consoleOut" into tFName
+  else put "editfield" into tFName
+  
+  switch pWhich
+    ------FILES OF CONSOLE
+    --case "Files|remove open file"
+  
+  case "Files|close text"
+    if the visible of grp "editscript1" then
+      put the title of stack "Console" into tFile
+      removeOpenFileFromArray tFile
+    end if 
+    break
+  case "Files|revert"
+    if the visible of grp "editscript1" then
+      put the title of stack "Console" into tFile
+      if last char of tFile is "*" then
+        answer warning "reverting:" &cr & quote & tFile & quote &cr& "will discard all changes..." &cr& "do you want to proceed?" with "cancel" or "proceed"
+        if it is "cancel" then exit to top
+        delete last char of tFile
+        delete global gConsoleOpenFiles[tFile]
+        addToConsoleOpenFiles tFile,revert
+      end if 
+    else answer information "revert only in edit mode..."
+    break
+  case "Files|New text" 
+    put folderPath("scripts") into tFPath
+    put the directory into tOldDir
+    set the directory to tFPath
+    put the files into tFiles
+    set the directory to tOldDir
+    filter tFiles with "untitled-*"
+    replace "untitled-" with "" in tFiles
+    replace ".lua" with "" in tFiles
+    put the keys of gConsoleOpenFiles into tKeys
+    put 1 into n
+    repeat
+      if n is not among the lines of tFiles and "~untitled-" & n &".lua" is not among the lines of tKeys then exit repeat
+      add 1 to n
+    end repeat
+    put "~untitled-" & n & ".lua" into tName
+    
+    if the visible of grp "consolegroup" then
+      ### or change to the use of the custom property? But is this necessary here?
+      put fld "consoleOut" of stack "Console" into fld "UndoConsoleOut" of stack "Console"
+      ###
+      consoleToggle "edit"
+    end if
+    addToConsoleOpenFiles tName,"new"
+    break
+     
+  case "Files|open text"
+    ### filtering doesn't work apparently
+    --answer file "Pick a file to load into the open files:" with filter "*.lua"
+    --answer file "Pick a file to load into the open files:"
+     
+    ### use of new fileDialog stack  --> see handler smartdialog
+    put smartDialog("answerFile") into tName
+    if tName is not empty then
+      addToConsoleOpenFiles tName,"open"
+    end if
+    break  
+  case "Files|append text"
+    answer warning "under construction"
+    exit to top
+    ### under construction ###
+    answer file "Pick a file to append to the console:" 
+    if it is not empty then
+      lock screen
+      put return after fld "editField" of stack "Console"
+      put return after fld "consoleOut" of stack "Console"
+      put it into thefile
+      put thefile into theappender
+      replace removethiswhen with "" in theappender
+      open file thefile for read
+      read from file thefile until eof
+      close file thefile
+      thefile theappender
+      --if title of stack "Console" contains "Console" then
+      if the visible of grp "consolegroup" then
+        put "// include:" && theappender & return  after fld "consoleOut" of stack "Console"
+        put  it after fld "consoleOut" of stack "Console" 
+         
+        --set title of stack "Console" to "Console*"
+         
+        --select line -1 of cd fld "consoleOut"of stack "Console") of cd fld "consoleOut" of stack "Console"
+        select line -1 of fld "consoleOut" of stack "Console"
+        --set scroll of fld "consoleOut" of stack "Console" to the formattedHeight of fld "consoleOut" of stack "Console" -height of cd fld "consoleOut" of stack "Console"
+      else
+        put "// include:" && theappender & return after fld "editField" of stack "Console"
+         
+        --put return after line -1 of cd fld "editField") of cd fld "editField" of stack "Console"
+        put  return & it after fld "editField" of stack "Console" 
+        ### is already in theappender
+        --replace removethiswhen with "" in thefile
+        --set title of stack "Console" to thefile
+        --set the label of group "EditScript1" to thefile
+        set the label of group "EditScript1" to theappender
+        --select line -1 of fld "editField" of stack "Console") of fld "editField" of stack "Console"
+        select line -1 of fld "editField" of stack "Console"
+        --set scroll of fld "editField" of stack "Console" to the formattedHeight of  fld "editField" of stack "Console" -height of cd fld "editField" of stack "Console"
+      end if
+    end if
+    setStackTitle
+    updateLineNums
+    colorizeAll
+    break  
+  case "Files|save text"
+    put the title of stack "Console" into wab
+    if last char of wab = "*" or wab contains "~" then
+      replace "*" with empty in wab
+      if wab = "Console" then
+        dosaveConsole
+      else
+        saveFromArrayToFile wab,"save"
+      end if 
+    else beep
+    break
+  case "Files|save text as"
+    put the title of stack "Console" into tST
+    saveFromArrayToFile tST,"saveas"
+    consoleUpdate
+    break
+     
+  case "Files|translate"
+    answer warning "translation under construction"
+    exit to top
+    ### under construction ###
+    send "DoScriptTranslationFileToFile" to stack "englishToig3d"
+    break
+  case "Files|as macro"
+    answer warning "macros under construction"
+    exit to top
+    ### under construction ###
+     
+    put fld "consoleOut" into chkmac
+     
+    if chkmac contains "begin" then
+      answer "This script contains a macro"
+      exit switch
+    else
+      ask file  "Save console text script to file as macro:" with "*_macro.txt"
+      put it into nmr
+      put it into theFile
+      set itemDel to "/"
+      --      --put last item of nmr
+      replace ".lua" with empty in nmr
+      put "begin" && nmr & cr & chkmac & cr & "end" & cr into theMACRO
+      put  theMACRO into field tFname of stack "Console"
+      put theMACRO into URL it
+      replace removethiswhen with empty in theFile
+      set the title of stack "Console" to theFile
+    end if
+    break
+  case "Files|execute"
+    --answer warning "execute under construction"
+    if visible of group  "consoleGroup" then 
+      put fld "consoleOut" of stack "Console" into scrRun
+    else
+      put fld "editField" of stack "Console" into scrRun
+    end if
+    put scrRun into getF
+    filter getF with "function *"
+    replace "Function " with empty in getf
+    put getMkey("luaLoadedFunctions") into luacoms
+    set itemDel to "("
+    repeat for each line GF in getF
+      if item 1 of GF is not in luacoms then put cr & item 1 of GF  after LuaComs
+    end repeat
+    sort luacoms 
+    if num(chars of line 1 of luacoms)  <2 then delete line 1 of luacoms
+    set the luaLoadedFunctions of stack (the mainStack of this stack) to LuaComs 
+    ##put getMkey("luaLoadedFunctions")
+    put ig3d_ExecuteLua_s_i(scrRun) into runLuaSCript
+    exit to top
+    ### under construction ###
+    put fld tFName of stack "Console" into TScript
+    put "file:/" & folderPath("output/console") & "last execution.txt" into TLE
+    put TScript into URL TLE    --- If we crash, it would be good to know what we crashed with
+    ig3d_ExecuteLua_s_i(TScript)
+    break
+  case "Files|run each line"
+    answer warning "run each line under construction"
+    if visible of group  "consoleGroup" then 
+      put fld "consoleOut" of stack "Console" into scrRun
+    else
+      put fld "editField" of stack "Console" into scrRun
+    end if
+    repeat for each line LUALINE in scrRuN
+        put ig3d_ExecuteLua_s_i(lualine & "render()") into runLuaSCript
+      end repeat
+      exit to top
+      ### under construction ###
+       
+      put fld tFName of stack "Console" into TScript
+      put "file:/" & folderPath("output/console") & "last execution.txt" into TLE
+      put TScript into URL TLE    --- If we crash, it would be good to know what we crashed with
+      ig3d_ExecuteLua_s_i(TScript)
+      break
+      
+      --- EDIT OF CONSOLE
+    case "Edit|Undo text"
+      --answer warning "execute under construction"
+      --exit to top
+      --### under construction ###
+       
+      if the visible of group "EditScript1" then send "reverseHistory" to fld "editField"
+      break
+    case "Edit|Clear text"
+      answer warning "do you want to clear all text from:" & cr & "field" && quote &tFName & quote &"?" with "cancel" or "proceed"
+      if it is "cancel" then exit to top
+      if visible of group  "consoleGroup" then 
+        put fld "consoleOut" of stack "Console" into scrRun
+        put ""  into fld "consoleOut" of stack "Console"
+        set the undoConsole of stack "Console" to  scrRun
+      else
+        put fld "editField" of stack "Console" into scrRun
+        put ""  into fld "editField" of stack "Console"
+        set the undoEditField of stack "Console" to  scrRun 
+      end if
+      updateLineNums
+      colorizeAll
+      setstackTitle
+      break
+    case "Edit|clear console"
+      --answer warning "do want to  field?" with "cancel" or "proceed"
+      --if it is "cancel" then exit to top
+      set the undoConsole of stack "Console" to fld "ConsoleOut" of stack "Console"
+      doSaveConsole
+      put "" into fld "consoleOut" of stack "Console"
+      updateLineNums
+      setStacktitle
+      if the visible of grp "editscript1" then 
+        if the num of lines in fld "leftList" > 3 then SaveOpenFileToArray
+        consoletoggle "console"
+        setHilite
+      end if
+      break
+    case "Edit|Cut text"
+      put the name of the focusedObject into focob
+      put the ID of the focusedObject into focID
+      if focob contains "field" then 
+        if the selectedField is not empty then copy selectedText
+        if the lockText of the selectedField then SendT3DCommand("------beep")
+        if the lockText of the selectedField = false then 
+          cut selectedText 
+        else 
+          copy selectedText
+        end if
+      end if
+      updateLineNums
+      colorizeAll
+      setStackTitle
+      break
+    case "Edit|Copy text"
+      if name of the focusedObject contains "field" then 
+        get the selectedchunk
+        copy selectedText
+        select it
+      end if
+      put the name of the focusedObject into focob
+      break
+    case "Edit|Paste text"
+      set the defaultStack to "Console"
+      --focus cd fld  cd fld "consoleOut"of stack "Console"
+      paste 
+      updateLineNums
+      colorizeAll
+      setStackTitle
+      break
+    case "Edit|Delete text"
+      if the selectedField is not empty then
+        if the lockText of the selectedField then exit consolemenupick
+        put empty into  selectedChunk
+        updateLineNums
+        setStackTitle
+      end if
+      break
+    case "Edit|Select All text"
+      select line 1 to  -1 of fld tFName
+      break
+       
+      --PROCESS OF CONSOLE
+    case "Process|colorize"
+      updateLineNums
+      colorizeAll
+      break
+    case "Process|linenumbers"
+      lock screen
+      get btn "menu3"
+      set the visible of fld "lineNum" to not the visible of fld "lineNum"
+      if the visible of fld "lineNum" then 
+        set the tabstops of fld "bgField" to 39,2000
+        put "!clinenumbers" into line lineoffset("linenumbers",btn "menu3") of btn "menu3"
+      else 
+        set the tabstops of fld "bgField" to 2000
+        put "linenumbers" into line lineoffset("!clinenumbers",btn "menu3") of btn "menu3"
+      end if
+      updateLineNums
+      resizestack the width of this cd,the height of this cd
+      break
+    case "Process|sort"
+      sort fld "editfield"  of stack "console"
+      break
+    case "Process|comment selected"
+      put word 2 of the selectedLines of fld tFName into firstLine
+      if word 3 of the selectedLines of fld tFName is "to" then
+        -- multiple lines are selected
+        put word 4 of the selectedLines of fld tFName into lastLine
+      else 
+        -- single line is selected
+        put firstLine into lastLine
+      end if
+      repeat with thisLine = firstLine to lastLine
+        if char 1 to 2 of word 1 of line thisline of fld tFName <> "//" then put "//" before line thisLine of fld tFName
+      end repeat
+      select line firstLine to lastLine of fld tfName
+      updateLineNums
+      colorizeAll
+      setStackTitle
+      break
+    case "Process|uncomment selected"
+      put word 2 of the selectedLines of fld tFName into firstLine
+      if word 3 of the selectedLines of fld tFName is "to" then
+        -- multiple lines are selected
+        put word 4 of the selectedLines of fld tFName into lastLine
+      else
+        -- single line is selected
+        put firstLine into lastLine
+      end if
+      lock screen
+      repeat with thisLine = firstLine to lastLine
+        replace "//" with "" in word 1 of line thisLine of fld tFName
+      end repeat
+      select line firstLine to lastLine of fld tfName
+      updateLineNums
+      colorizeAll
+      setStackTitle
+      break
+    case "Process|last item to parameter" ###  does what????
+      ---- probably changes values in setf, seti, setb, sets, to variables---will have to rethink this one and redo, disable for now
+       
+      break
+       
+    case "Process|remove commented values"
+      put fld tFName into toClean
+      ----------Whats the difference between my script and yours?
+      --    repeat with each line x of toClean
+      --      if x contains "//" and word 1 of x <> "//" then
+      --        put wordOffset("//", x) into Sta
+      --        delete words sta to -1 of x 
+      --        put x & cr after Cleaned
+      --    end repeat
+      -- put Cleaned into fld tFname
+       
+      lock screen 
+      put the scroll of fld tFName into tscroll
+      put fld tFName into tText
+      repeat for each line i in tText
+        put offset("//",i) into tOF
+        if tOF > 2 then put char 1 to offset("//",i) - 1 of i into i
+        put i & cr after tList
+      end repeat
+      put tList into fld tFName
+      updateLineNums
+      colorizeAll
+      setStackTitle
+      set the scroll of fld tFName to tscroll
+      break
+    case "Process|add before line"
+      ask  "Add what before line"
+      if it is not empty then
+        put the scroll of fld tFName into tscroll
+        put fld tFName into tText
+        put it into  beforelineThing
+        repeat for each line i in tText
+          put beforelineThing && i & return after FinaText
+        end repeat
+        put FinaText into fld tFName
+        updateLineNums
+        colorizeAll
+        setStackTitle
+        set the scroll of fld tFName to tscroll
+      end if
+      break
+    case "Process|isolate lines"
+      ----the whole functionality of this could probably be better served with FindT3D style filtering ---for now disable
+      break
+       
+    case "Process|remove word n"
+      ### no undo!!!!   ---- all process undo should be handled long before you choose a menu item
+      ------else save undos at top of handler
+      ask  "remove word ___n___  of every line"
+      if it is a number then #### check if input is not "" and is a number into something
+        put the scroll of fld tFName into tscroll
+        put it into whatWordKill
+        lock screen
+        put fld tFName into tText
+        repeat for each line i in tText
+          delete word whatWordKill of i
+          put i & cr after tList
+        end repeat
+        put tList into fld tFName
+        updateLineNums
+        colorizeAll
+        setStackTitle
+        set the scroll of fld tFName to tscroll
+      end if
+      break
+      case "Process|filter"
+         if visible of group "EditScript1" is false then put fld "EditField" of stack "console" into thefielddata 
+      else put  fld "EditField" of stack "console" into thefielddata
+      ask "Filter with (* is wildcard)" with empty
+      if it is not empty then filter thefielddata with it 
+      if visible of group "EditScript1" is false  then  put theFieldData into fld "EditField" of stack "console"
+      else     put theFieldData into fld "EditField" of stack "console"
+      break
+    case "Process|help text lines"
+      put "// menu item disabled 09 01 04 will be updated---Bill" & return after cd fld "consoleOut"
+      --    put "Warning This could take a while" into cd fld "consoleIn"
+      --    -----put cd fld "MasterScriptsField" of stack "iGame3DHelp" into svar
+      --   put  fld tFName& into chkin
+      --    set the itemDelimiter to tab
+      --    repeat with c= 1 to the number of lines of chkin
+      --      put word 1 of line c of chkin into wone
+      --      repeat with w=1 to the number of lines of svar
+      --        put item 1 of line w of svar into lsd
+      --        if wone = lsd then put space & item 2 of line w of svar after line c of chkin
+      --      end repeat
+      --    end repeat
+      --    do  "put chkin into"&&  cd fld tFName
+      --     colorizeAll 
+      --    put "" into cd fld "consoleIn"
+       
+      break
+    case "Process|remove help text"
+      put "// menu item disabled 09 01 04 will be updated---Bill" & return after cd fld "consoleOut"
+      --    put "Warning This could take a while" into cd fld "consoleIn"
+      --    put cd fld "MasterScriptsField" of stack "iGame3DHelp" into svar
+      --    do "put"&&  cd fld tFName &&" into chkin"
+      --    set the itemDelimiter to tab
+      --    repeat with c= 1 to the number of lines of chkin
+      --      put   line c of chkin into wone
+      --      repeat with w=1 to the number of lines of svar
+      --        put item 2 of line w of svar into lsd
+      --        if wone contains lsd then replace lsd with empty in line c of chkin 
+      --      end repeat
+      --    end repeat
+      --    do  "put" && chkin &&"into"&&  cd fld tFName
+      --    colorizeAll 
+      --    put "" into cd fld "consoleIn"
+      break
+    end switch
+    setUndoTooltip
+  end ConsoleMenuPick
+---OLD console toggle removed
+-- --
+on  consoleToggle pMode
+  lock screen
+  if pMode = "" then
+    if the visible of grp "editscript1" then put "console" into pMode
+    else put "edit" into pMode
+  end if
+  switch pMode
+  case "console"
+    if the visible of grp "ConsoleGroup" then exit consoleToggle
+    show grp "ConsoleGroup"
+    hide grp "EditScript1"
+    set the backgroundcolor of fld "bgfield" to none
+    set the label of btn "consoleToggle" to "::::::::: console mode ::::::::::"
+    break
+  case "edit"
+    if the visible of grp "EditScript1" then exit consoleToggle
+    show grp "EditScript1"
+    hide grp "ConsoleGroup"
+    --set the backgroundcolor of fld "bgfield" to 255,254,220
+    set the label of btn "consoleToggle" to "::::::::: script edit mode ::::::::::"
+    break
+  end switch
+  setStackTitle
+  resizestack --the width of this cd,the height of this cd
+  updateLineNums
+end consoleToggle
+### to make settingstacktitle uniform and checking if fld "editfield" is "dirty"
+-- --
+on setStackTitle
+  if the visible of grp "consoleGroup" then
+    if fld "consoleOut" of stack "Console" is empty then put "Console" into tName
+    else put "Console*" into tName
+  else
+    if the label of group "EditScript1" is empty then put "/*.txt" into tName
+    else if the label of group "EditScript1" is "no open file" then put "no open file" into tName
+    else 
+      put the label of group "EditScript1" into tName
+      if the startmd5Digest of fld "editfield" <> base64Encode(md5Digest(fld "editfield")) then 
+        put "*" after tName
+        enable btn "ScriptApplyButton"
+        enable btn "ScriptRevertButton"
+      else disable btn "ScriptApplyButton"
+    end if
+  end if
+  set the title of stack "Console" to tName
+end setStackTitle
+### to update lineNums and colorizing of consoleOut field and setting scroll to end 
+-- --
+on consoleUpdate 
+  if the visible of grp "EditScript1" is false then 
+    updateLineNums
+    colorizeAll
+    setstacktitle
+    set the hilitedline of fld "lineNum" to the num of lines of fld "lineNum"
+  else exit ConsoleUpdate
+end consoleUpdate
+-- --
+on updateLineNums x
+  if x = "" then
+    if the visible of group "ConsoleGroup" then put "consoleOut" into x
+    else put "editfield" into x
+  end if  
+  put word 2 of the selectedline into tL
+  if char -1 of fld x = cr then put the num of lines of fld x + 1 into tn
+  else put the num of lines of fld x into tn
+  if tn = 0 then
+    put "" into fld "lineNum"
+  else if the num of lines in fld "lineNum" <> tn then
+    lock screen
+    put the hilitedline of fld "lineNum" into tHL
+    put word 2 of the selectedLine into tL
+    put the scroll of fld x into tS
+    if lLineNumList = "" or tn > the num of lines in lLineNumList then
+      if tn > 10000 then put tn into tRC
+      else put 10000 into tRC
+      put 1 into tC
+      repeat tRC
+        put tC & cr after lLineNumList
+        add 1 to tC
+      end repeat
+    end if
+    put line 1 to tn of lLineNumList into fld "lineNum"
+  end if
+  if tHL <> "" then 
+    set the hilitedline of fld "lineNum" to tHL
+    set the scroll of fld "lineNum" to tS
+    set the scroll of fld x to the scroll of fld "LineNum"
+  else if tL <> "" then
+    set the hilitedline of fld "lineNum" to tL
+    set the scroll of fld x to the scroll of fld "LineNum"
+  else set the scroll of fld "lineNum" to the scroll of fld x
+end updateLineNums
+-- --
+on colorizeAll x
+  exit colorizeALL  ### need to redo for lua 11 29 05 bill
+    if the mouseStack  is not "Console"  then exit colorizeALL
+  if x = "" then
+    if the visible of group "ConsoleGroup" then put "consoleOut" into x
+    else put "editfield" into x
+  end if  
+--  set the cursor to watch
+  put the long secs into zap
+  ### when a new script is loaded the selection should be at the beginning
+  put the selectedchunk into tChunk
+  if the number of words in tChunk = 7 then
+    put word -2 to -1 of tChunk into tMF
+    if tmf is empty then exit colorizeAll
+    if the short name of tMF <> x then
+      put "char 1 to 0 of" && the name of fld x into tChunk
+    end if
+  else put "char 1 to 0 of" && the name of fld x into tChunk
+    --##IF SPAM() is  true then  tChunk  cr   the date & the long time & cr to stderr  ### why?
+  put the scroll of fld x into tScroll
+  
+  put fld x into tText
+  put char -1 of tText = cr into tExtraLine  ### otherwise colorizeAll eliminates last empty line
+  ### setting any < or > to html
+  replace ">>" with "¤¤" in tText    --colorizing rev input tag
+  replace ">" with "&gt;" in tText
+  replace "<" with "&lt;" in tText
+  ### to take care of sloppy slashes
+  replace "//" with " //" in tText
+  replace cr & " //" with cr & "//" in tText
+  replace "  " with " " in tText
+   
+  put "" into offFun
+  repeat for each line i in tText
+    if i = "" then
+      put "<p></p>" after tList
+      next repeat
+    end if
+    ### for rev end of function
+    if i is among the lines of offFun then
+      put i & cr after tList
+      next repeat
+    end if
+    ### rev comment only when in the beginning of a line
+    if char 1 to 2 of word 1 of i is "--" then 
+      put "<p><font color="&quote&"#68228B"&quote&">"& i & "</font></p>" & cr after tList
+      next repeat
+    end if
+    ### eliminating the path string in lines with "failed"
+    if i contains "failed" then replace gStackDirectory with empty in i ### global declared at top of card script
+    ### checking for quotes and taking care
+    if quote is in i then
+      put 0 into tX
+      put 0 into tZ
+      put "" into tBR
+      repeat
+        put offset("(",i,tX) into tX
+        if  tX = 0 then exit repeat
+        put tX + tZ into tX 
+        put offset(")",i,tX) + tX into tZ
+        if tx = tz then exit repeat ###
+        put char tx to tz of i & cr after tBR
+        put tz into tX
+      end repeat
+      if tBR <> "" then
+        repeat for each line y in tBR
+          replace y with "("&"<font color="&quote&"#145A14"&quote&">&quot;" & char 3 to - 3 of y & "&quot;</font>"&")" in i
+        end repeat 
+      end if
+    end if
+    ### iGame3D comment  //
+    if "//" is in i then
+      put offset("//",i) into tOF
+      put char 1 to (tOF - 1) of i & "<font color="&quote&"#980517"&quote&"><i>"& char tOF to -1 of i & "</i></font>" into i
+    end if
+    ###
+    if char 1 to 2 of i = "¤¤" then replace "¤¤" with "<font color="&quote&"#980517"&quote&">&gt;&gt;</font>" in i
+    
+    ### load and store commands
+    if char 1 to 4 of word 1 of i = "load" or char 1 to 5 of word 1 of i = "store" then
+if the number of items of i > 1 then
+  put "<font color="&quote&"#0000FF"&quote&">"& item 2 of i & "</font>" into item 2 of i
+put "<font color="&quote&"#008B00"&quote&"><b>"& word 1 of i & "</b></expanded></font>" & space &  word 2 to -1 of i into i
+    else 
+put "<font color="&quote&"#008B00"&quote&"><b>"& word 1 of i & "</b></expanded></font>" & space &  word 2 to -1 of i into i
+end if
+else
+       
+      switch word 1 of i
+      case "loop"
+      case "exitloop"
+      case "endloop"
+      case "repeat"
+      case "endrepeat"
+      case "if"
+      case "endif"
+      case "else"
+        put "<font color="&quote&"#0000FF"&quote&"><b>"& word 1 of i & "</b></expanded></font>" & space & word 2 to - 1 of i into i
+        break
+      case "def"
+        put "<font color="&quote&"#0000FF"&quote&"><b>"& word 1 of i & "</b></font>" & space & word 2 to - 1 of i  into i
+        break
+      case "begin"
+      case "end"
+        put "<font color="&quote&"#00868B"&quote&"><b>"& word 1 of i & "</font> <font color="&quote&"#7E2217"&quote&">"& word 2 to -1 of i & "</b></font>" into i
+        break
+      case "idle"
+        put "<font color="&quote&"#8D38C9"&quote&"><b>"& i & "</b></font>"  into i
+        break
+      case "put"
+      case "spin"
+        put "<font color="&quote&"#1528C7"&quote&"><b>"& word 1 of i & "</b></font> " & word 2 to -1 of i into i
+        break
+      case "function"
+        put "<font color="&quote&"#980517"&quote&">"& i & "</font>" into i
+        put word 2 of i into theFun
+        put "end" && theFun & cr after offFun
+        break
+      end switch
+    end if
+    put "<p>" & i & "</p>" & cr after tList
+  end repeat
+  ### post processing of rev end of function lines
+  if offFun <> "" then
+    repeat for each line i in offFun
+      replace i with "<p><font color="&quote&"#980517"&quote&">"& i & "</font></p>" in tList
+    end repeat
+  end if
+  if tExtraLine then put "<p></p>" after tList
+  set the htmltext of fld x to tList 
+  set the scroll of fld x to tScroll
+  if "console" is in the openstacks then select tChunk
+  if the optionkey is down then put the long secs - zap 
+--  set the cursor to hand
+end  colorizeALL
+-- --
+Function smartDialog pDialogMode,pText
+  switch pDialogMode
+  case "answerFile"
+    set the fMode of this stack to "answerFile"
+    set the kindOfPath of this stack to "shortPath"  --longpath, shortpath, urlpath   x == "" = shortpath
+    break
+  case "askFile"
+    set the fMode of this stack to "askFile"
+    set the kindOfPath of this stack to "shortPath"  --longpath, shortpath, urlpath   x == "" = shortpath
+    if pText <> "" then set the fText of this stack to pText --"untitled.txt"
+    else set the fText of this stack to "untitled.txt"
+  break
+  case "dialog"
+    set the fMode of this stack to "dialog"
+    ### examples: put smartDialog("dialog","Damn"&cr&"<p>What the heck <b>happened</b> to my thingy...?</p><p>I must be dreaming</p>")
+    ###           put "OK,Cancel" & cr & "Some text to test this thing..."
+    set the fText of this stack to pText  
+    break
+  end switch
+  get decompress(base64decode(the fileDialog of this stack))
+  go stack it as modal
+  if the returnvalue of this stack = "cancel" then return empty
+  else return the returnvalue of this stack
+end smartDialog
+-- --
+on fileError pName,pMode
+  set itemdelimiter to "/"
+  put last item of pName into pName
+  answer error "couldn't" && pmode && "file" && quote & pName & quote
+  exit to top
+end fileError
+### to toggle textcolor in the leftlist field according to hilite
+-- --
+on trackcolors
+  if the textcolor of the line (the hilitedline of fld "leftList") of fld "leftList" is 0,0,0 \
+      or the textcolor of the line (the hilitedline of fld "leftList") of fld "leftList" is "" then
+    set the textcolor of the line (the hilitedline of fld "leftList") of fld "leftList" to 255,255,255
+  end if
+  repeat with i = 1 to the num of lines in fld "leftList"
+    if i = the hilitedline of fld "leftList" then next repeat
+    if the textcolor of line i of fld "leftList" = 255,255,255 then set the textcolor of line i of fld "leftList" to 0,0,0
+  end repeat
+end trackcolors
+### new version
+-- --
+on hilitedTextColorToggle x   ### x = field name or field number
+  if x = "" then put "leftList" into x
+  if the textcolor of line (the hilitedline of fld x) of fld x = 255,255,255 then exit hilitedTextColorToggle   
+  get the htmlText of fld x
+  set the textcolor of line lineOffset("#FFFFFF",it) of fld x to 0,0,0
+  if the textcolor of line (the hilitedline of fld x) of fld x <> 190,190,190 
+  then set the textcolor of line (the hilitedline of fld x) of fld x to 255,255,255
+end hilitedTextColorToggle
+### to colorize the bg stripes of fld "leftList"
+-- --
+on alternatelines
+  put 0 into x
+  put x  into a
+  repeat 40
+    add 2 to x
+    put "," & x after a
+    put space & cr & space & cr after tL
+  end repeat
+  put tL into fld "leftlistbg"
+  set the hilitedlines of fld "leftlistbg" to a
+end alternatelines
+-- --
+on resumestack
+  setHilite
+  alternatelines
+end resumestack
+-- --
+on preopenstack
+  global grevappIcon
+  put 1417 into grevappIcon
+  hilitedTextColorToggle
+end preopenstack
+-- --
+on setHilite
+  get the title of this stack
+  replace "*" with "" in it 
+  set the hilitedLine of fld "leftList" to lineoffset(it,fld "leftList")
+  hilitedTextColorToggle
+end setHilite
+### new version
+### can save the consoleOut field in edit mode when necessary
+-- --
+on doSaveConsole
+  put fld "consoleOut" of stack "Console" into tCO
+  put tCO into fld "UndoConsoleOut" of stack "Console"
+  put gameRoot() into tGR
+  if checkPath("Data/Console/","make") then
+    put filesIn(tGR &"Data/Console/") into tFiles
+    filter tFiles with "console*.lua"
+    replace "console" with "" in tFiles
+    replace ".lua" with "" in tFiles
+    sort lines of tFiles numeric ascending
+    
+   put "console" & num(lines of tFiles) + 1 & ".lua" into tFName
+    put "file:/" & tGR & "Data/Console/" & tFName into tUrl
+    put tCO into url tUrl
+    if the result <> "" then 
+      fileError tFName,tUrl
+    end if
+    put "// saved" && ".../Data/Console/" & tFName & cr after fld "consoleOut"
+    consoleUpdate
+    set the title of stack "Console" to "Console"
+  else answer error "the directory couldn't be opened..."
+end doSaveConsole
+### check a path:  if checkpath("<path>") then
+### check a path and create if not existing: checkpath("<path>","make" or "create")
+-- --
+Function checkPath pPath,pDoCreate
+  put gameroot() into tGR
+  
+  replace tGR with "" in pPath ### if a long path -> truncate
+  put the directory into tOldDir
+  put tGR & pPath into tPath
+  set the directory to tPath
+  if the result <> "" then
+    if pDoCreate = "" then 
+      set the directory to tOldDir
+      return the result
+    else if pDoCreate is among the items of "create,make" then
+      set the itemdelimiter to "/"
+      put tGR into tPath
+      if last char of tPath  = "/" then delete last char of tPath
+      repeat for each item i in pPath
+        put "/"&i after tPath
+        set the directory to tPath
+        if the result <> "" then create folder tPath
+        if the result <> "" then return the result
+      end repeat
+      set the directory to tOldDir
+      return true
+    end if
+  else 
+    set the directory to tOldDir
+    return true
+  end if
+end checkPath
+ 
+-- --
+Function gameRoot
+  set the itemdelimiter to "/"
+  if  ".app/Contents/MacOS" is in the long name of stack (the mainStack of this stack) then return the directory & "/"
+  else return item 1 to - 2 of (char 2 to -1 of word 2 of the long name of stack (the mainStack of this stack)) & "/"
+end gameRoot
+### sets the tooltip of the editfield to the levels of undo
+-- --
+on setUndoTooltip
+  get the title of this stack
+  if "console" is in it then
+    set the tooltip of fld "editfield" to ""
+    exit setUndoTooltip
+  end if
+  replace "*" with "" in it
+  set the itemdelimiter to "/"
+  put last item of it into tFName
+  replace ".lua" with "" in tFName
+  set the tooltip of fld "editfield" to tFName && "undolevels:" && num(lines in gHistory[it])  --it
+end setUndoTooltip
+###########################
+## for dev purposes only ##
+###########################
+-- --
+on resetconsole
+  delete global gConsoleOpenFiles
+  put "" into fld "editfield"
+  put "" into fld "consoleOut"
+  put "" into fld "consoleIn"
+  consoleToggle "console"
+  updateOpenFiles
+  updateLineNums
+  setStackTitle
+  exit to top
+end resetconsole
+-- --
+on dev x
+  switch x
+  case "?"
+    --    --put "use" &&quote&"dev showdialog"&quote
+    break
+  case "showdialog"
+    get decompress(base64decode(the fileDialog of this stack))
+    go stack it
+    break
+  case "load"
+    answer file "locate stack fileDialog"
+    if it is not "" then 
+      set the fileDialog of stack "console" to base64encode(compress(url("binfile:" & it)))
+      save this stack
+      --      --put "stack loaded"
+    else put "load cancelled" into someVAR 
+    break
+  case "reset"
+    resetconsole
+    break
+  case "ver"
+  case "version"
+    put cr & "last change: 11 feb 05" after fld "consoleOut"
+    break
+  case "stackscript"
+    edit script of this stack
+    break
+  end switch
+end dev
+ 
+#############
+### DUMP ####
+#############
+--set the defaultMenubar to  "igame3dmenu1" of stack (the mainStack of this stack)
+--on closeStack 
+-- put setConsole("close") into closit
+--end closeStack

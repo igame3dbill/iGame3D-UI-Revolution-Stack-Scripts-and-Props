@@ -1,0 +1,39 @@
+--- field "bonehier",Bones,Inspector
+bonehier:rect(111,17,309,125)
+bonehier:short name("bonehier")
+bonehier:disabled(false)
+bonehier:visible(true)
+bonehier:sharedText(true)
+bonehier:dontWrap(true)
+bonehier:lockText(true)
+bonehier:opaque(true)
+bonehier:traversalOn(false)
+bonehier:showFocusBorder(false)
+bonehier:autoTab(false)
+bonehier:threeD(true)
+bonehier:showBorder(true)
+bonehier:borderWidth(2)
+bonehier:hScrollbar(true)
+bonehier:vScrollbar(true)
+bonehier:autoHilite(true)
+bonehier:listBehavior(true)
+bonehier:toggleHilites(false)
+bonehier:fixedLineHeight(true)
+bonehier:textHeight(16)
+bonehier:firstIndent(0)
+bonehier:textFont("Arial")
+bonehier:textSize(9)
+bonehier:textAlign("left")
+
+bonehier:hiltedLine(3)
+
+bonehier:treeDepth(0)
+
+bonehier:T3DScript([["mouse
+poke 1
+seti 2,2
+if i,1,=,2
+get coll
+else
+player
+endif"]])

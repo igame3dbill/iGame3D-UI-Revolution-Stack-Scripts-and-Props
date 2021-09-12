@@ -1,0 +1,2 @@
+--- field "F1" of group "Combo" of group "Find" of card "card id 1002ofFindT3d" of stack "Find T3D" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+ig3d_ShowWindowTitleBarAndShadow_b2

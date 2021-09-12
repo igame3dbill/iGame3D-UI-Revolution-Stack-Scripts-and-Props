@@ -1,0 +1,12 @@
+--- image "killpathicon_png",User,ig3d_UI_MAIN
+killpathicon_png:rect(166,174,188,196)
+killpathicon_png:short name("killpathicon_png")
+killpathicon_png:id(4529)
+killpathicon_png:tooltip( 4529)
+killpathicon_png:visible(true)
+killpathicon_png:dontDither(false)
+killpathicon_png:alwaysBuffer(true)
+killpathicon_png:angle(0)
+killpathicon_png:showBorder(false)
+killpathicon_png:threeD(true)
+killpathicon_png:borderWidth(2)

@@ -1,0 +1,43 @@
+--- button "consoleToggle",Console,console
+local lOffset
+-- --
+on mousedown
+  if the commandKey is down then 
+    set style of stack "Console" to toplevel
+    exit to top
+  end if
+  unlock cursor
+  get the loc of me
+  if the icon of btn "consoleInToggle" = 1341 then --and the visible of grp "consolegroup" then
+    get the loc of me
+    put item 2 of it - mousev() into lOffset 
+    reshape
+  end if
+end mousedown
+-- --
+on mouseEnter
+  if the icon of btn "consoleInToggle" = 1341 then  --and the visible of grp "consolegroup" then 
+    lock cursor
+    set the cursor to 1366
+  end if
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+end mouseleave
+-- --
+on mouseup
+  if the mouseloc is within the rect of me then mouseenter
+end mouseup
+-- --
+on reshape
+  if the mouse is down then
+    get the loc of me
+    
+    if mousev() + lOffset > 45 and mousev() + lOffset < bottom of fld "consoleOut" - 100 then set the loc of me to  item 1 of it,mousev() + lOffset
+    setlocal the bottom of me
+    resizestack the width of this cd,the height of this cd
+    send "reshape" to me in 10 millisecs
+  end if
+end reshape
+### removed old scripts 01 11 05

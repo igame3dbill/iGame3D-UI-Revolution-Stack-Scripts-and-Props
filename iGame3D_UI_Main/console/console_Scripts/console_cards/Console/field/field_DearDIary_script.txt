@@ -1,0 +1,22 @@
+--- field "DearDIary",Console,console
+on mouseUp
+  set lock of me to false
+end mouseUp
+-- --
+on mouseExit
+  set lock of me to true
+end mouseExit
+-- --
+on enterInField
+   global stackDirectory
+  
+   put allFolders("Data") into chk
+   if chk contains "Diary" is false then create folder "Diary"
+  put the short date into chm
+  replace "/" with space in chm
+ 
+  put stackDIrectory & "Data/Diary/"& chm &&thisLevel() && $User && "DevDiary.txt" into theFile
+  open file theFile for write
+  ##IF SPAM() is  true then  cd fld "DearDiary" of stack "Console" to  file theFile at 0
+  close file theFile
+end enterInField

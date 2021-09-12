@@ -1,0 +1,29 @@
+--- button "IDLESTop",User,ig3d_UI_MAIN
+IDLESTop:rect(646,-4,676,26)
+IDLESTop:short name("IDLESTop")
+IDLESTop:label("! GL !")
+IDLESTop:toolTip("open gl processing")
+IDLESTop:style("transparent")
+IDLESTop:visible(false)
+IDLESTop:showName(false)
+IDLESTop:autoHilite(false)
+IDLESTop:opaque(false)
+IDLESTop:sharedHilite(false)
+IDLESTop:traversalOn(true)
+IDLESTop:showfocusBorder(true)
+IDLESTop:icon(210073)
+IDLESTop:hiliteIcon(200954)
+IDLESTop:borderWidth(2)
+IDLESTop:textFont("Arial")
+IDLESTop:textSize(12)
+IDLESTop:textAlign("center")
+
+IDLESTop:IdleTime(1)
+
+IDLESTop:showOutput(false)
+
+IDLESTop:focusTime(196)
+
+IDLESTop:idleCount(113)
+
+IDLESTop:lastMouseLoc("1196,77")

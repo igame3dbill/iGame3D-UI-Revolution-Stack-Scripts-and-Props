@@ -1,0 +1,107 @@
+--- field "f1",card id 1002,sceneGraph
+ 
+-- --
+on rawKeyDown theKey
+  put the left of me into L
+  put the formattedWidth of me into W
+  if the width of me  < W then set the width of me to W
+  set the left of me to L
+  if theKey is 65309 or 65308 then send ArrowKey && theKey to me in 30 milliseconds
+  pass rawkeyDown
+end rawKeyDown
+-- --
+on enterInField
+  put line 1 of me into me
+   put line 1 of me into MyLine
+   if char 2 of myLine is ":" then put word -1 of myLine into myLine
+set the Line1ofF1 of stack (the mainStack of this stack) to myLine
+inputFromF1
+  hidefone
+end enterInField
+ on returnInField
+   put line 1 of me into me
+   put line 1 of me into MyLine
+   if char 2 of myLine is ":" then put word -1 of myLine into myLine
+set the Line1ofF1 of stack (the mainStack of this stack) to myLine
+inputFromF1
+put the f1inputMemory of stack (the mainStack of this stack) into FOM
+send SceneSwitchHilites && (item 1 of FoM),((item 2 of fom)+1) to stack (the mainStack of this stack)
+end returnInField
+-- --
+on ArrowKey theKey
+  put line 1 of me into myLine
+  if myLine is "true" then put "false" into line 1 of me
+  if myLine is "false" then put "true" into line 1 of me
+put line 1 of me into me
+   put line 1 of me into MyLine
+   if char 2 of myLine is ":" then put word -1 of myLine into myLine
+set the Line1ofF1 of stack (the mainStack of this stack) to myLine
+ show me
+ select line 1 of me
+ send doArrows && theKey to me in 30 milliseconds
+end ArrowKey
+-- --
+on rawKeyUp
+  set cursor to arrow
+end rawKeyUp
+-- --
+on doArrows theKey
+  set cursor to hand
+  lock screen
+   put getMkey(F1InputMemory) into SaveVals
+   put chosenSceneGraphField() into pcol
+   put therootpick() into rootPick
+   put getMkey(editingmode) into em
+   put em &rootpick into EMRP
+put line 1 of me into lineData
+    put "snapshotheight,snapshotwidth" into SnapNums
+    if linedata contains ":" then 
+              replace ":" with ": " in linedata
+    put word 2 to -1 of lineData into NumData
+  else 
+    put word 1 of linedata into numdata
+  end if
+    if numData is "true" or numData is "false" then 
+    put not numData into line 1 of me
+else
+if  NumData is a number then 
+  put ig3d_GetElapsedSeconds__f()  into passed
+  put  arrowSensitivity() into MultP
+      if thekey is "right" or theKey is "up"  then put MultP*passed into n
+      if thekey is "left"  or theKey is "down"  then put -MultP*passed  into n
+      if emrp is among the items of SnapNums then  put abs(multp)  into n
+      put  numdata+n into updateValue
+      if thekey = 65308 then put numdata-1 into updateValue
+ if thekey = 65309 then put numdata+1 into updateValue 
+end if
+   
+end if
+put "background,grid,tint,ambient,diffuse,specular,direction,exponent,attenuation,alpha" into theCOLORSEffects
+put ",red,green,blue,r,g,b" after theCOLORSEffects
+  if RootPick is among the items of  theCOLORSEffects or colt(2) is among the items of theCOLORSEffects then
+if updateValue > 1 then put 1 into updateValue
+if updateValue < 0 then put 0 into updateValue
+end if
+      if lineData contains ":" then 
+      put word 1 of lineData && updateValue into updateValue --line 1 of me
+end if
+put updateValue into line 1 of me
+put line 1 of me into me
+   put line 1 of me into MyLine
+   if colt("col1") is "scale" then
+     put itemOffset(char 1 of myLine,"x,y,z") into nOff
+     put "100,100,100" into scaleMesh
+  put word -1 of myLine into  item noff of scaleMesh
+ set the scaledMemory of stack (the maiNStack of this stack) to scaleMesh
+  end if
+   if char 2 of myLine is ":" then put word -1 of myLine into myLine
+set the Line1ofF1 of stack (the mainStack of this stack) to myLine
+inputFromF1
+put myLine into item 3 of saveVals
+set the F1InputMemory of stack (the mainStack of this stack) to SaveVals
+     show me
+select line 1 of me
+put keysdown() into tKey
+replace "65505" with empty in tKey
+if tKey <> ""   then send doArrows && theKey to me in 60 milliseconds
+end doArrows

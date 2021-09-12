@@ -1,0 +1,12 @@
+--- image "snapshot_png",User,ig3d_UI_MAIN
+snapshot_png:rect(82,109,106,133)
+snapshot_png:short name("snapshot_png")
+snapshot_png:id(4279)
+snapshot_png:tooltip( 4279)
+snapshot_png:visible(true)
+snapshot_png:dontDither(false)
+snapshot_png:alwaysBuffer(true)
+snapshot_png:angle(0)
+snapshot_png:showBorder(false)
+snapshot_png:threeD(true)
+snapshot_png:borderWidth(2)

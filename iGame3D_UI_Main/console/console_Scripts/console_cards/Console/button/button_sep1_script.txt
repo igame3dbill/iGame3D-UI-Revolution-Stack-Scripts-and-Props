@@ -1,0 +1,26 @@
+--- button "sep1",Console,console
+local lOffset
+-- --
+on mousedown
+  get the loc of me
+  put item 1 of it - mouseh() into lOffset 
+  reshape
+end mousedown
+-- --
+on reshape
+  if the mouse is down then
+    get the loc of me
+    set the loc of me to  mouseh() + lOffset,item 2 of it
+    resizestack the width of this cd,the height of this cd
+    send "reshape" to me in 10 millisecs
+  end if
+end reshape
+-- --
+on mouseEnter
+  lock cursor
+  set the cursor to 1367
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+end mouseleave

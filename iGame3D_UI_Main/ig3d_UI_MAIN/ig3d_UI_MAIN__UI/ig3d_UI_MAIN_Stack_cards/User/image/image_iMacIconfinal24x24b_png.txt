@@ -1,0 +1,12 @@
+--- image "iMacIconfinal24x24b_png",User,ig3d_UI_MAIN
+iMacIconfinal24x24b_png:rect(703,172,727,196)
+iMacIconfinal24x24b_png:short name("iMacIconfinal24x24b_png")
+iMacIconfinal24x24b_png:id(5433)
+iMacIconfinal24x24b_png:tooltip(5433)
+iMacIconfinal24x24b_png:visible(true)
+iMacIconfinal24x24b_png:dontDither(false)
+iMacIconfinal24x24b_png:alwaysBuffer(true)
+iMacIconfinal24x24b_png:angle(0)
+iMacIconfinal24x24b_png:showBorder(false)
+iMacIconfinal24x24b_png:threeD(true)
+iMacIconfinal24x24b_png:borderWidth(2)

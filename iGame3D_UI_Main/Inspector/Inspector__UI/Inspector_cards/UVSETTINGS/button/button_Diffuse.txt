@@ -1,0 +1,21 @@
+--- button "Diffuse",UVSETTINGS,Inspector
+Diffuse:rect(36,74,92,94)
+Diffuse:short name("Diffuse")
+Diffuse:style("rectangle")
+Diffuse:visible(true)
+Diffuse:showName(true)
+Diffuse:autoHilite(false)
+Diffuse:opaque(true)
+Diffuse:sharedHilite(false)
+Diffuse:traversalOn(true)
+Diffuse:showfocusBorder(true)
+Diffuse:icon(0)
+Diffuse:hiliteIcon(0)
+Diffuse:borderWidth(2)
+Diffuse:textFont(" Arial")
+Diffuse:textSize(9)
+Diffuse:textAlign("center")
+
+Diffuse:ranger(-1)
+
+Diffuse:colVals("0.417969,0.289062,1,1")

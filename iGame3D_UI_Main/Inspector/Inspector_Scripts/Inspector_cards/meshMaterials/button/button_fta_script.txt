@@ -1,0 +1,23 @@
+--- button "fta",meshMaterials,Inspector
+on mouseUp
+  set lockScreen to true
+  if hilite of me is true then
+    enable group "ftagroup"
+    EnableImage true
+  else
+    disable group "ftagroup"
+    EnableImage false
+    end if
+    set lockScreen to false
+end mouseUp
+-- --
+on EnableImage what
+  if what is true then
+      show group "thoseImagesGroup" of card "materialsCard" of stack "inspector"
+  else
+  hide group "thoseImagesGroup"of card "materialsCard" of stack "inspector"
+  end if
+  set the ink of image "xmapimg" of card "materialsCard" of stack "inspector" to transparent
+set the ink of image "ymapimg" of card "materialsCard" of stack "inspector" to transparent
+set the ink of image "zmapimg" of card "materialsCard" of stack "inspector" to transparent
+end EnableImage

@@ -1,0 +1,10 @@
+--- button "blend",meshMaterials,Inspector
+on mouseUp
+autoApplyUV
+  
+end mouseUp
+-- --
+on mouseEnter
+  put tab  & "Blending" & cr & "(diffuse alpha)" into mylab
+  set the label of me to mylab
+end mouseEnter

@@ -1,0 +1,11 @@
+--- image "ToolBox_png",User,ig3d_UI_MAIN
+ToolBox_png:rect(613,174,637,198)
+ToolBox_png:short name("ToolBox_png")
+ToolBox_png:id(5327)
+ToolBox_png:visible(true)
+ToolBox_png:dontDither(false)
+ToolBox_png:alwaysBuffer(true)
+ToolBox_png:angle(0)
+ToolBox_png:showBorder(false)
+ToolBox_png:threeD(true)
+ToolBox_png:borderWidth(2)

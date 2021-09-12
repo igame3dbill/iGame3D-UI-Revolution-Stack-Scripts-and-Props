@@ -1,0 +1,21 @@
+--- button "Specular",UVSETTINGS,Inspector
+Specular:rect(36,114,92,134)
+Specular:short name("Specular")
+Specular:style("rectangle")
+Specular:visible(true)
+Specular:showName(true)
+Specular:autoHilite(false)
+Specular:opaque(true)
+Specular:sharedHilite(false)
+Specular:traversalOn(true)
+Specular:showfocusBorder(true)
+Specular:icon(0)
+Specular:hiliteIcon(0)
+Specular:borderWidth(2)
+Specular:textFont(" Arial")
+Specular:textSize(9)
+Specular:textAlign("center")
+
+Specular:ranger(-1)
+
+Specular:colVals("0.226562,0.644531,1,1")

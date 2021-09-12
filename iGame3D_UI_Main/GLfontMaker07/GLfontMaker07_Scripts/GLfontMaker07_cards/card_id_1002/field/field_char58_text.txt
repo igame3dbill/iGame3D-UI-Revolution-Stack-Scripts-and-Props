@@ -1,0 +1,2 @@
+--- field "char58" of group "group_id_1122" of group "square2" of card id 1002 of stack "GLfontMaker07" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+6

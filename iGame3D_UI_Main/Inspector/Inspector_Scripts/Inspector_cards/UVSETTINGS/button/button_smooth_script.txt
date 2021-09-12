@@ -1,0 +1,19 @@
+--- button "smooth",UVSETTINGS,Inspector
+on mouseUp
+ 
+    ig3d_MakeMeshSmoothShaded_b (the hilite of me)
+ if the hilite of me is true then updateMaterialSmoothForView
+     put updateMaterialFromInspector() into UpdateMaterialsCOLORS
+end mouseUp
+-- --
+on updateMaterialSmoothForView
+  if hilite of me is true then put 1 into val
+  else put 0 into val
+put getMkey(pickedMaterialNumber) into n
+  put getmkey(ChosenMaterialsAttributeLine) into matN
+put ig3d_GetMeshMaterialInfo_i_s(matN) into matInfo
+put lineOffset("smooth=",matinfo) into smooothline
+put "smooth=" & val into line smooothline of  matInfo
+ig3d_SetMeshMaterialInfo_is matN,matinfo
+ 
+end updateMaterialSmoothForView

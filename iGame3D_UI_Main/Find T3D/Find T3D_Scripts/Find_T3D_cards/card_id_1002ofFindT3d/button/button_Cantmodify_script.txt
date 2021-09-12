@@ -1,0 +1,8 @@
+--- button "Cantmodify",card id 1002ofFindT3d,Find T3D
+on mouseup
+  set the cantmodify of this stack to the hilite of me
+end mouseup
+-- --
+on mouseenter
+  set the hilite of me to the cantmodify of this stack
+end mouseenter

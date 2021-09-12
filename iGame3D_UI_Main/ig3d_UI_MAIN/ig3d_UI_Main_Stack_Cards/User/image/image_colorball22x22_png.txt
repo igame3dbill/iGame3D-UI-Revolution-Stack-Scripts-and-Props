@@ -1,0 +1,12 @@
+--- image "colorball22x22_png",User,ig3d_UI_MAIN
+colorball22x22_png:rect(346,174,368,196)
+colorball22x22_png:short name("colorball22x22_png")
+colorball22x22_png:id(4602)
+colorball22x22_png:tooltip( 4602)
+colorball22x22_png:visible(true)
+colorball22x22_png:dontDither(false)
+colorball22x22_png:alwaysBuffer(true)
+colorball22x22_png:angle(0)
+colorball22x22_png:showBorder(false)
+colorball22x22_png:threeD(true)
+colorball22x22_png:borderWidth(2)

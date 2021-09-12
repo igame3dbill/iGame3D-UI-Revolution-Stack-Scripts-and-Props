@@ -1,0 +1,21 @@
+--- button "Color",meshMaterials,Inspector
+Color:rect(40,70,96,90)
+Color:short name("Color")
+Color:style("rectangle")
+Color:visible(true)
+Color:showName(true)
+Color:autoHilite(false)
+Color:opaque(true)
+Color:sharedHilite(false)
+Color:traversalOn(true)
+Color:showfocusBorder(true)
+Color:icon(0)
+Color:hiliteIcon(0)
+Color:borderWidth(2)
+Color:textFont(" Arial")
+Color:textSize(9)
+Color:textAlign("center")
+
+Color:ranger(-1)
+
+Color:colVals("0.742188,1,0.773438,1")

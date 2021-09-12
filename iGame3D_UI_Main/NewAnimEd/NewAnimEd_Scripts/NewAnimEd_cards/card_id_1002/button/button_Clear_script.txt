@@ -1,0 +1,11 @@
+--- button "Clear",card id 1002,NewAnimEd
+on mouseUp
+  put word 2 of the selectedLine of cd btn "animChooser" into n
+  put the allDaAnimationsData of cd btn "animChooser" into theData
+  delete line n of theData
+  delete line n of cd btn "animChooser"
+  DeleteAllMarkers
+  set the allDaAnimationsData of cd btn "animChooser" to theData
+  if cd btn "animChooser" is empty then set label of cd btn "animChooser" to " "
+  else send "menuPick" && label of cd btn "animChooser" to cd btn "animChooser"
+end mouseUp

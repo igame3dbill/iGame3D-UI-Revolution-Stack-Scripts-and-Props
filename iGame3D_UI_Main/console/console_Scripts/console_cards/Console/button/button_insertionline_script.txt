@@ -1,0 +1,41 @@
+--- button "insertionline",Console,console
+on doit
+  
+    put the loc of me into mylo
+  put item 1 the loc of me into xstp
+  put item 2 of the mouseloc into mLy
+  put formattedHeight of cd fld "consoleOut" into fHi
+  if cd fld "consoleOut" is not empty then
+  put num(lines of cd fld"consoleOut") into lc
+  put round((fHi / lc)/1.35) into rneach
+  put word 2 selectedLine of cd fld "consoleOut" into n
+  put round(mLy-rneach) into stfo
+  put top of cd fld "consoleOut" + stfo into lnstop
+   set the loc of me to (xstp  & comma & lnstop)
+   end if
+put item 1 the loc of me into xstp
+put left of cd fld "consoleOut" into l
+put right of cd fld "consoleOut" into r
+put item 2 loc of me into y
+put l & comma & y & comma  & return & r & comma & y into InlinePts
+set the points of graphic "InsertionLine" to  InlinePts
+end doit
+-- --
+on mouseDown
+  set the hilite of me to true
+  set the clickStart of me to the screenMouseLoc
+  set the lastClick of me to the screenMouseLoc
+end mouseDown
+-- --
+on mouseStillDown
+doit
+end mouseStillDown
+-- --
+on mouseUp
+  set cursor to arrow
+  set hilite of me to false
+end mouseUp
+-- --
+on mouseLeave
+  set hilite of me to false
+end mouseLeave

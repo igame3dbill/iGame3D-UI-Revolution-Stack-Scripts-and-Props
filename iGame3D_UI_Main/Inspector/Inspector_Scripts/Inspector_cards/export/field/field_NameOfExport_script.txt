@@ -1,0 +1,8 @@
+--- field "NameOfExport",export,Inspector
+on mouseDown
+  set the lockText of me to false
+end mouseDown
+-- --
+on returnInField
+  put line 1 of me into me
+end returnInField

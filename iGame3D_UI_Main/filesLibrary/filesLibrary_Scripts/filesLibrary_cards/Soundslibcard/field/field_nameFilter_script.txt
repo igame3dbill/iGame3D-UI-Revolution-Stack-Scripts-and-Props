@@ -1,0 +1,6 @@
+--- field "nameFilter",Soundslibcard,filesLibrary
+on rawkeydown x
+   send "parseFilter" to fld "list" in 50 millisecs
+  --send "parsetree fooBar" to fld "list" in 50 millisecs
+  pass rawkeydown
+end rawkeydown

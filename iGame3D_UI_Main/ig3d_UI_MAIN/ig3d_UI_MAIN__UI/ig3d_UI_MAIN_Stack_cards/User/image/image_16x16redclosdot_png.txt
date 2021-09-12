@@ -1,0 +1,12 @@
+--- image "16x16redclosdot_png",User,ig3d_UI_MAIN
+16x16redclosdot_png:rect(220,180,236,196)
+16x16redclosdot_png:short name(16x16redclosdot_png)
+16x16redclosdot_png:id(4604)
+16x16redclosdot_png:tooltip(4604)
+16x16redclosdot_png:visible(true)
+16x16redclosdot_png:dontDither(false)
+16x16redclosdot_png:alwaysBuffer(true)
+16x16redclosdot_png:angle(0)
+16x16redclosdot_png:showBorder(false)
+16x16redclosdot_png:threeD(true)
+16x16redclosdot_png:borderWidth(2)

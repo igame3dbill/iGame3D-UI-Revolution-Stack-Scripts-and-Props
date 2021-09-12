@@ -1,0 +1,67 @@
+--- graphic "materials",UVSETTINGS,Inspector
+on mouseDown
+  set the backgroundColor of btn "DragModel" to the backgroundcolor of me
+ dragModelSetup "colorDrag"
+ put "red,green,blue,alpha" into FLST
+ repeat for each item C in FLST 
+   put fld C & comma  after RGBA
+ end repeat
+ delete last char of RGBA
+ put  hilitedMaterialButton && RGBA into HMBANDRGBA
+-- put HMBANDRGBA
+  set the label of btn "dragModel" to HMBANDRGBA
+ send dragit to me in 10 milliseconds
+end mouseDown
+-- --
+on dragit
+  if the mouse is down then
+    show btn "dragModel"
+    set the loc of btn "dragmodel" to the mouseloc
+    checkdragColorLoc
+     send dragit to me in 10 milliseconds
+    else
+  
+    checkDropColorLoc
+    end if
+  end dragit
+  
+    on checkdragColorLoc
+    put "ambient,color,diffuse,emission,specular" into CLST
+    put the mouseloc into whereYa
+    repeat for each item B in CLST
+      if whereya is within the rect of button B then
+--        put B && the backgroundColor of me
+        exit repeat
+        end if
+    end repeat
+end checkdragColorLoc
+  on checkDropColorLoc
+        hide btn "dragmodel"
+          dragModelSetup "clear"
+    put "ambient,color,diffuse,emission,specular" into CLST
+    put the mouseloc into whereYa
+    repeat for each item B in CLST
+      if whereya is within the rect of button B then
+--        put B && the backgroundColor of me
+        send mouseDown to the mousecontrol 
+        exit repeat
+        end if
+    end repeat
+end checkDropColorLoc
+-- --
+on dragModelSetup what
+  switch what
+    case "clear"
+       set the opaque of btn "dragModel" to false
+  set the rect of btn "dragModel" to -72,-15,0,0
+  set the showBorder of btn "dragModel" to false
+  set the borderWidth of btn "DragModel" to 0
+      break
+    case "colorDrag"
+       set the opaque of btn "dragModel" to true
+  set the rect of btn "dragModel" to -25,-25,0,0
+  set the showBorder of btn "dragModel" to true
+  set the borderWidth of btn "DragModel" to 2
+      break
+  end switch
+end dragModelSetup

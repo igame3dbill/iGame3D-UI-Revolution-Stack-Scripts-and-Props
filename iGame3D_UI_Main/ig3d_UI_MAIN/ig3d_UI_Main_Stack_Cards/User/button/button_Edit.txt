@@ -1,0 +1,18 @@
+--- button "Edit",User,ig3d_UI_MAIN
+Edit:rect(27,-1,55,16)
+Edit:short name("Edit")
+Edit:label("Edit")
+Edit:style("menu")
+Edit:visible(true)
+Edit:showName(true)
+Edit:autoHilite(true)
+Edit:opaque(true)
+Edit:sharedHilite(true)
+Edit:traversalOn(false)
+Edit:showfocusBorder(true)
+Edit:icon(0)
+Edit:hiliteIcon(0)
+Edit:borderWidth(2)
+Edit:textAlign("center")
+
+Edit:objectProperties("18.000000,0.500000,0.000000,0.000000,150.000000,0.000000,126.759880,false,false,false")

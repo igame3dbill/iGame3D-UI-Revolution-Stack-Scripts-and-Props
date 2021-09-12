@@ -1,0 +1,94 @@
+--- button "Material_Options",UVSETTINGS,Inspector
+
+-- --
+on  menuPick mOptions
+put MaterialAction(mOptions)  into mpoption
+end menuPick
+-- --
+Function  MaterialAction mOptions
+  put curmat() into origin
+--  updateMaterialEditorButton
+  put  ig3d_GetMeshMaterialInfo_i_s(origin) into originMat
+    put ig3d_GetMeshMaterialsList__s() into materialsList 
+  switch mOptions
+    case "Add Material"
+         
+      ask "Please enter a name for the new material:" with "New Material"
+      put ig3d_GetCurrentMaterialNumber__i()  into n
+  put ig3d_GetMeshMaterialInfo_i_s(n) into matData
+  if it is not empty then
+  T3DChangeGlobal 65,it  -- new material
+  put ig3d_GetCurrentMaterialNumber__i()  into n
+  put it into line 1 of matData
+   T3DSetInfo "mat",n,matData
+  put it into line 1 of orginMat
+  put n & cr & matData into matinfo
+  put setMkey(pickedmaterial,matinfo) into setit
+  put setMkey("pickedMaterialNumber",n) into origin
+--send updateListMaterials to fld "root"
+--updateMaterialListPick
+    
+ 
+  end if
+break
+  case "Duplicate Material"
+         
+            put getMkey(pickedMaterialNumber)  into n
+            put ig3d_GetMeshMaterialInfo_i_s(n) into oldMat
+  put getMkey(pickedMaterialNumber) into matNam
+  put matNam &"*" into filta
+  put materialsList into theList
+  filter theList with filta
+  put num(lines of theList)+1 into matNext
+  put  matNam & matNext  into askNam
+      ask "Please enter a name for the new material:" with askNam
+  if it is not empty then
+  T3DChangeGlobal 65,it
+  put it into line 1 of oldMat
+  
+  put num(lines of materialsList) into n
+      T3DSetinfo "mat",n,oldMat --- set the new material to same as last material
+  T3DChangeGlobal 68,n
+  --send mouseDown to materialsList
+    
+ 
+  end if
+      break
+      case "Set Material"
+ setTOMeshMaterial    --origin
+        break
+        case "Delete Material"
+         if the altkey is down then deleteMaterial n
+         else deleteMaterial n,ok
+          break
+          case "Rename Material"
+             put getMkey(pickedMaterialNumber) into n
+              
+  ask "Please enter a new name for this material:" with line 2 of getMkey(pickedMaterial)
+if it is not empty then 
+put it & return & 0 into instr
+T3DSetInfo "mat",n,instr
+---send updateListMaterials to fld "root"
+  
+ 
+end if
+break
+case "Select Polys"
+    selectMaterialPolys
+  break
+  end switch
+end MaterialAction
+-- --
+on selectMaterialPolys n
+  if n is empty then put getMkey(pickedMaterialNumber) into n
+  T3DChangeGlobal 68,n ---select same material
+end selectMaterialPolys
+-- --
+on deleteMaterial n what
+  if what is not empty then answer "Are you sure you want to delete this material?" with "Delete" or "Abort"
+  if it is "Abort" then return empty
+  put getMkey(pickedMaterialNumber) into n
+  T3DChangeGlobal 67,n
+--  send updateListMaterials to fld "root"
+  
+end deleteMaterial

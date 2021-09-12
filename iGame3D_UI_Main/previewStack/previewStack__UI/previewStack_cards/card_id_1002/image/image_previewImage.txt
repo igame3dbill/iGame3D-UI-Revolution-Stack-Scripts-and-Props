@@ -1,0 +1,12 @@
+--- image "previewImage",card id 1002,previewStack
+previewImage:rect(0,0,152,152)
+previewImage:short name("previewImage")
+previewImage:fileName("/ig3d_mac_xcode/Data/Images/igame3dLogov2.png")
+previewImage:id(1008)
+previewImage:visible(true)
+previewImage:dontDither(false)
+previewImage:alwaysBuffer(false)
+previewImage:angle(0)
+previewImage:showBorder(true)
+previewImage:threeD(false)
+previewImage:borderWidth(1)

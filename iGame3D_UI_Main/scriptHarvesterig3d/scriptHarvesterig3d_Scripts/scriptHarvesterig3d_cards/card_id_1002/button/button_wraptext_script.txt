@@ -1,0 +1,6 @@
+--- button "wraptext",card id 1002,scriptHarvesterig3d
+on mouseUp
+  set the dontwrap of fld "scripts" to the hilite of me
+  set the hscrollbar of fld "scripts" to the hilite of me
+  set the scrollbarwidth of fld "scripts" to 12
+end mouseup

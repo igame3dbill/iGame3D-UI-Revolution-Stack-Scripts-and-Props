@@ -1,0 +1,17 @@
+--- button "devfilter",card id 1002ofdev,Dev
+on openField
+  put setMkey("fieldIsFocused",true) into setopenfield
+end openField
+-- --
+on returnInField
+  updateAndEmpty
+  pass returnInField
+end returnInField
+-- --
+on updateAndEmpty
+  
+  put line 1 to -4 of the text of me into myText
+  put the label of me & cr before myText
+  set the label of btn "devfilter" of stack "dev" to empty
+  set the text of me to myText
+end updateAndEmpty

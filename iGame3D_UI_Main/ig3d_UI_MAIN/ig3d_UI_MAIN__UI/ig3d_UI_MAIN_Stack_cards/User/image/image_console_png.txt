@@ -1,0 +1,12 @@
+--- image "console_png",User,ig3d_UI_MAIN
+console_png:rect(232,69,256,93)
+console_png:short name("console_png")
+console_png:id(4199)
+console_png:tooltip( 4199)
+console_png:visible(true)
+console_png:dontDither(false)
+console_png:alwaysBuffer(true)
+console_png:angle(0)
+console_png:showBorder(false)
+console_png:threeD(true)
+console_png:borderWidth(2)

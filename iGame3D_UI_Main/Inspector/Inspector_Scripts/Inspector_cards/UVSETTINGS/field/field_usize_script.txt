@@ -1,0 +1,21 @@
+--- field "usize",UVSETTINGS,Inspector
+on returnInField
+  if the shiftKey is down then put line 1 of me into line 1 of of fld "vsize"
+autoUVApply
+  closeField
+end returnInField
+-- --
+on enterInField
+  if the shiftKey is down then put line 1 of me into line 1 of of fld "vsize"
+  autoUVApply
+  closeField
+end enterInField
+-- --
+on arrowKey theKey
+  set the navigationkeys of me to false
+   set the altArrowVal of this stack to .001
+  set the arrowVal of this stack to .05
+  set the shiftArrowVal of this stack to .5 
+saveUNdomesh
+  doArrows ((the short name of me) & comma & keysDown())
+end arrowKey

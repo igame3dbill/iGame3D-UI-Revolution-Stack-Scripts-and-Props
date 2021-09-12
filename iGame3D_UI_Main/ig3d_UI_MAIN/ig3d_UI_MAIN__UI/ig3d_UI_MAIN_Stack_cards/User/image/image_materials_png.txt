@@ -1,0 +1,12 @@
+--- image "materials_png",User,ig3d_UI_MAIN
+materials_png:rect(470,69,494,94)
+materials_png:short name("materials_png")
+materials_png:id(4210)
+materials_png:tooltip( 4210)
+materials_png:visible(true)
+materials_png:dontDither(false)
+materials_png:alwaysBuffer(true)
+materials_png:angle(0)
+materials_png:showBorder(false)
+materials_png:threeD(true)
+materials_png:borderWidth(2)

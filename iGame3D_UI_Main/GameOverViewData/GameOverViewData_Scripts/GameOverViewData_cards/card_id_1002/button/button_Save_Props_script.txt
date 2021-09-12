@@ -1,0 +1,20 @@
+--- button "Save_Props",card id 1002,GameOverViewData
+on mouseUp
+repeat with x = 1 to number of controls of this stack
+  put the name of control  x of this stack into nam
+  put "group button" into mylist
+  if myLis contains word 1 of nam then 
+  put the label of control x of this stack into chk
+  if chk is not empty then put wchk & return after myContrs
+  end if
+end repeat
+sort myContrs
+set the ObjectPropertiesList of this stack to myContrs
+ask file "save the properties list" with "GameProperties.txt"
+if it is not empty then 
+put it into theFile
+open file theFile for write
+write  myContrs to  file theFile at 0
+close file theFile
+end if
+end mouseUp

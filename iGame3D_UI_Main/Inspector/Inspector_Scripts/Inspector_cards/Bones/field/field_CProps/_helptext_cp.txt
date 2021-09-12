@@ -1,0 +1,1 @@
+commandHeader,helptext"Select texture name, then click on image to set. Shift click to retain UV settings."

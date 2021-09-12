@@ -1,0 +1,19 @@
+--- button "WriteFLD",card id 1002ofdev,Dev
+on mouseUp
+  put "file:/" & folderPath("output") & the title of this stack &"-"  & label of btn "devfilter" & ".txt" into theFileName
+  put fld "theList" into URL theFileName
+  put line (word 2 selectedLine of fld "thelist") of fld "thelist" into nline
+  put     (word 2 to -1 of nline) into theLine
+  if word 1 of theLine is "the" and "stack" is in theLine then
+    put  folderPath("output") & word 2 of theLine & "-" & label of btn "devfilter" &".txt" into theFileName
+    put "file:/" & theFileName into theProppath
+ put theLine & "into URL" & quoted(theProppath)  into theDOLine
+     do put && theDOLine 
+    end if
+    replace "file:/" with empty in theFileName
+  put revMacFromUnixPath(theFileName) into myPath
+  if the commandKey is down then
+           put "tell application"&&quoted("Finder") & cr & "activate" & cr& "reveal" && quoted(myPath) &cr & "end tell" into myTELLSCRIPT
+do myTELLSCRIPT as AppleScript
+end if
+end mouseUp

@@ -1,0 +1,11 @@
+--- button "Make_Font_PNGS",card id 1002,GLfontMaker07
+on mouseUp
+ put the fontNames into myList
+ 
+-- repeat for each line theFont  in myList
+--      ig3d_FontmenuPick theFont
+--      wait for 400 milliseconds
+--       ig3d_GLFontMaker -- in script of stack GLFontMaker
+-- end repeat
+ig3d_GLFontMaker
+end mouseUp   

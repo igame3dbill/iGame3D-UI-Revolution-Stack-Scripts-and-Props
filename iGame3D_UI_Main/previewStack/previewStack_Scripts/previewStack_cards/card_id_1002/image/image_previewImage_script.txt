@@ -1,0 +1,4 @@
+--- image "previewImage",card id 1002,previewStack
+--on mouseStillDown
+--  --set the loc of the stack "PreviewStack" to the screenMouseloc
+--end mouseStillDown

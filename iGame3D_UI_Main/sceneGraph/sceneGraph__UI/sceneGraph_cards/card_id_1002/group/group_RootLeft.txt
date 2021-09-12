@@ -1,0 +1,41 @@
+--- group "RootLeft",card id 1002,sceneGraph
+RootLeft:rect(-4,-6,315,159)
+RootLeft:short name("RootLeft")
+RootLeft:disabled(false)
+RootLeft:showName(false)
+RootLeft:opaque(false)
+RootLeft:showborder(false)
+RootLeft:hScrollbar(false)
+RootLeft:vScrollbar(false)
+RootLeft:scrollbarWidth(20)
+RootLeft:visible(true)
+RootLeft:threeD(true)
+RootLeft:radioBehavior(true)
+RootLeft:tabGroupBehavior(false)
+RootLeft:backgroundBehavior(true)
+RootLeft:textAlign("left")
+
+RootLeft:mesh([["bone
+bevelextrude
+terrain
+meshgroups"]])
+
+RootLeft:objectMaterialRoot([["col 
+alpha
+ambient
+diffuse
+specular
+shininess
+emission
+wire
+smooth
+tex"]])
+
+RootLeft:meshSubRoot([["array
+bone
+bevel-extrude
+display
+groups
+terrain"]])
+
+RootLeft:panePath("group "RootLeft"")

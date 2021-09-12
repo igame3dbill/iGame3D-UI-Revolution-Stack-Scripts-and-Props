@@ -1,0 +1,31 @@
+--- button "Window",User,ig3d_UI_MAIN
+Window:rect(129,-1,172,16)
+Window:short name("Window")
+Window:label("Window")
+Window:style("menu")
+Window:visible(true)
+Window:showName(true)
+Window:autoHilite(true)
+Window:opaque(true)
+Window:sharedHilite(true)
+Window:traversalOn(false)
+Window:showfocusBorder(true)
+Window:icon(0)
+Window:hiliteIcon(0)
+Window:borderWidth(2)
+Window:textAlign("center")
+
+Window:schmand([["on mouseup
+beep
+end mouseup
+"]])
+
+Window:oldValue(12)
+
+Window:lastClick("923,292")
+
+Window:helptext("Select texture name, then click on image to set. Shift click to retain UV settings.")
+
+Window:pathView("Levels/xman_44")
+
+Window:clickStart("923,292")

@@ -1,0 +1,2 @@
+--- field "NameOfExport" of group "Export" of card "export" of stack "Inspector" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+attack2

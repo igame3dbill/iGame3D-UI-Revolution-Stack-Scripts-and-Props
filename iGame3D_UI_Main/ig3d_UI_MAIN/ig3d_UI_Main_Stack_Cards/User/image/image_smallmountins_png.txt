@@ -1,0 +1,12 @@
+--- image "smallmountins_png",User,ig3d_UI_MAIN
+smallmountins_png:rect(736,115,752,131)
+smallmountins_png:short name("smallmountins_png")
+smallmountins_png:id(4407)
+smallmountins_png:tooltip( 4407)
+smallmountins_png:visible(true)
+smallmountins_png:dontDither(false)
+smallmountins_png:alwaysBuffer(true)
+smallmountins_png:angle(0)
+smallmountins_png:showBorder(false)
+smallmountins_png:threeD(true)
+smallmountins_png:borderWidth(0)

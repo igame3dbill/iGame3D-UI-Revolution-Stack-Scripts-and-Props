@@ -1,0 +1,23 @@
+--- field "DesignContents" of card id 1002 of stack "GameOverViewData" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+Introduction
+Game OverView
+World Layout
+Scheduled
+Locations
+Objects
+Characters
+Sounds
+Music
+Weapons
+Camera
+Lighting
+Game In-depth
+UI
+Misc
+Origin
+Activity
+Paths
+Sounds
+Poses
+Anims
+

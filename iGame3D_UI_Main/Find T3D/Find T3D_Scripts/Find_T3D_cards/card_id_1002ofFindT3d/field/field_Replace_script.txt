@@ -1,0 +1,13 @@
+--- field "Replace",card id 1002ofFindT3d,Find T3D
+--on openField
+--  if the commandKey is down then 
+--  select before char 1 of me
+--  if clipboard() is text then
+--    select char 1 to -1 of me
+--   paste
+-- end if
+-- end if
+--end openField
+--on rawKeyDown
+--  pass rawkeydown
+--end rawKeyDown

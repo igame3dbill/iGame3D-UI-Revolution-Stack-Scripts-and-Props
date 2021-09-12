@@ -1,0 +1,11 @@
+--- image "xmapimg",UVSETTINGS,Inspector
+xmapimg:rect(64,54,94,71)
+xmapimg:short name("xmapimg")
+xmapimg:id(1321)
+xmapimg:visible(false)
+xmapimg:dontDither(false)
+xmapimg:alwaysBuffer(true)
+xmapimg:angle(0)
+xmapimg:showBorder(false)
+xmapimg:threeD(true)
+xmapimg:borderWidth(2)

@@ -1,0 +1,8 @@
+--- field "UndoConsoleOut" of card "Console" of stack "console" of stack "C:/Users/Bread/Documents/iGame3D_LC_092021/ig3d_UI_MAIN.livecode"
+
+	-- [string "line"]:1: attempt to index global 'gParticleEmitters' (a nil value)
+	-- [string "line"]:1: attempt to index global 'gParticleEmitters' (a nil value)
+loadLevel("Data/Levels/level-22")	-- //Loading level
+
+loadLevel("Data/Levels/level-22")	-- //Loading level
+

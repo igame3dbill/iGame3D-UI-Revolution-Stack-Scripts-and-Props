@@ -1,0 +1,156 @@
+--- field "consoleOut",Console,console
+local lSelection
+-- --
+on focusIn
+ 
+end focusIn
+-- --
+on focusOut 
+end focusOut
+-- --
+on scrollbardrag
+  set the scroll of fld "lineNum" to the scroll of me
+  if the scroll of me >  the scroll of fld "linenum" then set the scroll of me to the scroll of fld "linenum"
+end scrollbardrag
+-- --
+on selectionchanged
+  put the selectedchunk into lSelection
+  ### to copy selected text to consoleIn 
+  ### may be better to choose other modifier key
+  if the commandkey is down and the selectedtext <> "" then 
+    put the selectedtext into fld "consoleIn"
+    if the num of lines in fld "consoleIn" > 1 and icon of btn "consoleInToggle" = 1340 then send "mousedown" to btn "consoleInToggle"
+  end if
+  ### 
+  get word 2 of the selectedline
+  --put word -1 of the selectedline into tFld
+  if it is not "" then set the hilitedline of fld "lineNum" to it
+  setstacktitle
+  updateLineNums
+end selectionchanged
+-- --
+on rawkeyup x
+  switch x
+    case "65288"
+      send "selectionchanged" to me in 10 millisecs
+colorizeall "consoleOut"
+ set the lockText  of me to true
+      break
+  end switch
+  end rawkeyup
+  
+-- --
+on rawKeyDown x
+  
+  put setMkey("fieldisfocused",true) into seti
+  switch x
+    case "65288" ###deletekey
+set the lockText  of me to false
+delete selectedText
+      break
+  case "65307" ### escape key
+    pass rawkeydown
+    break
+  case "65308"  ### scrollwheel up and down
+  case "65309"
+    -- do nothing
+    pass rawkeydown
+    break
+  case "65293"  ### return in field
+    --put the selectedline
+    put word 2 selectedLine of me into thelin
+    if  line thelin of me contains ".top" then
+      delete line 1 to theLin of me
+      filter me with "*"
+    else if  line thelin of me contains ".end" then
+      delete line theLin to -1 of me
+      filter me with "*"
+    end if
+    send "selectionchanged" to me in 10 millisecs
+    pass rawkeydown
+    -- send colorizeNewInput to me in 10 millisecs
+    break
+  case "65421" ### enter in field
+    put the scroll of fld "consoleOut" into tScroll
+    put the selectedChunk into tChunk
+    doSaveConsole
+    ### this is done in doSaveConsole
+    --put fld "consoleOut" of stack "Console" into fld "UndoConsoleOut" of stack "Console"
+    --put scrRun into fld "consoleOut" of stack "Console"
+    set the scroll of fld "consoleOut" to tScroll
+    --colorError
+    select tChunk
+    send "selectionchanged" to me in 10 millisecs
+    colorizeall "consoleOut"
+    return x ### if enter in field is not supposed to add a line otherwise comment out
+    break
+  case "122"
+    --if the commandkey is down then 
+    pass rawkeydown
+    break
+  default
+    send "selectionchanged" to me in 10 millisecs
+    pass rawkeydown
+    break
+  end switch
+end rawkeydown
+ 
+ 
+ ### escapeKey can be handled in rawkeydown
+ ### if this handler is still ok then it should be placed in rawkeydown
+-- --
+on escapeKey  
+  replace "" with empty in me
+  ----***focus cd btn 1  
+  send "stopGame" to stack (the mainStack of this stack)
+end escapeKey
+-- --
+on mouseDown x
+  if x = 3 then
+    lock screen
+    put the button3 of me into btn "popMenu"
+    popup btn "popMenu"
+    --if lSelection <> "" then select lSelection
+  else set the hilitedline of fld "lineNum" to word 2 of the clickline
+end mouseDown
+-- --
+on finishMenupick x
+  if lSelection <> "" then
+    if word 4 of lSelection > word 2 of lSelection then 
+      select lSelection
+      get the value of lSelection
+      if it <> "" then 
+        set the clipboardData["text"] to it
+        select lSelection
+      else beep
+    else 
+      get the value of the clickline
+      if it <> "" then 
+        set the clipboardData["text"] to it
+        select word 1 to -1 of the clickline
+      else beep
+    end if
+  end if
+end finishMenupick
+--on mousedown
+  set the hilitedline of fld "lineNum" to word 2 of the clickline
+end mousedown
+-- --
+on mouseup
+  get the selectedchunk
+  if word 2 of it > word 4 of it then send mousedown to fld "lineNum"
+end mouseup
+-- --
+on findInMe ###  send from fld "consoleIn"
+  put fld "consoleIn" into termln
+  replace "find " with empty in termln
+  if  fld "consoleOut" of stack "Console" contains termln then
+    find  termln in  fld "consoleOut" of stack "Console"
+    select  foundChunk
+    set  textcolor of  selectedText  to 10,60,80
+    --focus cd fld "consoleIn" of stack "Console"
+  end if
+end findInMe
+############
+##  DUMP  ##  handlers below are candidates for eradication after deliberation ###ALL DUMPED 10 11 05 --Bill
+############

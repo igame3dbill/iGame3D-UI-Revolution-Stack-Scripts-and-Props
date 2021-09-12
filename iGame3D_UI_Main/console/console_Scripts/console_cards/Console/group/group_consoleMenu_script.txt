@@ -1,0 +1,7 @@
+--- group "consoleMenu",Console,console
+on menupick which
+  if which <> "" then
+    put the label of the target &"|"& which into tWhich
+    ConsolemenuPick tWhich
+  end if
+end menupick

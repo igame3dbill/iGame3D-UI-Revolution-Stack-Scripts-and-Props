@@ -1,0 +1,51 @@
+-- script of stack "exportscripts"
+ON exportscripts tStackName
+    put "exporting..." into fld "Label_Field"
+    makeFoldersIfNecessary localPath()
+    put tStackName into tStackList
+    put cr & the substacks of stack tStackName after tStackList
+    REPEAT with x = 1 to the number of lines in tStackList
+        get line x of tStackList
+        IF the number of lines of the script of stack it > 0 THEN
+            put "file:" & localPath() &"/" & "stack" && tStackName && "script - " && the number of lines of the script of stack it && "lines.txt" into tDest
+            put the script of stack it into URL tDest
+        END IF
+        REPEAT with y = 1 to the number of cards of stack it
+            IF the number of lines of the script of card y of stack it > 0 THEN
+                put "file:" & localPath() &"/" & the name of card y of stack it && "of" && the name of stack it && "-" \
+                        && the number of lines of the script of card y of stack it && "lines.txt" into tDest
+                put the script of card y of stack it into URL tDest
+            END IF
+            REPEAT with z = 1 to the number of controls of card y of stack it
+                IF number of lines of the script of control z of card y of stack it > 0 THEN
+                    put "file:" & localPath() &"/" & the name of control z of card y of stack it && "of " && the name of card y of stack it && \
+                            "of" && the name of stack it && "-" \
+                            && the number of lines of the script of control z of card y of stack it && "lines.txt" into tDest
+                    put the script of control z of card y of stack it into URL tDest
+                END IF
+            END REPEAT
+        END REPEAT
+    END REPEAT
+    put "ready" into fld "Label_Field"
+END exportScripts
+-- --
+Function localPath
+    return specialFolderPath("desk") & "/MyRevScripts/" & the stack2export of me
+END localPath
+-- --
+on makeFoldersIfNecessary pLocalFilePath
+    set the itemdel to "/"
+    put "/" into tPath
+    REPEAT with x = 2 to the number of items of pLocalFilePath
+        put item x of pLocalFilePath & "/" after tPath
+        IF there is not a folder tPath THEN
+            create folder tPath
+        END IF
+    END REPEAT
+END makeFoldersIfNecessary
+-- --
+Function aLine
+    set the itemdel to "_"
+    put null into item 80 of tLine
+    return cr & cr & tLine & cr & cr
+END aLine

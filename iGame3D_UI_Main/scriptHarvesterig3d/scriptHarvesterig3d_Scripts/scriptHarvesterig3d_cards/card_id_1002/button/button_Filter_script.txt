@@ -1,0 +1,13 @@
+--- button "Filter",card id 1002,scriptHarvesterig3d
+on mouseUp
+  resizestack the width of this cd, the height of this cd
+  set the visible of grp "filter" to the hilite of me
+  switch the hilite of me
+    case true
+      filterkeysbycomment the label of btn "filtermenu"
+      break
+    case false
+      filterkeysbycomment "all"
+      break
+  end switch
+end mouseUp

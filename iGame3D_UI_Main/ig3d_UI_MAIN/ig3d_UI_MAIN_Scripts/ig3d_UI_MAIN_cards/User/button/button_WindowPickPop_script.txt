@@ -1,0 +1,12 @@
+--- button "WindowPickPop",User,ig3d_UI_MAIN
+on mouseDown
+put the text of button "Window" of group "igame3dMenu1" of stack (the mainStack of this stack) into myStacks
+if environment() is  "development" and the commandKey is down then put stackList() into myStacks
+
+put myStacks into me
+end mouseDown
+
+-- --
+on menuPick myPick
+  send menuPick && myPick to button "Window" of group "igame3dMenu1" of stack (the mainStack of this stack)
+end menuPick

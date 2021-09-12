@@ -1,0 +1,65 @@
+--- button "Button_1",User,ig3d_UI_MAIN
+
+-- --
+on mouseStillDown
+  put the screenMouseLoc into mLoc
+  put item 1 of the lastClick of me - item 1 of mLoc into ymod
+  put item 2 of mLoc - item 2 of the lastClick of me into xmod
+  put DragSpinMod(xmod,ymod,0) into theAffectiveSpin
+set the screenMouseLoc to (item 1 of the clickStart of me),(item 2 of the clickStart of me)
+set cursor to none
+lock cursor
+end mouseStillDown
+-- --
+on mouseDown
+  choose browse tool
+ 
+select empty
+  set the idleRate to 1  
+  reallyresume
+  put setMkey(buttonHasFocus,true) into setBFoc
+  put setMkey(fieldHasFocus,false) into setFFoc
+     
+ 
+  set cursor to none
+lock cursor
+  set the hilite of me to true
+  set the clickStart of me to the screenMouseLoc
+  set the lastClick of me to the screenMouseLoc
+end mouseDown
+-- --
+on mouseUp
+  unlock cursor
+  set cursor to arrow
+  set hilite of me to false
+  choose browseTool
+end mouseUp
+-- --
+on mouseLeave
+   unlock cursor
+  set cursor to arrow
+  if the mouse is up then set hilite of me to false
+   if the mouse is down then set hilite of me to true
+
+end mouseLeave
+
+-- --
+on mouseUp
+   unlock cursor
+  set cursor to arrow
+  set hilite of me to false
+
+end mouseUp
+-- --
+on  mouseDoubleUp
+  set the setSense of stack "ToolSensitivity" to "spinOffset"
+  if the commandKey is down then 
+  set style of stack "ToolSensitivity" to toplevel
+  set the rect of stack "ToolSensitivity" to left of me, bottom of me, left of me + 130 ,  bottom of me + 40
+  open stack "ToolSensitivity"
+  show stack "ToolSensitivity"
+else
+ popup stack "ToolSensitivity"
+ end if
+end mouseDoubleUp
+

@@ -1,0 +1,137 @@
+--- field "bonehier",Bones,Inspector
+
+--on updateBoneTree
+--  set the wholeMatches to true
+--  set lockScreen to true
+--  put the hilitedLine of me into n
+--  
+--  if n< 1 then 
+--  put getMkey(selectedBone) into whobone
+--  put lineOffset(whobone,me) into n
+--end if
+--  put line n of me into LNS
+--  put ig3d_GetMeshBonesList__s() into theBONESLIST
+--   put word 1 of line 1 of  theBONESLIST into me 
+--   
+-------sort theBonesList 
+-- put theBonesList into  fld "theBones"  of card "bones" of stack "inspector"
+--  put theBonesList into  fld "bone1" of card "bones" of stack "inspector"
+--  put theBonesList into  fld "bone2" of card "bones" of stack "inspector"
+--put ig3d_GetMeshCentroid__3f()  into checkMesh
+-- 
+--  repeat forever
+--    set the treeDepth of me to 1
+--    put HasSubBones(1) into m
+--    if m=0 then exit repeat
+--  end repeat
+-- 
+--  repeat with x =1 to num(lines of fld "bone1" of card "bones" of stack "inspector")
+--    delete last word of line x of   fld "bone1" of card "bones" of stack "inspector"
+--    delete last word of  line x of  fld "bone2" of card "bones" of stack "inspector"
+--  end repeat
+--unlock screen
+--if getmkey(UserTool) is "autoBone" then
+--  put getMkey(autoBones) into whoBones
+--  set itemDel to "|" 
+--  put item 2 of whoBones into child
+--end if
+-- if child is among the items of me then put child into LNS
+--if child is "" then put "None" into child
+--put lineOffset(LNS,me) into N
+--set the hilitedline of me to N
+--set the textStyle of line n of me to bold
+--put last word of child into theBone
+---- put autoBoneTool() into boneTOOLAUTO
+--set the toolTip of btn "AttachToBone"of card "bones" of stack "inspector"  to "Attach Mesh To Bone:" && theBone
+----set the Hscroll of me to H
+--unlock screen
+--end updateBoneTree
+-- --
+on selBone boneName
+  repeat with m=1 to the number of lines of me
+    if last word of line m of me = boneName then select line m of me
+  end repeat
+  if boneName = "0" then select line 1 of me
+end selBone
+-- --
+on  mouseDown
+  put the hilitedLine of me into n
+  put line n of me into LNS
+  if LNS <> "" then 
+    put Last word of LNS into theBone
+    set the selectedBone of stack (the mainStack of this stack) to theBone
+    if the shiftkey is down then  
+   ig3d_AttachVertexToBone_s theBone  --case "AttachTobone"
+    else
+ig3d_SelectMeshBone_s theBone --select bone
+end if
+end if
+--if getmkey(UserTool) is "autoBone" then put autoBoneTool()  into silentBoneTol
+updateBoneTree
+put the hilitedLine of me into n
+  put line n of me into whoBone
+ set the label of btn "dragModel" to whoBone 
+set the childBone of me to last word of whoBone
+if the mouse is down then send dragBONENAMES to me in 20 milliseconds
+closeField
+end mouseDown
+-- --
+on dragBONENAMES
+  if the mouse is down then
+  show btn "dragModel"
+  put the mouseLoc into xy
+    set the loc of btn "dragModel" to xy
+    if the mouseloc is within the rect of me then 
+  set the hilitedLine of me to  (word 2 the mouseLine) 
+  put the last word of line (the hilitedLine of me) of me into parent
+set the parentBone of me to parent
+end if
+if the mouseLoc is within the rect of group "autoParent"  then set the borderWidth of group "autoParent" to 4
+else set the borderWidth of group "autoParent" to 0
+  send dragBONENAMES to me in 10 milliseconds
+else
+put the parentBone  of me into parent
+put the childBone of me into child
+if the mouseLoc is within the rect of me and visible of btn "dragModel" is true then
+ if parent <> child then ig3d_MakeBoneFromVertex_2s child,parent
+ end if
+if the mouseLoc is within the rect of group "autoParent"  then 
+put parent into fld "autoParent" 
+send returnInField to fld "autoParent"
+end if
+set the borderWidth of group "autoParent" to 0
+  hide btn "dragModel"
+  updateBoneTree
+end if
+if the mouseLoc is within the rect of group "boneGroup" = false then hide btn "dragModel"
+ end dragBONENAMES
+-- --
+Function renameBoneName parentChild
+  set itemDel to "|" 
+  put item 1 of parentChild into original
+  put item 2 of parentChild into parent
+  put item 3 of parentChild into child
+   ig3d_SelectMeshAttachedToBone_s original ---    case "SelectAttached"
+  ig3d_MakeBoneFromVertex_2s child,parent
+     ig3d_AttachVertexToBone_s child  --case "AttachTobone"
+end renameBoneName
+-- --
+on mouseDoubleUp
+  
+    put the hilitedLine of me into n
+  put ig3d_GetMeshBonesList__s() into theBones
+  -----sort theBones 
+  put last word of line n of theBones into parentN
+  put line parentN of theBones into parent
+  put last word of line n of me into original
+  if the altKey is down then
+  ask "Rename Bone" with last word of line n of me
+  if it is not empty then 
+  put original & "|" & parent & "|" & it into parentChild
+  put renameBoneName(parentChild) into  newBoneName
+end if
+else
+       ig3d_SelectMeshAttachedToBone_s original ---    case "SelectAttached"
+end if
+  updateBoneTree
+end mouseDoubleUp

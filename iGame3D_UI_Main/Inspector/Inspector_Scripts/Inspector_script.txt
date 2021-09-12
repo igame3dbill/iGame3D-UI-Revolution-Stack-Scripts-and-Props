@@ -1,0 +1,174 @@
+-- script of stack "Inspector"
+##########################COLOR INSPECTOR SCRIPTS
+    on preopenStack
+--      put the short name of the current card of stack "color" into tNam
+--put tNam
+--      set the hilitedLine of field "root" of stack "color" to lineOffset(tNam,fld"root"of stack "color")
+put ig3d_GetFogInfo__b5f() into fogINfo
+--  set the hilite of  button "fog" of stack "color" to item 1 of fogINfo
+end preopenStack
+-- --
+on openCard
+  ---hide fld "f1" of stack card "mesh"inspector"
+  
+  put the visibileObjects of stack "inspector" into tList
+  if tList is empty then 
+  put "f1,f2,f3" into tlist
+  
+  repeat for each item t in tlist
+    hide group t
+  end repeat
+  set the topLeft of scrollBar "f1" of stack "inspector" to 10,-30
+end if
+set the title of stack "inspector" to the short name of the current card of stack "inspector"
+--  put the cardNames of stack "color" into theNames
+--  repeat for each line W in theNames
+--   
+--    put w&"memory" into memoryG
+--    put the secondColor of grc w of card w of stack "color" into RGB
+--    set the secondColor of grc memoryG to RGB
+--  end repeat
+end openCard
+##on resizeStackStack
+--  set the width of stack "previewStack" to the width of stack "inspector"
+--   set the top of stack "previewStack" to the bottom of stack "Inspector"
+--   set the left of stack "previewStack" to the left of stack "Inspector"
+--windowsnap
+end resizeStack
+### Handle Field Opencloseetc
+--on rawkeyDown theKey
+--  if the screenMouseloc is not within the rect of stack"inspector" then 
+--    focus cd btn 1 of stack (the mainStack of this stack)
+--    exit rawKeyDown
+--    end if
+--     put the focusedObject into obj
+--    put  the short name of obj into myShort
+-- put numToChar(theKey) into theCHAR
+--    put "-,." into passit
+--    if theChar is a number or theChar is among the items of passit then pass rawkeyDown
+-- 
+--      put "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,k,y,z," into exitChars
+--    put "!,@,#,$,%,^,&,*,(,),+,{,},?,/,<,>,/,*,+" after exitChars
+-- 
+--      if theChar is "-" then pass RawkeyDown
+--      if theChar is among the items of exitChars then
+--        closeField
+--         
+-- 
+--    else 
+--      pass rawkeyDown
+--    end if
+--  
+--  if the tool is not "browse tool" then pass rawKeyDown
+--  --put theKey
+--  if the buttonHasFocus of stack (the mainStack of this stack) is true then pass rawKeyDown
+--  if the fieldIsFocused of stack (the mainStack of this stack) is true then pass rawKeyDown
+--  put the focusedObject into myObj
+--  if the commandKey is down then pass rawkeyDown
+--  put "65407,65429,65431,65434,65453,65430,65437,65432,65436,65433,65435,65438,65439,65421" into NueyP
+--  if item 1 of theKey is among the items of NueyP then pass rawkeydown
+--  if myObj <> "" and myObj  contains "field" then
+--    put "65361,65362,65363,65364"  into ArrowsentRS
+--    put ",63421,65293,65288" after  ArrowsentRS
+--    if theKey is among the items of ArrowsentRS then 
+--      try
+--    send arrowkey && theKey to myObj
+--    end try
+--    pass rawKeyDown
+--    end if
+--   end if
+--   
+--end rawkeyDown
+  
+-- --
+on closeField
+  put the focusedObject into isOB
+  if isOb <> "" then
+  put the long Name of the focusedObject into OB
+end if
+set the buttonHasFocus of stack (the mainStack of this stack) to false
+  set the fieldIsFocused of stack the mainStack of this stack to false
+ 
+ 
+   if word 1 of oB <> "field" then focus cd btn 1 of stack (the mainStack of this stack)
+end closeField
+-- --
+on openField
+    put the focusedObject into isOB
+  if word 1 of isob  <> "field" or  getMkey("buttonhasfocus") is false then closefield
+  set the fieldIsFocused of stack the mainStack of this stack to true
+  if the mouseCharChunk <> "" then select after the mouseCharChunk
+  
+end openField
+-- --
+on enterInField
+  closeField
+end enterInField
+-- --
+on returnInField
+   put the  name of the focusedObject into OBJ
+   put the short name of the focusedObject into SOBJ
+  put line 1 of fld sobj into fld sobj
+  focus btn 1
+updateRGBFromFields
+end returnInField
+-- --
+on exitField
+   put the short name of the current card into tCard
+   
+ 
+end exitField
+    
+    on arrowKey
+    if the tool is not "browse tool" then pass arrowKey
+    put the focusedObject into OB
+    if OB <> "" then
+      if OB contains "button" then
+    set the buttonHasFocus of stack (the mainStack of this stack) to false
+    pass arrowkey
+  end if
+  if OB contains "field" then 
+    if  the lockText of OB is true then    
+    set the fieldIsFocused of stack (the mainstack of this stack) to false
+    end if
+    end if
+     end if
+end arrowKey
+   on doArrows what
+  set itemDel to comma
+  put item 1 of what into theObj
+  put item 2 of what into theKey
+  put ig3d_GetElapsedSeconds__f()  into p
+  put the arrowVal of this stack into senseMove
+  if the shiftKey is down then  put the shiftArrowVal of this stack into senseMove
+if the altKey is down then put the altArrowVal of this stack into senseMove
+  put "line 1 of field" && quoted(theObj) && "into n" into getVal
+  do "put" && getVal
+  switch theKey
+    case "65362" ---- "up"
+      put n+(senseMove*10) into newVal
+      put "newVal into line 1 of field" && quoted(theObj) into putVal
+do "put" && putVal
+      break
+     case "65364"    --- "down"
+      put n-(senseMove*10) into newVal
+      put "newVal into line 1 of field" && quoted(theObj) into putVal
+do "put" && putVal
+      break
+    case "65361" ---"left"
+   put n-(senseMove*10) into newVal
+      break
+case "65363" --- "right"
+        put n+(senseMove*10) into newVal
+  break
+end switch
+put the long Name of the focusedObject into OB
+if OB contains "DefaultDropModel" then updateInspectorDropModel
+put the short name of the current card of stack "color" into tCard
+replace "card" with empty in tcard
+if tCard is among the items of "background,grid,tint" then    updateRGBFromFields
+if tCard is "fog" then updateFogFromControls
+put keysDown()  into K
+if K contains "65505" then  replace (65505 & comma) with empty in K
+if item 1 of K <= 65364 and item 1 of K  >= 65361   then send "doArrowsFIELD" && quoted(theObj & comma & item 1 of K) to image "Colorpicker" in 0 seconds
+end doArrows

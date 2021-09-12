@@ -1,0 +1,29 @@
+--- scrollbar "slider1",User,ig3d_UI_MAIN
+on scrollBarDrag x
+  put line 1 of  ig3d_getCameraInfo__s() into cam
+  put line 2 of ig3d_getCameraInfo__S() into rot
+  put ig3d_GetMeshCentroid__3f() into xyz
+  put abs(item 1 of cam - item 1 of xyz) into xd
+  put abs(item 2 of cam - item 2 of xyz) into yd
+  put abs(item 3 of cam - item 3 of xyz) into zd
+  put xd,yd,zd into thedistances
+  
+  put ig3d_GetPlaneInfo__if() into gdata
+  put  item 1 of gdata into N
+  if n = 0 then put 2 into nn
+  if n = 1 then put 1 into nn
+  if n = 2 then put 3 into nn
+  put item nn of cam into where
+  put item nn of rot into turn
+  put (turn/180) into tturn
+  put ((1500-x))+abs(where) into GridSet
+  put gridSet-where into absdist
+--  put item nn of thedistances+theSum into GridSet 
+  ig3d_SetPlaneInfo_if (n),absdist 
+  set the label of btn "testNew" to N,absdist
+end scrollBarDrag
+-- --
+on mouseUp
+  put ig3d_GetPlaneInfo__if() into gdata
+  --set the thumbPosition of me to item 2 of gdata+50
+end mouseUp

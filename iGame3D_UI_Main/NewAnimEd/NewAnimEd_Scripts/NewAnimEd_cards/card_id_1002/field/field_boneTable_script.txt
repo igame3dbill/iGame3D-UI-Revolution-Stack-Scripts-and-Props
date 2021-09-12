@@ -1,0 +1,4 @@
+--- field "boneTable",card id 1002,NewAnimEd
+on mouseDown
+  UnselectMarkers
+end mouseDown

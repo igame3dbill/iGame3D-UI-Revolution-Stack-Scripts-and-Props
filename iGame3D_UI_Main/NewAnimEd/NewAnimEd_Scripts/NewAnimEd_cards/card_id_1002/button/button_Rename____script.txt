@@ -1,0 +1,11 @@
+--- button "Rename___",card id 1002,NewAnimEd
+on mouseUp
+  put word 2 of the selectedLine of cd btn "animChooser" into n
+  ask "Please enter the new name for this animation:" with line n of cd btn "animChooser"
+  if it is not empty then
+    put it into line n of cd btn "animChooser"
+    set the blockSelBone of this stack to true
+    select line n of cd btn "animChooser"
+    set the blockSelBone of this stack to false
+    end if
+end mouseUp

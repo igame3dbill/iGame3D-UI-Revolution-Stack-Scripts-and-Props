@@ -1,0 +1,663 @@
+--- field "theLoadscript",Levelslibcard,filesLibrary
+theLoadscript:rect(190,71,386,117)
+theLoadscript:short name("theLoadscript")
+theLoadscript:disabled(false)
+theLoadscript:visible(false)
+theLoadscript:sharedText(true)
+theLoadscript:dontWrap(true)
+theLoadscript:lockText(true)
+theLoadscript:opaque(true)
+theLoadscript:traversalOn(true)
+theLoadscript:showFocusBorder(false)
+theLoadscript:autoTab(false)
+theLoadscript:threeD(true)
+theLoadscript:showBorder(true)
+theLoadscript:borderWidth(2)
+theLoadscript:hScrollbar(false)
+theLoadscript:vScrollbar(true)
+theLoadscript:autoHilite(true)
+theLoadscript:listBehavior(true)
+theLoadscript:toggleHilites(false)
+theLoadscript:fixedLineHeight(true)
+theLoadscript:firstIndent(0)
+theLoadscript:textAlign("left")
+
+theLoadscript:pathList([["./data/screenshots/gridparticles1.png
+./data/screenshots/gridparticles2.png
+./data/screenshots/gridparticles3.png
+./data/screenshots/gridparticles4.png
+./data/screenshots/gridparticles5.png
+./data/screenshots/gridparticles6.png
+./data/screenshots/gridparticles7.png
+./data/suspendpng/041805 0.png
+./Hidden WTF/Modelstaiwan/AllSpeedster1-b.png
+./Hidden WTF/Modelstaiwan/car_shadow.png
+./Hidden WTF/Modelstaiwan/human0.png
+./Hidden WTF/Modelstaiwan/human1.png
+./Hidden WTF/Modelstaiwan/human2.png
+./Hidden WTF/Modelstaiwan/human3.png
+./Hidden WTF/Modelstaiwan/human4.png
+./Hidden WTF/Modelstaiwan/human5.png
+./Hidden WTF/Modelstaiwan/human7.png
+./Hidden WTF/Modelstaiwan/man.png
+./Hidden WTF/Modelstaiwan/speedomitor-needle.png
+./Hidden WTF/Modelstaiwan/speedomitor-shine.png
+./Hidden WTF/Modelstaiwan/speedomitor.png
+./Hidden WTF/Modelstaiwan/tree1.png
+./Hidden WTF/Modelstaiwan/tree2.png
+./Hidden WTF/Modelstaiwan/tree_shadow.png
+./Hidden WTF/Modelstaiwan/water_tower_map.png
+./Hidden WTF/tree1.png
+./Images/22x22quadtool.png
+./Images/22x22text.png
+./Images/256cave.png
+./Images/256cave3.png
+./Images/256cave4.png
+./Images/256caveT5.png
+./Images/alphacircle.png
+./Images/alphaworld.png
+./Images/alphaworld2.png
+./Images/alphaworld3.png
+./Images/AntiZombieRollDoor1.png
+./Images/arch0.png
+./Images/arch2.png
+./Images/asteroid10.png
+./Images/back.png
+./Images/backfacecull.png
+./Images/BankishBuilding1.png
+./Images/BankishBuilding5.png
+./Images/BankishBuilding7.png
+./Images/bankishbuildingtopfloors.png
+./Images/basementwall0.png
+./Images/basementwall1.png
+./Images/basementwall2.png
+./Images/basementwall3.png
+./Images/basementwall4.png
+./Images/battlestar10.png
+./Images/battlestar11.png
+./Images/battlestar12.png
+./Images/black.png
+./Images/blast0 copy.png
+./Images/blast0.png
+./Images/blast1 copy.png
+./Images/blast1.png
+./Images/blast2 copy.png
+./Images/blast2.png
+./Images/blastwhite.png
+./Images/bloodpages.png
+./Images/BOARDed1.png
+./Images/bob0.png
+./Images/bob1.png
+./Images/bob2.png
+./Images/bobetteT40.png
+./Images/bobetteT41.png
+./Images/bobetteT47.png
+./Images/bobjedi0.png
+./Images/bobjedi1.png
+./Images/bobjedi2.png
+./Images/bobjedi3.png
+./Images/bobjediuv.png
+./Images/bone.png
+./Images/bottom.png
+./Images/brick.png
+./Images/brickwhite.png
+./Images/bubble2.png
+./Images/BuildingTex.png
+./Images/camelot0.png
+./Images/camera.png
+./Images/cloud1.png
+./Images/cloud4.png
+./Images/cloudbox0.png
+./Images/cloudbox1.png
+./Images/cloudbox2.png
+./Images/cloudbox3.png
+./Images/clouded.png
+./Images/clouds.png
+./Images/clouds3.png
+./Images/clouds8.png
+./Images/cloudstorm0.png
+./Images/cloudstorm3.png
+./Images/coin.png
+./Images/coin0.png
+./Images/coin1.png
+./Images/coin2.png
+./Images/cone.png
+./Images/console.png
+./Images/CoorgatedStormDoor.png
+./Images/corrogatedPanel.png
+./Images/crackConcrete1.png
+./Images/cross.png
+./Images/cross0.png
+./Images/crosshair0.png
+./Images/crosswhite.png
+./Images/cube.png
+./Images/cubic.png
+./Images/cylinder.png
+./Images/deadcop0.png
+./Images/DeadDaysAbout.png
+./Images/deadDaysLogo.png
+./Images/deadDayslogo256sm.png
+./Images/depthtest.png
+./Images/diamondpatterwall2.png
+./Images/dick_cheney_undead.png
+./Images/dirt.png
+./Images/distortstar.png
+./Images/door3.png
+./Images/dropModelicon.png
+./Images/dstar0.png
+./Images/dstar1.png
+./Images/dstar2.png
+./Images/dstar3.png
+./Images/earlyFlyboy.png
+./Images/Facebloody.png
+./Images/fataquariusrunner.png
+./Images/fence.png
+./Images/fire.png
+./Images/flare0.png
+./Images/flare1.png
+./Images/flare2.png
+./Images/flare3.png
+./Images/flare4.png
+./Images/flare5.png
+./Images/flare6.png
+./Images/flare7.png
+./Images/floorpattern8.png
+./Images/flyboyflesh.png
+./Images/front.png
+./Images/genericbuttonhilte.png
+./Images/GENERICBUTTONICON.png
+./Images/GothamCity256A.png
+./Images/GothamCity256BOARDEDUP.png
+./Images/GothamCity256Corrugated.png
+./Images/grass.png
+./Images/grassbits.png
+./Images/grassy2.png
+./Images/gravel001.png
+./Images/gravel2.png
+./Images/gravell.png
+./Images/greendot.png
+./Images/grid72x72.png
+./Images/hairball.png
+./Images/hammer.png
+./Images/helloworld.png
+./Images/human2.png
+./Images/idleStop.png
+./Images/idletoggle.png
+./Images/igame3dDocumentICON.png
+./Images/iGame3Dlogo0.png
+./Images/iGame3Dlogoblackborder.png
+./Images/iGame3DLOGOC.png
+./Images/iGame3DLOGOCbright.png
+./Images/igame3dLogov2.png
+./Images/iGame3Dlogowhiteborder.png
+./Images/igame3dscripticon2.png
+./Images/igame3dScripticon3.png
+./Images/iggame3d logocharles.png
+./Images/inspector.png
+./Images/key.png
+./Images/keyINactive.png
+./Images/keyINpoint.png
+./Images/keyOutActive.png
+./Images/keyoutPoint.png
+./Images/leaves0.png
+./Images/leaves1.png
+./Images/leaves2.png
+./Images/leaves3.png
+./Images/left.png
+./Images/LibTabTags/imagesSelTag.png
+./Images/LibTabTags/imagesTabTag.png
+./Images/LibTabTags/modelsSelTag.png
+./Images/LibTabTags/modelsTabtag.png
+./Images/LibTabTags/scriptsSelTag.png
+./Images/LibTabTags/scriptsTabTag.png
+./Images/lights.png
+./Images/linesize.png
+./Images/livewalls0.png
+./Images/loadingword.png
+./Images/logo.png
+./Images/materials.png
+./Images/meshView.png
+./Images/metal.png
+./Images/metal2.png
+./Images/metal3.png
+./Images/metalrobot.png
+./Images/minilighton.png
+./Images/minilightsOFf.png
+./Images/minilightson.png
+./Images/news1.png
+./Images/news2.png
+./Images/news3.png
+./Images/news4.png
+./Images/orbit0XY.png
+./Images/orbit0XZ.png
+./Images/orbit0YZ.png
+./Images/orbitX.png
+./Images/orbitY.png
+./Images/orbitZ.png
+./Images/particles.png
+./Images/PathTool/killpathicon.png
+./Images/PathTool/newpathicon.png
+./Images/PathTool/pathToolIcon.png
+./Images/Play-Game.png
+./Images/playGameButton.png
+./Images/pointsize.png
+./Images/POLICE.png
+./Images/policebuilding.png
+./Images/portal.png
+./Images/portalbrick.png
+./Images/portalpicture.png
+./Images/poses.png
+./Images/potatoni.png
+./Images/quad.png
+./Images/rampart0.png
+./Images/rampart1.png
+./Images/rampart2.png
+./Images/redNOSign.png
+./Images/repositiontoolNew.png
+./Images/repositiontoolnew2.png
+./Images/right.png
+./Images/Road.png
+./Images/RoadH.png
+./Images/rock.png
+./Images/roughBrick512x512.png
+./Images/saber.png
+./Images/saddamoftheundead.png
+./Images/sand.png
+./Images/sandstonewalls512.png
+./Images/scriptImageIcon1.png
+./Images/scrubdark2.png
+./Images/shipsWithEngineFlare.png
+./Images/shirtfront.png
+./Images/shirtfrontbloody.png
+./Images/shot0.png
+./Images/shot1.png
+./Images/shot2.png
+./Images/sidewalk.png
+./Images/skirt.png
+./Images/skybox0.png
+./Images/skybox1.png
+./Images/skybox2.png
+./Images/skybox3.png
+./Images/skybox4.png
+./Images/skybox5.png
+./Images/skybox6.png
+./Images/slideFLYXZ.png
+./Images/slideXY.png
+./Images/slidexz.png
+./Images/SlideZY.png
+./Images/smoke.png
+./Images/snapToGrid.png
+./Images/spaceTunnelarcane512.png
+./Images/sphere.png
+./Images/SpinXY.png
+./Images/SpinXZ.png
+./Images/SpinZY.png
+./Images/star.png
+./Images/starshine.png
+./Images/starshine2.png
+./Images/street.png
+./Images/sun0.png
+./Images/sun1.png
+./Images/sun2.png
+./Images/sun3.png
+./Images/sun4.png
+./Images/sun512.png
+./Images/suspend 0.png
+./Images/tabTAGicon.png
+./Images/tabtaglabels1.png
+./Images/tabtaglabels2.png
+./Images/tabtaglabels3.png
+./Images/tan.png
+./Images/tankgame0.png
+./Images/tankgame1.png
+./Images/tankgame2.png
+./Images/tankgame20.png
+./Images/tankgame3.png
+./Images/tankgame4.png
+./Images/tankgame5.png
+./Images/tankgame6.png
+./Images/tankgame7.png
+./Images/tankgame8.png
+./Images/throttle.png
+./Images/tobecontinued.png
+./Images/tool1.png
+./Images/tool2.png
+./Images/tool3.png
+./Images/tool4.png
+./Images/tool5.png
+./Images/tool6.png
+./Images/top.png
+./Images/tree.png
+./Images/tree1.png
+./Images/tree2.png
+./Images/tree3.png
+./Images/trooper0.png
+./Images/trooper1.png
+./Images/trooper2.png
+./Images/ufo.png
+./Images/ufo20.png
+./Images/ufo21.png
+./Images/ufo30.png
+./Images/ufo31.png
+./Images/uniform1.png
+./Images/uniform10.png
+./Images/uniform2.png
+./Images/uniform3.png
+./Images/views.png
+./Images/vwbus.png
+./Images/wall0.png
+./Images/wall00.png
+./Images/wall1.png
+./Images/wall10.png
+./Images/wall11.png
+./Images/wall2.png
+./Images/wall20.png
+./Images/wall21.png
+./Images/wall3.png
+./Images/wall5.png
+./Images/wall6.png
+./Images/wallhalf0.png
+./Images/wallhalf1.png
+./Images/wallhalf2.png
+./Images/wallL0.png
+./Images/wallL1.png
+./Images/wallL2.png
+./Images/white.png
+./Images/woodendoor.png
+./Images/WTFICON.png
+./Models/255,255,255.png
+./Models/bobjedi0.png
+./Models/bobjedi1.png
+./Models/bobjedi2.png
+./Models/bobjedi3.png
+./Models/car_shadow.png
+./Models/cross0.png
+./Models/dear1.png
+./Models/fire.png
+./Models/human0.png
+./Models/human1.png
+./Models/human10.png
+./Models/human2.png
+./Models/human20.png
+./Models/human3.png
+./Models/human4.png
+./Models/human5.png
+./Models/human7.png
+./Models/sand.png
+./Models/tree2.png"]])
+
+theLoadscript:rawtree([["<p><font face="webdings" size="10" color="#000000">4</font>Data										./Data/</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>.secretLogo										./Data/.secretLogo/</p>
+<p>		load script										./Data/.secretLogo/load script.txt</p>
+<p><font face="webdings" size="10" color="#000000">4</font>Hide All 										./Hide All /</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>Levels										./Hide All /Levels/</p>
+<p>		load script										./Hide All /Levels/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>AAAB										./Hide All /Levels/AAAB/</p>
+<p>			load script										./Hide All /Levels/AAAB/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/AAAB/saves/</p>
+<p>				0 load script										./Hide All /Levels/AAAB/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/AAAB/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/AAAB/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/AAAB/saves/3 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>asdasda2q										./Hide All /Levels/asdasda2q/</p>
+<p>			load script										./Hide All /Levels/asdasda2q/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>CheckFIl										./Hide All /Levels/CheckFIl/</p>
+<p>			load script										./Hide All /Levels/CheckFIl/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>circlecircle										./Hide All /Levels/circlecircle/</p>
+<p>			load script										./Hide All /Levels/circlecircle/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>coollevelApril										./Hide All /Levels/coollevelApril/</p>
+<p>			load script										./Hide All /Levels/coollevelApril/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/coollevelApril/saves/</p>
+<p>				0 load script										./Hide All /Levels/coollevelApril/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/coollevelApril/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/coollevelApril/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/coollevelApril/saves/3 load script.txt</p>
+<p>				4 load script										./Hide All /Levels/coollevelApril/saves/4 load script.txt</p>
+<p>				5 load script										./Hide All /Levels/coollevelApril/saves/5 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>FASTMADE										./Hide All /Levels/FASTMADE/</p>
+<p>			load script										./Hide All /Levels/FASTMADE/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>firegoodMm										./Hide All /Levels/firegoodMm/</p>
+<p>			load script										./Hide All /Levels/firegoodMm/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/firegoodMm/saves/</p>
+<p>				0 load script										./Hide All /Levels/firegoodMm/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/firegoodMm/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/firegoodMm/saves/2 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>FIXSTUFFA										./Hide All /Levels/FIXSTUFFA/</p>
+<p>			load script										./Hide All /Levels/FIXSTUFFA/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level0										./Hide All /Levels/Level0/</p>
+<p>			load script										./Hide All /Levels/Level0/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level0/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level0/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level0001										./Hide All /Levels/Level0001/</p>
+<p>			load script										./Hide All /Levels/Level0001/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level0001/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level0001/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level001										./Hide All /Levels/Level001/</p>
+<p>			load script										./Hide All /Levels/Level001/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level02										./Hide All /Levels/Level02/</p>
+<p>			load script										./Hide All /Levels/Level02/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level02/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level02/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level0aasd										./Hide All /Levels/Level0aasd/</p>
+<p>			load script										./Hide All /Levels/Level0aasd/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level1										./Hide All /Levels/Level1/</p>
+<p>			load script										./Hide All /Levels/Level1/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level1/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level1/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level1/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level1/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/Level1/saves/3 load script.txt</p>
+<p>				4 load script										./Hide All /Levels/Level1/saves/4 load script.txt</p>
+<p>				5 load script										./Hide All /Levels/Level1/saves/5 load script.txt</p>
+<p>				6 load script										./Hide All /Levels/Level1/saves/6 load script.txt</p>
+<p>				7 load script										./Hide All /Levels/Level1/saves/7 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level11										./Hide All /Levels/Level11/</p>
+<p>			load script										./Hide All /Levels/Level11/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level12										./Hide All /Levels/Level12/</p>
+<p>			load script										./Hide All /Levels/Level12/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level12/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level12/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level12/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level12/saves/2 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level13										./Hide All /Levels/Level13/</p>
+<p>			load script										./Hide All /Levels/Level13/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level13/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level13/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level13/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level13/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/Level13/saves/3 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level14										./Hide All /Levels/Level14/</p>
+<p>			load script										./Hide All /Levels/Level14/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level15										./Hide All /Levels/Level15/</p>
+<p>			load script										./Hide All /Levels/Level15/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level15/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level15/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level17										./Hide All /Levels/Level17/</p>
+<p>			load script										./Hide All /Levels/Level17/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level18										./Hide All /Levels/Level18/</p>
+<p>			load script										./Hide All /Levels/Level18/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level19										./Hide All /Levels/Level19/</p>
+<p>			load script										./Hide All /Levels/Level19/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level19/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level19/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level19/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level21										./Hide All /Levels/Level21/</p>
+<p>			load script										./Hide All /Levels/Level21/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level21/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level21/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level22										./Hide All /Levels/Level22/</p>
+<p>			load script										./Hide All /Levels/Level22/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level22/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level22/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level22/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level22/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/Level22/saves/3 load script.txt</p>
+<p>				4 load script										./Hide All /Levels/Level22/saves/4 load script.txt</p>
+<p>				5 load script										./Hide All /Levels/Level22/saves/5 load script.txt</p>
+<p>				6 load script										./Hide All /Levels/Level22/saves/6 load script.txt</p>
+<p>				7 load script										./Hide All /Levels/Level22/saves/7 load script.txt</p>
+<p>				8 load script										./Hide All /Levels/Level22/saves/8 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level26										./Hide All /Levels/Level26/</p>
+<p>			load script										./Hide All /Levels/Level26/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level26/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level26/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level27										./Hide All /Levels/Level27/</p>
+<p>			load script										./Hide All /Levels/Level27/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level32										./Hide All /Levels/Level32/</p>
+<p>			load script										./Hide All /Levels/Level32/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level33										./Hide All /Levels/Level33/</p>
+<p>			load script										./Hide All /Levels/Level33/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level33/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level33/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level36										./Hide All /Levels/Level36/</p>
+<p>			load script										./Hide All /Levels/Level36/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level36/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level36/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level36/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level39										./Hide All /Levels/Level39/</p>
+<p>			load script										./Hide All /Levels/Level39/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level39/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level39/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level4										./Hide All /Levels/Level4/</p>
+<p>			load script										./Hide All /Levels/Level4/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level4/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level4/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level4/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level40										./Hide All /Levels/Level40/</p>
+<p>			load script										./Hide All /Levels/Level40/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level41										./Hide All /Levels/Level41/</p>
+<p>			load script										./Hide All /Levels/Level41/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level41/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level41/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level41/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level43										./Hide All /Levels/Level43/</p>
+<p>			load script										./Hide All /Levels/Level43/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level43/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level43/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level48										./Hide All /Levels/Level48/</p>
+<p>			load script										./Hide All /Levels/Level48/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level48/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level48/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level48/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level48/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/Level48/saves/3 load script.txt</p>
+<p>				4 load script										./Hide All /Levels/Level48/saves/4 load script.txt</p>
+<p>				5 load script										./Hide All /Levels/Level48/saves/5 load script.txt</p>
+<p>				6 load script										./Hide All /Levels/Level48/saves/6 load script.txt</p>
+<p>				7 load script										./Hide All /Levels/Level48/saves/7 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level5										./Hide All /Levels/Level5/</p>
+<p>			load script										./Hide All /Levels/Level5/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>text										./Hide All /Levels/Level5/text/</p>
+<p>				load script										./Hide All /Levels/Level5/text/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level51										./Hide All /Levels/Level51/</p>
+<p>			load script										./Hide All /Levels/Level51/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level51/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level51/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level54										./Hide All /Levels/Level54/</p>
+<p>			load script										./Hide All /Levels/Level54/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level54/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level54/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level54/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level55										./Hide All /Levels/Level55/</p>
+<p>			load script										./Hide All /Levels/Level55/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level55/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level55/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level57										./Hide All /Levels/Level57/</p>
+<p>			load script										./Hide All /Levels/Level57/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level57/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level57/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level57/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level6										./Hide All /Levels/Level6/</p>
+<p>			load script										./Hide All /Levels/Level6/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level62										./Hide All /Levels/Level62/</p>
+<p>			load script										./Hide All /Levels/Level62/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level65										./Hide All /Levels/Level65/</p>
+<p>			load script										./Hide All /Levels/Level65/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level69a										./Hide All /Levels/Level69a/</p>
+<p>			load script										./Hide All /Levels/Level69a/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level69a/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level69a/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level69a/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level7										./Hide All /Levels/Level7/</p>
+<p>			load script										./Hide All /Levels/Level7/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level70										./Hide All /Levels/Level70/</p>
+<p>			load script										./Hide All /Levels/Level70/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level70/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level70/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/Level70/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/Level70/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/Level70/saves/3 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level72										./Hide All /Levels/Level72/</p>
+<p>			load script										./Hide All /Levels/Level72/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level73										./Hide All /Levels/Level73/</p>
+<p>			load script										./Hide All /Levels/Level73/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level73/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level73/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level75										./Hide All /Levels/Level75/</p>
+<p>			load script										./Hide All /Levels/Level75/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/Level75/saves/</p>
+<p>				0 load script										./Hide All /Levels/Level75/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>Level80										./Hide All /Levels/Level80/</p>
+<p>			load script										./Hide All /Levels/Level80/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>makingmastercheif										./Hide All /Levels/makingmastercheif/</p>
+<p>			load script										./Hide All /Levels/makingmastercheif/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/makingmastercheif/saves/</p>
+<p>				0 load script										./Hide All /Levels/makingmastercheif/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/makingmastercheif/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/makingmastercheif/saves/2 load script.txt</p>
+<p>				3 load script										./Hide All /Levels/makingmastercheif/saves/3 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>MovieLevel										./Hide All /Levels/MovieLevel/</p>
+<p>			load script										./Hide All /Levels/MovieLevel/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>newaala										./Hide All /Levels/newaala/</p>
+<p>			load script										./Hide All /Levels/newaala/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/newaala/saves/</p>
+<p>				0 load script										./Hide All /Levels/newaala/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>NewLevelTest										./Hide All /Levels/NewLevelTest/</p>
+<p>			load script										./Hide All /Levels/NewLevelTest/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/NewLevelTest/saves/</p>
+<p>				0 load script										./Hide All /Levels/NewLevelTest/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/NewLevelTest/saves/1 load script.txt</p>
+<p>				2 load script										./Hide All /Levels/NewLevelTest/saves/2 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>NEWQUICK										./Hide All /Levels/NEWQUICK/</p>
+<p>			load script										./Hide All /Levels/NEWQUICK/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/NEWQUICK/saves/</p>
+<p>				0 load script										./Hide All /Levels/NEWQUICK/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>NewTests05										./Hide All /Levels/NewTests05/</p>
+<p>			load script										./Hide All /Levels/NewTests05/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/NewTests05/saves/</p>
+<p>				0 load script										./Hide All /Levels/NewTests05/saves/0 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>NExtTEST										./Hide All /Levels/NExtTEST/</p>
+<p>			load script										./Hide All /Levels/NExtTEST/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>saveASTEST										./Hide All /Levels/saveASTEST/</p>
+<p>			load script										./Hide All /Levels/saveASTEST/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>testDist										./Hide All /Levels/testDist/</p>
+<p>			load script										./Hide All /Levels/testDist/load script.txt</p>
+<p>			<font face="webdings" size="10" color="#000000">4</font>saves										./Hide All /Levels/testDist/saves/</p>
+<p>				0 load script										./Hide All /Levels/testDist/saves/0 load script.txt</p>
+<p>				1 load script										./Hide All /Levels/testDist/saves/1 load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>testing041305										./Hide All /Levels/testing041305/</p>
+<p>			load script										./Hide All /Levels/testing041305/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>TESTLOADEMITTER										./Hide All /Levels/TESTLOADEMITTER/</p>
+<p>			load script										./Hide All /Levels/TESTLOADEMITTER/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>TESTMEW										./Hide All /Levels/TESTMEW/</p>
+<p>			load script										./Hide All /Levels/TESTMEW/load script.txt</p>
+<p><font face="webdings" size="10" color="#000000">4</font>Levels										./Levels/</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>SomeNewLevel										./Levels/SomeNewLevel/</p>
+<p>		load script										./Levels/SomeNewLevel/load script.txt</p>
+<p>		<font face="webdings" size="10" color="#000000">4</font>saves										./Levels/SomeNewLevel/saves/</p>
+<p>			0 load script										./Levels/SomeNewLevel/saves/0 load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>UncleUndead										./Levels/UncleUndead/</p>
+<p>		load script										./Levels/UncleUndead/load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>undeadInterface										./Levels/undeadInterface/</p>
+<p>		load script										./Levels/undeadInterface/load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>undeadtraining										./Levels/undeadtraining/</p>
+<p>		load script										./Levels/undeadtraining/load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>waste										./Levels/waste/</p>
+<p>		load script										./Levels/waste/load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>zombieforest										./Levels/zombieforest/</p>
+<p>		load script										./Levels/zombieforest/load script.txt</p>
+<p>	<font face="webdings" size="10" color="#000000">4</font>zombiepolice										./Levels/zombiepolice/</p>
+<p>		load script										./Levels/zombiepolice/load script.txt</p>
+"]])
+
+theLoadscript:fontTag("<font face="xFont" size="xSize" color="#000000">xText</font>")

@@ -1,0 +1,12 @@
+--- button "any_pin",User,ig3d_UI_MAIN
+on mouseDown
+  put the name of me into myNam
+  replace "pin" with "back" in myNam
+  do "send mouseStillDown to" &&  myNam
+end mouseDown
+-- --
+on mouseStillDown
+ put the name of me into myNam
+  replace "pin" with "back" in myNam
+  do "send mouseStillDown to" &&  myNam
+end mouseStillDown

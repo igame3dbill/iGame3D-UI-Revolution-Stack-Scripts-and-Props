@@ -1,0 +1,6 @@
+--- button "planemap3",UVSETTINGS,Inspector
+on mouseUp
+  hide img "xmapimg"
+  hide img "ymapimg"
+   show img "zmapimg"
+end mouseUp

@@ -1,0 +1,6 @@
+--- field "list",list main cd,exportscripts
+ON selectionChanged
+    put line (the hilitedline of me) of me into t
+    set the stack2export of this stack to t
+    exportscripts t
+END selectionChanged

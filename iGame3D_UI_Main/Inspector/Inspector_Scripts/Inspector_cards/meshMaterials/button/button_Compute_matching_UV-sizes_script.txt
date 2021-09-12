@@ -1,0 +1,17 @@
+--- button "Compute_matching_UV-sizes",meshMaterials,Inspector
+on mouseUp
+  //This script calculates the u and v sizes so that the texture maps exactly once on the selected geometry.
+  //You should have the Rotation field set to 0 before using this, then apply the calculated mapping and then change the texture rotation accordingly
+  put "0,0" into uv
+  put 0 into xfix
+  put 0 into yfix
+  put 0 into zfix
+  
+  if hilite of cd btn "planemap1" is true then put 1 into xfix
+  else if hilite of cd btn "planemap2" is true then put 1 into yfix
+  else if hilite of cd btn "planemap3" is true then put 1 into zfix
+  
+  put ig3d_GetMatchingUVSizesForMesh_fb3f_2f(cd fld "texturn", hilite of cd btn "fta", xfix, yfix, zfix) into uv
+  put item 1 of uv into cd fld "usize"
+  put item 2 of uv into cd fld "vsize"
+end mouseUp

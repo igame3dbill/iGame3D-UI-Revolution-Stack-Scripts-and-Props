@@ -1,0 +1,12 @@
+--- image "tree_png",User,ig3d_UI_MAIN
+tree_png:rect(795,176,815,196)
+tree_png:short name("tree_png")
+tree_png:id(4240)
+tree_png:tooltip( 4240)
+tree_png:visible(true)
+tree_png:dontDither(false)
+tree_png:alwaysBuffer(true)
+tree_png:angle(0)
+tree_png:showBorder(false)
+tree_png:threeD(true)
+tree_png:borderWidth(2)

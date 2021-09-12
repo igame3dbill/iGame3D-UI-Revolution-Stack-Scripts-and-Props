@@ -1,0 +1,12 @@
+--- image "WTFICON_png",User,ig3d_UI_MAIN
+WTFICON_png:rect(558,148,606,196)
+WTFICON_png:short name("WTFICON_png")
+WTFICON_png:id(4487)
+WTFICON_png:tooltip( 4487)
+WTFICON_png:visible(true)
+WTFICON_png:dontDither(false)
+WTFICON_png:alwaysBuffer(true)
+WTFICON_png:angle(0)
+WTFICON_png:showBorder(false)
+WTFICON_png:threeD(true)
+WTFICON_png:borderWidth(2)

@@ -1,0 +1,26 @@
+--- button "div1",card id 1002ofFindT3d,Find T3D
+local lOffset
+-- --
+on mousedown
+  get the loc of me
+  put item 2 of it - mousev() into lOffset 
+end mousedown
+-- --
+on mouseMove x,y
+  if the mouse is up then exit mouseMove
+  if the tool is not "browse tool" then exit mouseMove
+  if y + lOffset <= bottom of btn "result" then exit mousemove
+  else set the loc of me to item 1 of the loc of me,item 2 of the mouseloc + lOffset
+  lock screen
+  resetcontrols
+  unlock screen
+end mouseMove
+-- --
+on mouseEnter
+  lock cursor
+  set the cursor to 1090
+end mouseEnter
+-- --
+on mouseleave
+  unlock cursor
+end mouseleave

@@ -1,0 +1,5 @@
+--- button "export_size",meshexport,Inspector
+on mouseDOwn
+   show fld "F1" of stack "inspector"
+  hide me
+end mouseDOwn

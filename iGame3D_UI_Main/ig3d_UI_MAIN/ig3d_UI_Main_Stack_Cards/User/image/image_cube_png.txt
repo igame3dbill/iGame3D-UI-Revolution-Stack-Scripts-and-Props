@@ -1,0 +1,12 @@
+--- image "cube_png",User,ig3d_UI_MAIN
+cube_png:rect(208,69,232,93)
+cube_png:short name("cube_png")
+cube_png:id(4200)
+cube_png:tooltip( 4200)
+cube_png:visible(true)
+cube_png:dontDither(false)
+cube_png:alwaysBuffer(true)
+cube_png:angle(0)
+cube_png:showBorder(false)
+cube_png:threeD(true)
+cube_png:borderWidth(2)

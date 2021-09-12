@@ -1,0 +1,7 @@
+--- button "seeStackScript",card id 1002,GLfontMaker07
+on mouseUp
+  try
+  edit the script of this stack
+  end try
+  GlFontMakerScriptOut
+end mouseUp

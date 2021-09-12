@@ -1,0 +1,23 @@
+--- group "ig3d_Editing_Mode_Tools_Group",User,ig3d_UI_MAIN
+on mouseDown
+  put the short name of the mouseControl  into n
+  if word 1 the name of the mouseControl is "button" then 
+ if n is not "Play_Game" then put chooseAtool(n) into toolpick
+  end if 
+end mouseDown
+-- --
+on mouseMove
+
+  if "SceneGraph" is in the windows then
+    if visible of fld "f1" of stack "SceneGraph" is true then exit mouseMove
+    end if
+  if the mouseControl is not empty then
+  if word 1 of the long name of the mouseControl is "button" then
+    if the tooltip of the mouseControl is not empty then
+      --put updateStatusField("tooltip",quote & the toolTip of the mousecontrol & quote) into action
+    else 
+      if the short name of the mousecontrol is "Play_Game" then  put updateStatusField("tooltip",quote & "Play:" && thisLevel() &&"(esc to exit)"& quote) into action
+    end if
+  end if
+  end if
+end mouseMove

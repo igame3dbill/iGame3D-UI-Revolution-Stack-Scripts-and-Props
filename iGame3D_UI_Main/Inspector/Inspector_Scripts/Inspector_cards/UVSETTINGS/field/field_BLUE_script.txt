@@ -1,0 +1,33 @@
+--- field "BLUE",UVSETTINGS,Inspector
+on returninfield
+  if line 1 of me > 1  then put 1 into me
+ 
+  if char 1 of me is not a number and char 1 of me <> "." then delete char 1 of me
+  put line 1 of me into me
+ if the shiftKey is down then
+  put me into tGrey
+  repeat with x = 1 to 3
+    put "red,green,blue" into RGB
+    put tGrey into fld (item x of RGB)
+  end repeat
+ end if
+ updateRGBfromFields
+end returninfield
+-- --
+on mouseUp
+  
+  select after the mouseCharChunk
+end mouseUp
+-- --
+on mouseDown
+ 
+  select after the mouseCharChunk
+end mouseDown
+-- --
+on arrowKey theKey
+  set the navigationkeys of me to false
+   set the altArrowVal of this stack to .0005
+  set the arrowVal of this stack to .001
+  set the shiftArrowVal of this stack to .01
+  doArrows ((the short name of me) & comma & keysDown())
+end arrowKey

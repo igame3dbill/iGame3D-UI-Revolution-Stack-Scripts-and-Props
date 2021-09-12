@@ -1,0 +1,13 @@
+--- scrollbar "Scrollbar_1",User,ig3d_UI_MAIN
+Scrollbar_1:rect(42,245,84,263)
+Scrollbar_1:short name("Scrollbar_1")
+Scrollbar_1:visible(true)
+Scrollbar_1:disabled(false)
+Scrollbar_1:traversalOn(false)
+Scrollbar_1:orientation("horizontal")
+Scrollbar_1:startValue(1)
+Scrollbar_1:endValue(16)
+Scrollbar_1:thumbPosition(4)
+Scrollbar_1:showValue(false)
+Scrollbar_1:pageInc(1.875029)
+Scrollbar_1:textAlign("left")

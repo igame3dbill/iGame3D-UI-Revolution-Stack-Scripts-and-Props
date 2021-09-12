@@ -1,0 +1,4 @@
+--- button "grpedit",card id 1002,sceneGraph
+on mouseUp
+  edit script of group "RootLeft" of stack "scenegraph"
+end mouseUp

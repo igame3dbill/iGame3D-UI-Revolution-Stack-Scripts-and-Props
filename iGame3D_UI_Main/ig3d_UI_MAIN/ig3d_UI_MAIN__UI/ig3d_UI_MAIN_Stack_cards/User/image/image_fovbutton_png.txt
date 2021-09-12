@@ -1,0 +1,12 @@
+--- image "fovbutton_png",User,ig3d_UI_MAIN
+fovbutton_png:rect(398,172,422,196)
+fovbutton_png:short name("fovbutton_png")
+fovbutton_png:id(4617)
+fovbutton_png:tooltip( 4617)
+fovbutton_png:visible(true)
+fovbutton_png:dontDither(false)
+fovbutton_png:alwaysBuffer(true)
+fovbutton_png:angle(0)
+fovbutton_png:showBorder(false)
+fovbutton_png:threeD(true)
+fovbutton_png:borderWidth(2)
