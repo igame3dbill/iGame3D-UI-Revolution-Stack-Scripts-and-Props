@@ -1,0 +1,1 @@
+texture=animations/fire-animated.gifamount=-1emission rate=0.010000life=1.000000fade=0.200000area=0.200000size=1.100000size variance=2.000000speed=2.000000lux=trueweight=-0.120000explode=false,0.100000move=true,0.100000scale=true,3.000000rotate=false,-1.000000anim=false,0anim=true,1

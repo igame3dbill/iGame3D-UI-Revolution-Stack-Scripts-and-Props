@@ -1,0 +1,1 @@
+texture=images/blastwhite.pngamount=-1emission rate=0.010000life=15.300000fade=0.020000area=0.100000size=0.100000size variance=0.200000speed=0.010000lux=trueweight=0.000100explode=true,0.120000move=true,0.120000scale=true,1.020000rotate=true,-1.000000anim=false,3anim=ISITANIM,1

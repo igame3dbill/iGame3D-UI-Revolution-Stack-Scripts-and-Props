@@ -1,0 +1,108 @@
+gNumObjects=3
+gObjects={}
+gObjects[1]={}
+gObjects[2]={}
+gObjects[3]={}
+
+gMaxThrottle=60
+gMinThrottle=10
+gEnemyThrottle=20
+
+dofile(getSceneInfo(IG3D_ROOT).."Data/Scripts/Airforce/af_math.lua")
+dofile(getSceneInfo(IG3D_ROOT).."Data/Scripts/Airforce/af_plane.lua")
+
+gObjects[1].cObj=make(ig3d_object, "avatarp1.wtf")
+gObjects[2].cObj=make(ig3d_object, "enemyfighter.wtf")
+gObjects[3].cObj=make(ig3d_object, "bullet.wtf")
+
+ship=gObjects[1]
+marker=gObjects[2]
+bullet=gObjects[3]
+
+setObjectInfo(marker.cObj, IG3D_POSITION, -30+math.random()*60,0,-30+math.random()*60.0)
+setObjectInfo(marker.cObj, IG3D_ROTATION, -180+math.random()*360,-180+math.random()*360,-180+math.random()*360)
+
+
+setCameraInfo(IG3D_POSITION, 0,50,0)
+setCameraInfo(IG3D_ROTATION, 90,0,0)
+
+t=time()+1
+t2=t
+
+vel1={x=0, y=0, z=10}
+
+
+setObjectInfo(ship.cObj, IG3D_VELOCITY, vel1.x, vel1.y, vel1.z)
+
+i=1
+
+init_plane(ship)
+init_plane(marker)
+
+function loop()
+updateFromAllVisualObjects()
+
+
+ship.yaw=0
+if key("d","-") then
+ship.yaw=5
+end
+
+if key("a","-") then
+ship.yaw=-5
+end
+
+
+apply_plane_physicsnew(ship, 0, 0, gMinThrottle, 0,ship.yaw,0) 
+
+
+vel1.x, vel1.y, vel1.z=getObjectInfo(ship.cObj, IG3D_VELOCITY)
+dmag=distance_object_to_object(ship, marker)
+
+vel2mag=vecLength(getObjectInfo(marker.cObj, IG3D_VELOCITY))
+
+tx=ship.x
+ty=ship.y
+tz=ship.z
+
+if vel2mag > 0 then
+t=dmag/vel2mag
+
+tx=tx+t*vel1.x
+--ty=ty+t*vel1.y
+tz=tz+t*vel1.z
+end
+
+--setObjectInfo(bullet.cObj, IG3D_POSITION, tx,ty,tz)
+
+
+a11,a12,a13,a14,a21,a22,a23,a24,a31,a32,a33,a34,a41,a42,a43,a44=getObjectInfo(ship.cObj, IG3D_ROTATION_MATRIX)
+plane_control(marker, ship.x+a31*100,ship.y+a32*100,ship.z+a33*100)
+
+dx=ship.x-marker.x
+dy=ship.y-marker.y
+dz=ship.z-marker.z
+
+netx=a11*dx+a12*dy+a13*dz
+nety=a21*dx+a22*dy+a23*dz
+netz=a31*dx+a32*dy+a33*dz
+
+if netz>10 then
+marker.throttle=vecLength(vel1.x,vel1.y,vel1.z)
+end
+
+if netz<-10 then
+marker.throttle=0
+end
+
+apply_plane_physicsnew(marker, 0, 0, marker.throttle, marker.pitch, marker.yaw, marker.roll)
+
+
+
+setCameraInfo(IG3D_POSITION, ship.x, ship.y+50, ship.z)
+
+
+end
+
+
+game_func=loop

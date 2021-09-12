@@ -1,0 +1,1 @@
+Tutorial Stacks need to be in the same directory as the iGame3D DLL Pro External.dll, lua5.1.dll, etc

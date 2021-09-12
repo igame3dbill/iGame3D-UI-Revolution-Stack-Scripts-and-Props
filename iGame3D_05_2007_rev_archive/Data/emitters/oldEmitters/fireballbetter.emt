@@ -1,0 +1,2 @@
+texture=Animations//fire-animated.mov
+amount=-1emission rate=0.011000life=7.900000fade=3.766000area=0.000000size=1.010000size variance=2.020000speed=10.001000lux=trueweight=-0.001100explode=false,2move=false,2.000000scale=true,1.000000rotate=true,-0.010000anim=true,0

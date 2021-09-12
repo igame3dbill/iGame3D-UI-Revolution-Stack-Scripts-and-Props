@@ -1,0 +1,47 @@
+function ColS stx
+if stx is "sceneGraph" or stx is emptyt then return "root,col1,col2,col3"
+end ColS
+
+function ColN col
+put ColS() into Cs
+get getMkey(sceneGraphPickLines)
+return item (itemOffset(col,Cs) of it
+end ColN
+
+function ColN  colput ColS() into Csput getMkey(sceneGraphPickLines) into tHiliteLinesif col is empty then return tHiliteLinesif col is among the items of cs then return  item (itemOffset(col,Cs)) of tHiliteLinesif the number of items of col > 1 then   repeat for each item CSL in col    if CSL is not a number then  put item (itemOffset(CSL,Cs)) of tHiliteLines & comma after theColumnTextelse put item CSL of tHiliteLines  & comma after theColumnText  end repeatreturn theColumnText
+end if  if col is a number  then return item col of tHiliteLines  end ColN
+
+
+function COLT  colput ColS() into Csput getMkey(sceneGraphPickWords) into thilitesif col is empty then return thilitesif col is among the items of cs then return  item (itemOffset(col,Cs)) of thilitesif the number of items of col > 1 then   repeat for each item CSL in col    if CSL is not a number then  put item (itemOffset(CSL,Cs)) of thilites & comma after theColumnTextelse put item CSL of thilites  & comma after theColumnText  end repeatreturn theColumnText
+end if  if col is a number  then return item col of thilites  end COLT
+
+on col1FieldClick rootPick
+  put  coln("col1") into colN  put colt("col1") into  colT  put colclickbool(colT) into colTif rootPick is empty then put theRootPick()  into rootPick
+put the ruggedPath of stack "SceneGraph" into lpathput  getMkey(editingMode) into EMcheckPopups colT
+  if em is "camera" and rootPick is "visibility" then set the hilitedLine of fld "col2" of lpath to colnif em is "mesh"  then put meshRootPick(rootpick,colT)if em is "snapShot"   then     if rootPick is  "FSAA" then  rootFieldClick rootPick  set the hilitedLine of fld "root" of lpath to colN  put line coln of fld "root" of lpath into rootPick   end ifend col1FieldClick
+
+on col2FieldClick rootPick
+  put  coln("col2") into colN  put colt("col2") into  colT  put colclickbool(colT) into colTif rootPick is empty then put theRootPick()  into rootPick
+put the ruggedPath of stack "SceneGraph" into lpathput  getMkey(editingMode) into EMcheckPopups colT
+put coln("col1") into colN1put colt("col1") into  colT1     if colT is "save" and em is "snapshot" then    put TakeSnapShot() into  fld "col1" of lpath   replace comma with cr in fld "col1" of lpath end if if char 1 of colT is among the items of "x,y,z,r,g,b,a" or char -1 of colT is a number  thenput rootPick & colT1 &"|"& colT into allText    put "col2",coln,allText into WhichAsk    set the F1InputMemory of stack (the mainStack of this stack) to whichAsk end if
+   switch rootPick --rootPick      case "visibility"        set the hilitedLine of fld "col1" of lpath to colN      put the hilitedText of fld "col1" of lpath into colt1  put visibleElements(coln,colt) into el --field "col2" of  lpath     breakcase "fog"FOgCol2FieldClick break      case "camera"    put  sceneGraphCameraData(rootPick)  into xyz    break  case "materials"MaterialsCol2FieldClick coln,colt    break  case "lights"    put sceneGraphLightData(rootPick) into fld "col3" of lPath --stack "scenegraph"    break  end switchend col2FieldClick
+on FOgCol2FieldClick        if colt("col1") is "show" then  put ig3d_GetFogInfo__b5f() into fog put column2text into item column2n of fog ig3d_SetFogInfo_b5f (item 1 of fog),(item 2 of fog),(item 3 of fog),(item 4 of fog),(item 5 of fog),(item 6  of fog)elseput  colt("col2") into allText  put "col2",column2n,allText into WhichAsk   set the F1InputMemory of stack (The mainStack of this stack) to whichAsk end if
+end FOGCol2FieldClick
+
+on MaterialsCol2FieldClick coln,colt
+    ig3d_CombineEqualMeshMaterials    put ig3d_GetCurrentMaterialNumber__i()  into n    put ig3d_GetMeshMaterialInfo_i_s(n) into matData    delete line 2 of matData    replace "=" with comma in matData    repeat for each line Lii in matData      put item 1 of lii & cr after MaterialAttributes      put (item 2 to -1 of lii )& cr after materialINFO    end repeat    ##Put materialInfo    put line 1 of materialAttributes into line 1 of materialINFO    put "name" into line 1 of materialAttributes    put line column2n of materialINFO  into theMatData    replace comma with cr in theMatdata    if column2Text is among the items of "ambient,diffuse,specular,color,emission" then      repeat with C=1 to 4        put item C of "r,g,b,a" & ":" && line C of theMatData & cr after OutputMatData      end repeat    else      put theMatdata into outPutMatData      end if     if "/" is in theMatData then       set itemDel to "/"      put cr& space & space  into chc      repeat with co=2 to num(items of theMatdata)             put tab & chc into char Offset("/",thematData) of theMatData        put  space & space after Chc      end repeat      replace tab with "/" in theMatData      put theMatData into outputMatData    end if    put outPutMatData into fld "col3" of lpath    if the hilite of btn "showstack" of stack "scenegraph" then--      go card "materialsCard" of stack "inspector"      if theChosenMatProp is among the items of "ambient,specular,diffuse,color,emission" then put setInspectorHilitedMaterial(theChosenMatProp) into HiliteButton  --    put updateInspectorFromMaterial() into quiet    end if
+end MaterialsCol2FieldClick
+
+
+
+
+
+
+
+
+
+
+on col3FieldClick   put  coln("col3") into colN  put colt("col3") into  colT  put colclickbool(colT) into colTif rootPick is empty then put theRootPick()  into rootPick
+put the ruggedPath of stack "SceneGraph" into lpathput  getMkey(editingMode) into EMcheckPopups colTput colt("Col1") into colt1
+put colt("Co2") into colt2
+put colt("Col2") into col2n  switch ROOT    case "visibility"        updateVisibility      break    case "terrain"     break  case "camera"    put ig3d_GetCameraInfo__s()  into data    put ig3d_GetElapsedSeconds__f()*40 into t    put .1 into t    switch col3pick    case "move"      --if the mouse is down then send mouseDowninme to fld  "col3"  of lpath       break      end switch      ig3d_SetCameraInfo_s data      --if the mouse is down then send col3fieldclick to me in 30 milliseconds      break    end switch  end col3FieldClick

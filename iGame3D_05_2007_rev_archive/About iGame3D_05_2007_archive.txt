@@ -1,0 +1,9 @@
+This appears to be the last working Runtime Revolution .rev stack but I don't have an old
+version of Runtime Revolution for windows to test it.
+
+The iGame3D Player051707.exe was built May 17, 2007 and has a working rudimentary murgaLua UI
+
+iGame3D Pro External.dll built 02/12/2007 is different from iGame3D Pro External051707.dll but I don't know how, we worked for four years without any source version control yikes!
+
+May 17 2017 looks like the last build of the iGame3D Pro External.dll for Runtime Revolution.
+It it includes a method to run murgalua from Livecode.
