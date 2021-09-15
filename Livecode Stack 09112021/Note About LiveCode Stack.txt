@@ -1,11 +1,11 @@
-ig3d_UI_MAIN_09112021.livecode was edited on 09/11/2021  in Livecode Community 9.6.1 it is not compatible with older versions of Livecode and apparently a lot of basic stuff like 'put data into URL theFilepath" is breaks for unknown reasons. 
+ig3d_UI_MAIN_09112021.livecode was edited on 09/11/2021  in Livecode Community 9.6.1 it is not compatible with older versions of Livecode and apparently a lot of basic stuff like 'put data into URL theFilepath"  breaks for unknown reasons. 
 
-It was the stack I used to export all the scripts and properties from as the previous exports have lost data over the years do Windows crying about file paths.
+It was the stack I used to export all the scripts and properties from as the previous exports have lost data over the years do Windows crying about file path lengths.
 
-Runtime Revolution had a name change to Livecode around version 6, I think.
+Runtime Revolution had a name change to Livecode around version 6, I think?
 RunRev discontinued Livecode Community and removed free versions from the web around 09/1/2021
 Possible to still get the Community edition on archive.org
 
 The compatibility of the iGame3D External.dll broke some time before the change from Revolution to Livecode.
 
-I didn't switch to Windows until around 2011, and we stopped iGame3D development for Revolution in 2007, so I don't have any way of testing a working stack file on Windows, at the moment.
+I didn't switch to Windows until around 2011, and we stopped iGame3D development for Revolution in 2007, so I don't have any way of testing a working stack file on Windows, at the moment, although I tried for hours to dig up an old Revolution for Windows, not enough of the old internet is archived, a shame.
